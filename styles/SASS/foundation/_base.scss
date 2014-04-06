@@ -1,0 +1,540 @@
+/* ----------------------- BASE VARIABLES ----------------------------- */
+
+$lightRedTheme: #FFAAAA;
+$redTheme: #CC3355;
+$darkRedTheme: #FF3333;
+
+$darkGreenTheme: #8FA288;
+$greenTheme: #ABC1A6;
+$lightGreenTheme: #C7D0C4;
+
+$lightBlueTheme: #EEEEFF;
+$blueTheme: #BBDBFF;
+$darkBlueTheme: #3399FF;
+
+$lightGrayTheme: #D0D0D0;
+$grayTheme: #CDCDCD;
+$darkGrayTheme: #898989;
+
+$lightWhiteTheme: #F8F8F8;
+$whiteTheme: #FFFFFF;
+
+$blackTheme: #000000;
+
+$positiveTheme: #21693A;
+$negativeTheme: #DB5192;
+
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+
+// Mixin helps to defining a width for a particular column within a table
+// Should not really matter whether the table is real or simulated
+@mixin basicColumnSettings($width, $text_align: center)
+{
+	width: $width;
+	text-align: $text_align;
+
+	display: inline-block;
+}
+
+// Mixin responsible for defining the basic styling that should be applied to all tables, both real and simulated
+@mixin basicTableSettings($width: 75%)
+{
+	border:
+	{
+		width: 1px;
+		style: solid;
+		color: $lightGrayTheme;
+		spacing: 0px;
+		radius: 20px;
+	}
+
+	width: $width;
+
+	@content;
+}
+
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+
+
+// Mixin responsible for allowing just about any property to be animated upon, provided that the property can be animated
+// The code below should work across all major browsers
+@mixin transitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s, $useBrowserSpecificReferences: false)
+{
+	transition-property: $property;
+	-webkit-transition-property: $property;
+	-moz-transition-property: $property;
+	-ms-transition-property: $property;
+	-o-transition-property: $property;
+
+	// In case browser-specific prefixes are needed here when specifying the property to transition upon,
+	// set the $useBrowserSpecificReferences flag appropriately to execute the below block of code
+	@if $useBrowserSpecificReferences
+	{
+		-webkit-transition-property: '-webkit-' + $property;
+		-moz-transition-property: '-moz-' + $property;
+		-ms-transition-property: '-ms-' + $property;
+		-o-transition-property: '-o-' + $property;
+	}
+
+	transition-timing-function: $timing;
+	-webkit-transition-timing-function: $timing;
+	-moz-transition-timing-function: $timing;
+	-ms-transition-timing-function: $timing;
+	-o-transition-timing-function: $timing;
+
+	transition-duration: $duration;
+	-webkit-transition-duration: $duration;
+	-moz-transition-duration: $duration;
+	-ms-transition-duration: $duration;
+	-o-transition-duration: $duration;
+
+	transition-delay: $delay;
+	-webkit-transition-delay: $delay;
+	-moz-transition-delay: $delay;
+	-ms-transition-delay: $delay;
+	-o-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate webkit-only properties
+@mixin webkitTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-webkit-transition-property: $property;
+	-webkit-transition-timing-function: $timing;
+	-webkit-transition-duration: $duration;
+	-webkit-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate gecko-only properties
+@mixin mozTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-moz-transition-property: $property;
+	-moz-transition-timing-function: $timing;
+	-moz-transition-duration: $duration;
+	-moz-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate IE-only properties
+@mixin msTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-ms-transition-property: $property;
+	-ms-transition-timing-function: $timing;
+	-ms-transition-duration: $duration;
+	-ms-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate opera-only properties
+@mixin oTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-o-transition-property: $property;
+	-o-transition-timing-function: $timing;
+	-o-transition-duration: $duration;
+	-o-transition-delay: $delay;
+}
+
+// Mixin designed to shift elements on a two-dimensional plane
+@mixin shiftTransition($x: 0px, $y: 0px)
+{
+	transform:translate($x, $y);
+	-webkit-transform:translate($x, $y);
+	-moz-transform:translate($x, $y);
+	-ms-transform:translate($x, $y);
+	-o-transform:translate($x, $y);
+}
+
+// Mixin designed to rotate elements on a two-dimensional plane
+@mixin rotateTransition($degrees)
+{
+	transform:rotate($degrees);
+	-webkit-transform:rotate($degrees);
+	-moz-transform:rotate($degrees);
+	-ms-transform:rotate($degrees);
+	-o-transform:rotate($degrees);
+}
+
+// Mixin designed to rotate elements on a three-dimensional plane
+@mixin rotateTransition3D($degrees, $rotateByX: 0, $rotateByY: 0, $rotateByZ: 0)
+{
+	transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-webkit-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-moz-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-ms-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-o-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+
+}
+
+// Mixin designed to reset the location of the origin on a specific element
+// Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+// Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+@mixin setAxes($x: 0px, $y: 0px, $z: 0px)
+{
+	transform-origin: $x $y $z;
+	-webkit-transform-origin: $x $y $z;
+	-moz-transform-origin: $x $y $z;
+	-ms-transform-origin: $x $y $z;
+	-o-transform-origin: $x $y $z;
+}
+
+// Mixin designed to scale elements in a two-dimensional plane
+@mixin scaleTransition($length: 1, $width: 1)
+{
+	transform:scale($length, $width);
+	-webkit-transform:scale($length, $width);
+	-moz-transform:scale($length, $width);
+	-ms-transform:scale($length, $width);
+	-o-transform:scale($length, $width);
+}
+
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+
+
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+@mixin basicFontSettings($weight: normal, $size: 13, $family: Palatino Linotype, $style: normal, $color: null) 
+{
+	font:
+	{
+		weight: $weight;
+		size: $size;
+		family: $family;
+		style: $style;
+	}
+
+	@if ($color)
+	{
+		color: $color;
+	}
+}
+
+// Mixin generally reserved for page headers
+@mixin headerSettings($padding: 7px)
+{
+	@include basicFontSettings($weight: bold, $size: 18px);
+
+	padding:
+	{
+		top: $padding;
+		bottom: $padding;
+	}
+
+	text-align: center;
+}
+
+// Mixin to produce a flashy white font that should be used primarily to grab attention
+@mixin majorWhiteFont($size)
+{
+	@include basicFontSettings($weight: bold, $size: $size, $family: Arial, $style: italic, $color: $lightWhiteTheme);
+
+	text-shadow: 1px 1px 0 #000000;
+
+	@content;
+}
+
+// Mix-in designed to render a gradient background on a particular element
+// Designed to work across all major browsers
+@mixin setGradient($initialColor, $endColor, $direction: left)
+{
+	background-color: $initialColor; // In the rare event that the user is on a browser that does not support gradients, set a default color
+	background-image: -webkit-linear-gradient($direction, $initialColor, $endColor); 
+	background-image: -moz-linear-gradient($direction, $initialColor, $endColor);
+	background-image: -ms-linear-gradient($direction, $initialColor, $endColor);
+	background-image: -o-linear-gradient($direction, $initialColor, $endColor);	
+}
+
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+
+
+// Mixin designed to generate a circular container
+@mixin circle($diameter, $color)
+{
+	border:
+	{
+		radius: 50%;
+	}
+
+	width: $diameter;
+	height: $diameter;
+	background-color: $color;
+
+	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50% allows us to generate a circular container
+}
+
+// Mixin responsible for generating a triangular indicator that can be placed next to an option that a user has selected
+@mixin triangleIndicator($width, $color)
+{
+	width: $width;
+	color: $color;
+}
+
+/* ----------------------- RQUERY MIX-INS ----------------------------- */
+
+
+// Mixin responsible for generating a tab (meant to be placed on top of tables or containers) to convey a bite's worth of information
+@mixin infoTab($topRightRadius: 0px, $topLeftRadius: 0px, $bottomLeftRadius: 0px, $bottomRightRadius: 0px)
+{
+	@include basicFontSettings($size: 16px);
+
+	border:
+	{
+		width: 1px;
+		style: solid;
+		color: $blueTheme;
+		top-left-radius: $topLeftRadius;
+		top-right-radius: $topRightRadius;
+		bottom-left-radius: $bottomLeftRadius;
+		bottom-right-radius: $bottomRightRadius
+	}
+
+	padding:
+	{
+		left: 10px;
+		right: 10px;
+		top: 2px;
+		bottom: 2px;
+	}
+
+	margin:
+	{
+		top: 0px;
+		bottom: 0px;
+	}
+
+	display: inline-block;
+	background-color: $lightBlueTheme;
+	text-align: center;
+
+	@content;
+}
+
+// Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that text with a certain qualifier
+@mixin labelIcon($content)
+{
+	border:
+	{
+		style: solid;
+		width: 1;
+		radius: 3px;
+		color: $darkGrayTheme;
+	}
+
+	font:
+	{
+		size: 14;
+		family: Palatino Lintotype;
+		style: normal;
+		weight: bold;
+	}
+
+	padding:
+	{
+		left: 3px;
+		right: 3px;
+	}
+
+	background-color: $darkGreenTheme;
+	color: $lightWhiteTheme;
+	text-shadow: 0.75px 0.75px 0 #000000;
+
+	content: $content;
+
+	@content;
+}
+
+// Mix-in designed to provide the base styling for any autocomplete suggestion section
+@mixin autocompleteSuggestionBox($fontSize: 11px, $zIndex: 1000)
+{
+	@include basicFontSettings($size: $fontSize);
+
+	border:
+	{
+		style: solid;
+		color: $blackTheme;
+
+		bottom-right-radius: 10px;
+		bottom-left-radius: 10px;
+		width: 1px;
+	}
+
+	background-color: $lightGrayTheme;
+	z-index: $zIndex;
+	position: absolute;
+
+	max-height: 100px;
+	overflow: auto;
+
+	div
+	{
+		padding:
+		{
+			top: 5px;
+			bottom: 5px;
+			left: 10px;
+			right: 5px;
+		}
+
+		cursor: pointer;
+
+		&.disabled
+		{
+			font:
+			{
+				style: italic;
+			}
+
+			cursor: default;
+			background-color: $lightGrayTheme;
+		}
+
+		&:hover
+		{
+			background-color: $lightBlueTheme;
+		}
+	}
+
+	@content;
+}
+
+// Mix-in designed to provide styling for all toggleSwitches
+@mixin toggleSwitch()
+{
+	// Deepen the blur of the text shadow on the white font
+	@include majorWhiteFont($size: 14)
+	{
+		text-shadow: 1px 1px 3px #000000;
+	};
+
+	min-height: 20px;
+
+	margin:
+	{
+		top: 5px;
+		bottom: 5px;
+	}
+
+	border:
+	{
+		color: $darkGrayTheme;
+		width: 2px;
+	}
+
+	input, label
+	{
+		display: none;
+	}
+
+	span
+	{
+		// Allow the background color to be animated
+		@include transitionSettings($property: background-color, $timing: linear, $duration: 0.5s);
+
+		margin:
+		{
+			left: 0px;
+			right: 0px;
+		}
+
+		padding:
+		{
+			top: 5px;
+			bottom: 5px;
+			left: 13px;
+			right: 13px;
+		}
+
+		border:
+		{
+			style: solid;
+			color: $darkGrayTheme;
+			width: 2px;
+		}
+
+		background-color: $grayTheme;
+		width: auto;
+		cursor: pointer;
+
+		&:first-of-type
+		{
+			border:
+			{
+				top-left-radius: 10px;
+				bottom-left-radius: 10px;
+			}
+		}
+
+		&:last-of-type
+		{
+			border:
+			{
+				top-right-radius: 10px;
+				bottom-right-radius: 10px;
+			}
+		}
+
+		&.toggleSelect
+		{
+			background-color: $greenTheme;
+			cursor: default;
+		}
+	}
+}
+
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+
+
+// The following mix-in forces any element to which it is applied to to fully render, regardless of whether content is there within the element
+@mixin forceRender()
+{
+	&:after
+	{
+		content: '.';
+		visibility: hidden;
+	}
+
+	// No content clause required here. The purpose of the function has nothing to do with style here
+}
+
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+@mixin trueCenter($left: 50%, $top: 50%)
+{
+	@include shiftTransition($x: -50%, $y: -50%);
+
+	position: absolute;
+	width: auto;
+
+	/* Center the content */
+	left: $left;
+	top: $top;
+
+	// No content clause required here. The purpose of the mix-in is singular in function. No point in allowing the formal override of the styling defined here
+}
+
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+@mixin setTableColumnWidths($columnWidths, $tableSelector)
+{
+	@for $i from 1 through length($columnWidths)
+	{
+		#{$tableSelector} th:nth-child( #{$i} )
+		{
+			width: nth($columnWidths, $i);
+		}
+	}
+
+	// No content clause required here. The purpose of the mix-in is singular in function. No point in allowing the formal override of the styling defined here
+}

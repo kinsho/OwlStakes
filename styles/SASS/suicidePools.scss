@@ -1,0 +1,154 @@
+/* ------- IMPORTS ------- */
+
+@import 'foundation/_base.scss';
+@import 'foundation/_modal.scss';
+
+/* ------- VARIABLES ------- */
+
+// The rightward offsets to apply to each column within the suicide pools table
+$poolsTableColumnLefts:   5%,		// Pool Name
+						  56%,		// Pool Status
+						  74%;		// Actions
+
+/* ------- SPECIFIC STYLES ------- */
+
+// Styling to be applied to each listing on the pools page
+.poolRow
+{
+	padding:
+	{
+		top: 15px;
+		bottom: 15px;
+	}
+
+	height: 100px;
+	position: relative;
+
+	& > div
+	{
+		position: absolute;
+		top: 50%;
+
+		@include shiftTransition($x: 0%, $y: -50%);
+
+		// Each 'cell' within the row needs to be set to a specific location
+		// considering that all of these cells are absolutely positioned
+		@for $i from 1 through length($poolsTableColumnLefts)
+		{
+			$left: nth($poolsTableColumnLefts, $i);
+
+			&:nth-child( #{$i} )
+			{
+				left: $left;
+			}
+		}
+	}
+}
+
+// Styling to be applied to the pool names that appear within the table
+.poolName
+{
+	@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $darkBlueTheme);
+
+	text-align: left;
+	word-wrap: break-word; // Ensure that the length of the text never exceeds the width of the span
+}
+
+// The label representing that the pool is currently managed by the user himself
+.managerLabel:after
+{
+	@include labelIcon($content: 'manager')
+	{
+		margin-left: 4px;
+	};
+}
+
+// The text signifying that the user is still alive within the suicide pool in context
+.aliveText:after
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $darkBlueTheme);
+
+	content: 'Alive';
+}
+
+// The text signifying that the user is dead within the suicide pool in context
+.deadText:after
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $negativeTheme);
+
+	content: 'Dead';
+}
+
+// The text signifying that the user has been invited to a pool
+.invitedText:after
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 21px, $color: $darkGreenTheme);
+
+	content: 'Invited';
+}
+
+// Styling for the link that opens up the modal responsible for letting managers add and remove people from pools
+.peopleManagerLink
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
+
+	text-align: left;
+	white-space: nowrap;
+
+	&:before
+	{
+		content: url('../../images/people.png');
+
+		padding:
+		{
+			right: 10px;
+			top: 10px;
+		}
+
+		vertical-align: middle;
+	}
+}
+
+// Styling for the link that opens up the modal responsible for letting people manage their settings with respect to any pool
+.settingsLink
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
+
+	text-align: left;
+	white-space: nowrap;
+
+	&:before
+	{
+		content: url('../../images/settings.png');
+
+		padding:
+		{
+			right: 10px;
+			top: 10px;
+		}
+
+		vertical-align: middle;
+	}
+}
+
+// Styling for the link that directs users to another page that allows them to make a pick within a specific pool
+.forwardLink
+{
+	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
+
+	text-align: left;
+	white-space: nowrap;
+
+	&:before
+	{
+		content: url('../../images/navArrowRight.png');
+
+		padding:
+		{
+			right: 10px;
+			top: 10px;
+		}
+
+		vertical-align: middle;
+	}
+}

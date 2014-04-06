@@ -1,0 +1,51 @@
+<?php
+	BaseController::startSession();
+	$userLoggedIn = array_key_exists('userSession', $_SESSION);
+?>
+
+<div id='leftHandContainer' class='rightBorder'>
+	<div id='leftHandMenu' class="<?=$userLoggedIn ? '' : 'noDisplay' ?>">
+
+<?php
+		BaseController::fetchFile('/views/foundation/leftHandMenuItems.phtml', false);
+?>
+	</div>
+
+<?php
+	if ( !($userLoggedIn) )
+	{
+?>
+	<div id='logIn' class="<?=$userLoggedIn ? 'noDisplay' : '' ?>">
+		<form id='logInForm'>
+			<div class='center'>
+				<label for='logInFormUserName'>User Name</label><br /><input type='text' name='username' id='logInFormUserName' />
+				<br /><br />
+				<label for='logInFormPassword'>Password</label><br /><input type='password' name='password' id='logInFormPassword' />
+				<br /><br /><br />
+				<input type='button' id='logInButton' value='Log In' />
+			</div>
+			<br />
+			<div class='checkbox'>
+				<input type='checkbox' id='rememberMeLogIn' name='rememberMe' />
+				<label for='rememberMeLogIn'>Remember Me</label>
+			</div>
+			<br /><br />
+			<a id='forgotPasswordLink' href='#'>Forgot your user name or password?</a>
+		</form>
+	</div>
+
+	<div id='forgotPassword' class='noDisplay'>
+		<form id='forgotPasswordForm'>
+			<label for='forgotPasswordFormEmailAddress'>E-mail Address</label><br /><input type='text' name='email' id='forgotPasswordFormEmailAddress' />
+			<br /><br />
+			<input type='button' id='forgotPasswordButton' value='E-mail me!' />
+			<br /><br />
+			<a id='logInLink' href='#'>Go back to the log-in form</a>
+		</form>
+	</div>
+
+<?php
+	}
+?>
+
+</div>

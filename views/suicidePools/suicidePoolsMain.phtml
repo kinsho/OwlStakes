@@ -1,0 +1,111 @@
+<?php
+	// Determine the number of pools that a user is actively participating in
+	$poolCount = 0;
+
+	foreach ($view->pools as $poolGroup)
+	{
+		$poolCount += count($poolGroup);
+	}
+
+	// Now reorder the pools within the main collection of pools so as to ensure
+	// that the pools are displayed in order of importance
+	$userPools = array();
+
+	$userPools[] = $view->pools['managed'];
+	$userPools[] = $view->pools['invited'];
+	$userPools[] = $view->pools['participant'];
+	$userPools[] = $view->pools['dead'];
+
+	$view->pools = $userPools;
+?>
+
+<h3>Your Suicide Pools</h3>
+
+<input type='hidden' id='isUserOverSuicidePoolLimit' value=<?=$poolCount ?> />
+
+<div class='infoRow center'>
+	Please note that if you see <span class='managerLabel'></span> next to a pool name below, that signifies that you are the manager of that pool.
+</div>
+
+<fieldset>
+	<div class="tabularBorder">
+
+		<?php
+			if ( !($poolCount) )
+			{
+				echo "<div class='tinyHeightener center'>";
+				echo "<span class='bigFont'> --- You're not part of any pools --- </span>";
+				echo "</div>";
+				echo "<div class='tinyHeightener'></div>";
+			}
+			else
+			{
+				foreach($view->pools as $poolSet)
+				{
+					// Below mapper serves to translate user statuses within pools to the appropriate CSS
+					// classes that'll illustrate the statuses in a sexier manner
+					$statusMapper = array
+					(
+						'participant' => 'aliveText',
+						'dead' => 'deadText',
+						'invited' => 'invitedText'
+					);
+
+					foreach ($poolSet as $index => $pool)
+					{
+						$status = $statusMapper[$pool['userStatus']];
+
+						// Alternate the background colors between different rows for easy viewing
+						echo '<div class="poolRow '.($index % 2 ? 'odd' : '').'">';
+
+						// List the name of the pool here
+						echo '<div class="poolName '.($pool['isManager'] ? 'managerLabel' : '').'">';
+						echo '<a>'.$pool['poolName'].'</a>';
+						echo '</div>';
+
+						// List the user status here
+						echo '<div class="center noTextWrap '.$status.'">';
+						echo '</div>';
+
+						// List the available actions the user can take with regards to the pool depending
+						// on the user's role within the pool
+						echo '<div class="right">';
+						if ($pool['isManager'])
+						{
+							echo '<div class="forwardLink">';
+							echo '<a>Go Make Picks</a>';
+							echo '</div>';
+							echo '<div class="peopleManagerLink">';
+							echo '<a>Manage Pool Members</a>';
+							echo '</div>';
+							echo '<div class="settingsLink manager">';
+							echo '<a>Pool Settings</a>';
+							echo '</div>';
+						}
+						else if ($status === 'invitedText')
+						{
+							echo 'Insert invite here';
+						}
+						else
+						{
+							echo 'Insert reg stuff here';							
+						}
+
+						echo '</div>';
+
+						echo '</div>';
+					}
+				}
+			}
+		?>
+
+		<div class='submitButtonFooter'>
+			<span class='submitButtonSpan'>
+				<input type='button' id='createPoolButton' value='Create A New Pool' />
+			</span>
+		</div>
+	</div>
+</fieldset>
+
+<!-- END -->	
+<div class='heightener'></div>

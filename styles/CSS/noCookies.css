@@ -1,0 +1,635 @@
+/* Imports */
+/* ----------------------- BASE VARIABLES ----------------------------- */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+/* ----------------------- INFO CONTAINER MIX-INS ----------------------------- */
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+/* HTML Tag Styling */
+h2 {
+  font-weight: normal;
+  font-size: 36;
+  font-family: Palatino Linotype;
+  font-style: italic;
+  margin-top: 30px;
+  text-align: left;
+  white-space: nowrap; }
+
+h3 {
+  font-weight: bold;
+  font-size: 30;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  margin-top: 30px;
+  text-align: center;
+  white-space: nowrap; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    cursor: pointer;
+    text-decoration: underline; }
+
+p {
+  font-weight: normal;
+  font-size: 18;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  text-align: center; }
+
+/* Base Classes */
+/* --- Single CSS Stylings --- */
+.hidden {
+  visibility: hidden; }
+
+.clickable {
+  cursor: pointer; }
+
+.noTextWrap {
+  white-space: nowrap; }
+
+.forceWordWrap {
+  word-wrap: break-word; }
+
+.left {
+  text-align: left; }
+
+.center {
+  text-align: center; }
+
+.right {
+  text-align: right; }
+
+.middle {
+  vertical-align: center; }
+
+.floatLeft {
+  float: left; }
+
+.floatRight {
+  float: right; }
+
+.relativePositioning {
+  position: relative; }
+
+.fadeIn {
+  opacity: 1.0; }
+
+.halfFade {
+  opacity: 0.5; }
+
+.fadeOut {
+  opacity: 0.0; }
+
+.fontBold {
+  font-weight: bold; }
+
+.fontItalics {
+  font-style: italic; }
+
+.leftPadding {
+  padding-left: 25px; }
+
+.rightPadding {
+  padding-right: 25px; }
+
+.noDisplay {
+  display: none; }
+
+.displayBlock {
+  display: block; }
+
+/* --- Common Font Styles --- */
+.positiveFont {
+  font-weight: bold;
+  font-size: 13;
+  font-family: Arial;
+  font-style: italic;
+  color: #21693a; }
+
+.negativeFont {
+  font-weight: bold;
+  font-size: 13;
+  font-family: Arial;
+  font-style: italic;
+  color: #db5192; }
+
+.bigFont {
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Arial;
+  font-style: normal; }
+
+.bigPositiveFont {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Arial;
+  font-style: normal;
+  color: #21693a; }
+
+.bigNegativeFont {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Arial;
+  font-style: normal;
+  color: #db5192; }
+
+.bigNeutralFont {
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial;
+  font-style: normal;
+  color: #8fa288; }
+
+/* --- Design Styles --- */
+.content {
+  font-weight: normal;
+  font-size: 15;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  width: 85%;
+  float: right;
+  z-index: 0;
+  position: relative; }
+
+.headerRow {
+  background-color: #d0d0d0; }
+
+.emptyLine {
+  height: 2px;
+  display: block; }
+
+.infoRow {
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bbdbff;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #eeeeff; }
+  .infoRow.centerRow {
+    margin-left: auto;
+    margin-right: auto; }
+  .infoRow img {
+    float: left; }
+  .infoRow .infoRowContent {
+    padding-left: 10px;
+    float: right; }
+
+.hintTip {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.infoTabTopline {
+  font-weight: normal;
+  font-size: 16px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bbdbff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: inline-block;
+  background-color: #eeeeff;
+  text-align: center; }
+
+.genericAutocompleteSuggestionBox {
+  font-weight: normal;
+  font-size: 11px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  border-style: solid;
+  border-color: black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-width: 1px;
+  background-color: #d0d0d0;
+  z-index: 1000;
+  position: absolute;
+  max-height: 100px;
+  overflow: auto; }
+  .genericAutocompleteSuggestionBox div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+    cursor: default; }
+    .genericAutocompleteSuggestionBox div.disabled {
+      font-style: italic; }
+    .genericAutocompleteSuggestionBox div:hover {
+      background-color: #eeeeff; }
+
+.genericModalAutocompleteSuggestionBox {
+  font-weight: normal;
+  font-size: 11px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  border-style: solid;
+  border-color: black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-width: 1px;
+  background-color: #d0d0d0;
+  z-index: 11000;
+  position: absolute;
+  max-height: 100px;
+  overflow: auto; }
+  .genericModalAutocompleteSuggestionBox div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+    cursor: default; }
+    .genericModalAutocompleteSuggestionBox div.disabled {
+      font-style: italic; }
+    .genericModalAutocompleteSuggestionBox div:hover {
+      background-color: #eeeeff; }
+
+.leftToggleSwitch {
+  font-weight: bold;
+  font-size: 20;
+  font-family: Arial;
+  font-style: italic;
+  padding-left: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 7px;
+  border-style: outset;
+  border-width: 3px;
+  border-color: #898989;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-right: -5px;
+  background-color: #3399ff;
+  cursor: pointer; }
+  .leftToggleSwitch:active {
+    border-style: inset; }
+
+.rightToggleSwitch {
+  font-weight: bold;
+  font-size: 20;
+  font-family: Arial;
+  font-style: italic;
+  padding-left: 7px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 10px;
+  border-style: outset;
+  border-width: 3px;
+  border-color: #898989;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-left: -5px;
+  background-color: #3399ff;
+  cursor: pointer; }
+  .rightToggleSwitch:active {
+    border-style: inset; }
+
+.horizontalRule {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 1px;
+  width: 45%;
+  display: inline-block;
+  background-color: #898989; }
+
+.horizontalRuleText {
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  vertical-align: middle; }
+
+/* --- Width Styles --- */
+.zeroOverOne {
+  width: 0%;
+  display: inline-block; }
+
+.oneOverOne {
+  width: 100%;
+  display: inline-block; }
+
+.oneOverTwo {
+  width: 50%;
+  display: inline-block; }
+
+.oneOverThree {
+  width: 31.66667%;
+  display: inline-block; }
+
+.twoOverThree {
+  width: 63.33333%;
+  display: inline-block; }
+
+.fourOverFive {
+  width: 76%;
+  display: inline-block; }
+
+.oneOverSix {
+  width: 15.83333%;
+  display: inline-block; }
+
+.oneOverNine {
+  width: 10.55556%;
+  display: inline-block; }
+
+.twoOverNine {
+  width: 21.11111%;
+  display: inline-block; }
+
+.fourOverNine {
+  width: 42.22222%;
+  display: inline-block; }
+
+.fiveOverNine {
+  width: 52.77778%;
+  display: inline-block; }
+
+.sevenOverNine {
+  width: 73.88889%;
+  display: inline-block; }
+
+.eightOverNine {
+  width: 84.44444%;
+  display: inline-block; }
+
+.oneOverEighteen {
+  width: 10.55556%;
+  display: inline-block; }
+
+/* --- Height Styles --- */
+.tinyHeightener {
+  height: 20px;
+  display: block; }
+
+.heightener {
+  height: 300px;
+  display: block; }
+
+/* HTML Tag Styling */
+fieldset {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d0d0d0;
+  border-spacing: 0px;
+  border-radius: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px; }
+
+legend {
+  font-weight: bold;
+  font-size: 18;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: center;
+  white-space: nowrap; }
+
+label {
+  font-weight: normal;
+  font-size: 16px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap; }
+  label:after {
+    content: ':';
+    margin-left: 2px;
+    font-weight: bold; }
+  label.requiredMarker:after {
+    content: '*';
+    margin-left: 5px;
+    color: #ff3333; }
+
+select, input {
+  font-weight: normal;
+  font-size: 13;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  outline-style: outset;
+  outline-width: 1px;
+  outline-color: #A0A0A0;
+  width: 100%;
+  min-width: 100px;
+  min-height: 20px;
+  background-color: #F8F8F8;
+  /*
+  	&[type='checkbox']
+  	{
+  		// Give some marginal padding to the checkbox
+  		margin:
+  		{
+  			left: 10px;
+  			right: 10px;
+  		}
+  
+  		// Do not expand the checkbox beyond the space needed to properly render it
+  		width: 0%;
+  		min-width: 0px;
+  		min-height: 0px;
+  		outline-style: none;
+  
+  		text-align: left;
+  	}
+  */ }
+  select:focus, input:focus {
+    background-color: #FFFFFF;
+    border-color: #000000;
+    border-width: 2px; }
+  select[type='button'], input[type='button'] {
+    font-weight: bold;
+    font-size: 18;
+    font-family: Arial;
+    font-style: italic;
+    color: #f8f8f8;
+    text-shadow: 1px 1px 0 #000000;
+    border-color: #eeeeff;
+    border-width: 4px;
+    border-radius: 6px;
+    outline-style: none;
+    width: 20%;
+    background-color: #3399ff; }
+    select[type='button']:disabled, input[type='button']:disabled {
+      opacity: 0.5; }
+  select.invalid, input.invalid {
+    border-width: 2px;
+    border-style: ridge;
+    border-color: #cc3355;
+    background-color: #ffaaaa; }
+    select.invalid:focus, input.invalid:focus {
+      background-color: #FFFFFF;
+      border-color: #cc3355; }
+  select:disabled, input:disabled {
+    background-color: #cdcdcd;
+    outline-width: 0px; }
+
+.checkbox input[type=checkbox] {
+  display: none; }
+  .checkbox input[type=checkbox]:checked + label:before {
+    font-size: 15px;
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 15px; }
+.checkbox label {
+  margin-right: 15px;
+  padding-left: 25px; }
+  .checkbox label:before {
+    margin-right: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 16px;
+    height: 16px;
+    background-color: #d0d0d0;
+    box-shadow: inset 3px 2px 6px 0px rgba(0, 0, 0, 0.3); }
+
+select > option[disabled='disabled'] {
+  color: #A0A0A0; }
+
+div.odd {
+  background-color: #eeeeff; }
+
+/* Form Classes */
+.tabularBorder {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d0d0d0;
+  border-spacing: 0px;
+  border-radius: 20px;
+  width: 100%; }
+
+.formHeaderRow {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d0d0d0;
+  border-spacing: 0px;
+  border-radius: 20px;
+  width: 100%;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-align: center; }
+
+.formRow {
+  font-weight: normal;
+  font-size: 15px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.formLabelColumn {
+  width: 10%;
+  text-align: right;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.formElongatedLabelColumn {
+  width: 15%;
+  text-align: right;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.formFieldColumn {
+  width: 20%;
+  text-align: left;
+  display: inline-block; }
+
+.formNarrowFieldColumn {
+  width: 5%;
+  text-align: center;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.paddingColumn {
+  width: 10%;
+  text-align: center;
+  display: inline-block;
+  cursor: default; }
+
+.midFormLabel {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle; }
+
+.submitButtonFooter {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100%;
+  background-color: #d0d0d0;
+  text-align: center; }
+  .submitButtonFooter .submitButtonSpan {
+    width: 95%;
+    text-align: right;
+    display: inline-block; }
+
+.submitButtonNonFooterRow {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-right: 30px;
+  text-align: right;
+  width: 80%; }
+  .submitButtonNonFooterRow.center {
+    text-align: center; }

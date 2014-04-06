@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !library
+RewriteCond %{REQUEST_URI} !styles
+RewriteCond %{REQUEST_URI} !scripts
+RewriteCond %{REQUEST_URI} !images
+
+RewriteRule /* /base.php [L]

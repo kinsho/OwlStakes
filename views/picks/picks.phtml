@@ -1,0 +1,248 @@
+<?php
+?>
+   
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<input type='hidden' id='currentWeek' value=<?=$view->currentWeek ?> />
+<!-- Picks Form -->
+		<h3>Your Picks for the Week</h3>
+
+		<div class='infoRow center'>
+			If you have any questions about how to wager points, the rules in this contest, or how to accumulate points, please consult the 'Rules' section.
+		</div>
+		<div class='infoRow center'>
+			Please keep in mind that <span class='homeBefore'>denotes the home team in each game below.</span>
+		</div>
+		<div class='infoRow center'>
+			Once a game ends, the team that won the game will show up below in <span class='emphasizeWinner'>bold</span>.</span>
+		</div>
+
+		<fieldset>
+			<legend>Picks</legend>
+			<div>
+				<span id='weekSelectorSpan' class='fourOverNine'>
+					<label for='weekSelector' class='fontBold bigFont'>Show Me Games From Week: </label>
+					<select id='weekSelector' name='week' class='twoOverNine'>
+						<?php
+						for ($i = $view->currentWeek; $i > 0; $i--)
+						{
+						?>
+							<option value=<?=$i ?> >
+								<?php echo $i ?>
+							</option>
+						<?php
+						}
+						?>
+					</select>
+					<input type='button' id='changeWeekButton' value='Go!' />
+				</span>
+				<span class='oneOverThree'></span>
+				<span class='oneOverNine infoTabTopline'>
+					<span class='fontBold'>Points Available<br /></span>
+					<span id='pointsAvailable' class='bigNeutralFont'>100</span>
+				</span>
+				<span class='oneOverNine infoTabTopline'>
+					<span class='fontBold'>Points Accrued<br /></span>
+					<span id='pointsAccrued' class='bigNeutralFont'>0</span>
+					<span id="pointsAccruedHint" class="hintTip">
+						This number was calculated by adding up all the points that you earned from the week through successful wagers and multiplying that sum by the game bonus multiplier calculated at the bottom of this page. Keep in mind that the game bonus multiplier will be ignored if it's less than one, however.
+					</span>
+				</span>
+			</div>
+			<div class='tabularBorder'>
+				<div class='headerRow formHeaderRow'>
+					<span class='twoOverNine right'>Underdog</span>
+					<span class='oneOverNine'></span>
+					<span class='twoOverNine left'>Favorite</span>
+					<span class='oneOverNine'>Kickoff Time</span>
+					<span class='oneOverNine'>Spread</span>
+					<span class='oneOverNine'>
+						Your Wager
+						<span id="bonusMultiplierHint" class="hintTip">
+							The numbers next to each of the fields below are the bonus multipliers that boost the overall payout if the upset occurs. The higher the spread, the higher the bonus multiplier!
+						</span>
+					</span>
+					<span id='payoutColumnLabel' class='oneOverNine'>Potential Payout</span>
+				</div>
+				<form id='picksForm'>
+					<div id='picksListing'>
+					<?php
+						foreach($view->games as $index => $game)
+						{
+							$gameIndexIds[] = 'gameWager'.$game['id']; // Build an array that contains the IDs for all the game wager fields on the page
+						}
+						foreach($view->games as $index => $game)
+						{
+							$gameWager = ( isset($view->wagers[$game['id']]) ? $view->wagers[$game['id']] : 0 );
+							echo '<div class="formRow gameRow center '.($index % 2 ? 'odd' : '').'">';
+
+							$pointMultiplier; // deduce the point multiplier using the spread, if one exists
+
+							if ($game['homeTeam']) // ensures that the current $game object does not represent the 'no upsets' wager
+							{
+								$underdog = $game['underdog'];
+								$favorite = ( $game['underdog'] === $game['homeTeam'] ? $game['awayTeam'] : $game['homeTeam'] );
+								$isUnderdogHomeTeam = ($game['homeTeam'] === $game['underdog']);
+								$dateTimeSplit = explode('-', $game['kickoffTime']);
+								if ($game['spread'] <= 3.5)
+								{
+									$pointMultiplier = 1;
+								}
+								else if ($game['spread'] <= 7)
+								{
+									$pointMultiplier = 1.25;
+								}
+								else if ($game['spread'] <= 10.5)
+								{
+									$pointMultiplier = 1.5;
+								}
+								else if ($game['spread'] <= 14)
+								{
+									$pointMultiplier = 1.8;
+								}
+								else
+								{
+									$pointMultiplier = 2.5;
+								}
+
+								echo '<span class="twoOverNine right noTextWrap'.($isUnderdogHomeTeam ? ' homeBefore': '').'">';
+								echo '<span class="'.($game['didUnderdogWin'] === 1 ? 'emphasizeWinner' : '').'">'.$underdog.'</span>';
+								echo '</span>';
+
+								echo '<span class="oneOverNine">';
+								echo '<span class="fontItalics"> over </span>';
+								echo '</span>';
+
+								echo '<span class="twoOverNine left noTextWrap'.($isUnderdogHomeTeam ? '': ' homeAfter').'">';
+								echo '<span class="'.($game['didUnderdogWin'] === 0 ? 'emphasizeWinner' : '').'">'.$favorite.'</span>';
+								echo '</span>';
+
+								echo '<span class="oneOverNine">';
+								echo $dateTimeSplit[0].'<br />'.$dateTimeSplit[1].' (EST)';
+								echo '</span>';
+
+								echo '<span class="oneOverNine boldNeutralFont">';
+								echo $game['spread'];
+								echo '</span>';
+							}
+							else
+							{
+								$pointMultiplier = 5;
+
+								echo '<span class="sevenOverNine center">';
+								echo 'No underdog is going to pull off an upset this week';
+								echo '<span id="noPickHint" class="hintTip">If you think that none of the underdogs are going to win this week, wager some points here!</span>';
+								echo '</span>';
+							}
+
+							echo '<span class="oneOverNine noTextWrap">';
+							if ( (array_key_exists('locked', $game)) && ($game['locked']) )
+							{
+								echo '<span class="relativePositioning">';
+								echo '<input type="text" id="gameWager'.$game['id'].'" name="'.$game['id'].'" class="fourOverFive" value="'.$gameWager.'" data-validators="isInteger checkPointTotals" data-associated-fields="'. implode(' ', $gameIndexIds) .'" data-underdog-won="'.$game['didUnderdogWin'].'" disabled=true >';
+								echo '<span class="lockedFont">LOCKED</span>';
+								echo '</input>';
+								echo '</span>';
+							}
+							else
+							{
+								echo '<input type="text" id="gameWager'.$game['id'].'" name="'.$game['id'].'" class="fourOverFive" value="'.$gameWager.'" data-validators="isInteger checkPointTotals" data-associated-fields="'. implode(' ', $gameIndexIds) .'" data-underdog-won="'.$game['didUnderdogWin'].'" />';							
+							}
+							echo ' x <span class="bonusMultiplier">'.$pointMultiplier.'</span> =';
+							echo '</span>';
+
+							echo '<span class="oneOverNine bigNeutralFont">';
+							echo '0';
+							echo '</span>';
+
+							echo '</div>';
+						}
+					?>
+					</div>
+					<div class='submitButtonFooter'>
+						<span class='submitButtonSpan'>
+							<input type='button' id='submitButton' value='Save Wagers' />
+						</span>
+					</div>
+				</form>
+			</div>
+
+			</fieldset>
+
+			<br /><br />
+			<!-- Game Multipliers Section -->
+			<fieldset id='gameMultipliersSection'>
+				<legend>Game Multipliers Calculator </legend>
+				<div class='formRow'>
+					The games bonus multiplier is designed to reward you for predicting multiple upsets on any given week correctly while minimizing the number of bad picks made. It is obtained by the following formula below.
+					<span class='fontBold'>If the formula yields a number less then one, then this bonus will be ignored when determining the total number of points you accrued this week.</span>
+				</div>
+				<div class='formRow center'>
+
+					<span id='upsetsPredictedCounter' class='oneOverNine bigPositiveFont center'>
+					</span>
+					<span class='oneOverNine bigFont center'>
+					-
+					</span>
+					<span class='oneOverEighteen bigFont center'>
+					(
+					</span>
+					<span id='upsetsIncorrectlyPredictedCounter' class='oneOverNine bigNegativeFont center'>
+					</span>
+					<span class='oneOverNine bigFont center'>
+					/
+					</span>
+					<span class='oneOverNine bigFont center'>
+					2
+					</span>
+					<span class='oneOverEighteen bigFont center'>
+					)
+					</span>
+					<span class='oneOverNine bigFont center'>
+					=
+					</span>
+					<span id='bigGameMultiplier' class='oneOverNine'>
+						<img class='absolutePositioning' src='../images/redNoCircle.png' />
+						<span></span>
+					</span>
+
+					<br />
+
+					<span class='oneOverNine midFormLabel'>
+						Upsets Successfully Predicted This Week
+					</span>
+					<span class='oneOverNine midFormLabel'>
+						minus
+					</span>
+					<span class='oneOverEighteen midFormLabel'>
+						(
+					</span>
+					<span class='oneOverNine midFormLabel'>
+						Upsets Wrongly Predicted This Week
+					</span>
+					<span class='oneOverNine midFormLabel'>
+						divided by
+					</span>
+					<span class='oneOverNine midFormLabel'>
+						two
+					</span>
+					<span class='oneOverEighteen midFormLabel'>
+						)
+					</span>
+					<span class='oneOverNine midFormLabel'>
+						equals
+					</span>
+					<span class='oneOverNine'>
+					</span>
+
+				</div>
+			</fieldset>
+
+		</form>
+
+		<div class='heightener'></div>
+	</body>
+</html>

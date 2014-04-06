@@ -1,0 +1,25 @@
+/* Imports */
+
+@import 'foundation/_base.scss';
+
+.legalArea
+{
+	@include basicFontSettings($family: 'Book Antiqua, serif', $size: 18px);
+
+	// Not creating a table here, but we need this mixin to generate a border
+	@include basicTableSettings($width: 80%);
+
+	margin:
+	{
+		top: 50px;
+		bottom: 50px;
+		left: auto;
+		right: auto;
+	}
+
+	width: 80%;
+	height: 300px;
+	overflow-y: scroll;
+
+	display: inline-block;
+}

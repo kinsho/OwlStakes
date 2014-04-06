@@ -1,0 +1,42 @@
+<?php
+	if ( isset($_SESSION) && isset($_SESSION['userSession']) )
+	{
+		$user = $_SESSION['userSession'];
+	}
+	else
+	{
+		$user = array(
+			'userName' => ''
+		);
+	}
+?>
+
+<div class='usernameDisplay mainItem'>
+	<span> <?php echo $user['userName']; ?> </span>
+</div>
+<div class='subItems'>
+	<div>
+		<span>Edit Personal Information</span>
+	</div>
+	<div data-special-handler='logOut'>
+		<span>Log Out</span>
+	</div>
+</div>
+<div class='extraHeight'></div>
+
+<!-- Set up breaks in between each major menu item to smooth ou the logging in animation -->
+<div class='mainItem' data-title='picks'>
+	<span>Make Picks</span>
+</div>
+<br />
+<div class='noHeight'></div>
+<div class='mainItem' data-title='stats'>
+	<span>Contest Stats</span>
+</div>
+<br />
+<div class='mainItem' data-title='suicidePools'>
+	<span>Suicide Pools</span>
+</div>
+<br />
+<div class='subItems'>
+</div>

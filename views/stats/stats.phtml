@@ -1,0 +1,153 @@
+<?php
+?>
+   
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr class='title'>
+					<td colspan='100'>Leaderboard</td>
+				</tr>
+				<tr id='leaderboardColumns' class='headerRow'>
+					<th>Rank</th>
+					<th>Nickname</th>
+					<th>Total Points</th>
+					<th>Last Picks (w/ Points Gained or Lost Per Pick)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					foreach($view->rankings as $index => $ranking)
+					{
+				?>	
+						<tr class='<?= (($index % 2) ? 'odd' : '') ?>' >
+							<td> <?= /* $ranking['rank'] */ $index + 1 ?></td>
+							<td> <?= $ranking['userName'] ?> </td>
+							<td> <?= $ranking['pointTotal'] ?> </td>
+							<td> 
+							<?php
+								// We use echos here to output HTML in order to avoid cluttering this
+								// section with PHP opening and closing tags.
+								foreach($ranking['pick'] as $index => $pick)
+								{
+									if ($index)
+									{
+										echo '<br />';
+									}
+
+									echo $pick['team'].' ';
+									echo ( '(<span class='.($pick['points'] > 0 ? 'positiveFont' : 'negativeFont').'>' );
+									echo ( $pick['points'] );
+									echo '</span>)';
+								}
+							?>
+							</td>
+						</tr>
+				<?php
+					}
+				?>
+			</tbody>
+		</table>
+		<br /><br />
+
+		<div id='svgContainer'></div>
+		<br /><br />
+
+		<div id='weekData'>
+			<?php
+				// We use echos here to output HTML in order to avoid cluttering this
+				// section with PHP opening and closing tags.
+				foreach($view->weeklyStats as $index => $week)
+				{
+			?>
+					<table class='detachedHead'>
+						<thead>
+							<tr class='title'>
+								<td>
+									Week <?= $index ?> Stats - 
+									<span>
+										<span class='leftToggleSwitch' data-associated-section='overallPredictions' >Overall Prediction Rates</span>
+										<span class='rightToggleSwitch' data-associated-section='topPredictors' >Top Predictors of the Week</span>
+									</span>
+								</td>
+								<td><img class='clickable' src='../images/collapsibleArrow.png' /></td>
+							</tr>
+						</thead>
+					</table>
+					<table class='detachedBody overallPredictions' data-is-active='true'>
+						<tbody>
+							<tr id='weeklyStatsColumns' class='headerRow'>
+								<th>Matchup (w/ Winners Bolded)</th>
+								<th>Percentage Picked</th>
+							</tr>
+							<?php
+								foreach($week['games'] as $index2 => $game)
+								{
+									$isUpsetGood = ($game['winner'] === $game['upset']);
+
+									echo '<tr class='.($index2 % 2 ? 'odd' : '').'>';
+
+									echo '<td>';
+									echo ($isUpsetGood ? '<b>'.$game['upset'].'</b>' : $game['upset']);
+									echo ' over ';
+									echo ($isUpsetGood ?  $game['favorite'] : '<b>'.$game['favorite'].'</b>');
+									echo '</td>';
+
+									echo '<td class='.($isUpsetGood ? 'positiveFont' : 'negativeFont').'>';
+									echo $game['percentagePicked'].'%';
+									echo '</td>';
+
+									echo '</tr>';
+								}
+							?>
+						</tbody>
+					</table>
+					<table class='detachedBody topPredictors' data-is-active=''>
+						<tbody>
+							<tr class='headerRow'>
+								<th>Rank</th>
+								<th>Nickname</th>
+								<th>Total Points</th>
+								<th>Last Picks (w/ Points Gained or Lost Per Pick)</th>
+							</tr>
+							<?php
+								foreach($week['topStandings'] as $index3 => $record)
+								{
+							?>
+									<tr class='<?= (($index3 % 2) ? 'odd' : '') ?>' >
+										<td> <?= /* $record['rank'] */ $index3 + 1 ?></td>
+										<td> <?= $record['userName'] ?> </td>
+										<td> <?= $record['pointTotal'] ?> </td>
+										<td> 
+										<?php
+											// We use echos here to output HTML in order to avoid cluttering this
+											// section with PHP opening and closing tags.
+											foreach($record['pick'] as $index4 => $pick)
+											{
+												if ($index4)
+												{
+													echo '<br />';
+												}
+
+												echo $pick['team'].' ';
+												echo ( '(<span class='.($pick['points'] > 0 ? 'positiveFont' : 'negativeFont').'>' );
+												echo ( $pick['points'] );
+												echo '</span>)';
+											}
+										?>
+										</td>
+									</tr>
+							<?php
+								}
+							?>
+						</tbody>
+					</table>
+			<?php
+				}
+			?>
+		</div>
+	</body>
+</html>

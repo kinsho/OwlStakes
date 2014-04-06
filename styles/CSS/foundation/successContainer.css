@@ -1,0 +1,80 @@
+/* Imports */
+/* ----------------------- BASE VARIABLES ----------------------------- */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+/* General CSS styling */
+#successContainer {
+  transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  border-color: #bbdbff;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: #eeeeff;
+  display: none;
+  text-align: left; }
+  #successContainer .title {
+    font-weight: normal;
+    font-size: 25;
+    font-family: Palatino Linotype;
+    font-style: normal;
+    padding-left: 10px;
+    padding-top: 15px;
+    display: none; }
+  #successContainer .successMessage {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: none;
+    font-weight: normal;
+    font-size: 16;
+    font-family: Palatino Linotype;
+    font-style: normal; }

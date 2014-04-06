@@ -1,0 +1,51 @@
+<?php
+	global $view;
+
+	// -------------- PHP LIBRARIES -------------------
+	require_once('utility/server/reCAPTCHA/recaptchalib.php');
+?>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	<!-- Forcing IE to adhere to standards here -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	<!-- Load all the CSS files for this page -->
+		<?php
+			foreach($view->css as $css)
+			{
+		?>	
+				<link rel="stylesheet" type="text/css" href='<?=$css ?>'/>
+		<?php
+			};
+		?>
+	</head>
+	<body>
+		<input type='hidden' id='pageObjectName' value='<?=$view->pageName ?>' />
+		<!-- Load all the foundation view files that will be displayed across all pages -->
+		<?php
+			foreach($view->foundationViews as $html)
+			{
+				include($html);
+			}
+		?>
+		<div class='content'>
+			<!-- Load all the view files that comprise the main content for this page -->
+			<?php
+				foreach($view->contentViews as $html)
+				{
+					include($html);
+				}
+			?>
+		</div>
+		<!-- Load all the script files for this page, including any externally referenced script files -->
+		<?php
+			foreach($view->scripts as $script)
+			{
+		?>
+				<script src='<?=str_replace($_SERVER['DOCUMENT_ROOT'], '', $script) ?>'></script>
+		<?php
+			};
+		?>
+	</body>
+</html>	

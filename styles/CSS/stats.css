@@ -1,0 +1,169 @@
+/* Imports */
+/* ----------------------- BASE VARIABLES ----------------------------- */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+table {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d0d0d0;
+  border-spacing: 0px;
+  border-radius: 20px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  border-width: 5px; }
+  table th {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Palatino Linotype;
+    font-style: normal;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center; }
+  table tr.title {
+    font-weight: bold;
+    font-size: 26;
+    font-family: Arial;
+    font-style: italic;
+    color: #f8f8f8;
+    text-shadow: 1px 1px 0 #000000;
+    background-color: #8fa288; }
+    table tr.title td {
+      padding-top: 15px;
+      padding-bottom: 5px;
+      padding-left: 10px;
+      padding-right: 20px;
+      text-align: right; }
+      table tr.title td:nth-child(1), table tr.title td.left {
+        text-align: left; }
+  table tr.odd {
+    background-color: #c7d0c4; }
+  table tr td {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center; }
+
+/* Leaderboard */
+tr#leaderboardColumns th:nth-child(1) {
+  width: 5%; }
+
+tr#leaderboardColumns th:nth-child(2) {
+  width: 32%; }
+
+tr#leaderboardColumns th:nth-child(3) {
+  width: 8%; }
+
+tr#leaderboardColumns th:nth-child(4) {
+  width: 55%; }
+
+/* Point Distribution Chart */
+.chartArea {
+  fill: #bbdbff;
+  stroke: black;
+  stroke-opacity: 0.5;
+  stroke-width: 3px; }
+
+/* Weekly Stats */
+.overallPredictions .headerRow th:nth-child(1) {
+  width: 80%; }
+
+.overallPredictions .headerRow th:nth-child(2) {
+  width: 20%; }
+
+.topPredictors .headerRow th:nth-child(1) {
+  width: 5%; }
+
+.topPredictors .headerRow th:nth-child(2) {
+  width: 32%; }
+
+.topPredictors .headerRow th:nth-child(3) {
+  width: 8%; }
+
+.topPredictors .headerRow th:nth-child(4) {
+  width: 55%; }
+
+table.detachedHead {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px; }
+  table.detachedHead .title img.clickable {
+    transition-property: transform;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -ms-transition-property: transform;
+    -o-transition-property: transform;
+    -webkit-transition-property: "-webkit-transform";
+    -moz-transition-property: "-moz-transform";
+    -ms-transition-property: "-ms-transform";
+    -o-transition-property: "-o-transform";
+    transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -ms-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s; }
+    table.detachedHead .title img.clickable.rotateAround {
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg); }
+table.detachedBody {
+  transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  -ms-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  margin-top: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; }

@@ -1,0 +1,11 @@
+$(document).ready(function()
+{
+	leftHandMenu.markSelected();
+	modalManager.initiateModals();
+	modalManager.initiateModalOverlay();
+	formValidation.initValidators();
+	rQuery.infoRows();
+	rQuery.hintTips();
+	rQuery.hoverTips();
+	rQuery.select2();
+});

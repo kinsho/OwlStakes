@@ -1,0 +1,57 @@
+/* ------- IMPORTS ------- */
+
+@import 'foundation/_base.scss';
+
+/* ------- PROGRESS BAR STYLING ------- */
+
+.barOutline
+{
+	border:
+	{
+		style: solid;
+		width: 5px;
+		radius: 25px;
+		color: $grayTheme;
+	}
+
+	margin:
+	{
+		left: 10px;
+		right: 10px;
+	}
+
+	position: relative;
+	background-color: $darkGrayTheme;
+
+	width: 200px;
+	display: inline-block;
+
+	span.bar
+	{
+		@include setGradient($initialColor: $blueTheme, $endColor: $darkBlueTheme, $direction: left);
+		@include forceRender();
+		border:
+		{
+			radius: 15px;
+		}
+
+		display: inline-block;
+		position: relative;
+
+		// Initially when the progress bar is rendered, the bar will not be rendered
+		// It is up to the script within the page to render the bar by assigning a width here
+		width: 0px;
+	}
+
+	span.percentage
+	{
+		@include basicFontSettings($family: Arial, $weight: bold, $size: 12px, $color: $whiteTheme);
+
+		position: absolute;
+		z-index: 10;
+
+		/* Center the text on the input field as best as possible */
+		left: 50%;
+		top: 10%;
+	}
+}

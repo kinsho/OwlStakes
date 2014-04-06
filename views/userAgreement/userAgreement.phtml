@@ -1,0 +1,58 @@
+<?php
+	global $view;
+
+	if ($view->accessedViaRedirection)
+	{
+?>
+
+<body>
+	<h3>User Agreement</h3>
+	<div class='center'>
+		<div class='infoRow center'>
+			You're almost done with registration here. Just read the following agreement. If you do not find anything within the agreement objectionable, press the Accept button.
+		</div>
+	</div>
+	<div class='center'>
+		<div class='legalArea'>
+			<?php
+				include('/../utility/client/legalAgreement.html');
+			?>
+		</div>
+	</div>
+	<?php
+		if ( !($view->alreadyAgreed) )
+		{
+	?>
+	<div class='submitButtonNonFooterRow'>
+		<input type='button' id='acceptButton' value='Accept' data-hovertip='You should click on this button ONLY if you agree with all the legal mumbo-jumbo above.'>
+	</div>
+	<div class='heightener'></div>
+	<?php
+		}
+		else
+		{
+	?>
+		<div class='submitButtonNonFooterRow'>
+			<input type='button' id='acceptButton' value="You've already agreed!" disabled='disabled'>
+		</div>
+	<?php
+		}
+	?>
+</body>
+
+<?php
+	}
+	else
+	{
+?>
+		<h3>User Agreement</h3>
+		<div class='center'>
+			<div class='legalArea'>
+				<?php
+					include('/../utility/client/legalAgreement.html');
+				?>
+			</div>
+		</div>		
+<?php
+	}
+?>

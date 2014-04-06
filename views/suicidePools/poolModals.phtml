@@ -1,0 +1,99 @@
+<!------------------------------------ MODALS ---------------------------------------------->
+
+<!------ CREATE NEW POOL -------->
+
+<div id='createNewPoolModal' class='modal littleModal'>
+	<div class='modalHeader'>
+		New Suicide Pool
+		<div class='hasExitButton'></div>
+	</div>
+	<div class='modalBody'>
+		<form id='createNewPoolForm'>
+			<label>Name</label>
+			<span id="newSuicidePoolNameHint" class="hintTip">
+				Try and give your new pool a classy name.
+			</span>
+			<input type='text' id='poolNameField' name='name' data-validators='isLessThan100Characters' />
+			<div class='navButtonContainer right'>
+				<a class='navButton rightArrow' data-next-modal='newPoolNoticeModal'>Set Up My Pool</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!------ NEW POOL NOTICE -------->
+
+<div id='newPoolNoticeModal' class='modal littleModal'>
+	<div class='modalHeader'>
+		New Suicide Pool
+	</div>
+	<div class='modalBody'>
+		Please keep in mind that every new pool that you set up can have different settings.
+		Move on to the next step and you'll be able to modify settings for this particular pool.
+		These settings can be adjusted at any time, though you should be careful about adjusting
+		these options in the midst of the season.
+		<div class='navButtonContainer right'>
+			<a class='navButton rightArrow'>Go to Pool Settings</a>
+		</div>
+	</div>
+</div>
+
+<!------ MEMBER MANAGER -------->
+
+<div id='managePeopleModal' class='modal midsizeModal'>
+	<div class='modalHeader'>
+		Manage Pool Membership
+	</div>
+	<div class='modalBody'>
+		<form id='addNewPersonForm'>
+			<label>Invite Somebody</label>
+			<span id="addNewMemberHint" class="hintTip">
+				Invite somebody by typing in a user name or an e-mail address here
+			</span>
+			<input type='text' id='searchUserField' name='searchTerm' class='oneOverThree' />
+			<div class='navButtonContainer right'>
+				<a class='navButton rightArrow'>Close</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!------ POOL SETTINGS -------->
+
+<div id='poolSettingsModal' class='modal midsizeModal'>
+	<div class='modalHeader'>
+		Manage Pool Settings
+	</div>
+	<div class='modalBody'>
+		<form id='poolSettingsForm'>
+			<label>Number of Picks to Make Per Week</label>
+			<span id="numberOfPicksHint" class="hintTip">
+				The number of picks each person will have to make each week
+			</span>
+			<span id='numberOfPicksToggleSwitch' class='toggleSwitch'>
+				<input type='radio' id='onePick' name='numberOfPicks' /><label for='onePick'>One</label>
+				<input type='radio' id='twoPick' name='numberOfPicks' /><label for='twoPick'>Two</label>
+			</span>
+		</form>
+	</div>
+</div>
+
+<!---------- POOL SETTINGS - NUMBER OF PICKS NOTICE --------->
+
+<div id='picksNoticeModal' class='modal littleModal'>
+	<div class='modalHeader'>
+		Alert
+	</div>
+	<div class='modalBody'>
+		Just keep in mind that when you change the number of picks that have to be made, you're
+		changing the exact number of picks that every user that's still alive has to make on a weekly
+		basis. You can always change this any time while the pool is still active, but you should
+		be cautious about changing this too often. 
+
+		Typically, you'd only want people to have to make two picks a week in the event that you'd want to
+		whittle down the number of people that are still alive by the end of the season.
+		<div class='navButtonContainer center'>
+			<a class='navButton' data-action='close'>Understood</a>
+		</div>
+	</div>
+</div>

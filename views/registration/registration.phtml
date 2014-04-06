@@ -1,0 +1,247 @@
+<?php
+
+	define("MINYEAR", 1900);
+
+	$states = array
+	(
+		'AL' => 'Alabama',
+		'AK' => 'Alaska',
+		'AZ' => 'Arizona',
+		'AR' => 'Arkansas',
+		'CA' => 'California',
+		'CO' => 'Colorado',
+		'CT' => 'Connecticut',
+		'DE' => 'Delaware',
+		'DC' => 'District of Columbia',
+		'FL' => 'Florida',
+		'GA' => 'Georgia',
+		'HI' => 'Hawaii',
+		'ID' => 'Idaho',
+		'IL' => 'Illinois',
+		'IN' => 'Indiana',
+		'IA' => 'Iowa',
+		'KS' => 'Kansas',
+		'KY' => 'Kentucky',
+		'LA' => 'Louisiana',
+		'ME' => 'Maine',
+		'MD' => 'Maryland',
+		'MA' => 'Massachusetts',
+		'MI' => 'Michigan',
+		'MN' => 'Minnesota',
+		'MS' => 'Mississippi',
+		'MO' => 'Missouri',
+		'MT' => 'Montana',
+		'NE' => 'Nebraska',
+		'NV' => 'Nevada',
+		'NH' => 'New Hampshire',
+		'NJ' => 'New Jersey',
+		'NM' => 'New Mexico',
+		'NY' => 'New York',
+		'NC' => 'North Carolina',
+		'ND' => 'North Dakota',
+		'OH' => 'Ohio',
+		'OK' => 'Oklahoma',
+		'OR' => 'Oregon',
+		'PA' => 'Pennsylvania',
+		'RI' => 'Rhode Island',
+		'SC' => 'South Carolina',
+		'SD' => 'South Dakota',
+		'TN' => 'Tennessee',
+		'TX' => 'Texas',
+		'UT' => 'Utah',
+		'VT' => 'Vermont',
+		'VA' => 'Virginia',
+		'WA' => 'Washington',
+		'WV' => 'West Virginia',
+		'WI' => 'Wisconsin',
+		'WY' => 'Wyoming'
+	);
+	
+	$months = array
+	(
+		1 => 'January',
+			 'February',
+			 'March',
+			 'April',
+			 'May',
+			 'June',
+			 'July',
+			 'August',
+			 'September',
+			 'October',
+			 'November',
+			 'December'
+	);
+	
+	$years = array();
+	for ($i = 2000; $i >= MINYEAR; $i--)
+	{
+		$years[$i] = $i;
+	}
+
+	$days = array();
+	for ($i = 1; $i <= 31; $i++)
+	{
+		$days[$i] = $i;
+	}
+?>
+
+<html>
+	<!-- Registration Form -->
+	<form id='registrationForm' action='registration.php'>
+
+		<h3>Contest Registration</h3>
+		<!-- Personal Information Section -->
+		<fieldset>
+			<legend>Personal Information</legend>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<label for='firstName'>First Name</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='firstName' name='firstName' type='textfield' data-validators='isAlphabeticalWithSpaces' />
+				</span>
+				<span class='formLabelColumn'>
+					<label for='lastName'>Last Name</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='lastName' name='lastName' type='textfield' data-validators='isAlphabeticalWithSpaces' />
+				</span>
+			</div>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<span id="usaOnlyHint" class="hintTip">For legal reasons, only people living within any of the fifty states of the United States of America are allowed to participate in this contest.</span>
+					<label for='address' class='requiredMarker'>Address</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='address' name='address' type='textfield' data-validators='isAlphaNumericWithSpacesAndPunctuation' />
+				</span>
+				<span class='formLabelColumn'>
+					<label for='city' class='requiredMarker'>City</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='city' name='city' type='textfield' data-validators='isAlphabeticalWithSpacesAndPunctuation' />
+				</span>
+				<span class='formLabelColumn'>
+					<label for='state' class='requiredMarker'>State</label>
+				</span>
+				<span class='formFieldColumn'>
+					<select id='state' name='state' placeholder='Select state...'>
+						<option disabled='disabled' selected='selected' value=''>Select a state...</option>
+						<?php
+						foreach ($states as $stateAbbr => $state)
+						{
+						?>
+							<option value=<?php echo htmlspecialchars($stateAbbr) ?> >
+								<?php echo htmlspecialchars($state); ?>
+							</option>
+						<?php
+						}
+						?>
+					</select> 
+				</span>
+			</div>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<label for='month' class='requiredMarker'>Date of Birth</label>
+				</span>
+				<span class='formFieldColumn'>
+					<select id='month' name='birthMonth' placeholder='Select month...'>
+						<option disabled='disabled' selected='selected' value=''>Birth month</option>
+						<?php
+						foreach ($months as $monthIndex => $month)
+						{
+						?>
+							<option value=<?php echo htmlspecialchars($monthIndex) ?> >
+								<?php echo htmlspecialchars($month); ?>
+							</option>
+						<?php
+						}
+						?>
+					</select> 
+				</span>
+				<span class='formNarrowFieldColumn'>
+					<select id='date' name='birthDate' disabled='disabled'>
+						<option disabled='disabled' selected='selected' value=''>&nbsp;</option>
+					</select>
+				</span>
+				<span class='formFieldColumn'>
+					<select id='year' name='birthYear' placeholder='Select year...'>
+						<option disabled='disabled' selected='selected' value=''>Birth year</option>
+						<?php
+						foreach ($years as $yearValue => $year)
+						{
+						?>
+							<option value=<?=($yearValue) ?> >
+								<?php echo $year; ?>
+							</option> 
+						<?php
+						}
+						?>
+					</select> 
+				</span>
+			</div>
+			<br />
+		</fieldset>
+
+		<br />
+
+		<fieldset>
+			<!-- Credentials Section -->
+			<legend>Credentials Information</legend>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<label for='username' class='requiredMarker'>User Name</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='username' name='username' type='textfield' data-validators='isAlphaNumericWithDashesAndPunctuation' />
+				</span>
+			</div>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<label for='password' class='requiredMarker'>Password</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='password' name='password' type='password' data-validators='isAlphaNumericWithSpaces verifyPasswordsMatch' data-associated-fields='confirmPassword' />
+				</span>
+				<span class='paddingColumn'></span>
+				<span class='formElongatedLabelColumn'>
+					<label for='confirmPassword' class='requiredMarker'>Confirm Password</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='confirmPassword' name='confirmPassword' type='password' data-validators='isAlphaNumericWithSpaces verifyPasswordsMatch' data-associated-fields='password' />
+				</span>
+			</div>
+			<div class='formRow'>
+				<span class='formLabelColumn'>
+					<label for='email' class='requiredMarker'>E-Mail Address</label>
+				</span>
+				<span class='formFieldColumn'>
+					<input id='email' name='email' type='textfield' data-validators='isEmail' />
+				</span>
+			</div>
+		</fieldset>
+
+		<br />
+
+		<fieldset>
+			<!-- Security Section -->
+			<legend>
+				Security&nbsp;
+				<span id="securityHint" class="hintTip">
+					We hate these type of security tests too, but we do this in order to prevent malicious scripts or programs from overloading our databases with hundreds of fake accounts.
+				</span>
+			</legend>
+			<div>
+				<?php
+					echo recaptcha_get_html();
+				?>
+			</div>
+		</fieldset>
+
+		<div class='submitButtonNonFooterRow'>
+			<input type='button' id='submitButton' value='Register' />
+		</div>
+	</form>
+	<div class='heightener'></div>
+</html>

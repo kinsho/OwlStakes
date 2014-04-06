@@ -1,0 +1,134 @@
+/* ------- IMPORTS ------- */
+
+@import 'foundation/_base.scss';
+@import 'foundation/_progressBar.scss';
+
+/* ------- DEFINITIONS -------- */
+
+/* ------- SPECIFIC STYLES ------- */
+
+// Styling for all tasks
+.levelOne, .levelTwo, .levelThree
+{
+	padding:
+	{
+		left: 100px;
+	}
+
+	position: relative;
+	display: block;
+
+	&.highlight
+	{
+		background-color: $lightBlueTheme;
+	}
+
+	// Styling for first-level tasks
+	&.levelOne
+	{
+		@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $darkGrayTheme);
+
+		// Set spacing between adjacent first-level tasks appropriately
+		& + .levelOne
+		{
+			padding:
+			{
+				top: 20px;
+			}
+		}
+	}
+
+	// Styling for second-level tasks
+	&.levelTwo
+	{
+		@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $darkGreenTheme);
+
+		// Set spacing between adjacent second-level tasks appropriately
+		& + .levelTwo
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+
+		// Set spacing between the first and second level tasks appropriately
+		&:first-of-type
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+	}
+
+	// Styling for third-level tasks
+	&.levelThree
+	{
+		@include basicFontSettings($family: Palatino Linotype, $style: italic, $size: 14px, $color: $darkGreenTheme);
+
+		// Set spacing between the second and third level tasks appropriately
+		&:first-of-type
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+	}
+
+	span
+	{
+		margin:
+		{
+			right: 25px;
+		}
+
+		display: inline-block;
+		width: 400px;
+	}
+
+	.difficulty
+	{
+		position: relative;
+		vertical-align: middle;
+		@include circle($diameter: 50px, $color: $lightRedTheme);
+
+		&.difficultyFivePlus
+		{
+			@include circle($diameter: 50px, $color: $redTheme);
+		}
+
+		& > span
+		{
+			@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $blackTheme);
+
+			@include shiftTransition($x: -50%, $y: -50%);
+			@include trueCenter();
+		}
+	}
+
+	span.collapsibleIcon
+	{
+		padding:
+		{
+			left: 10px;
+			right: 15px;
+		}
+
+		display: inline-block;
+		width: auto;
+
+		img
+		{
+			@include transitionSettings($property: transform, $duration: 1s, $useBrowserSpecificReferences: true);
+
+			cursor: pointer;
+
+			&.collapsed
+			{
+				@include rotateTransition($degrees: 180deg);
+			}
+		}
+	}
+}

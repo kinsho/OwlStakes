@@ -1,0 +1,30 @@
+/* Imports */
+/* ----------------------- BASE VARIABLES ----------------------------- */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */

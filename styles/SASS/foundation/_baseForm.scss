@@ -1,0 +1,375 @@
+/* HTML Tag Styling */
+
+fieldset 
+{
+	@include basicTableSettings($width: 90%)
+	{
+		margin:
+		{
+			left: auto;
+			right: auto;
+		}
+		padding:
+		{
+			top: 10px;
+		}
+	};
+}
+
+legend
+{
+	@include basicFontSettings($weight: bold, $size: 18);
+
+	padding:
+	{
+		left: 25px;
+		right: 25px;
+	}
+
+	text-align: center;
+	white-space: nowrap;
+}
+
+label
+{
+	@include basicFontSettings($size: 16px);
+
+	position: relative;
+	cursor: pointer;
+	white-space: nowrap;
+
+	&:after
+	{
+		content: ':';
+
+		margin:
+		{
+			left: 2px;
+		}
+
+		font:
+		{
+			weight: bold;
+		}
+	}
+
+	&.requiredMarker:after
+	{
+		content: '*';
+
+		margin:
+		{
+			left: 5px;
+		}
+
+		color: $darkRedTheme;
+	}
+}
+
+select, input
+{
+	@include basicFontSettings($size: 13);
+
+	outline:
+	{
+		style: outset;
+		width: 1px;
+		color: #A0A0A0;
+	}
+
+	width: 100%;
+	min-width: 100px;
+	min-height: 20px;
+	background-color: #F8F8F8;
+
+	&:focus
+	{
+		background-color: #FFFFFF;
+
+		border:
+		{
+			color: #000000;
+			width: 2px;
+		}
+	}
+
+/*
+	&[type='checkbox']
+	{
+		// Give some marginal padding to the checkbox
+		margin:
+		{
+			left: 10px;
+			right: 10px;
+		}
+
+		// Do not expand the checkbox beyond the space needed to properly render it
+		width: 0%;
+		min-width: 0px;
+		min-height: 0px;
+		outline-style: none;
+
+		text-align: left;
+	}
+*/
+	&[type='button']
+	{
+		@include majorWhiteFont($size: 18);
+
+		border:
+		{
+			color: $lightBlueTheme;
+			width: 4px;
+			radius: 6px;
+		}
+
+		outline-style: none;
+		width: 20%;
+
+		background-color: $darkBlueTheme;
+
+		&:disabled
+		{
+			opacity: 0.5;	
+		}
+	}
+
+	&.invalid
+	{
+		border:
+		{
+			width: 2px;
+			style: ridge;
+			color: $redTheme;
+		}
+
+		background-color: $lightRedTheme;
+
+		&:focus
+		{
+			background-color: #FFFFFF;
+			border-color: $redTheme;
+		}
+	}
+
+	&:disabled
+	{
+		background-color: $grayTheme;
+
+		outline:
+		{
+			width: 0px;
+		}
+	}
+}
+
+// Special styling for checkboxes
+.checkbox
+{
+	input[type=checkbox]
+	{
+		display: none;
+
+		// Styling for the check within the box
+		&:checked + label:before
+		{
+			font:
+			{
+				size: 15px;
+			}
+
+			content: "\2713";
+
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+			text-align: center;  
+			line-height: 15px;
+		}
+	}
+
+	label
+	{
+		margin:
+		{
+			right: 15px;
+		}
+
+		padding:
+		{
+			left: 25px;
+		}
+
+		// The actual checkbox is designed right here
+		&:before
+		{
+			// Knowing that the checkbox is absolutely positioned, it will need to be spaced
+			// away from its corresponding label
+			margin:
+			{
+				right: 10px;
+			}
+
+			border:
+			{
+				style: solid;
+
+				width: 1px;
+				radius: 5px;
+			}
+
+			content: "";
+			display: inline-block;
+
+			position: absolute;
+			left: 0;
+			bottom: 1px;
+
+			width: 16px;
+			height: 16px;
+
+			background-color: $lightGrayTheme;
+			box-shadow: inset 3px 2px 6px 0px rgba(0, 0, 0, .3);
+		}
+	}
+}
+
+select > option[disabled='disabled']
+{
+	color: #A0A0A0;
+}
+
+div.odd
+{
+	background-color: $lightBlueTheme;
+}
+
+/* Form Classes */
+
+.tabularBorder
+{
+	@include basicTableSettings($width: 100%);
+}
+
+.formHeaderRow
+{
+	@include basicTableSettings($width: 100%)
+	{
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+	};
+
+	@include headerSettings();
+}
+
+.formRow
+{
+	@include basicFontSettings($size: 15px);
+
+	padding:
+	{
+		top: 15px;
+		bottom: 15px;
+	}
+}
+
+.formLabelColumn
+{
+	@include basicColumnSettings($width: 10%, $text_align: right);
+
+	margin:
+	{
+		left: 10px;
+		right: 10px;
+	}
+}
+
+.formElongatedLabelColumn
+{
+	@include basicColumnSettings($width: 15%, $text_align: right);
+
+	margin:
+	{
+		left: 10px;
+		right: 10px;
+	}
+}
+
+.formFieldColumn
+{
+	@include basicColumnSettings($width: 20%, $text_align: left);
+}
+
+.formNarrowFieldColumn
+{
+	@include basicColumnSettings($width: 5%);
+
+	margin:
+	{
+		left: 5px;
+		right: 5px;
+	}
+}
+
+.paddingColumn
+{
+	@include basicColumnSettings($width: 10%);
+
+	cursor: default;
+}
+
+.midFormLabel
+{
+	@include basicFontSettings($weight: bold, $size: 18px);
+
+	text-align: center;
+	vertical-align: middle;
+}
+
+.submitButtonFooter
+{
+	padding:
+	{
+		top: 15px;
+		bottom: 15px;
+	}
+
+	border:
+	{
+		bottom-left-radius: 20px;
+		bottom-right-radius: 20px;
+	}
+
+	width: 100%;
+	background-color: $lightGrayTheme;
+
+	text-align: center;
+
+	.submitButtonSpan
+	{
+		width: 95%;
+		text-align: right;
+		display: inline-block;
+	}
+}
+
+.submitButtonNonFooterRow
+{
+	margin:
+	{
+		left: auto;
+		right: auto;
+		top: 20px;
+	}
+
+	padding:
+	{
+		right: 30px;
+	}
+
+	text-align: right;
+	width: 80%;
+
+	&.center
+	{
+		text-align: center;
+	}
+}

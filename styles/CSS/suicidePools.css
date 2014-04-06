@@ -1,0 +1,560 @@
+/* ------- IMPORTS ------- */
+/* ----------------------- BASE VARIABLES ----------------------------- */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
+/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- UTILITY MIX-INS ----------------------------- */
+/* Mix-in truly centers an element squarely in the middle of its parent container */
+/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/*
+ * Mixin is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+/* Base Modal Class */
+/* Modal Classes */
+.modal {
+  /* Locally defined lists to set multiple transitions properties for all dialogs */
+  transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  transition-timing-function: linear, linear;
+  -webkit-transition-timing-function: linear, linear;
+  -moz-transition-timing-function: linear, linear;
+  -ms-transition-timing-function: linear, linear;
+  -o-transition-timing-function: linear, linear;
+  transition-duration: 0.5s, 0.5s;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s;
+  transition-delay: 0s, 0s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition-delay: 0s, 0s;
+  -ms-transition-delay: 0s, 0s;
+  -o-transition-delay: 0s, 0s;
+  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-style: solid;
+  border-color: #eeeeff;
+  border-top-width: 8px;
+  border-bottom-width: 8px;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  box-shadow: 2px 4px 10px 0px;
+  background-color: #f8f8f8;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  opacity: 0.0; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .modal {
+      transition-property: opacity, -webkit-transform;
+      -webkit-transition-property: opacity, -webkit-transform;
+      -moz-transition-property: opacity, -webkit-transform;
+      -ms-transition-property: opacity, -webkit-transform;
+      -o-transition-property: opacity, -webkit-transform;
+      transition-timing-function: linear, linear;
+      -webkit-transition-timing-function: linear, linear;
+      -moz-transition-timing-function: linear, linear;
+      -ms-transition-timing-function: linear, linear;
+      -o-transition-timing-function: linear, linear;
+      transition-duration: 0.5s, 0.5s;
+      -webkit-transition-duration: 0.5s, 0.5s;
+      -moz-transition-duration: 0.5s, 0.5s;
+      -ms-transition-duration: 0.5s, 0.5s;
+      -o-transition-duration: 0.5s, 0.5s;
+      transition-delay: 0s, 0s;
+      -webkit-transition-delay: 0s, 0s;
+      -moz-transition-delay: 0s, 0s;
+      -ms-transition-delay: 0s, 0s;
+      -o-transition-delay: 0s, 0s; } }
+  .modal.fadeIn {
+    opacity: 1.0; }
+  .modal.offsetUp {
+    transform: translate(-50%, calc(-50% - 50px));
+    -webkit-transform: translate(-50%, calc(-50% - 50px));
+    -moz-transform: translate(-50%, calc(-50% - 50px));
+    -ms-transform: translate(-50%, calc(-50% - 50px));
+    -o-transform: translate(-50%, calc(-50% - 50px)); }
+  .modal.offsetLeft {
+    transform: translate(calc(-50% - 100px), -50%);
+    -webkit-transform: translate(calc(-50% - 100px), -50%);
+    -moz-transform: translate(calc(-50% - 100px), -50%);
+    -ms-transform: translate(calc(-50% - 100px), -50%);
+    -o-transform: translate(calc(-50% - 100px), -50%); }
+  .modal.offsetRight {
+    transform: translate(calc(-50% + 100px), -50%);
+    -webkit-transform: translate(calc(-50% + 100px), -50%);
+    -moz-transform: translate(calc(-50% + 100px), -50%);
+    -ms-transform: translate(calc(-50% + 100px), -50%);
+    -o-transform: translate(calc(-50% + 100px), -50%); }
+  .modal.offsetDown {
+    transform: translate(-50%, calc(-50% + 50px));
+    -webkit-transform: translate(-50%, calc(-50% + 50px));
+    -moz-transform: translate(-50%, calc(-50% + 50px));
+    -ms-transform: translate(-50%, calc(-50% + 50px));
+    -o-transform: translate(-50%, calc(-50% + 50px)); }
+  .modal .navButtonContainer {
+    margin-top: 20px; }
+  .modal a.navButton {
+    font-weight: bold;
+    font-size: 18;
+    font-family: Arial;
+    font-style: normal;
+    color: #3399ff;
+    text-shadow: none;
+    cursor: pointer;
+    border-style: none; }
+    .modal a.navButton.rightArrow:after {
+      content: url("../../images/navArrowRight.png");
+      padding-left: 10px;
+      padding-top: 10px;
+      vertical-align: middle; }
+    .modal a.navButton.leftArrow:before {
+      content: url("../../images/navArrowLeft.png");
+      padding-right: 10px;
+      padding-top: 10px;
+      vertical-align: middle; }
+  .modal .modalHeader {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial;
+    font-style: italic;
+    color: #f8f8f8;
+    text-shadow: 1px 1px 0 #000000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    background-color: #8fa288; }
+    .modal .modalHeader .hasExitButton {
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 5px;
+      position: absolute;
+      left: 90%;
+      top: 0;
+      text-align: center;
+      vertical-align: middle;
+      width: 10%;
+      background-color: #cc3355;
+      cursor: pointer; }
+      .modal .modalHeader .hasExitButton:after {
+        font-weight: normal;
+        font-size: 20;
+        font-family: Arial;
+        font-style: normal;
+        color: #f8f8f8;
+        content: 'x'; }
+  .modal .modalBody {
+    font-weight: normal;
+    font-size: 16px;
+    font-family: Palatino Linotype;
+    font-style: normal;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 25px;
+    padding-bottom: 25px; }
+    .modal .modalBody label {
+      font-weight: bold;
+      font-size: 13;
+      font-family: Palatino Linotype;
+      font-style: normal;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      cursor: auto; }
+  .modal .submitButtonNonFooterRow {
+    width: 100%; }
+  .modal.halfFadeOut {
+    opacity: 0.5; }
+
+.littleModal {
+  width: 20%; }
+  .littleModal input[type=button] {
+    width: auto; }
+
+.midsizeModal {
+  width: 50%; }
+  .midsizeModal input[type=button] {
+    width: auto; }
+
+.nestedModal {
+  /* Locally defined lists to set multiple transitions properties for all dialogs */
+  transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  transition-timing-function: linear, linear;
+  -webkit-transition-timing-function: linear, linear;
+  -moz-transition-timing-function: linear, linear;
+  -ms-transition-timing-function: linear, linear;
+  -o-transition-timing-function: linear, linear;
+  transition-duration: 0.5s, 0.5s;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -moz-transition-duration: 0.5s, 0.5s;
+  -ms-transition-duration: 0.5s, 0.5s;
+  -o-transition-duration: 0.5s, 0.5s;
+  transition-delay: 0s, 0s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition-delay: 0s, 0s;
+  -ms-transition-delay: 0s, 0s;
+  -o-transition-delay: 0s, 0s;
+  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-style: solid;
+  border-color: #eeeeff;
+  border-top-width: 8px;
+  border-bottom-width: 8px;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  box-shadow: 2px 4px 10px 0px;
+  background-color: #f8f8f8;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  opacity: 0.0;
+  border-color: #c7d0c4;
+  z-index: 10001;
+  width: 20%; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .nestedModal {
+      transition-property: opacity, -webkit-transform;
+      -webkit-transition-property: opacity, -webkit-transform;
+      -moz-transition-property: opacity, -webkit-transform;
+      -ms-transition-property: opacity, -webkit-transform;
+      -o-transition-property: opacity, -webkit-transform;
+      transition-timing-function: linear, linear;
+      -webkit-transition-timing-function: linear, linear;
+      -moz-transition-timing-function: linear, linear;
+      -ms-transition-timing-function: linear, linear;
+      -o-transition-timing-function: linear, linear;
+      transition-duration: 0.5s, 0.5s;
+      -webkit-transition-duration: 0.5s, 0.5s;
+      -moz-transition-duration: 0.5s, 0.5s;
+      -ms-transition-duration: 0.5s, 0.5s;
+      -o-transition-duration: 0.5s, 0.5s;
+      transition-delay: 0s, 0s;
+      -webkit-transition-delay: 0s, 0s;
+      -moz-transition-delay: 0s, 0s;
+      -ms-transition-delay: 0s, 0s;
+      -o-transition-delay: 0s, 0s; } }
+  .nestedModal.fadeIn {
+    opacity: 1.0; }
+  .nestedModal.offsetUp {
+    transform: translate(-50%, calc(-50% - 50px));
+    -webkit-transform: translate(-50%, calc(-50% - 50px));
+    -moz-transform: translate(-50%, calc(-50% - 50px));
+    -ms-transform: translate(-50%, calc(-50% - 50px));
+    -o-transform: translate(-50%, calc(-50% - 50px)); }
+  .nestedModal.offsetLeft {
+    transform: translate(calc(-50% - 100px), -50%);
+    -webkit-transform: translate(calc(-50% - 100px), -50%);
+    -moz-transform: translate(calc(-50% - 100px), -50%);
+    -ms-transform: translate(calc(-50% - 100px), -50%);
+    -o-transform: translate(calc(-50% - 100px), -50%); }
+  .nestedModal.offsetRight {
+    transform: translate(calc(-50% + 100px), -50%);
+    -webkit-transform: translate(calc(-50% + 100px), -50%);
+    -moz-transform: translate(calc(-50% + 100px), -50%);
+    -ms-transform: translate(calc(-50% + 100px), -50%);
+    -o-transform: translate(calc(-50% + 100px), -50%); }
+  .nestedModal.offsetDown {
+    transform: translate(-50%, calc(-50% + 50px));
+    -webkit-transform: translate(-50%, calc(-50% + 50px));
+    -moz-transform: translate(-50%, calc(-50% + 50px));
+    -ms-transform: translate(-50%, calc(-50% + 50px));
+    -o-transform: translate(-50%, calc(-50% + 50px)); }
+  .nestedModal .navButtonContainer {
+    margin-top: 20px; }
+  .nestedModal a.navButton {
+    font-weight: bold;
+    font-size: 18;
+    font-family: Arial;
+    font-style: normal;
+    color: #3399ff;
+    text-shadow: none;
+    cursor: pointer;
+    border-style: none; }
+    .nestedModal a.navButton.rightArrow:after {
+      content: url("../../images/navArrowRight.png");
+      padding-left: 10px;
+      padding-top: 10px;
+      vertical-align: middle; }
+    .nestedModal a.navButton.leftArrow:before {
+      content: url("../../images/navArrowLeft.png");
+      padding-right: 10px;
+      padding-top: 10px;
+      vertical-align: middle; }
+  .nestedModal .modalHeader {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial;
+    font-style: italic;
+    color: #f8f8f8;
+    text-shadow: 1px 1px 0 #000000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    background-color: #8fa288; }
+    .nestedModal .modalHeader .hasExitButton {
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 5px;
+      position: absolute;
+      left: 90%;
+      top: 0;
+      text-align: center;
+      vertical-align: middle;
+      width: 10%;
+      background-color: #cc3355;
+      cursor: pointer; }
+      .nestedModal .modalHeader .hasExitButton:after {
+        font-weight: normal;
+        font-size: 20;
+        font-family: Arial;
+        font-style: normal;
+        color: #f8f8f8;
+        content: 'x'; }
+  .nestedModal .modalBody {
+    font-weight: normal;
+    font-size: 16px;
+    font-family: Palatino Linotype;
+    font-style: normal;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 25px;
+    padding-bottom: 25px; }
+    .nestedModal .modalBody label {
+      font-weight: bold;
+      font-size: 13;
+      font-family: Palatino Linotype;
+      font-style: normal;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      cursor: auto; }
+  .nestedModal .submitButtonNonFooterRow {
+    width: 100%; }
+  .nestedModal .modalHeader {
+    background-color: #cc3355; }
+
+.modalOverlay {
+  transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.0;
+  z-index: 9998; }
+  .modalOverlay.fadeIn {
+    opacity: 1.0; }
+
+.strongerModalOverlay {
+  transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.0;
+  z-index: 10000; }
+  .strongerModalOverlay.fadeIn {
+    opacity: 1.0; }
+
+/* ------- VARIABLES ------- */
+/* ------- SPECIFIC STYLES ------- */
+.poolRow {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 100px;
+  position: relative; }
+  .poolRow > div {
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%); }
+    .poolRow > div:nth-child(1) {
+      left: 5%; }
+    .poolRow > div:nth-child(2) {
+      left: 56%; }
+    .poolRow > div:nth-child(3) {
+      left: 74%; }
+
+.poolName {
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial;
+  font-style: normal;
+  color: #3399ff;
+  text-align: left;
+  word-wrap: break-word; }
+
+.managerLabel:after {
+  border-style: solid;
+  border-width: 1;
+  border-radius: 3px;
+  border-color: #898989;
+  font-size: 14;
+  font-family: Palatino Lintotype;
+  font-style: normal;
+  font-weight: bold;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: #8fa288;
+  color: #f8f8f8;
+  text-shadow: 0.75px 0.75px 0 #000000;
+  content: "manager";
+  margin-left: 4px; }
+
+.aliveText:after {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #3399ff;
+  content: 'Alive'; }
+
+.deadText:after {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #db5192;
+  content: 'Dead'; }
+
+.invitedText:after {
+  font-weight: bold;
+  font-size: 21px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #8fa288;
+  content: 'Invited'; }
+
+.peopleManagerLink {
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #3399ff;
+  text-align: left;
+  white-space: nowrap; }
+  .peopleManagerLink:before {
+    content: url("../../images/people.png");
+    padding-right: 10px;
+    padding-top: 10px;
+    vertical-align: middle; }
+
+.settingsLink {
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #3399ff;
+  text-align: left;
+  white-space: nowrap; }
+  .settingsLink:before {
+    content: url("../../images/settings.png");
+    padding-right: 10px;
+    padding-top: 10px;
+    vertical-align: middle; }
+
+.forwardLink {
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Palatino Linotype;
+  font-style: normal;
+  color: #3399ff;
+  text-align: left;
+  white-space: nowrap; }
+  .forwardLink:before {
+    content: url("../../images/navArrowRight.png");
+    padding-right: 10px;
+    padding-top: 10px;
+    vertical-align: middle; }

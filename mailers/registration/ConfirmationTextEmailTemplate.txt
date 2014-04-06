@@ -1,0 +1,4 @@
+Before we can activate your account, we need to confirm the e-mail address associated with your account.
+Please click (or copy into your address bar) the URL below to finish this confirmation process.
+\n
+%link

@@ -1,0 +1,73 @@
+/* Imports */
+
+@import 'foundation/_base.scss';
+@import 'foundation/_reporting.scss';
+
+$leaderboardColumnWidths: 5%,		// Rank
+						  32%,		// User Name
+						  8%,		// Total Points
+						  55%;		// Last Picks
+
+$weeklyStatsColumnWidths: 80%,		// Matchup
+						  20%;		// Percentage Pick
+
+/* Leaderboard */
+
+@include setTableColumnWidths($columnWidths: $leaderboardColumnWidths, $tableSelector: 'tr#leaderboardColumns');
+
+/* Point Distribution Chart */
+
+.chartArea
+{
+	fill: $blueTheme;
+
+	stroke: black;
+	stroke:
+	{
+		opacity: 0.5;
+		width: 3px;
+	}
+}
+
+/* Weekly Stats */
+
+@include setTableColumnWidths($columnWidths: $weeklyStatsColumnWidths, $tableSelector: '.overallPredictions .headerRow');
+@include setTableColumnWidths($columnWidths: $leaderboardColumnWidths, $tableSelector: '.topPredictors .headerRow');
+
+table
+{
+	&.detachedHead
+	{
+		border:
+		{
+			bottom-left-radius: 0px;
+			bottom-right-radius: 0px;
+		}
+
+		.title img.clickable
+		{
+			@include transitionSettings($property: transform, $duration: 1s, $useBrowserSpecificReferences: true);
+
+			&.rotateAround
+			{
+				@include rotateTransition($degrees: 180deg);
+			}
+		}
+	}
+
+	&.detachedBody
+	{
+		@include transitionSettings($property: opacity, $duration: 0.5s, $delay: 0.2s);
+
+		margin:
+		{
+			top: 0px;
+		}
+
+		border:
+		{
+			top-left-radius: 0px;
+			top-right-radius: 0px;
+		}
+	}
+}

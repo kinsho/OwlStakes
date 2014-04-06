@@ -1,0 +1,293 @@
+/* Imports */
+
+@import '_base.scss';
+
+/* General Styling */
+
+#leftHandContainer
+{
+	padding:
+	{
+		left: 10px;
+		right: 20px;
+	}
+
+	width: 10%;
+	height: 100%;
+
+	float: left;
+	top: 0;
+	left: 0;
+
+	position: fixed;
+	z-index: 1000;
+	background-color: $whiteTheme;
+}
+
+#logIn
+{
+	/* Locally defined lists to set multiple transitions properties on the log-in module */
+	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+	$webkitTransitionProperties: opacity, -webkit-transform;
+	$transitionTimings: linear, linear;
+	$transitionDurations: 0.5s, 0.5s;
+	$transitionDelays: 0s, 0s;
+
+	@include transitionSettings($property: $transitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+
+	/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+	@media screen and (-webkit-min-device-pixel-ratio:0)
+	{
+		@include transitionSettings($property: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+	}
+
+	padding:
+	{
+		top: 20px;
+	}
+
+	vertical-align: middle;
+	width: 100%;
+
+	input[type='button']
+	{
+		width: 100%;
+	}
+
+	#rememberMeLabel
+	{
+		padding:
+		{
+			left: 10px;
+		}
+	}
+}
+
+#forgotPassword
+{
+	/* Locally defined lists to set multiple transitions properties on the forgot password module */
+	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+	$webkitTransitionProperties: opacity, -webkit-transform;
+	$transitionTimings: linear, linear;
+	$transitionDurations: 0.5s, 0.5s;
+	$transitionDelays: 0s, 0s;
+
+	@include transitionSettings($property: $transitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+
+	/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+	@media screen and (-webkit-min-device-pixel-ratio:0)
+	{
+		@include transitionSettings($property: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+	}
+
+	padding:
+	{
+		top: 20px;
+	}
+
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+
+	input[type='button']
+	{
+		width: 100%;
+	}
+}
+
+#leftHandMenu
+{
+	padding:
+	{
+		top: 20px;
+	}
+
+	& > div.mainItem:not(.subItems)
+	{
+		/* Locally defined lists to set multiple transitions properties on each menu DIV */
+		$transitionProperties: width, transform, -moz-transform, -ms-transform, -o-transform;
+		$webkitTransitionProperties: width, -webkit-transform;
+		$transitionTimings: ease, linear;
+		$transitionDurations: 0.5s, 0.75s;
+		$transitionDelays: 0s, 0s;
+
+		/* @include setAxes3D($x: 0%, $y: top, $z: 0px); */ // Forget about this line for now....maybe later 
+		@include transitionSettings($property: $transitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+		@include basicFontSettings($weight: 400, $size: 20);
+		@include setGradient($initialColor: $lightBlueTheme, $endColor: $whiteTheme, $direction: left);
+
+		/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+		@media screen and (-webkit-min-device-pixel-ratio:0)
+		{
+			@include transitionSettings($property: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+		}
+
+		border:
+		{
+			style: solid;
+			width: 1px;
+			color: $darkGrayTheme;
+
+			left:
+			{
+				style: none;
+			}
+			right:
+			{
+				style: none;
+			}
+		}
+
+		padding:
+		{
+			top: 4px;
+			bottom: 4px;
+		}
+
+		width: 100%;
+		height: 25px;
+		min-width: 150px;
+		display: inline-block;
+
+		text-align: center;
+		vertical-align: middle;
+
+		position: relative;
+
+		&:not(.usernameDisplay)
+		{
+			&:hover
+			{
+				/* Widen the element when hovered over */
+				width: 130%;
+
+				/* Darken the font when hovered over */
+				font-weight: 600;
+
+				cursor: pointer;
+			}
+
+			&.selected
+			{
+				/* Widen the width to indicate that this is already selected */
+				width: 130%;
+				min-width: 195px;
+
+				/* Darken the font */
+				font-weight: 600;
+
+				cursor: auto;
+			}
+
+			@include basicFontSettings($weight: 400, $size: 18, $style: italic);
+		}
+
+		&.removeMinWidth
+		{
+			min-width: 0px;
+		}
+
+		&.zeroOverOne
+		{
+			width: 0%;
+		}
+
+		& > span
+		{
+			@include transitionSettings($property: opacity, $timing: linear, $duration: 0.5s);
+		}
+	}
+}
+
+.subItems
+{
+	@include basicFontSettings($size: 14);
+
+	margin:
+	{
+		bottom: 7px;
+	}
+
+	background-color: $whiteTheme;
+	cursor: pointer;
+
+	& > div
+	{
+		padding:
+		{
+			top: 15px;
+		}
+
+		& > span
+		{
+			@include transitionSettings($property: opacity, $timing: linear, $duration: 0.1s);
+		}
+	}
+}
+
+span.selected
+{
+	width: 0; 
+	height: 0;
+
+	border:
+	{
+		top:
+		{
+			@include triangleIndicator($width: 8px, $color: transparent);
+		}
+
+		bottom:
+		{
+			@include triangleIndicator($width: 8px, $color: transparent);
+		}
+
+		left:
+		{
+			@include triangleIndicator($width: 8px, $color: $darkGrayTheme);
+		}
+	}
+
+	position: absolute;
+
+	left: 10%;
+	top: 50%;
+
+	transform: translate(-50%, -50%);	
+
+	/* Webkit browsers rely on specialized references to translate */
+	@media screen and (-webkit-min-device-pixel-ratio:0)
+	{
+		-webkit-transform: translate(-50%, -50%);	
+	}
+}
+
+.rightBorder
+{
+	border:
+	{
+		right:
+		{
+			style: solid;
+			width: 1px;
+		}
+	}
+}
+
+/* Specialized class to shift any section on the left-hand side toward the left */
+.moduleGoLeft
+{
+	@include shiftTransition($x: -50%);
+}
+
+.extraHeight
+{
+	display: block;
+	height: 15px;
+}
+
+.heightlessBlock
+{
+	display: block;
+	height: 1px;
+}

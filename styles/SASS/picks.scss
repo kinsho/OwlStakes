@@ -1,0 +1,83 @@
+/* Imports */
+
+@import 'foundation/_base.scss';
+
+/* Specific Styles */
+
+.homeBefore:before
+{
+	@include labelIcon($content: 'home')
+	{
+		margin-right: 4px;
+	};
+}
+
+.homeAfter:after
+{
+	@include labelIcon($content: 'home')
+	{
+		margin-left: 4px;
+	};
+}
+
+#bigGameMultiplier
+{
+	@include basicFontSettings($family: Arial, $weight: bold, $size: 34px, $color: $darkGreenTheme);
+
+	text-align: center;
+	position: relative;
+
+	// The image below corresponds to the 'no go' image that shows up if the
+	// game bonus multiplier ends up being less than one
+	img
+	{
+		position: absolute;
+		
+		left: 27%;
+		top: -25%;
+	}
+}
+
+.lockedFont
+{
+	@include basicFontSettings($family: Arial, $weight: bold, $size: 16px, $color: $redTheme);
+	@include shiftTransition($x: -50%, $y: 0%);
+
+	position: absolute;
+	z-index: 10;
+
+	/* Center the text on the input field as best as possible */
+	left: 50%;
+	top: 10%;
+}
+
+.emphasizeWinner
+{
+	font:
+	{
+		size: 17px;
+		weight: bold;
+	}
+}
+
+#weekSelectorSpan
+{
+	margin:
+	{
+		top: 10px;
+	}
+
+	vertical-align: top;
+}
+
+#picksListing, #gameMultipliersSection
+{
+	@include transitionSettings($property: opacity, $duration: 0.5s);
+
+	opacity: 1.0;
+
+	&.fadeOut
+	{
+		opacity: 0.0;
+	}
+}
