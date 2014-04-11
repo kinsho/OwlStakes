@@ -378,8 +378,10 @@
       cursor: auto; }
   .nestedModal .submitButtonNonFooterRow {
     width: 100%; }
-  .nestedModal .modalHeader {
-    background-color: #cc3355; }
+  .nestedModal .errorHeader {
+    background-color: #abc1a6; }
+  .nestedModal .noticeHeader {
+    background-color: #eb9100; }
 
 .modalOverlay {
   transition-property: opacity;

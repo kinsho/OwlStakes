@@ -270,9 +270,13 @@
 
 		z-index: 10001;
 
-		.modalHeader
+		.errorHeader
 		{
-			background-color: $redTheme;
+			background-color: $greenTheme;
+		}
+		.noticeHeader
+		{
+			background-color: $noticeTheme;
 		}
 	};
 

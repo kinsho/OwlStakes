@@ -254,11 +254,11 @@ window.utilityFunctions =
 	},
 
 	/**
-	  * Function serves to set transition listeners on the passed element
+	  * Function serves to set the passed transition listener on the passed element
 	  * 
-	  * @param element - the element with which to set the transition listener upon
-	  * @param listenerFunction - the listener function that needs to be attached to the element
-	  * @param timeoutDelay - in case a timeout delay is specified, then the listener will be triggered as a timeout function
+	  * @param {HTMLElement} element - the element with which to set the transition listener upon
+	  * @param {Function} listenerFunction - the listener function that needs to be attached to the element
+	  * @param {Number} timeoutDelay - in case a timeout delay is specified, then the listener will be triggered as a timeout function
 	  *							that will be invoked only after the specified delay
 	  *
 	  * @author kinsho
@@ -272,7 +272,6 @@ window.utilityFunctions =
 		{
 			if (timeoutDelay)
 			{
-
 				element.addEventListener(transitions[i], function(event)
 				{
 					window.setTimeout(function()
@@ -280,7 +279,6 @@ window.utilityFunctions =
 						listenerFunction(event);
 					}, timeoutDelay);
 				}, false);
-
 			}
 			else
 			{
