@@ -1,15 +1,18 @@
 <?php
 
-REQUIRE_ONCE '/../foundation/ValidationModel.php'; 
+REQUIRE_ONCE '/../foundation/ValidationModel.php';
 REQUIRE_ONCE '/../../DAO/LogInDAO.php'; 
 
 /**
-  * Class that will store all data for log-in and password requests
+  * Class that will store and validate all data for log-in and password requests
   *
   * @author kinsho
   */
 class LogInModel extends ValidationModel
 {
+
+// -------------- CONSTANTS ----------------
+
 	protected $errorMessages = array
 	(
 		'usernameEmpty' => "Please type in a user name.",
@@ -19,31 +22,29 @@ class LogInModel extends ValidationModel
 		'accessDenied' => "We do not recognize that user name/password combination. Try again, perhaps?"
 	);
 
+// -------------- PROPERTIES ----------------
+
+	protected $username = '';
+	protected $password = '';
+
+	protected $DAO;
 	protected $requiredFields = array
 	(
 		'username',
 		'password'
 	);
 
-	// -------- CLASS MEMBERS -------------
+// -------------- CONSTRUCTOR --------------
 
-	protected $username = '';
-	protected $password = '';
-	protected $rememberMe = false;
-
-	protected $DAO;
-
-	// --------- CONSTRUCTOR --------------
-
-	public function __construct ()
+	public function __construct ($params = array())
 	{
 		// Initiate the connection to the database
 		$this->DAO = new LogInDAO();
 
-		return $this;
+		parent::__construct($params, true); // Enable generic error handling here for validation purposes
 	}
 
-	// ------- ACCESSOR/VALIDATION FUNCTIONS --------------
+// ------------ ACCESSOR/VALIDATION FUNCTIONS --------------
 
 	public function getUserName() 
 	{
@@ -75,9 +76,10 @@ class LogInModel extends ValidationModel
 	/**
 	 * Verifies that the username and password combination exists in the database
 	 *
-	 * @param $username - the username to test
-	 * @param $password - the password to test
-	 * @return a boolean indicating whether the combination exists
+	 * @param {String} $username - the username to test
+	 * @param {String} $password - the password to test
+	 * @return {Boolean} - indicating whether the combination exists, or a truthful value if
+	 *				neither an instantiated password or username was passed into the function
 	 *
 	 * @author kinsho
 	 */

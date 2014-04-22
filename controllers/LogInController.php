@@ -18,8 +18,8 @@ class LogInController extends BaseController
 	const LEFT_HAND_MENU_CONTENTS_FILENAME = '/views/foundation/leftHandMenuItems.phtml';
 
 	const FORGOT_PASSWORD_EMAIL_SENT_HEADER = 'E-mail Sent!';
-	const FORGOT_PASSWORD_EMAIL_SENT = 'An e-mail has been sent to the above address that contains your user name and
-										will show you how to reset your password. Go check your e-mail!';
+	const FORGOT_PASSWORD_EMAIL_SENT = 'An e-mail has been sent to the address that you typed. The e-mail contains your user name and
+							instructions on how to reset your password. Go check your e-mail!';
 
 	/**
 	  * The action method that is triggered whenever a user attempts to log in to his account
@@ -31,7 +31,7 @@ class LogInController extends BaseController
 		// Prepare POST parameters array
 		$params = parent::convertPOST();
 
-		// Find out if the user has requested the system remembers his log-in credentials for some time
+		// Find out if the user has requested that the system remembers his log-in credentials for some time
 		// Also ensure that the flag that relays that info is deleted from the parameters array before it is validated
 		$rememberMe = $params['rememberMe'];
 		unset($params['rememberMe']);
@@ -39,25 +39,19 @@ class LogInController extends BaseController
 		// Ready the session
 		parent::startSession();
 
-		// Instantiate a LogIn Bean and validate all parameters
-		$logInBean = new LogInModel();
-		$logInBean->populateAndValidate($params);
+		// Instantiate a LogIn Bean and validate the user name and the password that the user typed in
+		// Validation would also handle the setting of the user's information within the session
+		$logInBean = new LogInModel($params);
 
-		// Retrieve any response that may have to be displayed to the user
-		$results = $logInBean->retrieveErrors();
-
-		if ( empty($results['errors']) )
+		// If the user requested the system to remember him, set up a cookie to enable this
+		if ($rememberMe === 'true')
 		{
 			$logInDAO = new LogInDAO();
-
-			if ($rememberMe)
-			{
-				$logInDAO->generateCookie($params['username']);
-			}
-
-			$results['username'] = $params['username'];
+			$logInDAO->generateCookie($params['username']);
 		}
 
+		// Generate a response here and send the user name back to the client
+		$results['username'] = $params['username'];
 		parent::sendPositiveHTTPResponse($results);
 	}
 
@@ -71,13 +65,28 @@ class LogInController extends BaseController
 		// Ready the session
 		parent::startSession();
 
-		// Completely wipe the session from the face of this earth
+		// Fetch the user name of the current user from the session object for later use
+		$username = $_SESSION[BaseController::SESSION_USER_LABEL]['userName'];
+
+		// Then wipe the session from the face of this earth
 		session_unset();
 		session_destroy();
 		session_write_close();
-		setcookie(session_name(),'',0,'/');
 		session_regenerate_id(true);
 
+		// Destroy all the cookies as well
+		if ( isset($_COOKIES) )
+		{
+			foreach ($_COOKIES as $c_id => $c_value)
+			{
+				setcookie($c_id, NULL, time() - 3600, "/");
+			}
+		}
+
+		$logInDAO = new LogInDAO();
+		$logInDAO->killLogInCookie($username);
+
+		// Send back a heads-up to the client for notification purposes
 		parent::sendPositiveHTTPResponse();
 	}
 

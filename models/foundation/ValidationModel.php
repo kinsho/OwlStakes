@@ -15,7 +15,8 @@ REQUIRE_ONCE('/../../utility/server/reCAPTCHA/recaptchalib.php');
   */
 abstract class ValidationModel
 {
-	// ------- CONSTANTS ----------------
+
+// ------------------- CONSTANTS ----------------
 
 	// Generic error messages
 	const ERROR_ALNUM = 'Your <b>%s</b> can only be comprised of alphanumerical characters. (A-Z, 0-9)';
@@ -26,7 +27,7 @@ abstract class ValidationModel
 								   scripts or bots cannot overload our database with fake accounts.';
 	const ERROR_GENERIC = 'The <b>%s</b> field has not been filled out correctly.';
 
-	// ------ PROPERTIES -----------------
+// ------------------- PROPERTIES -----------------
 
 	protected $errors = array();
 	protected $recaptchaChallenge = '';
@@ -34,6 +35,32 @@ abstract class ValidationModel
 	protected $recaptchaTestPassed = true;
 
 	protected $requiredFields = array(); // the properties within that bean that have to be set in order for the entire bean to be considered valid
+
+// ------------------- CONSTRUCTOR -----------------
+
+	/**
+	  * The generic constructor meant to be invoked by every model class. Provided as a convenient way
+	  * to begin the validation process if an array of HTTP request parameters are passed in when
+	  * a model is constructed.
+	  *
+	  * @param {Array} $params - All the values that will need to be assessed and stored in this object
+	  * @param {Boolean} $allowForGenericErrorHandling - a flag indicating whether the generic handler should
+	  *				be responsible for relaying to the user all the errors that were discovered during validation.
+	  *
+	  * @return {ValidationModel} - a new instance of a descendant of this class
+	  *
+	  * @author kinsho
+	  */
+	public function __construct($params = array(), $allowForGenericErrorHandling = false)
+	{
+		// If parameters have been passed into this instantiation function, populate this model
+		// with the parameters and then validate said parameters
+		if ( count($params) )
+		{
+			$this->populateAndValidate($params, $allowForGenericErrorHandling);
+		}
+		return $this;
+	}
 
 // ------------------- CLASS ACCESSOR FUNCTIONS -------------------
 
@@ -302,7 +329,7 @@ abstract class ValidationModel
 		return (empty($email) || filter_var($email, FILTER_VALIDATE_EMAIL));
 	}
 
-	// ------------------- UTILITY FUNCTIONS --------------------
+// ---------------------- UTILITY FUNCTIONS -----------------------
 
 	/**
 	  * Function used to turn a camel-case string into a constant-formatted string
@@ -392,5 +419,4 @@ abstract class ValidationModel
 		return $validators;
 	}
 }
-
 ?>

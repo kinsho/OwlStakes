@@ -9,7 +9,7 @@ window.userAgreement =
 	 */
 	acceptAgreement: function(event)
 	{
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/userAgreement/accept',
