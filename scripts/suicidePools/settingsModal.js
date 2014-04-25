@@ -28,13 +28,13 @@ window.settingsModal =
 	{
 		var modalObject = event.data.view,
 			modalID = modalObject.PICKS_NOTICE_MODAL_NAME,
-			$noticeModal = $('#modalID');
+			$noticeModal = $('#' + modalID);
 
 		// For any single page visit, this modal needs to only be seen once. Thus, the flag here checks
 		// whether the modal has been seen within the current visit. If not, display it.
 		if ( !($noticeModal.data('visited')) )
 		{
-			$noticeModal.data('visited', true);
+			$noticeModal.data('visited', 'true');
 			window[modalID].openModal();
 		}
 	},
@@ -54,7 +54,7 @@ window.settingsModal =
 
 		// Set up a listener to throw up the notice modal that should be shown only once when a user clicks
 		// on any one of the options to specify the number of picks that have to be made per week
-		$('#' + this.MODAL_NAME).find('span').on('click', { view: this }, this.throwUpPickNoticeModal);
+		$('#' + this.MODAL_NAME).find('.toggleSwitch').find('span').on('click', { view: this }, this.throwUpPickNoticeModal);
 	},
 
 	/**

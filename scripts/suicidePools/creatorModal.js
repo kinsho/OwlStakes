@@ -19,7 +19,7 @@
 		{
 			var data = formSubmit.collectData('createNewPoolForm');
 
-			utilityFunctions.modalAjax(
+			formSubmit.modalAjax(
 			{
 				type: 'POST',
 				url: '/suicidePools/createPool',

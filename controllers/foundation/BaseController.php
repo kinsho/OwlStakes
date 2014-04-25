@@ -6,6 +6,9 @@ TOS_REQUIRE_ONCE('utility/server/TestGenerator.php');
 // The class used to fetch all the server configuration settings
 TOS_REQUIRE_ONCE('utility/server/applicationConf/ConfigurationParser.php');
 
+// The class used to test for a cookie containing the current user's credentials
+REQUIRE_ONCE '/../../DAO/LogInDAO.php';
+
 // Generic controllers that may be invoked to gracefully stop a particular user request
 TOS_REQUIRE_ONCE('controllers/foundation/LostController.php');
 TOS_REQUIRE_ONCE('controllers/foundation/NoCookiesController.php');
@@ -33,7 +36,10 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		const SCRIPTS_DIRECTORY = '/scripts/';
 		const SCRIPTS_FILE_EXTENSION = '.js';
 		const SCRIPTS_UTILITY_DIRECTORY = 'utility';
-		
+
+		const SESSION_USER_LABEL = 'userSession';
+		const LOG_IN_COOKIE_LABEL = 'TOSCS';
+
 		// ----------- FUNCTIONS ------------
 
 		/*
@@ -107,7 +113,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		}
 
 		/*
-		 * Generic function responsible for sending an HTTP response back to the client
+		 * Generic function responsible for sending a 400 HTTP response back to the client
 		 *
 		 * @param $data - data which needs to be sent back to the client
 		 *
@@ -254,6 +260,14 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		protected static function blockIfNotLoggedIn()
 		{
 			self::startSession();
+
+			// Log the user into the system if he has a proper cookie that was passed to the server and a session
+			// object has not yet been instantiated containing the user's data
+			if ( !(isset($_SESSION[self::SESSION_USER_LABEL])) && (isset($_COOKIE[self::LOG_IN_COOKIE_LABEL])) )
+			{
+				$logInDAO = new LogInDAO();
+				$logInDAO->checkAndLoadCookie();
+			}
 
 			if ( !(array_key_exists('userSession', $_SESSION)) )
 			{

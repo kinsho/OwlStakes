@@ -12,7 +12,7 @@ window.picks =
 	{
 		var data = formSubmit.collectData('picksForm');
 
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/picks/save',
@@ -33,7 +33,7 @@ window.picks =
 			data = formSubmit.collectData('weekSelectorSpan'),
 			$button = $(event.currentTarget);
 
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/picks/changeWeek',

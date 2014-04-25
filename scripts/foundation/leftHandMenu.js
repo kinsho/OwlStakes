@@ -200,7 +200,7 @@ window.leftHandMenu =
 			$logInUserNameField = $('#logInForm').find('input[name=username]'),
 			$logInPasswordField = $('#logInForm').find('input[name=password]');
 
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/logIn/logIn',
@@ -328,7 +328,7 @@ window.leftHandMenu =
 	  */
 	logOut: function()
 	{
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/logIn/logOut',
@@ -356,7 +356,7 @@ window.leftHandMenu =
 			data = formSubmit.collectData('forgotPasswordForm'),
 			$forgotPasswordEmailField = $('#forgotPasswordForm').find('input[name=email]');
 
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/logIn/forgotPassword',

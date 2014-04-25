@@ -71,7 +71,7 @@ window.registration =
 	{
 		var data = formSubmit.collectData('registrationForm');
 
-		utilityFunctions.ajax(
+		formSubmit.ajax(
 		{
 			type: 'POST',
 			url: '/registration/register',
