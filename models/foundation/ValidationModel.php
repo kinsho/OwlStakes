@@ -4,7 +4,7 @@
  * Pull the ReCAPTCHA library file in case a ReCAPTCHA element was included within
  * the form that needs to be validated
  */
-REQUIRE_ONCE APP_ROOT . '/utility/server/reCAPTCHA/recaptchalib.php';
+TOS_REQUIRE_ONCE('utility/server/reCAPTCHA/recaptchalib.php');
 
 /**
   * Class that will serve to store HTTP request parameters and their associated validation

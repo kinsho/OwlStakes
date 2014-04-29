@@ -7,7 +7,7 @@ TOS_REQUIRE_ONCE('utility/server/TestGenerator.php');
 TOS_REQUIRE_ONCE('utility/server/applicationConf/ConfigurationParser.php');
 
 // The class used to test for a cookie containing the current user's credentials
-REQUIRE_ONCE '/../../DAO/LogInDAO.php';
+TOS_REQUIRE_ONCE('DAO/LogInDAO.php');
 
 // Generic controllers that may be invoked to gracefully stop a particular user request
 TOS_REQUIRE_ONCE('controllers/foundation/LostController.php');
@@ -30,7 +30,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		const VIEW_DIRECTORY = '/views/';
 		const VIEW_FILE_EXTENSION = '.phtml';
 
-		const STYLE_DIRECTORY = '/styles/CSS/';
+		const STYLE_DIRECTORY = 'styles/CSS/';
 		const STYLE_FILE_EXTENSION = '.css';
 
 		const SCRIPTS_DIRECTORY = '/scripts/';
@@ -66,7 +66,6 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			if ( defined($childControllerName.'::GENERIC_NAME') )
 			{
 				$view->pageName = constant($childControllerName.'::GENERIC_NAME');
-
 				self::setStylesheet( constant($childControllerName.'::GENERIC_NAME') );
 				self::setScriptsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
 				self::setViewsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
@@ -183,7 +182,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		 *
 		 * @author kinsho
 		 */
-		protected static function startSession()
+		public static function startSession()
 		{
 			if (session_status() === PHP_SESSION_NONE)
 			{
@@ -355,8 +354,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				$view->css = array();
 			}
 
-			$view->css[] = ('..'.
-						  self::STYLE_DIRECTORY.
+			$view->css[] = (self::STYLE_DIRECTORY.
 						  $stylesheet.self::STYLE_FILE_EXTENSION);
 		}
 
@@ -377,7 +375,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				$view->css = array();
 			}
 
-			foreach(glob($_SERVER['DOCUMENT_ROOT'].
+			foreach(glob(APP_ROOT.
 						 self::STYLE_DIRECTORY.
 						 $directory.
 						 '/*') as $stylesheet)
@@ -389,7 +387,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				}
 				else if ( self::endsWith(self::STYLE_FILE_EXTENSION, $stylesheet) )
 				{
-					$view->css[] = str_replace($_SERVER['DOCUMENT_ROOT'], '..', $stylesheet); 
+					$view->css[] = str_replace(APP_ROOT, '', $stylesheet);
 				}
 			}
 		}
@@ -412,8 +410,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				$view->scripts = array();
 			}
 
-			$view->scripts[] = '..'.
-							   self::SCRIPTS_DIRECTORY.
+			$view->scripts[] = self::SCRIPTS_DIRECTORY.
 							   $directory.
 							   '/'.
 							   $script.self::SCRIPTS_FILE_EXTENSION;
@@ -447,7 +444,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				}
 				else if ( self::endsWith(self::SCRIPTS_FILE_EXTENSION, $script) )
 				{
-					$view->scripts[] = $script; 
+					$view->scripts[] = str_replace(APP_ROOT, '', $script);;
 				}
 			}
 		}

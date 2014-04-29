@@ -1,11 +1,11 @@
 <?php
 
-REQUIRE_ONCE 'foundation/BaseController.php';
+TOS_REQUIRE_ONCE('controllers/foundation/BaseController.php');
 
-REQUIRE_ONCE '/../models/login/LogInModel.php';
-REQUIRE_ONCE '/../models/login/ForgotPasswordModel.php';
+TOS_REQUIRE_ONCE('models/login/LogInModel.php');
+TOS_REQUIRE_ONCE('models/login/ForgotPasswordModel.php');
 
-REQUIRE_ONCE '/../DAO/LogInDAO.php';
+TOS_REQUIRE_ONCE('DAO/LogInDAO.php');
 
 /**
   * The controller class for the log in module

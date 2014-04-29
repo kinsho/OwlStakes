@@ -2,7 +2,7 @@
 	global $view;
 
 	// -------------- PHP LIBRARIES -------------------
-	require_once('utility/server/reCAPTCHA/recaptchalib.php');
+	TOS_REQUIRE_ONCE('utility/server/reCAPTCHA/recaptchalib.php');
 ?>
 <html>
 	<head>
@@ -14,7 +14,7 @@
 		<?php
 			foreach($view->css as $css)
 			{
-		?>	
+		?>
 				<link rel="stylesheet" type="text/css" href='<?=$css ?>'/>
 		<?php
 			};
@@ -26,7 +26,7 @@
 		<?php
 			foreach($view->foundationViews as $html)
 			{
-				include($html);
+				TOS_REQUIRE_ONCE($html);
 			}
 		?>
 		<div class='content'>
@@ -34,7 +34,7 @@
 			<?php
 				foreach($view->contentViews as $html)
 				{
-					include($html);
+					TOS_REQUIRE_ONCE($html);
 				}
 			?>
 		</div>
@@ -43,7 +43,7 @@
 			foreach($view->scripts as $script)
 			{
 		?>
-				<script src='<?=str_replace($_SERVER['DOCUMENT_ROOT'], '', $script) ?>'></script>
+				<script src='<?=$script ?>'></script>
 		<?php
 			};
 		?>
