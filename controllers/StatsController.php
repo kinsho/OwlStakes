@@ -14,7 +14,8 @@
 
 		public static function initPage()
 		{
-			parent::blockIfNotLoggedIn();
+		    parent::startSession();
+//			parent::blockIfNotLoggedIn();
 
 			self::getSeasonRankings();
 			self::getPointDistributionData();
