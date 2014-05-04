@@ -1,18 +1,18 @@
 <?php
 
 // The TestGenerator class that can be used to generate test data very quickly
-REQUIRE_ONCE $_SERVER['DOCUMENT_ROOT'].'/utility/server/TestGenerator.php';
+TOS_REQUIRE_ONCE('utility/server/TestGenerator.php');
 
 // The class used to fetch all the server configuration settings
-REQUIRE_ONCE '/../../utility/server/applicationConf/ConfigurationParser.php';
+TOS_REQUIRE_ONCE('utility/server/applicationConf/ConfigurationParser.php');
 
 // The class used to test for a cookie containing the current user's credentials
 REQUIRE_ONCE '/../../DAO/LogInDAO.php';
 
 // Generic controllers that may be invoked to gracefully stop a particular user request
-REQUIRE_ONCE 'LostController.php';
-REQUIRE_ONCE 'NoCookiesController.php';
-REQUIRE_ONCE 'NotLoggedInController.php';
+TOS_REQUIRE_ONCE('controllers/foundation/LostController.php');
+TOS_REQUIRE_ONCE('controllers/foundation/NoCookiesController.php');
+TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 
 /**
   * The generic controller class from which all other controllers will be built upon.

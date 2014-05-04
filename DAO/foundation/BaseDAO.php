@@ -1,8 +1,7 @@
 <?php
 
-REQUIRE_ONCE '/../../utility/server/applicationConf/ConfigurationParser.php';
-
-REQUIRE_ONCE '/../../mailers/foundation/ErrorMailer.php';
+REQUIRE_ONCE APP_ROOT . '/utility/server/applicationConf/ConfigurationParser.php';
+REQUIRE_ONCE APP_ROOT . '/mailers/foundation/ErrorMailer.php';
 
 /**
   * Class that will form the foundation for every specialized DAO class

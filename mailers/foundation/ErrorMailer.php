@@ -1,6 +1,6 @@
 <?php
 
-REQUIRE_ONCE '/../foundation/Mailer.php';
+REQUIRE_ONCE '/foundation/Mailer.php';
 
 /*
  * Class responsible for generating and sending out system failure e-mails to the administrator of the site

@@ -1,13 +1,13 @@
 <?php
 
-REQUIRE_ONCE 'foundation/BaseController.php';
-REQUIRE_ONCE '/../models/foundation/ValidationModel.php'; 
+TOS_REQUIRE_ONCE('/controllers/foundation/BaseController.php');
+TOS_REQUIRE_ONCE('/models/foundation/ValidationModel.php');
 
-REQUIRE_ONCE '/../models/pools/ExistingSuicidePoolModel.php';
-REQUIRE_ONCE '/../models/pools/NewSuicidePoolModel.php';
+TOS_REQUIRE_ONCE('/models/pools/ExistingSuicidePoolModel.php');
+TOS_REQUIRE_ONCE('/models/pools/NewSuicidePoolModel.php');
 
-REQUIRE_ONCE '/../DAO/SuicidePoolsDAO.php';
-REQUIRE_ONCE '/../DAO/UsersDAO.php';
+TOS_REQUIRE_ONCE('/DAO/SuicidePoolsDAO.php');
+TOS_REQUIRE_ONCE('/DAO/UsersDAO.php');
 
 /**
   * The controller class for the suicide pool page

@@ -1,5 +1,6 @@
 RewriteEngine On
 
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteCond %{REQUEST_URI} !library
 RewriteCond %{REQUEST_URI} !styles
 RewriteCond %{REQUEST_URI} !scripts
