@@ -29,6 +29,7 @@ class BaseDAO
 	protected static $connection;
 	protected static $stmts = array(); // An array of SQL statements that can be executed with dynamic parameters
 	protected static $queryResults;
+	protected static $transactionFlag = false; // A flag to keep this module aware of whether it is currently processing queries within a transaction
 
 	// --------- CONSTRUCTOR --------------
 
@@ -146,6 +147,57 @@ class BaseDAO
 	}
 
 	/**
+	  * Will handle all the preparation necessary to initiate database-side transactions
+	  *
+	  * @author kinsho
+	  */
+	public function initiateTransaction()
+	{
+		// Roll back any active transactions
+		self::$connection->rollback();
+		
+		// Tell MySQL to stop autocommitting queries upon execution
+		self::$autocommit(false);
+
+		// Now keep track of the fact that we're currently in the midst of executing a transaction
+		self::$transactionFlag = true;
+	}
+
+	/**
+	  * Provided that a transaction is currently open, this function will commit all the queries
+	  * that were executed in the scope of the transaction right before it closes the
+	  * the transaction.
+	  *
+	  * @author kinsho
+	  */
+	public function commitAndCloseTransaction()
+	{
+		if (self::$transactionFlag)
+		{
+			try
+			{
+				// Commit all the transaction-scope queries
+				$success = self::$connection->commit();
+				
+				if ( !($success) )
+				{
+					throw new Exception('Failed to commit transaction');
+				}
+
+				// Revert the storage engine back into autocommit mode
+				self::$autocommit(true);
+
+				// Tell the DAO that no transaction is currently open
+				self::$transactionFlag = false;
+			}
+			catch (Exception $e)
+			{
+				$this->returnUserFriendlyError($e, 'Fatal exception when trying to commit a transaction');
+			}
+		}
+	}
+
+	/**
 	  * Will generate a prepared SQL statement that will be readily used to access the database
 	  * The SQL statement is generated using the query passed into the function
 	  *
@@ -233,9 +285,15 @@ class BaseDAO
 			// Execute statement
 			$success = $stmt->execute();
 
-			// If the transaction was not successful, throw an exception
+			// If the query was not successful, throw an exception
 			if ( !($success) )
 			{
+				// If the query was part of a transaction, roll back the entire transaction before doing any further error processing
+				if (self::$transactionFlag)
+				{
+					self::$connection->rollback();
+				}
+
 				throw new Exception($stmt->error);
 			}
 
