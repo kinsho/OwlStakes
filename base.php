@@ -8,9 +8,7 @@
   * @author kinsho
   */
 
-
-// Before anything is to be done, set up a function to replace PHP's computationally expensive REQUIRE_ONCE
-// statement
+// Before anything is to be done, set up a function to replace PHP's computationally expensive REQUIRE_ONCE statement
 
 $TOS_INCLUDED_FILES = array(); // an array to keep track of pulled files
 

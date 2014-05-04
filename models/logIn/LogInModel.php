@@ -1,7 +1,8 @@
 <?php
 
-REQUIRE_ONCE '/../foundation/ValidationModel.php';
-REQUIRE_ONCE '/../../DAO/LogInDAO.php'; 
+TOS_REQUIRE_ONCE('models/foundation/ValidationModel.php');
+
+TOS_REQUIRE_ONCE('DAO/LogInDAO.php');
 
 /**
   * Class that will store and validate all data for log-in and password requests

@@ -8,7 +8,8 @@
  */
 class ConfigurationParser
 {
-	const INI_FILE_LOCATION = '/../../../application.ini';
+	const INI_FILE_NAME = 'application.ini';
+	const INI_FILE_LOCATION = APP_ROOT;
 
 	// -------- CLASS MEMBERS -------------
 
@@ -25,10 +26,10 @@ class ConfigurationParser
 	{
 		if ( empty(self::$iniSettings) )
 		{
-			$fileSettings = parse_ini_file(self::INI_FILE_LOCATION, true);
+			$fileSettings = parse_ini_file((self::INI_FILE_LOCATION . self::INI_FILE_NAME), true);
 			$remoteAddress = $_SERVER['REMOTE_ADDR'];
 
-			// Make sure to pick the correct application settings depending on the server environment
+			// Make sure to pick the correct set of application settings depending on the server environment
 			if ($remoteAddress = '127.0.0.1')
 			{
 				self::$iniSettings = $fileSettings['local'];

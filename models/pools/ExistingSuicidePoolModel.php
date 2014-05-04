@@ -1,5 +1,7 @@
 <?php
 
+TOS_REQUIRE_ONCE('models/foundation/ValidationModel.php');
+
 /**
   * Class that will serve to store and validate all information related to existing suicide pools
   *

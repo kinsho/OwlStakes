@@ -1,0 +1,64 @@
+
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Quattrocento Sans
+ * Rufina
+ *
+ */
+@import url(http://fonts.googleapis.com/css?family=Rufina|Quattrocento+Sans);
+
+/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+@mixin basicFontSettings($weight: normal, $size: 13, $family: Quattrocento Sans, $style: normal, $color: null)
+{
+	font:
+	{
+		weight: $weight;
+		size: $size;
+		family: $family, sans-serif;
+		style: $style;
+	}
+
+	@if ($color)
+	{
+		color: $color;
+	}
+}
+
+// Mixin generally reserved for page headers
+@mixin headerSettings($padding: 10px)
+{
+	@include basicFontSettings($weight: bold, $size: 18px, $family: Rufina);
+
+	padding:
+	{
+		top: $padding;
+		bottom: $padding;
+	}
+
+	text-align: center;
+}
+
+// Mixin to produce a flashy white font that should be used primarily to grab attention
+@mixin majorWhiteFont($size)
+{
+	@include basicFontSettings($weight: bold, $size: $size, $family: Rufina, $style: italic, $color: $lightWhiteTheme);
+
+	text-shadow: 1px 1px 0 #000000;
+
+	@content;
+}

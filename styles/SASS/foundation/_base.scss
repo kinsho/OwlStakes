@@ -1,3 +1,5 @@
+@import '_fonts.scss';
+
 /* ----------------------- BASE VARIABLES ----------------------------- */
 
 $lightRedTheme: #FFAAAA;
@@ -54,7 +56,7 @@ $noticeTheme: #EB9100;
 	@content;
 }
 
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 
 
 // Mixin responsible for allowing just about any property to be animated upon, provided that the property can be animated
@@ -185,73 +187,19 @@ $noticeTheme: #EB9100;
 	-o-transform:scale($length, $width);
 }
 
-/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
-
-
-/*
- * Mixin built to provide a convenient way to set basic font styles quickly
- *
- * @param $weight - the font weight
- * @param $size - the font size
- * @param $family - the font family
- * @param $style - the font style
- * @param $color - an optional parameter that allows one to specify a font color
- *
- * @author kinsho
- */
-@mixin basicFontSettings($weight: normal, $size: 13, $family: Palatino Linotype, $style: normal, $color: null) 
-{
-	font:
-	{
-		weight: $weight;
-		size: $size;
-		family: $family;
-		style: $style;
-	}
-
-	@if ($color)
-	{
-		color: $color;
-	}
-}
-
-// Mixin generally reserved for page headers
-@mixin headerSettings($padding: 7px)
-{
-	@include basicFontSettings($weight: bold, $size: 18px);
-
-	padding:
-	{
-		top: $padding;
-		bottom: $padding;
-	}
-
-	text-align: center;
-}
-
-// Mixin to produce a flashy white font that should be used primarily to grab attention
-@mixin majorWhiteFont($size)
-{
-	@include basicFontSettings($weight: bold, $size: $size, $family: Arial, $style: italic, $color: $lightWhiteTheme);
-
-	text-shadow: 1px 1px 0 #000000;
-
-	@content;
-}
 
 // Mix-in designed to render a gradient background on a particular element
 // Designed to work across all major browsers
 @mixin setGradient($initialColor, $endColor, $direction: left)
 {
 	background-color: $initialColor; // In the rare event that the user is on a browser that does not support gradients, set a default color
-	background-image: -webkit-linear-gradient($direction, $initialColor, $endColor); 
+	background-image: -webkit-linear-gradient($direction, $initialColor, $endColor);
 	background-image: -moz-linear-gradient($direction, $initialColor, $endColor);
 	background-image: -ms-linear-gradient($direction, $initialColor, $endColor);
-	background-image: -o-linear-gradient($direction, $initialColor, $endColor);	
+	background-image: -o-linear-gradient($direction, $initialColor, $endColor);
 }
 
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-
 
 // Mixin designed to generate a circular container
 @mixin circle($diameter, $color)
@@ -275,7 +223,7 @@ $noticeTheme: #EB9100;
 	color: $color;
 }
 
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 
 
 // Mixin responsible for generating a tab (meant to be placed on top of tables or containers) to convey a bite's worth of information

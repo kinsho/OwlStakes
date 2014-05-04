@@ -1,6 +1,6 @@
 <?php
 
-REQUIRE_ONCE 'foundation/BaseDAO.php';
+TOS_REQUIRE_ONCE('DAO/foundation/BaseDAO.php');
 
 /**
   * Specialized DAO class to fetch information specific to users
