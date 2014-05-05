@@ -1,10 +1,10 @@
 <?php
 
 // The TestGenerator class that can be used to generate test data very quickly
-TOS_REQUIRE_ONCE('utility/server/TestGenerator.php');
+TOS_REQUIRE_ONCE('utility/TestGenerator.php');
 
 // The class used to fetch all the server configuration settings
-TOS_REQUIRE_ONCE('utility/server/applicationConf/ConfigurationParser.php');
+TOS_REQUIRE_ONCE('utility/applicationConf/ConfigurationParser.php');
 
 // Fetch all packages that were installed via Composer
 TOS_REQUIRE_ONCE('vendor/autoload.php');

@@ -15,26 +15,38 @@ class SuicidePoolsDAO extends BaseDAO
 
 	const CREATE_POOL_KEY = 'createPool';
 	const CREATE_POOL = 'INSERT INTO suicidePools VALUES(NULL, ?, NULL, NULL);';
+
 	const CREATE_POOL_USER_RECORD_KEY = 'createPoolUserRecord';
 	const CREATE_POOL_USER_RECORD = 'INSERT INTO suicidePoolUsers VALUES(?, ?, ?, ?, TRUE, TRUE, TRUE, NULL, NULL) ON DUPLICATE KEY UPDATE userStatus = ?';
+
 	const UPDATE_POOL_USER_STATUS_KEY = 'updatePoolUserStatus';
 	const UPDATE_POOL_USER_STATUS = 'UPDATE suicidePoolUsers SET userStatus = ? WHERE poolId = ? AND userId = ?';
+
 	const UPDATE_POOL_MANAGEMENT_KEY = 'updatePoolManagement';
 	const UPDATE_POOL_MANAGEMENT = 'UPDATE suicidePoolUsers SET isManaged = ? WHERE poolId = ? AND userId = ?';
+
 	const UPDATE_USER_POOL_SETTINGS_KEY = 'updateUserPoolSettings';
 	const UPDATE_USER_POOL_SETTINGS = 'UPDATE suicidePoolUsers SET letManagerMakePicks = ? AND sendEmailsAboutMajorChanges = ? AND sendWeeklyReminderEmails = ? WHERE poolId = ? AND userId';
+
 	const FETCH_POOL_NAME_KEY = 'fetchPoolName';
 	const FETCH_POOL_NAME = 'SELECT poolName FROM suicidePool WHERE id = ?';
+
 	const FETCH_POOL_ID_KEY = 'fetchPoolID';
 	const FETCH_POOL_ID = 'SELECT id FROM suicidePools WHERE poolName = ?';
+
 	const FETCH_POOLS_BY_USER_KEY = 'fetchPoolsByUser';
 	const FETCH_POOLS_BY_USER = 'SELECT * FROM suicidePoolUsers WHERE userId = ?';
+
 	const FETCH_POOLS_WITH_NAMES_BY_USER_KEY = 'fetchPoolsWithNamesByUser';
 	const FETCH_POOLS_WITH_NAMES_BY_USER = 'SELECT U.*, P.poolName FROM suicidePoolUsers U, suicidePools P WHERE U.userId = ? AND U.poolId = P.id';
+
+	const FETCH_USERS_BY_POOL_KEY = 'fetchUsersByPool';
+	const FETCH_USERS_BY_POOL = 'SELECT U.userName, P.userStatus FROM Users U, suicidePoolUsers P WHERE P.poolId = ? AND U.id = P.userId';
+
 	const DOES_USER_MANAGE_POOL_KEY = 'doesUserManagePool';
 	const DOES_USER_MANAGE_POOL = 'SELECT * FROM suicidePoolUsers WHERE poolId = ? AND userId = ? AND isManager = TRUE';
 
-	// --------- CONSTRUCTOR --------------
+// -------------------   CONSTRUCTOR --------------------------
 
 	public function __construct()
 	{
@@ -112,7 +124,7 @@ class SuicidePoolsDAO extends BaseDAO
 		$this->loadAndExecutePreparedQuery(self::FETCH_POOLS_WITH_NAMES_BY_USER_KEY, array($userID));
 
 		// Fetch the result set
-		$pools = $this->fetchResults('suicidePools');
+		$pools = $this->fetchResults();
 
 		// Now before returning information about the pools, segregate the pools depending on
 		// the user's status.
@@ -213,8 +225,8 @@ class SuicidePoolsDAO extends BaseDAO
 	}
 
 	/**
-	  * Function is responsible for saving changes to the user-specific settings that a user
-	  * has personally set for the specified pool.
+	  * Function is responsible for saving changes to the user-specific settings that a user has personally set
+	  * for the specified pool.
 	  *
 	  * @param $poolID - the ID of the pool where the user's settings will be adjusted
 	  * @param settings - an associative array of settings that need to be saved over the old settings stored within the database
@@ -231,6 +243,26 @@ class SuicidePoolsDAO extends BaseDAO
 
 		// Now execute the query
 		$this->loadAndExecutePreparedQuery( self::UPDATE_USER_POOL_SETTINGS_KEY, array($settings['letManagerMakePicks'], $settings['sendEmailsAboutMajorChanges'], $settings['sendWeeklyReminderEmails'], $poolID, $userID) );
+	}
+
+	/**
+	  * Function retrieves all the users that are currently participating or still remain invited to a
+	  * particular suicide pool 
+	  *
+	  * @param $poolModel - the model of the pool that contains the ID to use here for database queries
+	  *
+	  * @author kinsho
+	  */
+	public function fetchAllUsersInPool($poolModel)
+	{
+		// Prepare the SQL query that will fetch users
+		$this->prepareStatement(self::FETCH_USERS_BY_POOL_KEY, self::FETCH_USERS_BY_POOL_KEY);
+
+		// Now execute the query
+		$this->loadAndExecutePreparedQuery( self::FETCH_USERS_BY_POOL_KEY, array($poolModel->getId()) );
+
+		// Return the result set
+		return $this->fetchResults();
 	}
 
 // -------------------   VALIDATION/INFORMATIONAL FUNCTIONS --------------------------
@@ -325,7 +357,7 @@ class SuicidePoolsDAO extends BaseDAO
 		// Prepare the SQL query that will be used to determine whether the user manages a pool
 		$this->prepareStatement(self::DOES_USER_MANAGE_POOL_KEY, self::DOES_USER_MANAGE_POOL);
 
-		// Fetch the user ID
+		// Fetch the user ID if one has not been provided when this function has been invoked
 		if ( !($userID) )
 		{
 			$userID = $_SESSION['userSesson']['id'];
@@ -358,7 +390,7 @@ class SuicidePoolsDAO extends BaseDAO
 		$this->loadAndExecutePreparedQuery(self::FETCH_POOLS_BY_USER_KEY, array($userID));
 
 		// Fetch the result set
-		$pools = $this->fetchResults('suicidePools');
+		$pools = $this->fetchResults();
 
 		// Determine whether the user is allowed to take part in more pools
 		return (count($pools) <= self::USER_POOL_LIMIT);

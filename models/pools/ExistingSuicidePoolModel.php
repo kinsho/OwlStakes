@@ -32,7 +32,7 @@ class ExistingSuicidePoolModel extends ValidationModel
 		'id'
 	);
 
-	// -------- CLASS MEMBERS -------------
+// ------------- CLASS MEMBERS -----------------------
 
 	protected $id = '';
 	protected $name = '';
@@ -45,18 +45,18 @@ class ExistingSuicidePoolModel extends ValidationModel
 	protected $poolsDAO;
 	protected $usersDAO;
 
-	// --------- CONSTRUCTOR --------------
+// ------------- CONSTRUCTOR -----------------------
 
-	public function __construct()
+	public function __construct($params = array())
 	{
 		// Initiate the various connections to the database
 		$this->poolsDAO = new SuicidePoolsDAO();
 		$this->usersDAO = new UsersDAO();
 
-		return $this;
+		parent::__construct($params, true); // Enable generic error handling here for validation purposes
 	}
 
-	// ------- ACCESSOR/VALIDATION FUNCTIONS --------------
+// ------------- ACCESSOR FUNCTIONS -----------------------
 
 	public function getId()
 	{
@@ -159,7 +159,7 @@ class ExistingSuicidePoolModel extends ValidationModel
 		return $this->genericSetter($val, $validators, __FUNCTION__);
 	}
 
-	// ------- SPECIALIZED VALIDATION FUNCTIONS --------
+// ------------- SPECIALIZED VALIDATION FUNCTIONS -----------------------
 
 	/**
 	  * Determines whether a suicide pool exists corresponding to the passed ID

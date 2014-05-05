@@ -37,7 +37,7 @@ class LogInModel extends ValidationModel
 
 // -------------- CONSTRUCTOR --------------
 
-	public function __construct ($params = array())
+	public function __construct($params = array())
 	{
 		// Initiate the connection to the database
 		$this->DAO = new LogInDAO();

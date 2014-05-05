@@ -1,12 +1,6 @@
 <?php
 
-// Fetch the library files necessary to send out e-mails
-TOS_REQUIRE_ONCE('mailers/foundation/library/class.phpmailer.php');
-TOS_REQUIRE_ONCE('mailers/foundation/library/class.pop3.php');
-TOS_REQUIRE_ONCE('mailers/foundation/library/class.smtp.php');
-
-// Fetch the mailer used to package and send notice of error messages to the admin
-TOS_REQUIRE_ONCE('mailers/foundation/ErrorMailer.php');
+TOS_REQUIRE_ONCE('vendor/autoload.php');
 
 /*
  * Class that will serve as the foundation for all other classes responsible for
@@ -60,8 +54,8 @@ abstract class Mailer
 		$this->mail->IsHTML(true);
 
 		// Initialize the template for use
-		$this->htmlTemplate = file_get_contents(APP_ROOT . '/mailers/foundation/BaseHtmlEmailTemplate.html');
-		$this->textTemplate = file_get_contents(APP_ROOT . '/mailers/foundation/BaseTextEmailTemplate.txt');
+		$this->htmlTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/mailers/foundation/BaseHtmlEmailTemplate.html');
+		$this->textTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/mailers/foundation/BaseTextEmailTemplate.txt');
 	}
 
 

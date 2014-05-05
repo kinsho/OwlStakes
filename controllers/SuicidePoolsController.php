@@ -49,11 +49,9 @@ class SuicidePoolsController extends BaseController
 		$params = self::convertPOST();
 
 		// Instantiate a NewSuicidePool Bean and validate all parameters
-		$newPoolBean = new NewSuicidePoolModel();
-		$newPoolBean->populateAndValidate($params, true); // Second parameter ensures that error handling is handled generically
+		$newPoolBean = new NewSuicidePoolModel($params);
 
 		$poolsDAO = new SuicidePoolsDAO();
-
 		$poolsDAO->addPool($newPoolBean);
 
 		parent::sendPositiveHTTPResponse();
@@ -73,6 +71,30 @@ class SuicidePoolsController extends BaseController
 		$usernames = $usersDAO->fetchUsernames($_GET['term']);
 
 		parent::sendPositiveHTTPResponse($usernames);
+	}
+
+	/**
+	  * Action function responsible for fetching all the members that are participating or have been
+	  * invited to the suicide pool in context
+	  *
+	  * @author kinsho
+	  */
+	public static function getMembersAction()
+	{
+		// Start the session in case we need to save
+		parent::startSession();
+
+		// Prepare POST parameters array
+		$params = self::convertPOST();
+
+		// Instantiate a NewSuicidePool Bean and validate all parameters
+		$existingPoolBean = new ExistingSuicidePoolModel($params);
+
+		// Now fetch the list of members from the database
+		$poolsDAO = new SuicidePoolsDAO();
+		$list = $poolsDAO->fetchAllUsersInPool($existingPoolBean);
+
+		parent::sendPositiveHTTPResponse($list);
 	}
 
 // ------------- UTILITY FUNCTIONS --------------------
