@@ -1,7 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* Imports */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +22,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -30,9 +40,9 @@
  */
 /* HTML Tag Styling */
 h2 {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 36;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: italic;
   margin-top: 30px;
   text-align: left;
@@ -41,7 +51,7 @@ h2 {
 h3 {
   font-weight: bold;
   font-size: 30;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   margin-top: 30px;
   text-align: center;
@@ -54,9 +64,9 @@ a {
     text-decoration: underline; }
 
 p {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 18;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   text-align: center; }
 
@@ -126,49 +136,49 @@ p {
 .positiveFont {
   font-weight: bold;
   font-size: 13;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: italic;
   color: #21693a; }
 
 .negativeFont {
   font-weight: bold;
   font-size: 13;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: italic;
   color: #db5192; }
 
 .bigFont {
   font-weight: bold;
   font-size: 16px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal; }
 
 .bigPositiveFont {
   font-weight: bold;
   font-size: 18px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal;
   color: #21693a; }
 
 .bigNegativeFont {
   font-weight: bold;
   font-size: 18px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal;
   color: #db5192; }
 
 .bigNeutralFont {
   font-weight: bold;
   font-size: 20px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal;
   color: #8fa288; }
 
 /* --- Design Styles --- */
 .content {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 15;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   width: 85%;
   float: right;
@@ -211,9 +221,9 @@ p {
   margin-right: 10px; }
 
 .infoTabTopline {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   border-width: 1px;
   border-style: solid;
@@ -233,9 +243,9 @@ p {
   text-align: center; }
 
 .genericAutocompleteSuggestionBox {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 11px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   border-style: solid;
   border-color: black;
@@ -261,9 +271,9 @@ p {
       background-color: #eeeeff; }
 
 .genericModalAutocompleteSuggestionBox {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 11px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   border-style: solid;
   border-color: black;
@@ -289,9 +299,9 @@ p {
       background-color: #eeeeff; }
 
 .toggleSwitch {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 14;
-  font-family: Arial;
+  font-family: Source Sans Pro, sans-serif;
   font-style: italic;
   color: #f8f8f8;
   text-shadow: 1px 1px 0 #000000;
@@ -349,7 +359,7 @@ p {
 .leftToggleSwitch {
   font-weight: bold;
   font-size: 20;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: italic;
   padding-left: 10px;
   padding-top: 2px;
@@ -369,7 +379,7 @@ p {
 .rightToggleSwitch {
   font-weight: bold;
   font-size: 20;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: italic;
   padding-left: 7px;
   padding-top: 2px;
@@ -481,7 +491,7 @@ fieldset {
 legend {
   font-weight: bold;
   font-size: 18;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   padding-left: 25px;
   padding-right: 25px;
@@ -489,9 +499,9 @@ legend {
   white-space: nowrap; }
 
 label {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   position: relative;
   cursor: pointer;
@@ -506,9 +516,9 @@ label {
     color: #ff3333; }
 
 select, input {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 13;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   outline-style: outset;
   outline-width: 1px;
@@ -541,9 +551,9 @@ select, input {
     border-color: #000000;
     border-width: 2px; }
   select[type='button'], input[type='button'] {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18;
-    font-family: Arial;
+    font-family: Source Sans Pro, sans-serif;
     font-style: italic;
     color: #f8f8f8;
     text-shadow: 1px 1px 0 #000000;
@@ -617,18 +627,18 @@ div.odd {
   width: 100%;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
-  font-family: Palatino Linotype;
+  font-family: Cardo, sans-serif;
   font-style: normal;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center; }
 
 .formRow {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 15px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   padding-top: 15px;
   padding-bottom: 15px; }
@@ -668,7 +678,7 @@ div.odd {
 .midFormLabel {
   font-weight: bold;
   font-size: 18px;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   text-align: center;
   vertical-align: middle; }

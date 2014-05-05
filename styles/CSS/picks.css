@@ -1,7 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* Imports */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +22,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -66,7 +76,7 @@
 #bigGameMultiplier {
   font-weight: bold;
   font-size: 34px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal;
   color: #8fa288;
   text-align: center;
@@ -79,7 +89,7 @@
 .lockedFont {
   font-weight: bold;
   font-size: 16px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-style: normal;
   color: #cc3355;
   transform: translate(-50%, 0%);

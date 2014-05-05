@@ -1,7 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* Imports */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +22,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -173,7 +183,7 @@
     -o-transition-delay: 0s, 0s;
     font-weight: 400;
     font-size: 20;
-    font-family: Palatino Linotype;
+    font-family: Source Sans Pro, sans-serif;
     font-style: normal;
     background-color: #eeeeff;
     background-image: -webkit-linear-gradient(left, #eeeeff, white);
@@ -220,7 +230,7 @@
     #leftHandMenu > div.mainItem:not(.subItems):not(.usernameDisplay) {
       font-weight: 400;
       font-size: 18;
-      font-family: Palatino Linotype;
+      font-family: Cardo, sans-serif;
       font-style: italic; }
       #leftHandMenu > div.mainItem:not(.subItems):not(.usernameDisplay):hover {
         /* Widen the element when hovered over */
@@ -262,9 +272,9 @@
       -o-transition-delay: 0s; }
 
 .subItems {
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14;
-  font-family: Palatino Linotype;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal;
   margin-bottom: 7px;
   background-color: white;

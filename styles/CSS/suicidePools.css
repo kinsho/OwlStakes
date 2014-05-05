@@ -1,7 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* ------- IMPORTS ------- */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +22,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -130,7 +140,7 @@
   .modal a.navButton {
     font-weight: bold;
     font-size: 18;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-style: normal;
     color: #3399ff;
     text-shadow: none;
@@ -147,9 +157,9 @@
       padding-top: 10px;
       vertical-align: middle; }
   .modal .modalHeader {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
-    font-family: Arial;
+    font-family: Source Sans Pro, sans-serif;
     font-style: italic;
     color: #f8f8f8;
     text-shadow: 1px 1px 0 #000000;
@@ -171,16 +181,16 @@
       background-color: #cc3355;
       cursor: pointer; }
       .modal .modalHeader .hasExitButton:after {
-        font-weight: normal;
+        font-weight: 400;
         font-size: 20;
-        font-family: Arial;
+        font-family: Arial, sans-serif;
         font-style: normal;
         color: #f8f8f8;
         content: 'x'; }
   .modal .modalBody {
-    font-weight: normal;
+    font-weight: 400;
     font-size: 16px;
-    font-family: Palatino Linotype;
+    font-family: Source Sans Pro, sans-serif;
     font-style: normal;
     padding-left: 15px;
     padding-right: 15px;
@@ -189,7 +199,7 @@
     .modal .modalBody label {
       font-weight: bold;
       font-size: 13;
-      font-family: Palatino Linotype;
+      font-family: Source Sans Pro, sans-serif;
       font-style: normal;
       margin-top: 5px;
       margin-bottom: 15px;
@@ -312,7 +322,7 @@
   .nestedModal a.navButton {
     font-weight: bold;
     font-size: 18;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-style: normal;
     color: #3399ff;
     text-shadow: none;
@@ -329,9 +339,9 @@
       padding-top: 10px;
       vertical-align: middle; }
   .nestedModal .modalHeader {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
-    font-family: Arial;
+    font-family: Source Sans Pro, sans-serif;
     font-style: italic;
     color: #f8f8f8;
     text-shadow: 1px 1px 0 #000000;
@@ -353,16 +363,16 @@
       background-color: #cc3355;
       cursor: pointer; }
       .nestedModal .modalHeader .hasExitButton:after {
-        font-weight: normal;
+        font-weight: 400;
         font-size: 20;
-        font-family: Arial;
+        font-family: Arial, sans-serif;
         font-style: normal;
         color: #f8f8f8;
         content: 'x'; }
   .nestedModal .modalBody {
-    font-weight: normal;
+    font-weight: 400;
     font-size: 16px;
-    font-family: Palatino Linotype;
+    font-family: Source Sans Pro, sans-serif;
     font-style: normal;
     padding-left: 15px;
     padding-right: 15px;
@@ -371,7 +381,7 @@
     .nestedModal .modalBody label {
       font-weight: bold;
       font-size: 13;
-      font-family: Palatino Linotype;
+      font-family: Source Sans Pro, sans-serif;
       font-style: normal;
       margin-top: 5px;
       margin-bottom: 15px;
@@ -470,9 +480,9 @@
       left: 74%; }
 
 .poolName {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
-  font-family: Arial;
+  font-family: Cardo, sans-serif;
   font-style: normal;
   color: #3399ff;
   text-align: left;
@@ -496,67 +506,44 @@
   margin-left: 4px; }
 
 .aliveText:after {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
-  font-family: Palatino Linotype;
-  font-style: normal;
+  font-family: Cardo, sans-serif;
+  font-style: italics;
   color: #3399ff;
   content: 'Alive'; }
 
 .deadText:after {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 18px;
-  font-family: Palatino Linotype;
-  font-style: normal;
+  font-family: Cardo, sans-serif;
+  font-style: italics;
   color: #db5192;
   content: 'Dead'; }
 
 .invitedText:after {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 21px;
-  font-family: Palatino Linotype;
-  font-style: normal;
-  color: #8fa288;
+  font-family: Cardo, sans-serif;
+  font-style: italics;
+  color: #3399ff;
   content: 'Invited'; }
 
-.peopleManagerLink {
-  font-weight: bold;
+.poolOptionLink {
+  font-weight: 700;
   font-size: 16px;
-  font-family: Palatino Linotype;
+  font-family: Cardo, sans-serif;
   font-style: normal;
   color: #3399ff;
   text-align: left;
   white-space: nowrap; }
-  .peopleManagerLink:before {
-    content: url("../../images/people.png");
-    padding-right: 10px;
+  .poolOptionLink:before {
     padding-top: 10px;
-    vertical-align: middle; }
-
-.settingsLink {
-  font-weight: bold;
-  font-size: 16px;
-  font-family: Palatino Linotype;
-  font-style: normal;
-  color: #3399ff;
-  text-align: left;
-  white-space: nowrap; }
-  .settingsLink:before {
-    content: url("../../images/settings.png");
     padding-right: 10px;
-    padding-top: 10px;
     vertical-align: middle; }
-
-.forwardLink {
-  font-weight: bold;
-  font-size: 16px;
-  font-family: Palatino Linotype;
-  font-style: normal;
-  color: #3399ff;
-  text-align: left;
-  white-space: nowrap; }
-  .forwardLink:before {
-    content: url("../../images/navArrowRight.png");
-    padding-right: 10px;
-    padding-top: 10px;
-    vertical-align: middle; }
+  .poolOptionLink.peopleManagerLink:before {
+    content: url("../../images/people.png"); }
+  .poolOptionLink.settingsLink:before {
+    content: url("../../images/settings.png"); }
+  .poolOptionLink.forwardLink:before {
+    content: url("../../images/navArrowRight.png"); }

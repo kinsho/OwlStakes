@@ -179,7 +179,7 @@
 				cursor: auto;
 			}
 
-			@include basicFontSettings($weight: 400, $size: 18, $style: italic);
+			@include basicFontSettings($weight: 400, $size: 18, $style: italic, $family: Cardo);
 		}
 
 		&.removeMinWidth

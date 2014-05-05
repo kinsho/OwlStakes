@@ -1,7 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* ------- IMPORTS ------- */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +23,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -29,9 +40,16 @@
  * @author kinsho
  */
 /* ------- IMPORTS ------- */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -44,8 +62,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -86,7 +106,7 @@
   .barOutline span.percentage {
     font-weight: bold;
     font-size: 12px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-style: normal;
     color: white;
     position: absolute;
@@ -106,7 +126,7 @@
   .levelOne.levelOne, .levelTwo.levelOne, .levelThree.levelOne {
     font-weight: bold;
     font-size: 20px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-style: normal;
     color: #898989; }
     .levelOne.levelOne + .levelOne, .levelTwo.levelOne + .levelOne, .levelThree.levelOne + .levelOne {
@@ -114,7 +134,7 @@
   .levelOne.levelTwo, .levelTwo.levelTwo, .levelThree.levelTwo {
     font-weight: bold;
     font-size: 18px;
-    font-family: Palatino Linotype;
+    font-family: Palatino Linotype, sans-serif;
     font-style: normal;
     color: #8fa288; }
     .levelOne.levelTwo + .levelTwo, .levelTwo.levelTwo + .levelTwo, .levelThree.levelTwo + .levelTwo {
@@ -122,9 +142,9 @@
     .levelOne.levelTwo:first-of-type, .levelTwo.levelTwo:first-of-type, .levelThree.levelTwo:first-of-type {
       padding-top: 15px; }
   .levelOne.levelThree, .levelTwo.levelThree, .levelThree.levelThree {
-    font-weight: normal;
+    font-weight: 400;
     font-size: 14px;
-    font-family: Palatino Linotype;
+    font-family: Palatino Linotype, sans-serif;
     font-style: italic;
     color: #8fa288; }
     .levelOne.levelThree:first-of-type, .levelTwo.levelThree:first-of-type, .levelThree.levelThree:first-of-type {
@@ -148,7 +168,7 @@
     .levelOne .difficulty > span, .levelTwo .difficulty > span, .levelThree .difficulty > span {
       font-weight: bold;
       font-size: 20px;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       font-style: normal;
       color: black;
       transform: translate(-50%, -50%);

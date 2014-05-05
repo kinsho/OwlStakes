@@ -1,7 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 /* Imports */
-/* ----------------------- BASE VARIABLES ----------------------------- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION MIX-INS ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
 /* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -14,8 +22,10 @@
  *
  * @author kinsho
  */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
 /* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- RQUERY MIX-INS ----------------------------- */
+/* ----------------------- R-QUERY MIX-INS ----------------------------- */
 /* ----------------------- UTILITY MIX-INS ----------------------------- */
 /* Mix-in truly centers an element squarely in the middle of its parent container */
 /* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
@@ -61,9 +71,9 @@
   display: none;
   text-align: left; }
   #successContainer .title {
-    font-weight: normal;
+    font-weight: 400;
     font-size: 25;
-    font-family: Palatino Linotype;
+    font-family: Source Sans Pro, sans-serif;
     font-style: normal;
     padding-left: 10px;
     padding-top: 15px;
@@ -74,7 +84,7 @@
     padding-left: 5px;
     padding-right: 5px;
     display: none;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 16;
-    font-family: Palatino Linotype;
+    font-family: Source Sans Pro, sans-serif;
     font-style: normal; }

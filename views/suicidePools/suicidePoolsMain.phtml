@@ -1,4 +1,8 @@
 <?php
+	
+	// Set up the reference to the global $view object.
+	global $view;
+
 	// Determine the number of pools that a user is actively participating in
 	$poolCount = 0;
 
@@ -72,13 +76,13 @@
 						echo '<div class="right">';
 						if ($pool['isManager'])
 						{
-							echo '<div class="forwardLink">';
+							echo '<div class="poolOptionLink forwardLink">';
 							echo '<a>Go Make Picks</a>';
 							echo '</div>';
-							echo '<div class="peopleManagerLink">';
+							echo '<div class="poolOptionLink peopleManagerLink">';
 							echo '<a>Manage Pool Members</a>';
 							echo '</div>';
-							echo '<div class="settingsLink manager">';
+							echo '<div class="poolOptionLink settingsLink manager">';
 							echo '<a>Pool Settings</a>';
 							echo '</div>';
 						}

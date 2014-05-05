@@ -1,0 +1,7 @@
+{
+	"require":
+	{
+		"mustache/mustache": "~2.5",
+		"recaptcha/php5": "~1.0.0"
+	}
+}

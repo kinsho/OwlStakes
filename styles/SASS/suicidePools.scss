@@ -48,7 +48,7 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 // Styling to be applied to the pool names that appear within the table
 .poolName
 {
-	@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $darkBlueTheme);
+	@include blueFont($size: 20px);
 
 	text-align: left;
 	word-wrap: break-word; // Ensure that the length of the text never exceeds the width of the span
@@ -66,7 +66,7 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 // The text signifying that the user is still alive within the suicide pool in context
 .aliveText:after
 {
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $darkBlueTheme);
+	@include blueFont($size: 18px, $style: italics);
 
 	content: 'Alive';
 }
@@ -74,7 +74,7 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 // The text signifying that the user is dead within the suicide pool in context
 .deadText:after
 {
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $negativeTheme);
+	@include negativeFont($size: 18px, $style: italics);
 
 	content: 'Dead';
 }
@@ -82,73 +82,43 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 // The text signifying that the user has been invited to a pool
 .invitedText:after
 {
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 21px, $color: $darkGreenTheme);
+	@include blueFont($size: 21px, $style: italics);
 
 	content: 'Invited';
 }
 
-// Styling for the link that opens up the modal responsible for letting managers add and remove people from pools
-.peopleManagerLink
+// Styling for the various links that allow the user to act and interact with certain pools
+.poolOptionLink
 {
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
+	@include blueFont($size: 16px);
 
 	text-align: left;
 	white-space: nowrap;
 
 	&:before
 	{
-		content: url('../../images/people.png');
-
 		padding:
 		{
-			right: 10px;
 			top: 10px;
+			right: 10px;
 		}
 
 		vertical-align: middle;
 	}
-}
 
-// Styling for the link that opens up the modal responsible for letting people manage their settings with respect to any pool
-.settingsLink
-{
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
+	// Different images are laid here depending on the type of link
+	&.peopleManagerLink:before
+	{
+		content: url('../../images/people.png');	
+	}
 
-	text-align: left;
-	white-space: nowrap;
-
-	&:before
+	&.settingsLink:before
 	{
 		content: url('../../images/settings.png');
-
-		padding:
-		{
-			right: 10px;
-			top: 10px;
-		}
-
-		vertical-align: middle;
 	}
-}
 
-// Styling for the link that directs users to another page that allows them to make a pick within a specific pool
-.forwardLink
-{
-	@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 16px, $color: $darkBlueTheme);
-
-	text-align: left;
-	white-space: nowrap;
-
-	&:before
+	&.forwardLink:before
 	{
 		content: url('../../images/navArrowRight.png');
-
-		padding:
-		{
-			right: 10px;
-			top: 10px;
-		}
-
-		vertical-align: middle;
 	}
 }
