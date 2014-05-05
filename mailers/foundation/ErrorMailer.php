@@ -1,5 +1,7 @@
 <?php
 
+TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
+
 TOS_REQUIRE_ONCE('mailers/foundation/Mailer.php');
 
 /*
@@ -14,12 +16,12 @@ class ErrorMailer extends Mailer
 
 	const SUBJECT_ERROR = 'Error Caught - %header';
 
-	// ----------------- CLASS MEMBERS ----------------
+// -------------------------- CLASS MEMBERS ----------------------
 
 	protected $bodyHtmlTemplate; // The HTML-formatted content that will serve as the body of the e-mail
 	protected $bodyTextTemplate; // The text-formatted content that will serve as the body of the e-mail
 
-	// ------------------- CONSTRUCTOR -------------------
+// -------------------------- CONSTRUCTOR -------------------
 	
 	public function __construct()
 	{
@@ -29,7 +31,7 @@ class ErrorMailer extends Mailer
 		parent::__construct();
 	}
 
-	// ------------------- CLASS FUNCTIONS -------------------
+// -------------------------- CLASS FUNCTIONS -------------------
 
 	/**
 	  *	Functions prepares an e-mail containing details about some unexpected system failure. E-mail will

@@ -4,7 +4,7 @@
 TOS_REQUIRE_ONCE('utility/TestGenerator.php');
 
 // The class used to fetch all the server configuration settings
-TOS_REQUIRE_ONCE('utility/applicationConf/ConfigurationParser.php');
+TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
 
 // Fetch all packages that were installed via Composer
 TOS_REQUIRE_ONCE('vendor/autoload.php');

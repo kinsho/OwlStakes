@@ -1,6 +1,8 @@
 <?php
 
-REQUIRE_ONCE '/../foundation/Mailer.php';
+TOS_REQUIRE_ONCE('mailer/foundation/Mailer.php');
+
+TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
 
 /*
  * Class responsible for generating and sending out account confirmation e-mails

@@ -1,5 +1,7 @@
 <?php
-TOS_REQUIRE_ONCE('utility/server/applicationConf/ConfigurationParser.php');
+
+TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
+
 TOS_REQUIRE_ONCE('mailers/foundation/ErrorMailer.php');
 
 /**

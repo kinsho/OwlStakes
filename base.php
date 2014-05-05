@@ -32,6 +32,7 @@ function TOS_REQUIRE_ONCE($fileName)
         {
             if (file_exists(APP_ROOT . $fileName))
             {
+		        $TOS_INCLUDED_FILES[] = $fileName;
                 REQUIRE (APP_ROOT . $fileName);
             }
             else
@@ -45,8 +46,6 @@ function TOS_REQUIRE_ONCE($fileName)
             echo ( implode('<br />', (explode('#', $ex->getTraceAsString())) ) );
             exit();
         }
-
-        $TOS_INCLUDED_FILES[] = $fileName;
     }
 }
 

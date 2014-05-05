@@ -8,6 +8,9 @@ TOS_REQUIRE_ONCE('mailers/foundation/library/class.smtp.php');
 // Fetch the mailer used to package and send notice of error messages to the admin
 TOS_REQUIRE_ONCE('mailers/foundation/ErrorMailer.php');
 
+// Fetch the parser necessary to interpret the configuration file
+TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
+
 /*
  * Class that will serve as the foundation for all other classes responsible for
  * generating and sending out e-mails to users
