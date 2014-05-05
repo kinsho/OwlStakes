@@ -1,0 +1,28 @@
+<table>
+	<thead>
+		<tr class="title">
+			<td colspan="100">Leaderboard</td>
+		</tr>
+		<tr id="leaderboardColumns" class="headerRow">
+			<th>Rank</th>
+			<th>Nickname</th>
+			<th>Total Points</th>
+			<th>Last Picks (w/ Points Gained or Lost Per Pick)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class={{row_class}}>
+			<td>{{ranking}}</td>
+			<td>{{userName}}</td>
+			<td>{{pointTotal}}</td>
+			<td>
+				{{#pick}}
+					{{team}}
+					<span class={{flair}}>
+						{{points}}
+					</span>
+				{{/pick}}
+			</td>
+		</tr>
+	</tbody>
+</table>
