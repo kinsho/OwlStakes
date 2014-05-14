@@ -1,0 +1,37 @@
+<div class='poolRow {{mustache-class}}'>
+
+	{{#isManager}}
+	<div class='poolName managerLabel'>
+	{{/isManager}}
+	{{^isManager}}
+	<div class='poolName'>
+	{{/isManager}}
+		<a>{{poolName}}</a>
+	</div>
+
+	{{#isAlive}}
+	<div class='center noTextWrap aliveText'>
+	{{/isAlive}}
+	{{#isDead}}
+	<div class='center noTextWrap deadText'>
+	{{/isDead}}
+	{{#isInvited}}
+	<div class='center noTextWrap invitedText'>
+	{{/isInvited}}
+	</div>
+
+	<div class='right'>
+		{{#isManager}}
+		<div class='poolOptionLink forwardLink'>
+			<a>Go Make Picks</a>
+		</div>
+		<div class='poolOptionLink peopleManagerLink'>
+			<a>Manage Pool Members</a>
+		</div>
+		<div class='poolOptionLink settingsLink js-manager'>
+			<a>Pool Settings</a>
+		</div>
+		{{/isManager}}
+	</div>
+
+</div>

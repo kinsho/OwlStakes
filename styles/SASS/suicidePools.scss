@@ -90,7 +90,7 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 // Styling for the various links that allow the user to act and interact with certain pools
 .poolOptionLink
 {
-	@include blueFont($size: 16px);
+	@include blueFont($size: 16px, $weight: 400);
 
 	text-align: left;
 	white-space: nowrap;

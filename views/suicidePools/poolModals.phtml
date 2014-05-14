@@ -58,9 +58,22 @@
 			</div>
 		</form>
 
-		<!-- Section to list all the members within the pool -->
-		<div id='managePeopleMembersTable'></div>
+		<!-- Section to list all the members within the pool and allow the manager to take specific
+		     actions on each user involved with the pool in some capacity -->
+		<div>
+			<div id='managePeopleMembersTable' class='floatLeft'></div>
+			<div class='floatRight'>
+				<span id='noMemberSelected'>A user has to be selected first...</span>
+				<span id='memberSelected'></span>
 
+				<button class='js-liveUser'>Make Pick</span>
+				<button class='js-liveUser'>Kill User</span>
+
+				<button class='js-deadUser'>Resurrect</span>
+
+				<button class='js-invitedUser'>Rescind Invite</span>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -96,8 +109,8 @@
 		basis. You can always change this any time while the pool is still active, but you should
 		be cautious about changing this too often. 
 
-		Typically, you'd only want people to have to make two picks a week in the event that too many people are
-		still alive towards the end of the season.
+		Typically, you'd only want people to have to make two picks a week in the event that too many
+		people are still alive towards the end of the season.
 		<div class='navButtonContainer center'>
 			<a class='navButton' data-action='close'>Understood</a>
 		</div>

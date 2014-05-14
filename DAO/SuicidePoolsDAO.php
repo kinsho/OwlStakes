@@ -41,7 +41,7 @@ class SuicidePoolsDAO extends BaseDAO
 	const FETCH_POOLS_WITH_NAMES_BY_USER = 'SELECT U.*, P.poolName FROM suicidePoolUsers U, suicidePools P WHERE U.userId = ? AND U.poolId = P.id';
 
 	const FETCH_USERS_BY_POOL_KEY = 'fetchUsersByPool';
-	const FETCH_USERS_BY_POOL = 'SELECT U.userName, P.userStatus FROM Users U, suicidePoolUsers P WHERE P.poolId = ? AND U.id = P.userId';
+	const FETCH_USERS_BY_POOL = 'SELECT U.id, U.userName, P.userStatus FROM Users U, suicidePoolUsers P WHERE P.poolId = ? AND U.id = P.userId';
 
 	const DOES_USER_MANAGE_POOL_KEY = 'doesUserManagePool';
 	const DOES_USER_MANAGE_POOL = 'SELECT * FROM suicidePoolUsers WHERE poolId = ? AND userId = ? AND isManager = TRUE';
@@ -97,14 +97,14 @@ class SuicidePoolsDAO extends BaseDAO
 	  * and segregate the pools into different lists based on the user's status within each pool
 	  *
 	  * @param {String} $userID - the ID of the user whose involvement in suicide pools will be determined here
-	  *					Keep in mind that if no ID is specified, the user in context will be assumed
-	  *					as the user in focus here
+	  *		Keep in mind that if no ID is specified, the user in context will be assumed
+	  *		as the user in focus here
 	  * @returns {Array} - contains a set of four arrays that together comprise all the pools that a user is considered
-	  *						actively in. Each sub-array is identified by exactly one of the specific pool statuses listed below:
-	  *						- managed
-	  *						- participant
-	  *						- dead
-	  *						- invited
+	  *		actively in. Each sub-array is identified by exactly one of the specific pool statuses listed below:
+	  *		- managed
+	  *		- participant
+	  *		- dead
+	  *		- invited
 	  *
 	  * @author kinsho
 	  */
@@ -134,6 +134,7 @@ class SuicidePoolsDAO extends BaseDAO
 		$results['participant'] = array();
 		$results['dead'] = array();
 
+/*		
 		foreach ($pools as $pool)
 		{
 			$userStatus = $pool['userStatus'];
@@ -147,8 +148,8 @@ class SuicidePoolsDAO extends BaseDAO
 				$results[$userStatus][] = $pool;
 			}
 		}
-
-		return $results;
+*/
+		return $pools;
 	}
 
 	/**

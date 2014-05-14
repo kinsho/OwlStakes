@@ -27,24 +27,45 @@ class MustacheManager
 	/**
 	  * Function used to render the templates using the Mustache engine
 	  *
-	  * @param $template {String} - the template to use here in framing the HTML to generate
 	  * @param $data {Array} - the data use to populate the template
-	  * @param $viewLabel {String} - the key that will be used when storing the generated HTML into
-	  * 	the global $view object
+	  * @param $templateURL {String} - the location of the template to use here in framing
+	  *		the HTML to generate
+	  * @param [$emptyTemplateURL] {String} - the location of the template to use here in case
+	  *		the passed dataset is empty
+	  *
+	  * @return {String} - the HTML generated via Mustache using the provided data and template
 	  *
 	  * @author kinsho
 	  */
-	public static function renderTemplate($template, $data, $viewLabel)
+	public static function renderTemplate($data, $templateURL, $emptyTemplateURL)
 	{
 		global $view;
 
 		// If the Mustache engine has not been instantiated, start it up
-		if ( unset(self::$mustache) )
+		if ( !(isset(MustacheManager::$mustache)) )
 		{
 			self::$mustache = new Mustache_Engine;
 		}
 
-		$view[$viewLabel] = self::$mustache($template, $data);
+		// Fetch the templates using the provided template URLs
+		$template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/' . $templateURL);
+		if ( !(empty($emptyTemplateURL)) )
+		{
+			$emptyTemplate = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/' . $emptyTemplateURL);
+		}
+
+		// Generate the HTML via Mustache and return it
+		$html = '';
+		foreach ($data as $record)
+		{
+			$html .= MustacheManager::$mustache->render($template, $record);
+		}
+		if (!empty($html))
+		{
+			$html = MustacheManager::$mustache->render($emptyTemplate, []);
+		}
+
+		return $html;
 	}
 
 	/**
@@ -63,7 +84,14 @@ class MustacheManager
 	{
 		foreach ($dataset as $index => $datum)
 		{
-			$dataset[$index][self::CLASS_MUSTACHE_TAG] = ($index % 2 === 1 ? self::ODD_ROW_CLASS : '');
+			if ( !(isset($dataset[$index][self::CLASS_MUSTACHE_TAG])) )
+			{
+				$dataset[$index][self::CLASS_MUSTACHE_TAG] = ' ' . ($index % 2 === 1 ? self::ODD_ROW_CLASS : '');
+			}
+			else
+			{			
+				$dataset[$index][self::CLASS_MUSTACHE_TAG] .= ' ' . ($index % 2 === 1 ? self::ODD_ROW_CLASS : '');
+			}
 		}
 
 		return $dataset;
@@ -86,7 +114,14 @@ class MustacheManager
 	{
 		foreach ($dataset as $index => $datum)
 		{
-			$dataset[$index][self::CLASS_MUSTACHE_TAG] = ($testFunction($datum) ? self::POSITIVE_THEME_CLASS : self::NEGATIVE_THEME_CLASS);
+			if ( !(isset($dataset[$index][self::CLASS_MUSTACHE_TAG])) )
+			{
+				$dataset[$index][self::CLASS_MUSTACHE_TAG] = ' ' . ($testFunction($datum) ? self::POSITIVE_THEME_CLASS : self::NEGATIVE_THEME_CLASS);
+			}
+			else
+			{
+				$dataset[$index][self::CLASS_MUSTACHE_TAG] .= ' ' . ($testFunction($datum) ? self::POSITIVE_THEME_CLASS : self::NEGATIVE_THEME_CLASS);
+			}
 		}
 
 		return $dataset;	

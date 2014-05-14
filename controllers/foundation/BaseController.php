@@ -322,7 +322,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			foreach(glob($_SERVER['DOCUMENT_ROOT'].
 						 self::VIEW_DIRECTORY.
 						 $directory.
-						 '/*') as $html)
+						 '/*.phtml') as $html)
 			{
 				// As long as the file has not been specifically marked as not to be included, store an
 				// reference within the view file

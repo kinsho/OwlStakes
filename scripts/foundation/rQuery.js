@@ -122,12 +122,12 @@ window.rQuery =
 	  *
 	  * @param element {HTMLNode} - the text field element that'll be incorporated with autocomplete functionality
 	  * @param sourceURL {String} - the URL that will be invoked in order to fetch new suggestions to inject into the
-									the suggestion box
+	  * 	the suggestion box
 	  * @param [minLength] {Number} - if provided, the minimum length of characters that wil need to be typed before
-	  *								the client initiates a server-side request to fetch matches
+	  *		the client initiates a server-side request to fetch matches
 	  * @param [suggestionBoxClass] {String} - if supplied, the styling to apply to the suggestion box
 	  * @param [customInjectionFunction] {Function} - if provided, all the generic logic to inject suggestions into the
-	  *								the suggestion box will be ignored and this function will be invoked instead
+	  *		the suggestion box will be ignored and this function will be invoked instead
 	  *
 	  * @author kinsho
 	  */

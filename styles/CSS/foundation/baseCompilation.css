@@ -148,9 +148,9 @@ p {
   color: #db5192; }
 
 .bigFont {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
-  font-family: Arial, sans-serif;
+  font-family: Source Sans Pro, sans-serif;
   font-style: normal; }
 
 .bigPositiveFont {
@@ -409,6 +409,23 @@ p {
   padding-right: 5px;
   text-align: center;
   vertical-align: middle; }
+
+.trueCenter {
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  position: absolute;
+  width: auto;
+  /* Center the content */
+  left: 50%;
+  top: 50%; }
+
+.emptyBody {
+  padding-top: 15px;
+  padding-bottom: 30px;
+  text-align: center; }
 
 /* --- Width Styles --- */
 .zeroOverOne {

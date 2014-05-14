@@ -15,6 +15,29 @@ window.memberManagerModal =
 	openModal: function(event)
 	{
 		modalManager.openModal(event.data.view.MODAL_NAME);
+
+		formSubmit.ajax(
+		{
+			url: 'suicidePools/getMembers',
+			success: function(response)
+			{
+				var response = $.parseJSON(response),
+					membersTableContainer = document.getElementById('managePeopleMembersTable');
+
+				membersTableContainer.innerHTML = response.html;
+			}
+		}, event);
+	},
+
+	/**
+	  * Function serves to initialize listeners on elements that may have been generated
+	  * dynamically well after page load
+	  *
+	  * @author kinsho
+	  */
+	addListeners: function()
+	{
+		var $memberRows = $('#managePeopleMembersTable').find('tr');
 	},
 
 	/**

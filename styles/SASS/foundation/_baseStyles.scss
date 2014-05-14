@@ -158,7 +158,7 @@ p
 
 .bigFont
 {
-	@include basicFontSettings($family: Arial, $weight: bold, $size: 16px);
+	@include basicFontSettings($weight: 700, $size: 16px);
 }
 
 .bigPositiveFont
@@ -390,6 +390,22 @@ p
 
 	text-align: center;
 	vertical-align: middle;
+}
+
+.trueCenter
+{
+	@include trueCenter();
+}
+
+.emptyBody
+{
+	padding:
+	{
+		top: 15px;
+		bottom: 30px;
+	}
+
+	text-align: center;
 }
 
 /* --- Width Styles --- */
