@@ -1,0 +1,75 @@
+/*
+Syntax error: Invalid CSS after "			cursor:": expected pseudoclass or pseudoelement, was " pointer;"
+        on line 125 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/leftHandMenu.scss
+
+120: 			width: 130%;
+121: 
+122: 			/* Darken the font when hovered over *\/
+123: 			@extend %boldFont
+124: 
+125: 			cursor: pointer;
+126: 		}
+127: 
+128: 		&.selected
+129: 		{
+130: 			/* Widen the width to indicate that this is already selected *\/
+
+Backtrace:
+C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/leftHandMenu.scss:125
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1147:in `expected'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1085:in `expected'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1067:in `expr!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:794:in `pseudo'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:678:in `simple_selector_sequence'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:646:in `_selector'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:619:in `selector'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:603:in `selector_sequence'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1066:in `expr!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:303:in `extend_directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:174:in `special_directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:146:in `directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:554:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:546:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:535:in `block'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:529:in `ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:591:in `block in declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1123:in `call'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1123:in `rethrow'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:592:in `declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:554:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:543:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:535:in `block'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:529:in `ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:591:in `block in declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1123:in `call'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1123:in `rethrow'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:592:in `declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:554:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:546:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:535:in `block'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:529:in `ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:553:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:546:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:82:in `stylesheet'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:27:in `parse'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:342:in `_to_tree'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:235:in `watch'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin.rb:107:in `method_missing'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:463:in `watch_or_update'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:326:in `process_result'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:41:in `parse'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:21:in `parse!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/bin/sass:13:in `<top (required)>'
+C:/Ruby200/bin/sass:23:in `load'
+C:/Ruby200/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"			cursor:\": expected pseudoclass or pseudoelement, was \" pointer;\"\A         on line 125 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/leftHandMenu.scss\A \A 120: 			width: 130%;\A 121: \A 122: 			/* Darken the font when hovered over */\A 123: 			@extend %boldFont\A 124: \A 125: 			cursor: pointer;\A 126: 		}\A 127: \A 128: 		&.selected\A 129: 		{\A 130: 			/* Widen the width to indicate that this is already selected */"; }

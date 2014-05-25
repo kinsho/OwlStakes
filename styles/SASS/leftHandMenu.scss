@@ -1,0 +1,195 @@
+@import 'foundation/_colors.scss';
+@import 'foundation_fonts.scss';
+@import 'foundation/_sharedElements.scss';
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+
+// Generalized styling for the container housing the left-hand menu
+#leftHandContainer
+{
+	padding:
+	{
+		top: 15px;
+		left: 10px;
+		right: 20px;
+	}
+
+	border:
+	{
+		right:
+		{
+			style: solid;
+			width: 1px;
+		}
+	}
+
+	width: 10%;
+	height: 100%;
+
+	float: left;
+	top: 0;
+	left: 0;
+
+	position: fixed;
+	z-index: 1;
+	background-color: $whiteTheme;
+
+	& > div
+	{
+		width: 100%;
+	}
+}
+
+.leftHandButton
+{
+	width: 100%;
+}
+
+.logInModulesAnimations
+{
+	/* Locally defined lists needed here to set multiple transition properties on the log-in module */
+	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+	$webkitTransitionProperties: opacity, -webkit-transform;
+	$transitionTimings: linear, linear;
+	$transitionDurations: 0.5s, 0.5s;
+	$transitionDelays: 0s, 0s;
+
+	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+
+	&.moduleGoLeft
+	{
+		@include shiftTransition($x: -50%);
+	}
+}
+
+#forgotPassword
+{
+	text-align: center;
+}
+
+.mainItem
+{
+	/* Locally defined lists to set multiple transitions properties on each menu DIV */
+	$transitionProperties: width, transform, -moz-transform, -ms-transform, -o-transform;
+	$webkitTransitionProperties: width, -webkit-transform;
+	$transitionTimings: ease, linear;
+	$transitionDurations: 0.5s, 0.75s;
+	$transitionDelays: 0s, 0s;
+
+	/* @include setAxes3D($x: 0%, $y: top, $z: 0px); */ // Forget about this line for now....until later
+	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+	@include setGradient($initialColor: $lightBlueTheme, $endColor: $whiteTheme, $direction: left);
+
+	// Note that the font defined below will only apply to the item housing the user name
+	@extend %regularPlusFont;
+
+	padding:
+	{
+		top: 5px;
+		bottom: 5px;
+	}
+
+	border:
+	{
+		style: solid;
+		width: 1px;
+		color: $darkGrayTheme;
+
+		left:
+		{
+			style: none;
+		}
+		right:
+		{
+			style: none;
+		}
+	}
+
+	text-align: center;
+	min-height: 25px;
+	min-width: 150px;
+
+	display: inline-block;
+	position: relative;
+
+	&:not(.usernameDisplay)
+	{
+		&:hover
+		{
+			/* Widen the element when hovered over */
+			width: 130%;
+
+			/* Darken the font when hovered over */
+			@extend %boldFont
+
+			cursor: pointer;
+		}
+
+		&.selected
+		{
+			/* Widen the width to indicate that this is already selected */
+			width: 130%;
+
+			/* Darken the font */
+			@extend %boldFont
+
+			cursor: auto;
+		}
+
+		// The font below will apply to all the major menu items except for the one housing the user name
+		@extend %regularCardoFont;
+		@extend %italicizedFont;
+	}
+
+	// Keep the two classes below separate from one another. While it may make sense to
+	// unite them, browsers may have issue with re-rendering the width of an element immediately
+	// following the removal of any minimum width restrictions
+	&.removeMinWidth
+	{
+		min-width: 0px;
+	}
+	&.zeroOverOne
+	{
+		@extend %zeroOverOne;
+	}
+
+	& > span
+	{
+		@include transitionSettings($property: opacity, $timing: linear, $duration: 0.5s);
+	}
+
+	& > .selected
+	{
+		// Set up a triangular indicator to note the selected menu items and take care in positioning it
+		@include triangleIndicator($direction: right, $width: 10px, $color: $darkGrayTheme);
+		@include shiftTransition($x: 50%, $y: 50%);
+	}
+}
+
+.subItems
+{
+	// The font will be applied to all sub-menu items
+	@extend %smallCardoFont;
+
+	margin:
+	{
+		bottom: 5px;
+	}
+
+	background-color: $whiteTheme;
+	cursor: pointer;
+
+	& > div
+	{
+		padding:
+		{
+			top: 10px;
+			bottom: 5px;
+		}
+
+		& > span
+		{
+			@include transitionSettings($property: opacity, $timing: linear, $duration: 0.1s);
+		}
+	}
+}

@@ -1,0 +1,140 @@
+/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
+
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+@mixin transitionSettings($property, $webkitProperty: false, $timing: ease, $duration: 2s, $delay: 0s, $useBrowserSpecificReferences: false)
+{
+	transition-property: $property;
+	transition-timing-function: $timing;
+	transition-duration: $duration;
+	transition-delay: $delay;
+
+	// In case browser-specific prefixes are needed here when specifying the property to transition upon,
+	// set the $useBrowserSpecificReferences flag appropriately to execute the below block of code
+	@if $useBrowserSpecificReferences
+	{
+		@include webkitTransitionSettings('-webkit-' + $property, $timing, $duration, $delay);
+		@include mozTransitionSettings('-moz-' + $property, $timing, $duration, $delay);
+		@include msTransitionSettings('-ms-' + $property, $timing, $duration, $delay);
+		@include oTransitionSettings('-o-' + $property, $timing, $duration, $delay);
+	}
+	@else
+	{
+		@include webkitTransitionSettings($property, $timing, $duration, $delay);
+		@include mozTransitionSettings($property, $timing, $duration, $delay);
+		@include msTransitionSettings($property, $timing, $duration, $delay);
+		@include oTransitionSettings($property, $timing, $duration, $delay);
+	}
+
+	@if ($webkitProperty)
+	{
+		/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+		@media screen and (-webkit-min-device-pixel-ratio:0)
+		{
+			transition-property: $webkitProperty;
+			@include webkitTransitionSettings($webkitProperty, $timing, $duration, $delay);
+		}
+	}
+}
+
+// Mixin built specifically to animate webkit-only properties
+@mixin webkitTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-webkit-transition-property: $property;
+	-webkit-transition-timing-function: $timing;
+	-webkit-transition-duration: $duration;
+	-webkit-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate gecko-only properties
+@mixin mozTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-moz-transition-property: $property;
+	-moz-transition-timing-function: $timing;
+	-moz-transition-duration: $duration;
+	-moz-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate IE-only properties
+@mixin msTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-ms-transition-property: $property;
+	-ms-transition-timing-function: $timing;
+	-ms-transition-duration: $duration;
+	-ms-transition-delay: $delay;
+}
+
+// Mixin built specifically to animate opera-only properties
+@mixin oTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
+{
+	-o-transition-property: $property;
+	-o-transition-timing-function: $timing;
+	-o-transition-duration: $duration;
+	-o-transition-delay: $delay;
+}
+
+// Mixin designed to shift elements on a two-dimensional plane across all major browsers
+@mixin shiftTransition($x: 0px, $y: 0px)
+{
+	transform:translate($x, $y);
+	-webkit-transform:translate($x, $y);
+	-moz-transform:translate($x, $y);
+	-ms-transform:translate($x, $y);
+	-o-transform:translate($x, $y);
+}
+
+// Mixin designed to rotate elements on a two-dimensional plane across all major browsers
+@mixin rotateTransition($degrees)
+{
+	transform:rotate($degrees);
+	-webkit-transform:rotate($degrees);
+	-moz-transform:rotate($degrees);
+	-ms-transform:rotate($degrees);
+	-o-transform:rotate($degrees);
+}
+
+// Mixin designed to rotate elements on a three-dimensional plane across all major browsers
+@mixin rotateTransition3D($degrees, $rotateByX: 0, $rotateByY: 0, $rotateByZ: 0)
+{
+	transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-webkit-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-moz-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-ms-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+	-o-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
+
+}
+
+// Mixin designed to reset the location of the origin on a specific element
+// Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+// Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+@mixin setAxes($x: 0px, $y: 0px, $z: 0px)
+{
+	transform-origin: $x $y $z;
+	-webkit-transform-origin: $x $y $z;
+	-moz-transform-origin: $x $y $z;
+	-ms-transform-origin: $x $y $z;
+	-o-transform-origin: $x $y $z;
+}
+
+// Mixin designed to scale elements in a two-dimensional plane across all major browsers
+@mixin scaleTransition($length: 1, $width: 1)
+{
+	transform:scale($length, $width);
+	-webkit-transform:scale($length, $width);
+	-moz-transform:scale($length, $width);
+	-ms-transform:scale($length, $width);
+	-o-transform:scale($length, $width);
+}

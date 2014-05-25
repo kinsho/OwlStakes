@@ -1,0 +1,368 @@
+@include 'foundation/_colors.scss';
+@include 'foundation/_fonts.scss';
+
+/* ----------------------- SHARED ELEMENTS MIX-INS ----------------------------- */
+
+// Even for those mix-ins that accept no parameters, keep them as mix-ins instead of placeholders.
+// It's possible that later on, parameters will be added to allow for variations in the base stylings
+// defined below.
+
+// Mix-in responsible for styling any informational row
+@mixin infoRow()
+{
+	@extend %regularFont;
+	@extend %italicizedFont;
+
+	margin:
+	{
+		top: 5px;
+		bottom: 5px;
+	}
+
+	padding:
+	{
+		top: 10px;
+		bottom: 10px;
+		left: 10px;
+		right: 10px;
+	}
+
+	border:
+	{
+		width: 1px;
+		style: solid;
+		color: $blueTheme;
+		radius: 10px;
+	}
+
+	display: inline-block;
+	background-color: $lightBlueTheme;
+
+	&.centerRow
+	{
+		margin:
+		{
+			left: auto;
+			right: auto;
+		}
+	}
+
+	// The image for the informational row must always be displayed against the left edge
+	& > img
+	{
+		float: left;
+	}
+
+	// The content for the informational row should be placed to the right of the image
+	& > .infoRowContent
+	{
+		padding:
+		{
+			left: 10px;
+		}
+
+		float: right;
+	}
+}
+
+// Mix-in responsible for setting margin spacing on hint tip icons
+@mixin hintTip()
+{
+	margin:
+	{
+		left: 10px;
+		right: 10px;
+	}
+}
+
+// Mixin responsible for generating a tab (meant to be placed on top of tables or containers) to convey a bite's worth of information
+@mixin infoTab($topRightRadius: 0px, $topLeftRadius: 0px, $bottomLeftRadius: 0px, $bottomRightRadius: 0px)
+{
+	border:
+	{
+		width: 1px;
+		style: solid;
+		color: $blueTheme;
+		top-left-radius: $topLeftRadius;
+		top-right-radius: $topRightRadius;
+		bottom-left-radius: $bottomLeftRadius;
+		bottom-right-radius: $bottomRightRadius
+	}
+
+	padding:
+	{
+		left: 10px;
+		right: 10px;
+		top: 2px;
+		bottom: 2px;
+	}
+
+	display: inline-block;
+	background-color: $lightBlueTheme;
+	text-align: center;
+
+	@content;
+}
+
+// Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that text with an additional qualifier
+@mixin labelIcon($content)
+{
+	&:after
+	{
+		@extend %smallFont;
+
+		border:
+		{
+			style: solid;
+			width: 1px;
+			radius: 3px;
+			color: $darkGrayTheme;
+		}
+
+		padding:
+		{
+			left: 3px;
+			right: 3px;
+		}
+
+		background-color: $darkGreenTheme;
+		color: $lightWhiteTheme;
+		text-shadow: 0.75px 0.75px 0 #000000;
+
+		content: $content;
+
+		@content;
+	}
+}
+
+// Mix-in designed to provide the base styling for any autocomplete suggestion section
+@mixin autocompleteSuggestionBox($zIndex: 1000)
+{
+	@extend %regularFont;
+
+	&.modalSuggestionBox
+	{
+		@extend %tinyFont;
+	}
+
+	border:
+	{
+		style: solid;
+		color: $blackTheme;
+
+		bottom-right-radius: 10px;
+		bottom-left-radius: 10px;
+		width: 1px;
+	}
+
+	background-color: $lightGrayTheme;
+	z-index: $zIndex;
+	position: absolute;
+
+	max-height: 100px;
+	overflow: auto;
+
+	& > div
+	{
+		padding:
+		{
+			top: 5px;
+			bottom: 5px;
+			left: 10px;
+			right: 10px;
+		}
+
+		cursor: pointer;
+
+		&.disabled
+		{
+			@extend %italicizedFont;
+
+			cursor: default;
+			background-color: $lightGrayTheme;
+		}
+
+		&:hover
+		{
+			background-color: $lightBlueTheme;
+		}
+	}
+
+	@content;
+}
+
+// Mix-in designed to provide styling for all toggleSwitches
+@mixin toggleSwitch()
+{
+	@extend %minorWhiteFont;
+
+	min-height: 20px;
+
+	margin:
+	{
+		top: 5px;
+		bottom: 5px;
+	}
+
+	border:
+	{
+		color: $darkGrayTheme;
+		width: 2px;
+	}
+
+	& > input, & > label
+	{
+		display: none;
+	}
+
+	& > span
+	{
+		// Allow the background color to be animated
+		@include transitionSettings($property: background-color, $timing: linear, $duration: 0.5s);
+
+		padding:
+		{
+			top: 5px;
+			bottom: 5px;
+			left: 13px;
+			right: 13px;
+		}
+
+		border:
+		{
+			style: solid;
+			color: $darkGrayTheme;
+			width: 2px;
+		}
+
+		background-color: $grayTheme;
+		cursor: pointer;
+
+		&:first-of-type
+		{
+			border:
+			{
+				top-left-radius: 10px;
+				bottom-left-radius: 10px;
+			}
+		}
+
+		&:last-of-type
+		{
+			border:
+			{
+				top-right-radius: 10px;
+				bottom-right-radius: 10px;
+			}
+		}
+
+		&.toggleSelect
+		{
+			background-color: $greenTheme;
+			cursor: default;
+		}
+	}
+}
+
+// Mix-in responsible for surrounding an element with horizontal rules to emphasize the text
+// within the element
+@mixin horizontalRule()
+{
+	// Ensure the text remains appropriately distanced from the horizontal rules
+	padding:
+	{
+		left: 10px;
+		right: 10px;
+	}
+
+	text-align: center;
+
+	// Place horizontal lines before and after the text in focus here
+	&:before, &:after
+	{
+		padding:
+		{
+			bottom: 0.5em;
+		}
+
+		height: 1px;
+		width: 45%;
+
+		display: inline-block;
+		background-color: $darkGrayTheme;
+	}
+}
+
+// Mix-in designed to generate a circular container
+@mixin circle($diameter, $color)
+{
+	border:
+	{
+		radius: 50%;
+	}
+
+	width: $diameter;
+	height: $diameter;
+	background-color: $color;
+
+	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50% allows us to generate a circular container.
+}
+
+/*
+ * Mix-in is responsible for generating a triangular indicator depending on the passed direction
+ *
+ * @param $direction - the direction in which the triangular indicator will point
+ * @param $columnWidths - the width of the indicator
+ * @param $tableSelector - the color of the indicator
+ *
+ * @author kinsho
+ */
+@mixin triangleIndicator($direction, $width, $color)
+{
+	width: 0px;
+	height: 0px;
+
+	position: absolute;
+
+	// Rendering a triangle involves some trickery with border stylings
+	border:
+	{
+		// Do not render any specific border styling in the same direction
+		// as the passed direction. Also, use transparent border coloring
+		// to render the angles necessary to generate the triangle.
+		top:
+		{
+			@if ($direction != up)
+			{
+				width: $width;
+				color: if($direction == down, $color, transparent);
+			}
+		}
+		bottom:
+		{
+			@if ($direction != down)
+			{
+				width: $width;
+				color: if($direction == up, $color, transparent);
+			}
+		}
+		right:
+		{
+			@if ($direction != right)
+			{
+				width: $width;
+				color: if($direction == left, $color, transparent);
+			}
+		}
+		left:
+		{
+			@if ($direction != left)
+			{
+				width: $width;
+				color: if($direction == right, $color, transparent);
+			}
+		}
+	}
+
+	@content;
+}

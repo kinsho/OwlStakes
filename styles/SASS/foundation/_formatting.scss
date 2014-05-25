@@ -1,0 +1,32 @@
+@import 'foundation/_colors.scss';
+
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+
+// Mixin helps to defining a width for a particular column within a table
+// Should not really matter whether the table is real or simulated
+@mixin basicColumnSettings($width, $text_align: center)
+{
+	width: $width;
+	text-align: $text_align;
+
+	display: inline-block;
+
+	@content;
+}
+
+// Mix-in responsible for defining the basic styling that should be applied to all tables, both real and simulated
+@mixin basicTableSettings($width: 75%)
+{
+	border:
+	{
+		width: 1px;
+		style: solid;
+		color: $lightGrayTheme;
+		spacing: 0px;
+		radius: 20px;
+	}
+
+	width: $width;
+
+	@content;
+}

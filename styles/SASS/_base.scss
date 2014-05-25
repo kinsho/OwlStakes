@@ -1,0 +1,47 @@
+@import 'vendor/normalize.scss';
+
+@import 'foundation/_colors.scss';
+@import 'foundation/_fonts.scss';
+@import 'foundation/_animations.scss';
+@import 'foundation/_utilityFunctions.scss';
+@import 'foundation/_formatting.scss';
+@import 'foundation/_sharedElements.scss';
+@import 'foundation/_widthsHeights.scss';
+
+@import 'leftHandMenu.scss';
+
+/* ----------------------- COMMON CLASSES ----------------------------- */
+
+.infoRow
+{
+	@include infoRow();
+}
+
+.hintTip
+{
+	@include hintTip();
+}
+
+.pageBreak
+{
+	@extend %pageBreak;
+}
+
+.smallHeightener
+{
+	@extend %tinyHeightener;
+}
+
+// The content section of the site, which will take up most of the available real estate
+// on the page. Ensure that this section floats to the right in order to allow for a
+// menu that can be affixed to the left
+.content
+{
+	@extend %regularFont;
+
+	width: 85%;
+	float: right;
+	z-index: 0;
+
+	position: relative;
+}
