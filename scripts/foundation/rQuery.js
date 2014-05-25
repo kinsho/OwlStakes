@@ -357,7 +357,7 @@ window.rQuery =
 		// label text associated with each radio button
 		$radios.each(function()
 		{
-			var $this = $(this)
+			var $this = $(this),
 				inputID = this.id,
 				associatedLabel = $labels.filter('[for=' + inputID + ']').html();
 

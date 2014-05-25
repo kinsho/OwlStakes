@@ -1,4 +1,4 @@
-/* ----------------------- COLOR THEMES ----------------------------- */
+/* ----------------------- COLOR VARIABLES ----------------------------- */
 
 $lightRedTheme: #FFAAAA;
 $redTheme: #CC3355;
@@ -24,3 +24,16 @@ $blackTheme: #000000;
 $positiveTheme: #21693A;
 $negativeTheme: #DB5192;
 $noticeTheme: #EB9100;
+
+/* ----------------------- SPECIALIZED COLOR MIX-INS ----------------------------- */
+
+// Mix-in designed to render a gradient background on a particular element
+// Designed to work across all major browsers
+@mixin setGradient($initialColor, $endColor, $direction: left)
+{
+	background-color: $initialColor; // In the rare event that the user is on a browser that does not support gradients, set a default color
+	background-image: -webkit-linear-gradient($direction, $initialColor, $endColor);
+	background-image: -moz-linear-gradient($direction, $initialColor, $endColor);
+	background-image: -ms-linear-gradient($direction, $initialColor, $endColor);
+	background-image: -o-linear-gradient($direction, $initialColor, $endColor);
+}

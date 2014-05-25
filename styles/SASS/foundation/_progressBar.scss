@@ -1,6 +1,7 @@
 /* ------- IMPORTS ------- */
 
-@import 'foundation/_base.scss';
+@import 'foundation/_colors.scss';
+@import 'foundation/_fonts.scss';
 
 /* ------- PROGRESS BAR STYLING ------- */
 
@@ -45,7 +46,8 @@
 
 	span.percentage
 	{
-		@include basicFontSettings($family: Arial, $weight: bold, $size: 12px, $color: $whiteTheme);
+		@extend %smallFont;
+		@extend %boldFont;
 
 		position: absolute;
 		z-index: 10;

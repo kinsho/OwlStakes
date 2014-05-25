@@ -1,179 +1,58 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
-/* Imports */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- SPECIALIZED FONTS ----------------------------- */
 /*
- * The custom font-families that the site will use are:
- *
- * Source Sans Pro
- * Cardo
- *
- */
-/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
-/*
- * Mixin built to provide a convenient way to set basic font styles quickly
- *
- * @param $weight - the font weight
- * @param $size - the font size
- * @param $family - the font family
- * @param $style - the font style
- * @param $color - an optional parameter that allows one to specify a font color
- *
- * @author kinsho
- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
-/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- R-QUERY MIX-INS ----------------------------- */
-/* ----------------------- UTILITY MIX-INS ----------------------------- */
-/* Mix-in truly centers an element squarely in the middle of its parent container */
-/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
-/*
- * Mixin is responsible for setting the widths of all columns within a table by applying a width
- * to each TH element within the table.
- *
- * @param $columnWidths - a list containing desired widths for each column, in index order
- * @param $tableSelector - the CSS selector that will be used to reference the table
- *
- * @author kinsho
- */
-table {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #d0d0d0;
-  border-spacing: 0px;
-  border-radius: 20px;
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 35px;
-  border-width: 5px; }
-  table th {
-    font-weight: 700;
-    font-size: 18px;
-    font-family: Cardo, sans-serif;
-    font-style: normal;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center; }
-  table tr.title {
-    font-weight: 700;
-    font-size: 26;
-    font-family: Source Sans Pro, sans-serif;
-    font-style: italic;
-    color: #f8f8f8;
-    text-shadow: 1px 1px 0 #000000;
-    background-color: #8fa288; }
-    table tr.title td {
-      padding-top: 15px;
-      padding-bottom: 5px;
-      padding-left: 10px;
-      padding-right: 20px;
-      text-align: right; }
-      table tr.title td:nth-child(1), table tr.title td.left {
-        text-align: left; }
-  table tr.odd {
-    background-color: #c7d0c4; }
-  table tr td {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    text-align: center; }
+Syntax error: File to import not found or unreadable: foundation/_base.scss.
+              Load paths:
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
+        on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/stats.scss
 
-/* Leaderboard */
-tr#leaderboardColumns th:nth-child(1) {
-  width: 5%; }
+1: /* Imports *\/
+2: 
+3: @import 'foundation/_base.scss';
+4: @import 'foundation/_reporting.scss';
+5: 
+6: $leaderboardColumnWidths: 5%,		// Rank
+7: 						  32%,		// User Name
+8: 						  8%,		// Total Points
 
-tr#leaderboardColumns th:nth-child(2) {
-  width: 32%; }
-
-tr#leaderboardColumns th:nth-child(3) {
-  width: 8%; }
-
-tr#leaderboardColumns th:nth-child(4) {
-  width: 55%; }
-
-/* Point Distribution Chart */
-.chartArea {
-  fill: #bbdbff;
-  stroke: black;
-  stroke-opacity: 0.5;
-  stroke-width: 3px; }
-
-/* Weekly Stats */
-.overallPredictions .headerRow th:nth-child(1) {
-  width: 80%; }
-
-.overallPredictions .headerRow th:nth-child(2) {
-  width: 20%; }
-
-.topPredictors .headerRow th:nth-child(1) {
-  width: 5%; }
-
-.topPredictors .headerRow th:nth-child(2) {
-  width: 32%; }
-
-.topPredictors .headerRow th:nth-child(3) {
-  width: 8%; }
-
-.topPredictors .headerRow th:nth-child(4) {
-  width: 55%; }
-
-table.detachedHead {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px; }
-  table.detachedHead .title img.clickable {
-    transition-property: transform;
-    -webkit-transition-property: transform;
-    -moz-transition-property: transform;
-    -ms-transition-property: transform;
-    -o-transition-property: transform;
-    -webkit-transition-property: "-webkit-transform";
-    -moz-transition-property: "-moz-transform";
-    -ms-transition-property: "-ms-transform";
-    -o-transition-property: "-o-transform";
-    transition-timing-function: ease;
-    -webkit-transition-timing-function: ease;
-    -moz-transition-timing-function: ease;
-    -ms-transition-timing-function: ease;
-    -o-transition-timing-function: ease;
-    transition-duration: 1s;
-    -webkit-transition-duration: 1s;
-    -moz-transition-duration: 1s;
-    -ms-transition-duration: 1s;
-    -o-transition-duration: 1s;
-    transition-delay: 0s;
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -ms-transition-delay: 0s;
-    -o-transition-delay: 0s; }
-    table.detachedHead .title img.clickable.rotateAround {
-      transform: rotate(180deg);
-      -webkit-transform: rotate(180deg);
-      -moz-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      -o-transform: rotate(180deg); }
-table.detachedBody {
-  transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -ms-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
-  -moz-transition-timing-function: ease;
-  -ms-transition-timing-function: ease;
-  -o-transition-timing-function: ease;
-  transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-  -ms-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  transition-delay: 0.2s;
-  -webkit-transition-delay: 0.2s;
-  -moz-transition-delay: 0.2s;
-  -ms-transition-delay: 0.2s;
-  -o-transition-delay: 0.2s;
-  margin-top: 0px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px; }
+Backtrace:
+C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/stats.scss:3
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:67:in `rescue in import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:45:in `import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:28:in `imported_file'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:37:in `css_import?'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `map'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:7:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/root_node.rb:20:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:235:in `watch'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin.rb:107:in `method_missing'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:463:in `watch_or_update'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:326:in `process_result'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:41:in `parse'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:21:in `parse!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/bin/sass:13:in `<top (required)>'
+C:/Ruby200/bin/sass:23:in `load'
+C:/Ruby200/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: foundation/_base.scss.\A               Load paths:\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A         on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/stats.scss\A \A 1: /* Imports */\A 2: \A 3: @import 'foundation/_base.scss';\A 4: @import 'foundation/_reporting.scss';\A 5: \A 6: $leaderboardColumnWidths: 5%,		// Rank\A 7: 						  32%,		// User Name\A 8: 						  8%,		// Total Points"; }

@@ -14,14 +14,14 @@
 	if ( !($userLoggedIn) )
 	{
 ?>
-	<div id='logIn' class="<?=$userLoggedIn ? 'noDisplay' : '' ?>">
+	<div id='logIn' class="<?=$userLoggedIn ? 'noDisplay' : '' ?> logInModulesAnimations">
 		<form id='logInForm'>
 			<div class='center'>
 				<label for='logInFormUserName'>User Name</label><br /><input type='text' name='username' id='logInFormUserName' />
 				<br /><br />
 				<label for='logInFormPassword'>Password</label><br /><input type='password' name='password' id='logInFormPassword' />
 				<br /><br /><br />
-				<input type='button' id='logInButton' value='Log In' />
+				<input type='button' id='logInButton' class='leftHandButton' value='Log In' />
 			</div>
 			<br />
 			<div class='checkbox'>
@@ -33,11 +33,11 @@
 		</form>
 	</div>
 
-	<div id='forgotPassword' class='noDisplay'>
+	<div id='forgotPassword' class='noDisplay logInModulesAnimations'>
 		<form id='forgotPasswordForm'>
 			<label for='forgotPasswordFormEmailAddress'>E-mail Address</label><br /><input type='text' name='email' id='forgotPasswordFormEmailAddress' />
 			<br /><br />
-			<input type='button' id='forgotPasswordButton' value='E-mail me!' />
+			<input type='button' id='forgotPasswordButton' class='leftHandButton' value='E-mail me!' />
 			<br /><br />
 			<a id='logInLink' href='#'>Go back to the log-in form</a>
 		</form>

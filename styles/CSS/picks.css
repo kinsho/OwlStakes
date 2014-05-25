@@ -1,137 +1,58 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
-/* Imports */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- SPECIALIZED FONTS ----------------------------- */
 /*
- * The custom font-families that the site will use are:
- *
- * Source Sans Pro
- * Cardo
- *
- */
-/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
-/*
- * Mixin built to provide a convenient way to set basic font styles quickly
- *
- * @param $weight - the font weight
- * @param $size - the font size
- * @param $family - the font family
- * @param $style - the font style
- * @param $color - an optional parameter that allows one to specify a font color
- *
- * @author kinsho
- */
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
-/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- R-QUERY MIX-INS ----------------------------- */
-/* ----------------------- UTILITY MIX-INS ----------------------------- */
-/* Mix-in truly centers an element squarely in the middle of its parent container */
-/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
-/*
- * Mixin is responsible for setting the widths of all columns within a table by applying a width
- * to each TH element within the table.
- *
- * @param $columnWidths - a list containing desired widths for each column, in index order
- * @param $tableSelector - the CSS selector that will be used to reference the table
- *
- * @author kinsho
- */
-/* Specific Styles */
-.homeBefore:before {
-  border-style: solid;
-  border-width: 1;
-  border-radius: 3px;
-  border-color: #898989;
-  font-size: 14;
-  font-family: Palatino Lintotype;
-  font-style: normal;
-  font-weight: bold;
-  padding-left: 3px;
-  padding-right: 3px;
-  background-color: #8fa288;
-  color: #f8f8f8;
-  text-shadow: 0.75px 0.75px 0 #000000;
-  content: "home";
-  margin-right: 4px; }
+Syntax error: File to import not found or unreadable: foundation/_base.scss.
+              Load paths:
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
+                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
+        on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/picks.scss
 
-.homeAfter:after {
-  border-style: solid;
-  border-width: 1;
-  border-radius: 3px;
-  border-color: #898989;
-  font-size: 14;
-  font-family: Palatino Lintotype;
-  font-style: normal;
-  font-weight: bold;
-  padding-left: 3px;
-  padding-right: 3px;
-  background-color: #8fa288;
-  color: #f8f8f8;
-  text-shadow: 0.75px 0.75px 0 #000000;
-  content: "home";
-  margin-left: 4px; }
+1: /* Imports *\/
+2: 
+3: @import 'foundation/_base.scss';
+4: 
+5: /* Specific Styles *\/
+6: 
+7: .homeBefore:before
+8: {
 
-#bigGameMultiplier {
-  font-weight: bold;
-  font-size: 34px;
-  font-family: Arial, sans-serif;
-  font-style: normal;
-  color: #8fa288;
-  text-align: center;
-  position: relative; }
-  #bigGameMultiplier img {
-    position: absolute;
-    left: 27%;
-    top: -25%; }
-
-.lockedFont {
-  font-weight: bold;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  font-style: normal;
-  color: #cc3355;
-  transform: translate(-50%, 0%);
-  -webkit-transform: translate(-50%, 0%);
-  -moz-transform: translate(-50%, 0%);
-  -ms-transform: translate(-50%, 0%);
-  -o-transform: translate(-50%, 0%);
-  position: absolute;
-  z-index: 10;
-  /* Center the text on the input field as best as possible */
-  left: 50%;
-  top: 10%; }
-
-.emphasizeWinner {
-  font-size: 17px;
-  font-weight: bold; }
-
-#weekSelectorSpan {
-  margin-top: 10px;
-  vertical-align: top; }
-
-#picksListing, #gameMultipliersSection {
-  transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -ms-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
-  -moz-transition-timing-function: ease;
-  -ms-transition-timing-function: ease;
-  -o-transition-timing-function: ease;
-  transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-  -ms-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  transition-delay: 0s;
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  -ms-transition-delay: 0s;
-  -o-transition-delay: 0s;
-  opacity: 1.0; }
-  #picksListing.fadeOut, #gameMultipliersSection.fadeOut {
-    opacity: 0.0; }
+Backtrace:
+C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/picks.scss:3
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:67:in `rescue in import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:45:in `import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:28:in `imported_file'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:37:in `css_import?'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `map'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:7:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/root_node.rb:20:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:235:in `watch'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin.rb:107:in `method_missing'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:463:in `watch_or_update'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:326:in `process_result'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:41:in `parse'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:21:in `parse!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/bin/sass:13:in `<top (required)>'
+C:/Ruby200/bin/sass:23:in `load'
+C:/Ruby200/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: foundation/_base.scss.\A               Load paths:\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A         on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/picks.scss\A \A 1: /* Imports */\A 2: \A 3: @import 'foundation/_base.scss';\A 4: \A 5: /* Specific Styles */\A 6: \A 7: .homeBefore:before\A 8: {"; }

@@ -18,6 +18,8 @@ TOS_REQUIRE_ONCE('utility/MustacheManager.php');
 class SuicidePoolsController extends BaseController
 {
 	const GENERIC_NAME = 'suicidePools';
+
+	// Templates
 	const MEMBERS_TABLE_MUSTACHE_TEMPLATE = 'membersTable.mustache';
 	const POOL_LISTINGS_MUSTACHE_TEMPLATE = 'suicidePoolsListings.mustache';
 	const EMPTY_POOL_LISTINGS_MUSTACHE_TEMPLATE = 'emptySuicidePoolsListings.mustache';

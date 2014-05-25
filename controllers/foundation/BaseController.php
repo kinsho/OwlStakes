@@ -38,7 +38,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 
 		const SCRIPTS_DIRECTORY = '/scripts/';
 		const SCRIPTS_FILE_EXTENSION = '.js';
-		const SCRIPTS_UTILITY_DIRECTORY = 'utility';
+		const REQUIRE_JS_MAIN_FILE_NAME = '/main.js';
 
 		const SESSION_USER_LABEL = 'userSession';
 		const LOG_IN_COOKIE_LABEL = 'TOSCS';
@@ -65,10 +65,12 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			self::setStylesheetsFromDirectory( self::LIBRARY_DIRECTORY );
 
 			// If a generic name has been specified, use that name to pull all the required files.
-			// Otherwise, if certain other properties within the controller have been defined, use those properties to fetch all required files.
+			// Otherwise, if certain other properties within the controller have been defined, use those properties instead to fetch all required files.
 			if ( defined($childControllerName.'::GENERIC_NAME') )
 			{
 				$view->pageName = constant($childControllerName.'::GENERIC_NAME');
+				$view->requireJsMainFile = self::SCRIPTS_DIRECTORY . constant($childControllerName.'::GENERIC_NAME') . self::REQUIRE_JS_MAIN_FILE_NAME;
+
 				self::setStylesheet( constant($childControllerName.'::GENERIC_NAME') );
 				self::setScriptsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
 				self::setViewsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
@@ -81,10 +83,10 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 					self::setStylesheet( constant($childControllerName.'::STYLE_FILE_NAME') );
 				}
 
-				// Link any scripts associated with the child controller
+				// Define a reference to the main controller file to link any scripts associated with the child controller
 				if ( defined($childControllerName.'::SCRIPT_DIRECTORY') )
 				{
-					self::setScriptsFromDirectory( constant($childControllerName.'::SCRIPT_DIRECTORY') );
+					$view->requireJsMainFile = self::SCRIPTS_DIRECTORY . constant($childControllerName.'::SCRIPT_DIRECTORY') . self::REQUIRE_JS_MAIN_FILE_NAME;
 				}
 
 				// Render one view file associated with the child controller if one has been specified

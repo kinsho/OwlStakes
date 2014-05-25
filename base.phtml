@@ -38,14 +38,16 @@
 				}
 			?>
 		</div>
-		<!-- Load all the script files for this page, including any externally referenced script files -->
-		<?php
-			foreach($view->scripts as $script)
+
+		<!-- Configure the requireJS engine before using the library to pull external JavaScript files -->
+		<script>
+			window.require =
 			{
-		?>
-				<script src='<?=$script ?>'></script>
-		<?php
+				baseURL: 'script'
 			};
-		?>
+		</script>
+		<!-- Load all the script files for this page via the main file specified within the page's directory -->
+		<script src='scripts/require.js' data-main="<?php=$view->requireJsMainFile ?>"></script>
+
 	</body>
-</html>	
+</html>

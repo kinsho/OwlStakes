@@ -11,7 +11,17 @@
  */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 
-/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
+/* ----------------------- FONT VARIABLES ----------------------------- */
+
+$tinyFontSize: 12px;
+$smallFontSize: 14px;
+$regularFontSize: 18px;
+$regularPlusFontSize: 20px;
+$largeFontSize: 24px;
+$largePlusFontSize: 28px;
+$giganticFontSize: 36px;
+
+/* ----------------------- SPECIALIZED FONT MIX-INS ----------------------------- */
 
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -24,7 +34,7 @@
  *
  * @author kinsho
  */
-@mixin basicFontSettings($weight: 400, $size: 13, $family: Source Sans Pro, $style: normal, $color: null)
+@mixin basicFontSettings($weight: 400, $size: $smallFontSize, $family: Source Sans Pro, $style: normal, $color: null)
 {
 	font:
 	{
@@ -40,10 +50,10 @@
 	}
 }
 
-// Mixin generally reserved for page headers
-@mixin headerSettings($padding: 10px)
+// Mixin reserved for header text
+@mixin headerSettings($size, $style, $weight: 700, $padding: 10px, $textAlign: center)
 {
-	@include basicFontSettings($weight: 700, $size: 18px, $family: Cardo);
+	@include basicFontSettings($weight: $weight, $size: $size, $family: Cardo);
 
 	padding:
 	{
@@ -51,11 +61,14 @@
 		bottom: $padding;
 	}
 
-	text-align: center;
+	text-align: $textAlign;
+	white-space: nowrap;
+
+	// No content clause needed here. The only hard-coded properties above should remain as is
 }
 
 // Mixin to produce a sexy white font
-@mixin majorWhiteFont($size)
+@mixin sexyWhiteFont($size)
 {
 	@include basicFontSettings($weight: 700, $size: $size, $family: Source Sans Pro, $style: italic, $color: $lightWhiteTheme);
 
@@ -86,4 +99,148 @@
 @mixin neutralFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
 	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $darkGreenTheme);
+}
+
+/* ----------------------- SPECIALIZED FONT PLACEHOLDERS ----------------------------- */
+
+%h2
+{
+	@include headerSettings($size: $giganticFontSize, $style: italic, $weight: 400, $padding: 20px, $textAlign: left)
+}
+
+%h3
+{
+	@include headerSettings($size: $largePlusFontSize, $weight: 700, $padding: 20px, $textAlign: center)
+}
+
+%tinyFont
+{
+	@include basicFontSettings($weight: 400, $size: $tinyFontSize, $family: Source Sans Pro);
+}
+
+%smallFont
+{
+	@include basicFontSettings($weight: 400, $size: $smallFontSize, $family: Source Sans Pro);
+}
+
+%smallFont
+{
+	@include basicFontSettings($weight: 400, $size: $smallFontSize, $family: Cardo);
+}
+
+%regularFont
+{
+	@include basicFontSettings($weight: 400, $size: $regularFontSize, $family: Source Sans Pro);
+}
+
+%regularCardoFont
+{
+	@include basicFontSettings($weight: 400, $size: $regularFontSize, $family: Cardo);
+}
+
+%regularPlusFont
+{
+	@include basicFontSettings($weight: 400, $size: $regularPlusFontSize, $family: Source Sans Pro);
+}
+
+%largeFont
+{
+	@include basicFontSettings($weight: 400, $size: $largeFontSize, $family: Source Sans Pro);
+}
+
+%italicizedFont
+{
+	font:
+	{
+		style: italic;
+	}
+}
+
+%boldFont
+{
+	font:
+	{
+		weight: 700;
+	}
+}
+
+%genericHeader
+{
+	@include headerSettings();
+}
+
+%minorWhiteFont
+{
+	@include sexyWhiteFont($size: $smallFontSize);
+	text-shadow: 1px 1px 3px #000000;
+}
+
+%majorWhiteFont
+{
+	@include sexyWhiteFont($size: $regularPlusFontSize);
+}
+
+%veryMajorWhiteFont
+{
+	@include sexyWhiteFont($size: $largePlusFontSize);
+}
+
+%smallBlueFont
+{
+	@include blueFont($size: $smallFontSize);
+}
+
+%regularBlueFont
+{
+	@include blueFont($size: $regularFontSize);
+}
+
+%largeBlueFont
+{
+	@include blueFont($size: $largeFontSize);
+}
+
+%smallPositiveFont
+{
+	@include positiveFont($size: $smallFontSize);
+}
+
+%regularPositiveFont
+{
+	@include positiveFont($size: $regularFontSize);
+}
+
+%largePositiveFont
+{
+	@include positiveFont($size: $largeFontSize);
+}
+
+%smallNegativeFont
+{
+	@include negativeFont($size: $smallFontSize);
+}
+
+%regularNegativeFont
+{
+	@include negativeFont($size: $regularFontSize);
+}
+
+%largeNegativeFont
+{
+	@include negativeFont($size: $largeFontSize);
+}
+
+%smallNeutralFont
+{
+	@include neutralFont($size: $smallFontSize);
+}
+
+%regularNeutralFont
+{
+	@include neutralFont($size: $regularFontSize);
+}
+
+%largeNeutralFont
+{
+	@include neutralFont($size: $largeFontSize);
 }
