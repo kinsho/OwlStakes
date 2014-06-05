@@ -39,13 +39,19 @@
 			?>
 		</div>
 
-		<!-- Configure the requireJS engine before using the library to pull external JavaScript files -->
+		<!-- 
+			Configure the requireJS engine before using the library to pull external JavaScript files
+			Unfortunately, such configuration requires us to use inline JavaScript in order to adhere to
+			the DRY design methodology as best as possible
+		-->
 		<script>
-			window.require =
+			var require =
 			{
-				baseURL: 'script'
+				baseURL: 'script',
+				paths: { jQuery : 'library/jquery-1.10.2' }
 			};
 		</script>
+
 		<!-- Load all the script files for this page via the main file specified within the page's directory -->
 		<script src='scripts/require.js' data-main="<?php=$view->requireJsMainFile ?>"></script>
 

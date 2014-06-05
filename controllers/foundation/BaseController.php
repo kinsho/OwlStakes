@@ -100,7 +100,6 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				{
 					self::setViewsFromDirectory( constant($childControllerName.'::VIEW_DIRECTORY') );
 				}
-
 			}
 
 			// Pull all the foundation script files

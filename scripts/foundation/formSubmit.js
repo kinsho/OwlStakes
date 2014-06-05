@@ -1,4 +1,6 @@
-var formSubmit =
+define(['foundation/'])
+
+formSubmit =
 {
 	/**
 	  * Function bundles all input/select values from a passed scope into a key-value object 
