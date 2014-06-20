@@ -32,6 +32,23 @@
 	@extend %tinyHeightener;
 }
 
+// The following three classes will be used primarily to help indicate the nature of any messages
+// that return from the server and need to be displayed to the user
+.positiveBackgroundTheme
+{
+	background-color: $positiveTheme;
+}
+
+.negativeBackgroundTheme
+{
+	background-color: $negativeTheme;
+}
+
+.neutralBackgroundTheme
+{
+	background-color: $noticeTheme;
+}
+
 // The content section of the site, which will take up most of the available real estate
 // on the page. Ensure that this section floats to the right in order to allow for a
 // menu that can be affixed to the left

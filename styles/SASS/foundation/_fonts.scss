@@ -1,6 +1,6 @@
-@import '_colors.scss';
+/* ----------------------- IMPORTS ----------------------------- */
 
-/* ----------------------- SPECIALIZED FONTS ----------------------------- */
+@import '_colors.scss';
 
 /*
  * The custom font-families that the site will use are:
@@ -11,17 +11,20 @@
  */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 
-/* ----------------------- FONT VARIABLES ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
 
-$tinyFontSize: 12px;
-$smallFontSize: 14px;
-$regularFontSize: 18px;
-$regularPlusFontSize: 20px;
-$largeFontSize: 24px;
-$largePlusFontSize: 28px;
-$giganticFontSize: 36px;
+$FONTS:
+(
+	tinyFontSize: 12px,
+	smallFontSize: 16px,
+	regularFontSize: 18px,
+	regularPlusFontSize: 20px,
+	largeFontSize: 24px,
+	largePlusFontSize: 28px,
+	giganticFontSize: 36px
+);
 
-/* ----------------------- SPECIALIZED FONT MIX-INS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
 
 /*
  * Mixin built to provide a convenient way to set basic font styles quickly
@@ -34,7 +37,7 @@ $giganticFontSize: 36px;
  *
  * @author kinsho
  */
-@mixin basicFontSettings($weight: 400, $size: $smallFontSize, $family: Source Sans Pro, $style: normal, $color: null)
+@mixin basicFontSettings($weight: 400, $size: map-get($FONTS, smallFontSize), $family: Source Sans Pro, $style: normal, $color: null)
 {
 	font:
 	{
@@ -77,7 +80,7 @@ $giganticFontSize: 36px;
 	@content;
 }
 
-// Mixin to produce a blue font, typically used for links
+// Mixin to produce a stylized blue font, typically used for links
 @mixin blueFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
 	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $darkBlueTheme);
@@ -101,53 +104,9 @@ $giganticFontSize: 36px;
 	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $darkGreenTheme);
 }
 
-/* ----------------------- SPECIALIZED FONT PLACEHOLDERS ----------------------------- */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
 
-%h2
-{
-	@include headerSettings($size: $giganticFontSize, $style: italic, $weight: 400, $padding: 20px, $textAlign: left)
-}
-
-%h3
-{
-	@include headerSettings($size: $largePlusFontSize, $weight: 700, $padding: 20px, $textAlign: center)
-}
-
-%tinyFont
-{
-	@include basicFontSettings($weight: 400, $size: $tinyFontSize, $family: Source Sans Pro);
-}
-
-%smallFont
-{
-	@include basicFontSettings($weight: 400, $size: $smallFontSize, $family: Source Sans Pro);
-}
-
-%smallFont
-{
-	@include basicFontSettings($weight: 400, $size: $smallFontSize, $family: Cardo);
-}
-
-%regularFont
-{
-	@include basicFontSettings($weight: 400, $size: $regularFontSize, $family: Source Sans Pro);
-}
-
-%regularCardoFont
-{
-	@include basicFontSettings($weight: 400, $size: $regularFontSize, $family: Cardo);
-}
-
-%regularPlusFont
-{
-	@include basicFontSettings($weight: 400, $size: $regularPlusFontSize, $family: Source Sans Pro);
-}
-
-%largeFont
-{
-	@include basicFontSettings($weight: 400, $size: $largeFontSize, $family: Source Sans Pro);
-}
-
+/* --- Italicized and bold stylings --- */
 %italicizedFont
 {
 	font:
@@ -164,83 +123,137 @@ $giganticFontSize: 36px;
 	}
 }
 
+/* --- Header stylings --- */
+%h2
+{
+	@include headerSettings($size: map-get($FONTS, giganticFontSize), $style: italic, $weight: 400, $padding: 20px, $textAlign: left)
+}
+
+%h3
+{
+	@include headerSettings($size: map-get($FONTS, largePlusFontSize), $weight: 700, $padding: 20px, $textAlign: center)
+}
+
 %genericHeader
 {
 	@include headerSettings();
 }
 
+/* --- Normal text fonts --- */
+%tinyFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, tinyFontSize), $family: Source Sans Pro);
+}
+
+%smallFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, smallFontSize), $family: Source Sans Pro);
+}
+
+%smallCardoFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, smallFontSize), $family: Cardo);
+}
+
+%regularFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, regularFontSize), $family: Source Sans Pro);
+}
+
+%regularCardoFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, regularFontSize), $family: Cardo);
+}
+
+%regularPlusFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, regularPlusFontSize), $family: Source Sans Pro);
+}
+
+%largeFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, largeFontSize), $family: Source Sans Pro);
+}
+
+/* --- Colored fonts --- */
 %minorWhiteFont
 {
-	@include sexyWhiteFont($size: $smallFontSize);
+	@include sexyWhiteFont($size: map-get($FONTS, smallFontSize));
 	text-shadow: 1px 1px 3px #000000;
 }
 
 %majorWhiteFont
 {
-	@include sexyWhiteFont($size: $regularPlusFontSize);
+	@include sexyWhiteFont($size: map-get($FONTS, largeFontSize));
 }
 
 %veryMajorWhiteFont
 {
-	@include sexyWhiteFont($size: $largePlusFontSize);
+	@include sexyWhiteFont($size: map-get($FONTS, largePlusFontSize));
 }
 
 %smallBlueFont
 {
-	@include blueFont($size: $smallFontSize);
+	@include blueFont($size: map-get($FONTS, smallFontSize));
 }
 
 %regularBlueFont
 {
-	@include blueFont($size: $regularFontSize);
+	@include blueFont($size: map-get($FONTS, regularFontSize));
+}
+
+%regularPlusBlueFont
+{
+	@include blueFont($size: map-get($FONTS, regularPlusFontSize));
 }
 
 %largeBlueFont
 {
-	@include blueFont($size: $largeFontSize);
+	@include blueFont($size: map-get($FONTS, largeFontSize));
 }
 
+/* --- Mood fonts --- */
 %smallPositiveFont
 {
-	@include positiveFont($size: $smallFontSize);
+	@include positiveFont($size: map-get($FONTS, smallFontSize));
 }
 
 %regularPositiveFont
 {
-	@include positiveFont($size: $regularFontSize);
+	@include positiveFont($size: map-get($FONTS, regularFontSize));
 }
 
 %largePositiveFont
 {
-	@include positiveFont($size: $largeFontSize);
+	@include positiveFont($size: map-get($FONTS, largeFontSize));
 }
 
 %smallNegativeFont
 {
-	@include negativeFont($size: $smallFontSize);
+	@include negativeFont($size: map-get($FONTS, smallFontSize));
 }
 
 %regularNegativeFont
 {
-	@include negativeFont($size: $regularFontSize);
+	@include negativeFont($size: map-get($FONTS, regularFontSize));
 }
 
 %largeNegativeFont
 {
-	@include negativeFont($size: $largeFontSize);
+	@include negativeFont($size: map-get($FONTS, largeFontSize));
 }
 
 %smallNeutralFont
 {
-	@include neutralFont($size: $smallFontSize);
+	@include neutralFont($size: map-get($FONTS, smallFontSize));
 }
 
 %regularNeutralFont
 {
-	@include neutralFont($size: $regularFontSize);
+	@include neutralFont($size: map-get($FONTS, regularFontSize));
 }
 
 %largeNeutralFont
 {
-	@include neutralFont($size: $largeFontSize);
+	@include neutralFont($size: map-get($FONTS, largeFontSize));
 }

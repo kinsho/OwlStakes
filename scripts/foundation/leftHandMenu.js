@@ -1,193 +1,281 @@
-window.leftHandMenu =
+define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, utility, formSubmit)
 {
-	SUB_MENU_DURATION: 500, // the duration of the sliding animations used to show/hide the second-tier menus
+// ----------------- ENUM/CONSTANTS -----------------------------
+	var LEFT_HAND_CONTAINER = 'leftHandContainer',
+		LEFT_HAND_MENU = 'leftHandMenu',
+		LOG_IN_MODULE = 'logInModule',
+		FORGOT_PASSWORD_MODULE = 'forgotPasswordModule',
+		FORGOT_PASSWORD_FORM = 'forgotPasswordForm',
 
-	/**
-	  * Function serves to mark the currently selected item on the left-hand menu
-	  *
-	  * @author kinsho
-	  */
-	markSelected: function()
-	{
-		var selectedClass = 'selected',
-			selectedSpan = document.createElement('span'),
+		SUB_MENU_ITEM_HEIGHT = 55,
+		SELECTED_CLASS = 'selected',
+		SECTION_SHIFT_LEFT_CLASS = 'sectionGoLeft',
+
+		FORGOT_PASSWORD_URL = '/logIn/forgotPassword',
+		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!'.
+		FORGOT_PASSWORD_SUCCESS_BODY = "An e-mail has been sent to <b>%e</b> containing your user name and instructions on how to " +
+			"reset your password. Just follow the instructions and you'll be fine."
+
+// ----------------- PRIVATE FUNCTIONS -----------------------------
+		/**
+		  * Private function serves to manage the fading and shifting animations used to control the
+		  * entrance and exit of the left-hand side forms
+		  *
+		  * @param {$} $moduleElement - the module container that needs to be animated upon
+		  * @param {Boolean} [isFadingOut] - a flag to indicate whether the module needs to be faded outward or inward
+		  *
+		  * @author kinsho
+		  */
+	var fadeControl = function($moduleElement, isFadingOut)
+		{
+			if (isFadingOut)
+			{
+				$moduleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
+			}
+			else
+			{
+				$moduleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
+			}
+		};
+
+// ----------------- MODULE DEFINITION --------------------------
+		var my =
+			{
+				/**
+				  * Function serves to display all the sub-menu items associated with the menu item to which the
+				  * cursor is currently pointing
+				  *
+				  * @param {Event} event - the mouseover event that triggered this event
+				  *
+				  * @author kinsho
+				  */
+				showSubMenuItems: function(event)
+				{
+					var $subItemContainer = $(event.currentTarget).next('.subItems'),
+						$subItems = $subItemContainer.find('span'),
+						containerHeight = $subItems.length * SUB_MENU_ITEM_HEIGHT; // Used to deduce the height of the container when it will be fully revealed
+
+					// While I do not enjoy setting CSS through JavaScript, the only way to properly render a sliding animation here is by
+					// manually calculating the expected height of all the relevant sub-menu items put together and setting the height of the
+					// containing wrapper equal to the end result of that calculation
+					$subItemContainer.css('height', containerHeight + 'px');
+				},
+
+				/**
+				  * Function serves to hide all sub-items that are currently visible
+				  *
+				  * @author kinsho
+				  */
+				hideSubMenuItems: function()
+				{
+					var leftHandMenu = document.getElementById(LEFT_HAND_MENU),
+						$subItemContainers = $(leftHadMenu).find('.subItems');
+
+					// Iterate over each sub-menu container and set their heights to 0 manually to slide them out of view
+					// Note the horrible use of CSS here to achieve the sliding effect I so desire
+					$subItemContainers.each(function()
+					{
+						$(this).css('height', '0px');
+					});
+				},
+
+				/**
+				  * Function responsible for presenting the form that will aid the user in logging in to his account
+				  * if the user has forgotten his user name and/or password
+				  *
+				  * @param {Event} event - the event responsible for invoking this function
+				  *
+				  * @author kinsho
+				  */
+				shiftInForgotPasswordForm: function(event)
+				{
+					var view = event.data.view,
+						logInModule = document.getElementById(LOG_IN_MODULE),
+						$logInModule = $(logInModule),
+						$forgotPasswordModule = $(document.getElementById(FORGOT_PASSWORD_MODULE)),
+						delayedFunction = function()
+						{
+							// Insert the forgot password module back into the DOM and take out the log-in module instead
+							$forgotPasswordModule.removeClass(constants.styles.NO_DISPLAY);
+							$logInModule.addClass(constants.styles.NO_DISPLAY);
+
+							// Using a timeout to ensure that the forgot password module is fully inserted back into
+							// the DOM before any further animations
+							window.setTimeout(function()
+							{
+								view.fadeControl($forgotPasswordModule, false);
+							}, 150);
+						};
+
+					// Fade out the log-in module
+					view.fadeControl($logInModule, true);
+
+					utility.setTransitionListeners(logInModule, 0, true, delayedFunction);
+				},
+
+				/**
+				  * Function responsible for presenting the form that the user can use to log in to the main web site
+				  *
+				  * @param {Event} event - the event responsible for invoking this function
+				  *
+				  * @author kinsho
+				  */
+				shiftInLogInForm: function(event)
+				{
+					var view = event.data.view,
+						forgotPasswordModule = document.getElementById(FORGOT_PASSWORD_MODULE),
+						$forgotPasswordModule = $(forgotPasswordModule),
+						$logInModule = $(document.getElementById(LOG_IN_MODULE)),
+						delayedFunction = function()
+						{
+							// Insert the log-in module back into the DOM and take out the forgot password module instead
+							$forgotPasswordModule.addClass(constants.styles.NO_DISPLAY);
+							$logInModule.removeClass(constants.styles.NO_DISPLAY);
+
+							// Using a timeout to ensure that the log-in module is fully inserted back into
+							// the DOM before any further animations
+							window.setTimeout(function()
+							{
+								view.fadeControl(logInModule, false);
+							}, 150);
+						};
+
+					// Fade out the forgot password module
+					view.fadeControl($forgotPasswordModule, true);
+
+					utilityFunctions.setTransitionListeners(forgotPasswordModule, 0, true, delayedFunction);
+				},
+
+				/**
+				  * Function serves to submit a server request to help a user regain access to the main platform
+				  * should he forget his user name and/or password
+				  *
+				  * @param {Event} event - the event that triggered the invocation of this function
+				  *
+				  * @author kinsho
+				  */
+				forgotPasswordSubmit: function(event)
+				{
+					var view = event.data.view,
+						data = formSubmit.collectData(FORGOT_PASSWORD_FORM),
+						// If the e-mail is successfully sent, relay a message to the user containing that same e-mail address
+						successBody = FORGOT_PASSWORD_SUCCESS_BODY.replace('%e', data.email);
+
+					formSubmit.ajax(
+					{
+						type: 'POST',
+						url: FORGOT_PASSWORD_URL,
+						data: data,
+						successHeader: FORGOT_PASSWORD_SUCCESS_HEADER,
+						successBody: successBody
+					}, event);
+				},
+
+				/**
+				  * Generic function responsible for redirecting the user to a new page depending on the left-
+				  * hand menu item that was clicked
+				  *
+				  * @param {Event} event - the event responsible for invoking this method
+				  *
+				  * @author kinsho
+				  */
+				redirectUser: function(event)
+				{
+					var $targetElement = $(event.currentTarget),
+						title = $targetElement.data('title'),
+						URL;
+
+					if (title)
+					{
+						URL = window.location.href;
+
+						// Replace the mention of the current controller within the URL with the name of the new
+						// controller associated with the clicked menu item
+						URL = URL.slice(0, URL.lastIndexOf('/'));
+						URL += '/' + title;
+
+						// Redirect the user to the now-modified URL
+						window.location = URL;
+					}
+				},
+
+				/**
+				  * Function serves to log the user out of the platform
+				  *
+				  * @author kinsho
+				  */
+				logOut: function()
+				{
+					formSubmit.ajax(
+					{
+						type: 'POST',
+						url: '/logIn/logOut',
+						customSuccessHandler: function()
+						{
+							var URL = window.location.href;
+
+							// Take out any references to controllers within the URL
+							// The aim is to redirect the user back towards the home page
+							URL = URL.slice(0, URL.lastIndexOf('/'))
+
+							window.location = URL;
+						}
+					});
+				},
+
+			};
+
+// ----------------- INITIALIZATION LOGIC --------------------------
+
+		var leftHandMenu = document.getElementById(LEFT_HAND_MENU),
+			menuItems = leftHandMenu.children,
 			page = window.location.pathname.replace('/', ''),
-			menuItems = document.getElementById('leftHandMenu').children,
 			$menuItem,
-			verticalOffset,
 			i;
 
-		if (document.getElementById('leftHandMenu').className.indexOf('noDisplay') < 0)
+		// Logic to mark the left-hand menu item that corresponds to the current page
+		// Only mark a selected menu item if the left-hand menu is visible
+		if (leftHandMenu.className.indexOf(constants.styles.NO_DISPLAY) < 0)
 		{
-			selectedSpan.className = selectedClass;
-
 			for (i = menuItems.length - 1; i >= 0; i -= 1)
 			{
 				$menuItem = $(menuItems[i]);
 
+				// If the menu item is associated with the current page, set the selected icon
+				// next to the menu item
 				if ($menuItem.data('title') === page)
 				{
-					$menuItem.addClass(selectedClass);
-					$menuItem.prepend(selectedSpan);
+					$menuItem.addClass(SELECTED_CLASS);
 				}
 			}
 		}
-	},
 
-	/**
-	  * Function serves to show/hide the sub-menu items associated with the menu item(s) depending on the location of the mouse pointer
-	  *
-	  * @param event - the mouseover event that triggered this event
-	  *
-	  * @author kinsho
-	  */
-	showHideSubMenuItems: function(event)
-	{
-		var $subItemContainers = $(event.currentTarget).find('.subItems'),
-			$subItemContainer = $(event.currentTarget).next('.subItems'),
-			$allSubItems = $subItemContainers.find('span'),
-			$subItems = $subItemContainer.find('span'),
-			$deferred = $.Deferred();
+// ----------------- LISTENER SET-UP --------------------------
 
-		// If statement determines whether the second-tier menus need to be exposed or concealed
-		if ( event.originalEvent &&
-			 event.originalEvent.clientX >= document.getElementById('leftHandContainer').offsetWidth &&
-			 $allSubItems.length )
-		{
-			$allSubItems.addClass('fadeOut');
-			$subItemContainers.slideUp(event.data.view.SUB_MENU_DURATION, function()
-			{
-				$deferred.resolve();
-			});
-		}
-		else if ($subItemContainer.length)
-		{
-			$subItemContainer.slideDown(event.data.view.SUB_MENU_DURATION, function()
-			{
-				window.setTimeout(function()
-				{
-					$subItems.removeClass('fadeOut');
-					$deferred.resolve();
-				}, 75);
-			});
-		}
-		else
-		{
-			$deferred.resolve();
-		}
+		var $mainItems = $('.mainItem'),
+			$subItems = $('.subItems'),
+			$subItemMasters = $subItems.prev(),
+			$leftHandContainer = $('#' + LEFT_HAND_CONTAINER),
+			hideMenuItemsFunction = utility.debouncer(my.showHideSubMenuItems, 1, 50);
 
-		return $deferred.promise();
-	},
+		// Listeners for the left-hand navigation menu
+		$mainItems.on('click', my.redirectUser);
+		$subItems.children('div').on('click', my.redirectUser);
+		$subItemMasters.on('mouseover', my.hideMenuItemsFunction);
+		$leftHandContainer.on('mouseout', my.hideMenuItemsFunction);
 
-	/**
-	  * Function serves to manage the fading and shifting animations used to control the
-	  * entrance and exit of the left-hand side forms
-	  *
-	  * @param $moduleElement - the module container that needs to be animated upon
-	  * @param isFadingOut - a flag to indicate whether the module needs to be faded outward or inward
-	  *
-	  * @author kinsho
-	  */
-	fadeControl: function($moduleElement, isFadingOut)
-	{
-		if (isFadingOut)
-		{
-			$moduleElement.addClass('fadeOut');
-			$moduleElement.addClass('moduleGoLeft');
-		}
-		else
-		{
-			$moduleElement.removeClass('fadeOut');
-			$moduleElement.removeClass('moduleGoLeft');		
-		}
-	},
+		// Listeners for the other left-hand modules
+		$('#logInButton').on('click', my.logIn);
+		$('#forgotPasswordButton').on('click', my.forgotPasswordSubmit);
+		$('#forgotPasswordLink').on('click', my.shiftInForgotPasswordForm);
+		$('#logInLink').on('click', my.shiftInLogInForm);
 
-	/**
-	  * Function responsible for generating a form that will aid the user in logging in to
-	  * his account if the user has forgotten his user name and/or password
-	  *
-	  * @param event - the event responsible for invoking this function
-	  *
-	  * @author kinsho
-	  */
-	generateForgotPasswordForm: function(event)
-	{
-		var view = event.data.view,
-			logInModule = document.getElementById('logIn'),
-			$logInModule = $(logInModule),
-			$forgotPasswordModule = $('#forgotPassword'),
-			$logInInputs = $logInModule.find('input'),
-			delayedFunction = function()
-			{
-				// Fade in the forgot password form and hide the log-in form from the DOM tree
-				$forgotPasswordModule.removeClass('noDisplay');
-				$logInModule.addClass('noDisplay');
+// ----------------- END --------------------------
+		return my;
+});
 
-				// Using a timeout to ensure that the element is fully inserted back into the
-				// DOM tree before executing any animations upon that element
-				window.setTimeout(function()
-				{
-					view.fadeControl($forgotPasswordModule, false);
-				}, 250);
-
-				// Don't forget to remove the transition listener once it's finished executing
-				utilityFunctions.removeTransitionListeners(logInModule, delayedFunction);
-			};
-
-		// Hide any tooltips that may be visible
-		$logInInputs.trigger('mouseout');
-		$logInInputs.trigger('blur');
-
-		// Fade out the log-in form and fade in the forget password form
-		view.fadeControl($logInModule, true);
-
-		utilityFunctions.setTransitionListeners(logInModule, delayedFunction);
-	},
-
-	/**
-	  * Function responsible for generating a form that the user can use to log in to
-	  * the main web site
-	  * NOTE: The function is only to be used when navigating from the 'Forgot Password' form
-	  * back to the log-in form
-	  *
-	  * @param event - the event responsible for invoking this function
-	  *
-	  * @author kinsho
-	  */
-	generateLogInForm: function(event)
-	{
-		var view = event.data.view,
-			forgotPasswordModule = document.getElementById('forgotPassword'),
-			$forgotPasswordModule = $(forgotPasswordModule),
-			$logInModule = $('#logIn'),
-			$forgotPasswordInputs = $forgotPasswordModule.find('input'),
-			delayedFunction = function()
-			{
-				// Fade in the log-in form and hide the forgot password form from the DOM tree
-				$logInModule.removeClass('noDisplay');
-				$forgotPasswordModule.addClass('noDisplay');
-
-				// Using a timeout to ensure that the element is fully inserted back into the
-				// DOM tree before executing any animations upon that element
-				window.setTimeout(function()
-				{
-					view.fadeControl($logInModule, false);
-				}, 250);
-
-				// Don't forget to remove the transition listener once it's finished executing
-				utilityFunctions.removeTransitionListeners(forgotPasswordModule, delayedFunction);
-			};
-
-		// Hide any tooltips that may be visible
-		$forgotPasswordInputs.trigger('mouseout');
-		$forgotPasswordInputs.trigger('blur');
-
-		// Fade out the forgot password form and fade in the log-in form
-		view.fadeControl($forgotPasswordModule, true);
-
-		utilityFunctions.setTransitionListeners(forgotPasswordModule, delayedFunction);
-	},
-
+window.leftHandMenu =
+{
 	/**
 	  * Function serves to log the user on to the platform
 	  *
@@ -321,177 +409,4 @@ window.leftHandMenu =
 		}, event);
 	},
 
-	/**
-	  * Function serves to log the user out of the platform
-	  *
-	  * @author kinsho
-	  */
-	logOut: function()
-	{
-		formSubmit.ajax(
-		{
-			type: 'POST',
-			url: '/logIn/logOut',
-			customSuccessHandler: function()
-			{
-				var URL = window.location.href;
-
-				// Take out any references to controllers within the URL
-				// The aim is to redirect the user back towards the home page
-				URL = URL.slice(0, URL.lastIndexOf('/'))
-
-				window.location = URL;
-			}
-		});
-	},
-
-	/**
-	  * Function serves to aid a user that forgot his user name or password
-	  *
-	  * @author kinsho
-	  */
-	forgotPasswordSubmit: function(event)
-	{
-		var view = event.data.view,
-			data = formSubmit.collectData('forgotPasswordForm'),
-			$forgotPasswordEmailField = $('#forgotPasswordForm').find('input[name=email]');
-
-		formSubmit.ajax(
-		{
-			type: 'POST',
-			url: '/logIn/forgotPassword',
-			data: data,
-			beforeSend: function()
-			{
-				superToolTip.resetSuperTip($forgotPasswordEmailField[0], '');
-				$forgotPasswordEmailField.removeClass(formValidation.failedValidationClass);
-			},
-/*
-			customSuccessHandler: function(data)
-			{
-				// Parse out the JSON data
-				var responseData = $.parseJSON(data),
-					$successDialog = $('#forgotPasswordSuccessDialog');
-
-				$successDialog.html(responseData.emailSent).dialog();
-			},
-*/
-			customErrorHandler: function(response)
-			{
-				var responseData = $.parseJSON(response.responseText),
-					errors = responseData.errors,
-					i;
-
-				superToolTip.changeSuperTipText($forgotPasswordEmailField[0], errors[0]);
-				$forgotPasswordEmailField.addClass(formValidation.failedValidationClass);
-				$forgotPasswordEmailField.trigger('mouseover');
-			}
-		}, event);
-	},
-
-	/**
-	  * Generic function responsible for redirecting the user to a new page depending on
-	  * which left-hand menu option was clicked
-	  *
-	  * @param event - the left-hand menu item that was clicked
-	  *
-	  * @author kinsho
-	  */
-	redirectUser: function(event)
-	{
-		var $this = $(event.currentTarget),
-			view = event.data.view,
-			title = $this.data('title'),
-			specialHandler = $this.data('specialHandler'),
-			URL;
-
-		if (title)
-		{
-			URL = window.location.href;
-
-			// Take out any references to controllers within the URL
-			// The aim is to redirect the user back towards the home page
-			URL = URL.slice(0, URL.lastIndexOf('/'))
-
-			URL += '/' + title;
-
-			window.location = URL;
-		}
-		else if (specialHandler)
-		{
-			view[specialHandler](event);
-		}
-	},
-
-	/**
-	  * Specialized function designed to be invoked at any time to set up all necessary
-	  * event listeners on the left-hand menu once it is fully generated
-	  *
-	  * @author kinsho
-	  */
-	initMenuListeners: function()
-	{
-		var $mainItems = $('.mainItem'),
-			$subItems = $('.subItems'),
-			$subItemMasters = $subItems.prev(),
-			$leftHandContainer = $('#leftHandContainer'),
-			hideMenuItemsFunction = utilityFunctions.debouncer(this.showHideSubMenuItems, 1, 50);
-
-		$mainItems.on('click', { view: this }, this.redirectUser);
-		$subItems.children('div').on('click', { view: this }, this.redirectUser);
-		$subItemMasters.on('mouseover', { view: this }, hideMenuItemsFunction);
-		$leftHandContainer.on('mouseout', { view: this }, hideMenuItemsFunction);
-
-		// Upon initiation, slide all the sub-menus up immediately and prepare them for eventual exposure
-		$subItems.slideUp(0);
-		$subItems.find('span').addClass('fadeOut');
-	},
-
-	/**
-	  * Function responsible for initializing all listeners on the registration page
-	  *
-	  * @author kinsho
-	  */
-	initListeners: function()
-	{
-		$('#logInButton').on('click', { view: this }, this.logIn);
-		$('#forgotPasswordButton').on('click', { view: this }, this.forgotPasswordSubmit);
-		$('#forgotPasswordLink').on('click', { view: this }, this.generateForgotPasswordForm);
-		$('#logInLink').on('click', { view: this }, this.generateLogInForm);
-
-		this.initMenuListeners();
-	},
-
-	/**
-	  * Initializer function
-	  *
-	  * @author kinsho
-	  */
-	initialize: function()
-	{
-		var doesLogInFormExist = ($('#logInForm').length),
-			$logInUserNameField = $('#logInForm').find('input[name=username]'),
-			$logInPasswordField = $('#logInForm').find('input[name=password]'),
-			$forgotPasswordEmailAddressField = $('#forgotPasswordForm').find('input[name=email]'),
-			$forgotPasswordModule = $('#forgotPassword');
-
-		this.initListeners();
-
-		// Initialize supertips on login form if it is visible
-		if (doesLogInFormExist)
-		{
-			superToolTip.superTip($logInUserNameField[0], '');
-			superToolTip.superTip($logInPasswordField[0], '');
-			superToolTip.superTip($forgotPasswordEmailAddressField[0]);
-
-			this.fadeControl($forgotPasswordModule, true);
-		}
-	}
 };
-
-//  ---------------------------------
-
-$(document).ready(function()
-{
-	leftHandMenu.initialize();
-});

@@ -1,3 +1,5 @@
+/* ----------------------- IMPORTS ----------------------------- */
+
 @import 'foundation/_colors.scss';
 @import 'foundation_fonts.scss';
 @import 'foundation/_sharedElements.scss';
@@ -32,11 +34,11 @@
 
 	position: fixed;
 	z-index: 1;
-	background-color: $whiteTheme;
+	background-color: $$lightGrayTheme;
 
 	& > div
 	{
-		width: 100%;
+		@extend %oneOverOne
 	}
 }
 
@@ -45,7 +47,7 @@
 	width: 100%;
 }
 
-.logInModulesAnimations
+.sectionVisible
 {
 	/* Locally defined lists needed here to set multiple transition properties on the log-in module */
 	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
@@ -56,9 +58,14 @@
 
 	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
 
-	&.moduleGoLeft
+	opacity: 1.0;
+
+	&.sectionGoLeft
 	{
 		@include shiftTransition($x: -50%);
+
+		opacity: 0.0;
+
 	}
 }
 
@@ -78,7 +85,6 @@
 
 	/* @include setAxes3D($x: 0%, $y: top, $z: 0px); */ // Forget about this line for now....until later
 	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
-	@include setGradient($initialColor: $lightBlueTheme, $endColor: $whiteTheme, $direction: left);
 
 	// Note that the font defined below will only apply to the item housing the user name
 	@extend %regularPlusFont;
@@ -87,6 +93,7 @@
 	{
 		top: 5px;
 		bottom: 5px;
+		left: 60px;
 	}
 
 	border:
@@ -105,7 +112,7 @@
 		}
 	}
 
-	text-align: center;
+	text-align: left;
 	min-height: 25px;
 	min-width: 150px;
 
@@ -168,6 +175,9 @@
 
 .subItems
 {
+	// The animation is used to slide the containers up and down
+	@include transitionSettings($property: height, $timing: ease, $duration: 0.5s);
+
 	// The font will be applied to all sub-menu items
 	@extend %smallCardoFont;
 
@@ -178,6 +188,7 @@
 
 	background-color: $whiteTheme;
 	cursor: pointer;
+	height: 0px;
 
 	& > div
 	{
@@ -191,5 +202,7 @@
 		{
 			@include transitionSettings($property: opacity, $timing: linear, $duration: 0.1s);
 		}
+
+		height: 40px;
 	}
 }

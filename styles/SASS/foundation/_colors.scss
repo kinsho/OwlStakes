@@ -1,34 +1,45 @@
-/* ----------------------- COLOR VARIABLES ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
 
-$lightRedTheme: #FFAAAA;
-$redTheme: #CC3355;
-$darkRedTheme: #FF3333;
+$COLORS:
+(
+	lightRedTheme: #FFAAAA,
+	redTheme: #CC3355,
+	darkRedTheme: #FF3333,
 
-$darkGreenTheme: #8FA288;
-$greenTheme: #ABC1A6;
-$lightGreenTheme: #C7D0C4;
+	darkGreenTheme: #8FA288,
+	greenTheme: #ABC1A6,
+	lightGreenTheme: #C7D0C4,
 
-$lightBlueTheme: #EEEEFF;
-$blueTheme: #BBDBFF;
-$darkBlueTheme: #3399FF;
+	lightBlueTheme: #EEEEFF,
+	blueTheme: #BBDBFF,
+	darkBlueTheme: #3399FF,
 
-$lightGrayTheme: #D0D0D0;
-$grayTheme: #CDCDCD;
-$darkGrayTheme: #898989;
+	lightGrayTheme: #D0D0D0,
+	grayTheme: #CDCDCD,
+	darkGrayTheme: #898989,
 
-$lightWhiteTheme: #F8F8F8;
-$whiteTheme: #FFFFFF;
+	lightWhiteTheme: #F8F8F8,
+	whiteTheme: #FFFFFF,
 
-$blackTheme: #000000;
+	blackTheme: #000000,
 
-$positiveTheme: #21693A;
-$negativeTheme: #DB5192;
-$noticeTheme: #EB9100;
+	positiveTheme: #21693A,
+	negativeTheme: #DB5192,
+	noticeTheme: #EB9100
+);
 
-/* ----------------------- SPECIALIZED COLOR MIX-INS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
 
-// Mix-in designed to render a gradient background on a particular element
-// Designed to work across all major browsers
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
 @mixin setGradient($initialColor, $endColor, $direction: left)
 {
 	background-color: $initialColor; // In the rare event that the user is on a browser that does not support gradients, set a default color

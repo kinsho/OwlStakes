@@ -1,48 +1,46 @@
-/* Base Modal Class */
+/* ----------------------- IMPORTS ----------------------------- */
 
-@mixin modalBox($height)
+@import '_fonts.scss';
+@import '_colors.scss';
+@import '_utility.scss';
+
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+
+$MODAL: 
+(
+	navArrowRightImageLink: '../../images/navArrowRight.png',
+	navArrowLeftImageLink: '../../images/navArrowLeft.png',
+
+	modalExitImageLink: '../../images/closeModalIcon.png'
+);
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+
+// Main class responsible for all modal styling
+.modal
 {
-	/* Locally defined lists to set multiple transitions properties for all dialogs */
+	/* Locally defined lists to set multiple transitions properties on all modals */
 	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
 	$webkitTransitionProperties: opacity, -webkit-transform;
 	$transitionTimings: linear, linear;
 	$transitionDurations: 0.5s, 0.5s;
 	$transitionDelays: 0s, 0s;
 
-	@include transitionSettings($property: $transitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
-
-	/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
-	@media screen and (-webkit-min-device-pixel-ratio:0)
-	{
-		@include transitionSettings($property: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
-	}
-
+	@include transitionSettings($property: $transitionProperties,$webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings,
+		$duration: $transitionDurations, $delay: $transitionDelays);
 	@include shiftTransition(-50%, -50%);
 
 	border:
 	{
 		style: solid;
-		color: $lightBlueTheme;
+		color: map-get($COLORS, lightBlueTheme);
 
-		top-width: 8px;
-		bottom-width: 8px;
-		left-width: 8px;
-		right-width: 8px;
-
-		top-left-radius: 25px;
-		top-right-radius: 25px;
-		bottom-left-radius: 25px;
-		bottom-right-radius: 25px	
-	}
-
-	margin:
-	{
-		top: 0px;
-		bottom: 0px;
+		width: 8px;
+		radius: 25px;
 	}
 
 	box-shadow: 2px 4px 10px 0px;
-	background-color: $lightWhiteTheme;
+	background-color: map-get($COLORS, lightWhiteTheme);
 
 	position: fixed;
 	left: 50%;
@@ -51,11 +49,39 @@
 
 	opacity: 0.0;
 
+	&.littleModal
+	{
+		width: 20%;
+	}
+
+	&.midsizeModal
+	{
+		width: 50%;
+	}
+
+	// A nested modal is a modal that is overlaid over another modal that's currently visible
+	&.nestedModal
+	{
+		border:
+		{
+			color: map-get($COLORS, lightGreenTheme)
+		}
+
+		z-index: 10001;
+		width: 20%;
+	}
+
+	&.halfFadeOut
+	{
+		opacity: 0.5;
+	}
+
 	&.fadeIn
 	{
 		opacity: 1.0;
 	}
 
+	// The offsets below allow the modal to be shifted slightly in any direction
 	&.offsetUp
 	{
 		@include shiftTransition(-50%, calc(-50% - 50px));
@@ -75,140 +101,103 @@
 	{
 		@include shiftTransition(-50%, calc(-50% + 50px));
 	}
-
-	.navButtonContainer
-	{
-		margin:
-		{
-			top: 20px;
-		}
-	}
-
-	a.navButton
-	{
-		@include basicFontSettings($weight: bold, $size: 18, $family: Arial, $color: $darkBlueTheme);
-
-		text-shadow: none;
-		cursor: pointer;
-
-		border:
-		{
-			style: none;
-		}
-
-		&.rightArrow:after
-		{
-			content: url('../../images/navArrowRight.png');
-
-			padding:
-			{
-				left: 10px;
-				top: 10px;
-			}
-
-			vertical-align: middle;
-		}
-
-		&.leftArrow:before
-		{
-			content: url('../../images/navArrowLeft.png');
-
-			padding:
-			{
-				right: 10px;
-				top: 10px;
-			}
-
-			vertical-align: middle;
-		}
-	}
-
-	.modalHeader
-	{
-		@include majorWhiteFont(18px);
-
-		border:
-		{
-			top-left-radius: 20px;
-			top-right-radius: 20px;
-		}
-
-		padding:
-		{
-			top: 10px;
-			bottom: 10px;
-			left: 5px;
-		}
-
-		background-color: $darkGreenTheme;
-
-		.hasExitButton
-		{
-			border:
-			{
-				top-right-radius: 20px;
-				bottom-left-radius: 5px;
-			}
-
-			position: absolute;
-			left: 90%;
-			top: 0;
-
-			text-align: center;
-			vertical-align: middle;
-			width: 10%;
-
-			background-color: $redTheme;
-			cursor: pointer;
-
-			&:after
-			{
-				@include basicFontSettings($size: 20, $family: Arial, $color: $lightWhiteTheme);
-
-				content: 'x';
-			}
-		}
-	}
-
-	.modalBody
-	{
-		@include basicFontSettings($size: 16px);
-
-		padding:
-		{
-			left: 15px;
-			right: 15px;
-			top: 25px;
-			bottom: 25px;
-		}
-
-		label
-		{
-			@include basicFontSettings($weight: bold);
-
-			margin:
-			{
-				top: 5px;
-				bottom: 15px;
-			}
-
-			cursor: auto;
-		}
-	}
-
-	.submitButtonNonFooterRow
-	{
-		width: 100%;
-	}
-
-	@content;
 }
 
-@mixin modalOverlay($zIndex, $backgroundOpacity: 0.4)
+.modalHeader
+{
+	@extend %majorWhiteFont;
+
+	padding:
+	{
+		top: 10px;
+		bottom: 10px;
+		left: 5px;
+		right: 5px;
+	}
+
+	background-color: map-get($COLORS, darkGreenTheme);
+
+	&.errorHeader
+	{
+		background-color: map-get($COLORS, negativeTheme);
+	}
+
+	&.noticeHeader
+	{
+		background-color: map-get($COLORS, noticeTheme);
+	}
+}
+
+.modalBody
+{
+	@extend %regularFont;
+
+	padding:
+	{
+		left: 15px;
+		right: 15px;
+		top: 20px;
+		bottom: 20px;
+	}
+}
+
+// The styling for the 'close' button to be placed in the upper-right hand corner of certain modals
+.modalCloseButton
+{
+	@include truePosition($left: calc(100% - 40px), $top: 10px);
+
+	& > div
+	{
+		background-image: url(map-get($MODAL, modalExitImageLink));
+		width: 32px;
+		height: 32px;
+	}
+}
+
+// Necessary to set aside some much-needed spacing between the modal content and any action links
+.navButtonContainer
+{
+	margin:
+	{
+		top: 20px;
+	}
+}
+
+// Styling for the modal's action links
+.navButton
+{
+	@extend %regularPlusBlueFont;
+
+	cursor: pointer;
+
+	&.rightArrow:after
+	{
+		content: url(map-get($MODAL, navArrowRightImageLink));
+
+		padding:
+		{
+			left: 10px;
+			top: 10px;
+		}
+	}
+
+	&.leftArrow:before
+	{
+		content: url(map-get($MODAL, navArrowLeftImageLink));
+
+		padding:
+		{
+			right: 10px;
+			top: 10px;
+		}
+	}
+}
+
+// The black veil-like effect that covers the screen before the modal is faded in
+.modalOverlay
 {
 	@include transitionSettings($property: opacity, $timing: linear, $duration: 0.5s, $delay: 0s);
 
-	background-color: rgba(0, 0, 0, $backgroundOpacity);
 	width: 100%;
 	height: 100%;
 
@@ -217,7 +206,8 @@
 	left: 0;
 
 	opacity: 0.0;
-	z-index: $zIndex;
+	z-index: 9998;
+	background-color: rgba(0, 0, 0, 0.4);
 
 	&.fadeIn
 	{
@@ -225,70 +215,11 @@
 	}
 }
 
-/* Modal Classes */
-
-.modal
-{
-	@include modalBox($height: 100px);
-
-	&.halfFadeOut
-	{
-		opacity: 0.5;
-	}
-}
-
-.littleModal
-{
-	width: 20%;
-
-	input[type=button]
-	{
-		width: auto;
-	}
-}
-
-.midsizeModal
-{
-	width: 50%;
-
-	input[type=button]
-	{
-		width: auto;
-	}
-}
-
-// Nested modals should be the only modals that need to be redefined. Other modal
-// types inherit nearly all of their properties from the generic .modal class
-.nestedModal
-{
-	@include modalBox($height: auto)
-	{
-		border:
-		{
-			color: $lightGreenTheme
-		}
-
-		z-index: 10001;
-
-		.errorHeader
-		{
-			background-color: $greenTheme;
-		}
-		.noticeHeader
-		{
-			background-color: $noticeTheme;
-		}
-	};
-
-	width: 20%;
-}
-
-.modalOverlay
-{
-	@include modalOverlay($zIndex: 9998)
-}
-
+// A deeper veil-like effect that covers the screen and any currently visible modal before a nested modal is faded in
 .strongerModalOverlay
 {
-	@include modalOverlay($zIndex: 10000, $backgroundOpacity: 0.3)
+	@extend .modalOverlay;
+
+	$zIndex: 10000;
+	background-color: rgba(0, 0, 0, 0.3);
 }
