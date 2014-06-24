@@ -1,5 +1,6 @@
 /* Imports */
 
+/*
 @import 'foundation/_base.scss';
 @import 'foundation/_reporting.scss';
 
@@ -13,10 +14,11 @@ $weeklyStatsColumnWidths: 80%,		// Matchup
 
 /* Leaderboard */
 
-@include setTableColumnWidths($columnWidths: $leaderboardColumnWidths, $tableSelector: 'tr#leaderboardColumns');
+// @include setTableColumnWidths($columnWidths: $leaderboardColumnWidths, $tableSelector: 'tr#leaderboardColumns');
 
 /* Point Distribution Chart */
 
+/*
 .chartArea
 {
 	fill: $blueTheme;
@@ -31,6 +33,7 @@ $weeklyStatsColumnWidths: 80%,		// Matchup
 
 /* Weekly Stats */
 
+/*
 @include setTableColumnWidths($columnWidths: $weeklyStatsColumnWidths, $tableSelector: '.overallPredictions .headerRow');
 @include setTableColumnWidths($columnWidths: $leaderboardColumnWidths, $tableSelector: '.topPredictors .headerRow');
 
@@ -71,3 +74,5 @@ table
 		}
 	}
 }
+
+*/

@@ -1,7 +1,7 @@
 /* ----------------------- IMPORTS ----------------------------- */
 
 @import 'foundation/_colors.scss';
-@import 'foundation_fonts.scss';
+@import 'foundation/_fonts.scss';
 @import 'foundation/_sharedElements.scss';
 
 /* ----------------------- GENERAL STYLING ----------------------------- */
@@ -29,22 +29,15 @@
 	height: 100%;
 
 	float: left;
-	top: 0;
-	left: 0;
 
 	position: fixed;
 	z-index: 1;
-	background-color: $$lightGrayTheme;
-
-	& > div
-	{
-		@extend %oneOverOne
-	}
+	background-color: map-get($COLORS, lightGrayTheme);
 }
 
 .leftHandButton
 {
-	width: 100%;
+	@extend %oneOverOne;
 }
 
 .sectionVisible
@@ -56,7 +49,8 @@
 	$transitionDurations: 0.5s, 0.5s;
 	$transitionDelays: 0s, 0s;
 
-	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings,
+		$duration: $transitionDurations, $delay: $transitionDelays);
 
 	opacity: 1.0;
 
@@ -65,7 +59,6 @@
 		@include shiftTransition($x: -50%);
 
 		opacity: 0.0;
-
 	}
 }
 
@@ -84,7 +77,8 @@
 	$transitionDelays: 0s, 0s;
 
 	/* @include setAxes3D($x: 0%, $y: top, $z: 0px); */ // Forget about this line for now....until later
-	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
+	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings,
+		$duration: $transitionDurations, $delay: $transitionDelays);
 
 	// Note that the font defined below will only apply to the item housing the user name
 	@extend %regularPlusFont;
@@ -100,7 +94,7 @@
 	{
 		style: solid;
 		width: 1px;
-		color: $darkGrayTheme;
+		color: map-get($COLORS, darkGrayTheme);
 
 		left:
 		{
@@ -112,11 +106,11 @@
 		}
 	}
 
-	text-align: left;
-	min-height: 25px;
-	min-width: 150px;
+	height: 25px;
+	width: 150px;
 
 	display: inline-block;
+	text-align: left;
 	position: relative;
 
 	&:not(.usernameDisplay)
@@ -127,7 +121,7 @@
 			width: 130%;
 
 			/* Darken the font when hovered over */
-			@extend %boldFont
+			@extend %boldFont;
 
 			cursor: pointer;
 		}
@@ -138,7 +132,7 @@
 			width: 130%;
 
 			/* Darken the font */
-			@extend %boldFont
+			@extend %boldFont;
 
 			cursor: auto;
 		}
@@ -148,13 +142,6 @@
 		@extend %italicizedFont;
 	}
 
-	// Keep the two classes below separate from one another. While it may make sense to
-	// unite them, browsers may have issue with re-rendering the width of an element immediately
-	// following the removal of any minimum width restrictions
-	&.removeMinWidth
-	{
-		min-width: 0px;
-	}
 	&.zeroOverOne
 	{
 		@extend %zeroOverOne;

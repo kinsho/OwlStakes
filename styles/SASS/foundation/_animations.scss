@@ -50,7 +50,16 @@
 	}
 }
 
-// Mixin built specifically to animate webkit-only properties
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
 @mixin webkitTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
 {
 	-webkit-transition-property: $property;
@@ -59,7 +68,16 @@
 	-webkit-transition-delay: $delay;
 }
 
-// Mixin built specifically to animate gecko-only properties
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
 @mixin mozTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
 {
 	-moz-transition-property: $property;
@@ -68,7 +86,16 @@
 	-moz-transition-delay: $delay;
 }
 
-// Mixin built specifically to animate IE-only properties
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
 @mixin msTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
 {
 	-ms-transition-property: $property;
@@ -77,7 +104,16 @@
 	-ms-transition-delay: $delay;
 }
 
-// Mixin built specifically to animate opera-only properties
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
 @mixin oTransitionSettings($property, $timing: ease, $duration: 2s, $delay: 0s)
 {
 	-o-transition-property: $property;
@@ -86,7 +122,14 @@
 	-o-transition-delay: $delay;
 }
 
-// Mixin designed to shift elements on a two-dimensional plane across all major browsers
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
 @mixin shiftTransition($x: 0px, $y: 0px)
 {
 	transform:translate($x, $y);
@@ -96,7 +139,30 @@
 	-o-transform:translate($x, $y);
 }
 
-// Mixin designed to rotate elements on a two-dimensional plane across all major browsers
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+@mixin scaleTransition($length: 1, $width: 1)
+{
+	transform:scale($length, $width);
+	-webkit-transform:scale($length, $width);
+	-moz-transform:scale($length, $width);
+	-ms-transform:scale($length, $width);
+	-o-transform:scale($length, $width);
+}
+
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
 @mixin rotateTransition($degrees)
 {
 	transform:rotate($degrees);
@@ -106,8 +172,17 @@
 	-o-transform:rotate($degrees);
 }
 
-// Mixin designed to rotate elements on a three-dimensional plane across all major browsers
-@mixin rotateTransition3D($degrees, $rotateByX: 0, $rotateByY: 0, $rotateByZ: 0)
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+@mixin rotateTransition3D($degrees, $rotateByX: 1, $rotateByY: 1, $rotateByZ: 1)
 {
 	transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
 	-webkit-transform:rotate3d($rotateByX, $rotateByY, $rotateByZ, $degrees);
@@ -117,9 +192,17 @@
 
 }
 
-// Mixin designed to reset the location of the origin on a specific element
-// Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
-// Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
 @mixin setAxes($x: 0px, $y: 0px, $z: 0px)
 {
 	transform-origin: $x $y $z;
@@ -127,14 +210,4 @@
 	-moz-transform-origin: $x $y $z;
 	-ms-transform-origin: $x $y $z;
 	-o-transform-origin: $x $y $z;
-}
-
-// Mixin designed to scale elements in a two-dimensional plane across all major browsers
-@mixin scaleTransition($length: 1, $width: 1)
-{
-	transform:scale($length, $width);
-	-webkit-transform:scale($length, $width);
-	-moz-transform:scale($length, $width);
-	-ms-transform:scale($length, $width);
-	-o-transform:scale($length, $width);
 }

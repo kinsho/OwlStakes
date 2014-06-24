@@ -3,12 +3,11 @@
 @import 'foundation/_colors.scss';
 @import 'foundation/_fonts.scss';
 @import 'foundation/_animations.scss';
-@import 'foundation/_utilityFunctions.scss';
+@import 'foundation/_utility.scss';
 @import 'foundation/_formatting.scss';
 @import 'foundation/_sharedElements.scss';
 @import 'foundation/_widthsHeights.scss';
-
-@import 'leftHandMenu.scss';
+@import 'foundation/_serverRelays.scss';
 
 /* ----------------------- COMMON CLASSES ----------------------------- */
 
@@ -32,21 +31,26 @@
 	@extend %tinyHeightener;
 }
 
+.noDisplay
+{
+	display: none;
+}
+
 // The following three classes will be used primarily to help indicate the nature of any messages
 // that return from the server and need to be displayed to the user
 .positiveBackgroundTheme
 {
-	background-color: $positiveTheme;
+	background-color: map-get($COLORS, positiveTheme);
 }
 
 .negativeBackgroundTheme
 {
-	background-color: $negativeTheme;
+	background-color: map-get($COLORS, negativeTheme);
 }
 
 .neutralBackgroundTheme
 {
-	background-color: $noticeTheme;
+	background-color: map-get($COLORS, noticeTheme);
 }
 
 // The content section of the site, which will take up most of the available real estate

@@ -1,11 +1,13 @@
 /* ------- IMPORTS ------- */
 
+/*
 @import 'foundation/_base.scss';
 @import 'foundation/_modal.scss';
 
 /* ------- VARIABLES ------- */
 
 // The rightward offsets to apply to each column within the suicide pools table
+/*
 $poolsTableColumnLefts:   5%,		// Pool Name
 						  56%,		// Pool Status
 						  74%;		// Actions
@@ -13,6 +15,7 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 /* ------- SPECIFIC STYLES ------- */
 
 // Styling to be applied to each listing on the pools page
+/*
 .poolRow
 {
 	padding:
@@ -122,3 +125,5 @@ $poolsTableColumnLefts:   5%,		// Pool Name
 		content: url('../../images/navArrowRight.png');
 	}
 }
+
+*/

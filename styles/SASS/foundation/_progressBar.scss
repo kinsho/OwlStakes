@@ -12,7 +12,7 @@
 		style: solid;
 		width: 5px;
 		radius: 25px;
-		color: $grayTheme;
+		color: map-get($COLORS, grayTheme);
 	}
 
 	margin:
@@ -22,15 +22,16 @@
 	}
 
 	position: relative;
-	background-color: $darkGrayTheme;
+	background-color: map-get($COLORS, darkGrayTheme);
 
 	width: 200px;
 	display: inline-block;
 
 	span.bar
 	{
-		@include setGradient($initialColor: $blueTheme, $endColor: $darkBlueTheme, $direction: left);
+		@include setGradient($initialColor: map-get($COLORS, blueTheme), $endColor: map-get($COLORS, darkBlueTheme), $direction: left);
 		@include forceRender();
+
 		border:
 		{
 			radius: 15px;

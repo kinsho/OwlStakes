@@ -11,7 +11,7 @@ define(['jquery', 'superToolTip', 'utility', 'constants'], function($, superTool
 		HINT_TIP_CLASS = 'hintTip',
 		HOVER_TIP_CLASS = 'hoverTip',
 		TOGGLE_SWITCH_CLASS = 'toggleSwitch',
-		TOGGLE_SELECTED_CLASS = 'toggleSelect',
+		TOGGLE_SELECTED_CLASS = 'toggleSelected',
 		AUTOCOMPLETE_GENERIC_SUGGESTION_BOX_CLASS = 'genericAutocompleteSuggestionBox',
 		AUTOCOMPLETE_MODAL_GENERIC_SUGGESTION_BOX_CLASS = 'genericModalAutocompleteSuggestionBox',
 		AUTOCOMPLETE_NO_SUGGESTIONS_FOUND = ' --- No Matches Found --- ',

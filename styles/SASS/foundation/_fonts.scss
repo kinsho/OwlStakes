@@ -1,6 +1,7 @@
 /* ----------------------- IMPORTS ----------------------------- */
 
 @import '_colors.scss';
+@import '_mediaQueries.scss';
 
 /*
  * The custom font-families that the site will use are:
@@ -21,7 +22,15 @@ $FONTS:
 	regularPlusFontSize: 20px,
 	largeFontSize: 24px,
 	largePlusFontSize: 28px,
-	giganticFontSize: 36px
+	giganticFontSize: 36px,
+
+	mobileTinyFontSize: 10px,
+	mobileSmallFontSize: 12px,
+	mobileRegularFontSize: 16px,
+	mobileRegularPlusFontSize: 18px,
+	mobileLargeFontSize: 20px,
+	mobileLargePlusFontSize: 24px,
+	mobileGiganticFontSize: 28px
 );
 
 /* ----------------------- MIX-INS ----------------------------- */
@@ -73,7 +82,7 @@ $FONTS:
 // Mixin to produce a sexy white font
 @mixin sexyWhiteFont($size)
 {
-	@include basicFontSettings($weight: 700, $size: $size, $family: Source Sans Pro, $style: italic, $color: $lightWhiteTheme);
+	@include basicFontSettings($weight: 700, $size: $size, $family: Source Sans Pro, $style: italic, $color: map-get($COLORS, lightWhiteTheme));
 
 	text-shadow: 1px 1px 0 #000000;
 
@@ -83,25 +92,25 @@ $FONTS:
 // Mixin to produce a stylized blue font, typically used for links
 @mixin blueFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
-	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $darkBlueTheme);
+	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, darkBlueTheme));
 }
 
 // Mixin to produce a positive-themed font to relay good news to users
 @mixin positiveFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
-	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $positiveTheme);
+	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, positiveTheme));
 }
 
 // Mixin to produce a negative-themed font to relay bad news to users
 @mixin negativeFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
-	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $negativeTheme);
+	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, negativeTheme));
 }
 
 // Mixin to produce a neutral-themed font to relay news of a neutral nature to users
 @mixin neutralFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
-	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: $darkGreenTheme);
+	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, darkGreenTheme));
 }
 
 /* ----------------------- PLACEHOLDERS ----------------------------- */
@@ -126,17 +135,17 @@ $FONTS:
 /* --- Header stylings --- */
 %h2
 {
-	@include headerSettings($size: map-get($FONTS, giganticFontSize), $style: italic, $weight: 400, $padding: 20px, $textAlign: left)
+	@include headerSettings($size: map-get($FONTS, giganticFontSize), $style: italic, $weight: 400, $padding: 20px, $textAlign: left);
+
+//	{map-get($MEDIA, 'mobile')}
+//	{
+//		@include headerSettings($size: map-get($FONTS, mobileGiganticFontSize), $style: italic, $weight: 400, $padding: 20px, $textAlign: left);
+//	}
 }
 
 %h3
 {
-	@include headerSettings($size: map-get($FONTS, largePlusFontSize), $weight: 700, $padding: 20px, $textAlign: center)
-}
-
-%genericHeader
-{
-	@include headerSettings();
+	@include headerSettings($size: map-get($FONTS, largePlusFontSize), $style: normal, $weight: 700, $padding: 20px, $textAlign: center)
 }
 
 /* --- Normal text fonts --- */

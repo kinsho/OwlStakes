@@ -1,27 +1,31 @@
 /*
-Syntax error: File to import not found or unreadable: _base.scss.
-              Load paths:
-                C:/Users/kinsho
-                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
-                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
-        on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/successContainer.scss
+Syntax error: Undefined mixin 'shiftTransition'.
+        on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss, in `shiftTransition'
+        from line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss
 
-1: /* Imports *\/
-2: 
-3: @import '_base.scss';
+1: #serverMessageContainer
+2: {
+3: 	@include shiftTransition(-50%, calc(-50% - 50px));
 4: 
-5: /* General CSS styling *\/
-6: 
-7: #successContainer
-8: {
+5: 	border:
+6: 	{
+7: 		style: solid;
+8: 		width: 2px;
 
 Backtrace:
-C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/successContainer.scss:3
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:67:in `rescue in import'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:45:in `import'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:28:in `imported_file'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:37:in `css_import?'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss:3:in `shiftTransition'
+C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss:3
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:253:in `visit_mixin'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `map'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:320:in `visit_rule'
 C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
 C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
 C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
@@ -53,4 +57,4 @@ C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/vendor/listen/lib/listen/adapter
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: _base.scss.\A               Load paths:\A                 C:/Users/kinsho\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A         on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/successContainer.scss\A \A 1: /* Imports */\A 2: \A 3: @import '_base.scss';\A 4: \A 5: /* General CSS styling */\A 6: \A 7: #successContainer\A 8: {"; }
+  content: "Syntax error: Undefined mixin 'shiftTransition'.\A         on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss, in `shiftTransition'\A         from line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/serverRelays.scss\A \A 1: #serverMessageContainer\A 2: {\A 3: 	@include shiftTransition(-50%, calc(-50% - 50px));\A 4: \A 5: 	border:\A 6: 	{\A 7: 		style: solid;\A 8: 		width: 2px;"; }

@@ -1,58 +1,1116 @@
+/* ------- IMPORTS ------- */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none; }
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent;
+  text-decoration: none; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0;
+  cursor: pointer;
+  text-decoration: underline; }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto; }
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal; }
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold; }
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+th {
+  padding: 0; }
+
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
 /*
-Syntax error: File to import not found or unreadable: foundation/_base.scss.
-              Load paths:
-                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles
-                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
-                C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS
-        on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/progress.scss
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.infoRow {
+  font-style: italic; }
 
-1: /* ------- IMPORTS ------- *\/
-2: 
-3: @import 'foundation/_base.scss';
-4: @import 'foundation/_progressBar.scss';
-5: 
-6: /* ------- DEFINITIONS -------- *\/
-7: 
-8: /* ------- SPECIFIC STYLES ------- *\/
+.barOutline span.percentage {
+  font-weight: 700; }
 
-Backtrace:
-C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/progress.scss:3
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:67:in `rescue in import'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:45:in `import'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:28:in `imported_file'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/import_node.rb:37:in `css_import?'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `map'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:7:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/tree/root_node.rb:20:in `render'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `each'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:235:in `watch'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/plugin.rb:107:in `method_missing'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:463:in `watch_or_update'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:326:in `process_result'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:41:in `parse'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/exec.rb:21:in `parse!'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.19/bin/sass:13:in `<top (required)>'
-C:/Ruby200/bin/sass:23:in `load'
-C:/Ruby200/bin/sass:23:in `<main>'
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.barOutline span.percentage {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+.infoRow, .content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in forces any element to which it is applied to to fully render, regardless of whether content is there within the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates the container and child DIV styling necessary to allow the child elements to be positioned
+ * anywhere within their host container
+ *
+ * @param $left - the distance which to shift the child elements rightward from the left edge of the container
+ * @param $top - the distance which to shift the child elements downward from the top edge of the container 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- FORMATTING MIX-INS ----------------------------- */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.infoRow {
+  font-style: italic; }
+
+.barOutline span.percentage {
+  font-weight: 700; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.barOutline span.percentage {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+.infoRow, .content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in responsible for styling any informational row
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on hint tip icons
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on infoTabs
+ *
+ * @param [$topOrBottom] - value indicating whether the infoTab is to be placed on top of some container
+ *		or on the bottom of a container. The only valid values here are 'top' or 'bottom'
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that
+ * text with an additional qualifier
+ *
+ * @param $content - the text to put into the label
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for a suggestion box associated with an autocomplete
+ * form field
+ *
+ * @param $zIndex - the depth of the image relative to the viewport
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for toggleSwitches
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for surrounding the target element with horizontal rules in order to
+ * emphasize the text within the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to generate a circular container
+ *
+ * @param $diameter - a measurement of the size of the circle that will need to be generated
+ * @param $color - the color to fill into the circle upon render
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in is responsible for generating a triangular indicator depending on the passed direction
+ *
+ * @param $direction - the direction in which the triangular indicator will point
+ * @param $width - the width of the indicator
+ * @param $color - the color of the indicator
+ *
+ * @author kinsho
+ */
+/* ----------------------- WIDTH PLACEHOLDERS ----------------------------- */
+/* ----------------------- HEIGHT PLACEHOLDERS ----------------------------- */
+.pageBreak {
+  height: 5px;
+  display: block; }
+
+.smallHeightener {
+  height: 20px;
+  display: block; }
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+#serverMessageContainer {
+  transform: translate(-50%, calc(-50% - 50px));
+  -webkit-transform: translate(-50%, calc(-50% - 50px));
+  -moz-transform: translate(-50%, calc(-50% - 50px));
+  -ms-transform: translate(-50%, calc(-50% - 50px));
+  -o-transform: translate(-50%, calc(-50% - 50px));
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 15px;
+  width: 200px;
+  position: fixed;
+  left: calc(120% + 200px);
+  top: 90%;
+  z-index: 11000; }
+  #serverMessageContainer.offsetUp10 {
+    top: 90%; }
+  #serverMessageContainer.offsetUp20 {
+    top: 80%; }
+  #serverMessageContainer.offsetUp30 {
+    top: 70%; }
+  #serverMessageContainer.offsetUp40 {
+    top: 60%; }
+
+/* ----------------------- COMMON CLASSES ----------------------------- */
+.infoRow {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bbdbff;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #eeeeff; }
+  .infoRow.centerRow {
+    margin-left: auto;
+    margin-right: auto; }
+  .infoRow > .infoRowImage {
+    float: left; }
+  .infoRow > .infoRowContent {
+    padding-left: 10px;
+    float: right; }
+
+.hintTip {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.noDisplay {
+  display: none; }
+
+.positiveBackgroundTheme {
+  background-color: #21693a; }
+
+.negativeBackgroundTheme {
+  background-color: #db5192; }
+
+.neutralBackgroundTheme {
+  background-color: #eb9100; }
+
+.content {
+  width: 85%;
+  float: right;
+  z-index: 0;
+  position: relative; }
+
+/* ------- IMPORTS ------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.infoRow {
+  font-style: italic; }
+
+.barOutline span.percentage {
+  font-weight: 700; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.barOutline span.percentage {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+.infoRow, .content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ------- PROGRESS BAR STYLING ------- */
+.barOutline {
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 25px;
+  border-color: #cdcdcd;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
+  background-color: #898989;
+  width: 200px;
+  display: inline-block; }
+  .barOutline span.bar {
+    background-color: #bbdbff;
+    background-image: -webkit-linear-gradient(left, #bbdbff, #3399ff);
+    background-image: -moz-linear-gradient(left, #bbdbff, #3399ff);
+    background-image: -ms-linear-gradient(left, #bbdbff, #3399ff);
+    background-image: -o-linear-gradient(left, #bbdbff, #3399ff);
+    border-radius: 15px;
+    display: inline-block;
+    position: relative;
+    width: 0px; }
+    .barOutline span.bar:after {
+      content: '.';
+      visibility: hidden; }
+  .barOutline span.percentage {
+    position: absolute;
+    z-index: 10;
+    /* Center the text on the input field as best as possible */
+    left: 50%;
+    top: 10%; }
+
+/* ------- DEFINITIONS -------- */
+/* ------- SPECIFIC STYLES ------- */
+/*
+// Styling for all tasks
+.levelOne, .levelTwo, .levelThree
+{
+	padding:
+	{
+		left: 100px;
+	}
+
+	position: relative;
+	display: block;
+
+	&.highlight
+	{
+		background-color: $lightBlueTheme;
+	}
+
+	// Styling for first-level tasks
+	&.levelOne
+	{
+		@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $darkGrayTheme);
+
+		// Set spacing between adjacent first-level tasks appropriately
+		& + .levelOne
+		{
+			padding:
+			{
+				top: 20px;
+			}
+		}
+	}
+
+	// Styling for second-level tasks
+	&.levelTwo
+	{
+		@include basicFontSettings($family: Palatino Linotype, $weight: bold, $size: 18px, $color: $darkGreenTheme);
+
+		// Set spacing between adjacent second-level tasks appropriately
+		& + .levelTwo
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+
+		// Set spacing between the first and second level tasks appropriately
+		&:first-of-type
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+	}
+
+	// Styling for third-level tasks
+	&.levelThree
+	{
+		@include basicFontSettings($family: Palatino Linotype, $style: italic, $size: 14px, $color: $darkGreenTheme);
+
+		// Set spacing between the second and third level tasks appropriately
+		&:first-of-type
+		{
+			padding:
+			{
+				top: 15px;
+			}
+		}
+	}
+
+	span
+	{
+		margin:
+		{
+			right: 25px;
+		}
+
+		display: inline-block;
+		width: 400px;
+	}
+
+	.difficulty
+	{
+		position: relative;
+		vertical-align: middle;
+		@include circle($diameter: 50px, $color: $lightRedTheme);
+
+		&.difficultyFivePlus
+		{
+			@include circle($diameter: 50px, $color: $redTheme);
+		}
+
+		& > span
+		{
+			@include basicFontSettings($family: Arial, $weight: bold, $size: 20px, $color: $blackTheme);
+
+			@include shiftTransition($x: -50%, $y: -50%);
+			@include trueCenter();
+		}
+	}
+
+	span.collapsibleIcon
+	{
+		padding:
+		{
+			left: 10px;
+			right: 15px;
+		}
+
+		display: inline-block;
+		width: auto;
+
+		img
+		{
+			@include transitionSettings($property: transform, $duration: 1s, $useBrowserSpecificReferences: true);
+
+			cursor: pointer;
+
+			&.collapsed
+			{
+				@include rotateTransition($degrees: 180deg);
+			}
+		}
+	}
+}
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: foundation/_base.scss.\A               Load paths:\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A                 C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS\A         on line 3 of C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/progress.scss\A \A 1: /* ------- IMPORTS ------- */\A 2: \A 3: @import 'foundation/_base.scss';\A 4: @import 'foundation/_progressBar.scss';\A 5: \A 6: /* ------- DEFINITIONS -------- */\A 7: \A 8: /* ------- SPECIFIC STYLES ------- */"; }

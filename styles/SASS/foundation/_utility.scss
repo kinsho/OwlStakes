@@ -1,6 +1,6 @@
 /* ----------------------- IMPORTS ----------------------------- */
 
-@include '_animations.scss';
+@import '_animations.scss';
 
 /* ----------------------- MIX-INS ----------------------------- */
 
@@ -67,7 +67,7 @@
 		{
 			width: nth($columnWidths, $i);
 		}
-	}y
+	}
 
 	// No content clause required here. The purpose of the mix-in is purely functional. No point in allowing the
 	// formal override of the styling defined here.

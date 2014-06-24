@@ -1,13 +1,19 @@
-@include 'foundation/_colors.scss';
-@include 'foundation/_fonts.scss';
+/* ----------------------- IMPORTS ----------------------------- */
 
-/* ----------------------- SHARED ELEMENTS MIX-INS ----------------------------- */
+@import '_colors.scss';
+@import '_fonts.scss';
+
+/* ----------------------- MIX-INS ----------------------------- */
 
 // Even for those mix-ins that accept no parameters, keep them as mix-ins instead of placeholders.
 // It's possible that later on, parameters will be added to allow for variations in the base stylings
 // defined below.
 
-// Mix-in responsible for styling any informational row
+/*
+ * Mix-in responsible for styling any informational row
+ *
+ * @author kinsho
+ */
 @mixin infoRow()
 {
 	@extend %regularFont;
@@ -31,12 +37,12 @@
 	{
 		width: 1px;
 		style: solid;
-		color: $blueTheme;
+		color: map-get($COLORS, blueTheme);
 		radius: 10px;
 	}
 
 	display: inline-block;
-	background-color: $lightBlueTheme;
+	background-color: map-get($COLORS, lightBlueTheme);
 
 	&.centerRow
 	{
@@ -48,7 +54,7 @@
 	}
 
 	// The image for the informational row must always be displayed against the left edge
-	& > img
+	& > .infoRowImage
 	{
 		float: left;
 	}
@@ -65,7 +71,11 @@
 	}
 }
 
-// Mix-in responsible for setting margin spacing on hint tip icons
+/*
+ * Mix-in responsible for setting styling on hint tip icons
+ *
+ * @author kinsho
+ */
 @mixin hintTip()
 {
 	margin:
@@ -75,18 +85,31 @@
 	}
 }
 
-// Mixin responsible for generating a tab (meant to be placed on top of tables or containers) to convey a bite's worth of information
-@mixin infoTab($topRightRadius: 0px, $topLeftRadius: 0px, $bottomLeftRadius: 0px, $bottomRightRadius: 0px)
+/*
+ * Mix-in responsible for setting styling on infoTabs
+ *
+ * @param [$topOrBottom] - value indicating whether the infoTab is to be placed on top of some container
+ *		or on the bottom of a container. The only valid values here are 'top' or 'bottom'
+ *
+ * @author kinsho
+ */
+@mixin infoTab($topOrBottom: top)
 {
 	border:
 	{
 		width: 1px;
 		style: solid;
 		color: $blueTheme;
-		top-left-radius: $topLeftRadius;
-		top-right-radius: $topRightRadius;
-		bottom-left-radius: $bottomLeftRadius;
-		bottom-right-radius: $bottomRightRadius
+		@if $topOrBottom == 'top'
+		{
+			top-left-radius: 25px;
+			top-right-radius: 25px;
+		}
+		@else if $topOrBottom == 'bottom'
+		{
+			bottom-left-radius: 25px;
+			bottom-right-radius: 25px;
+		}
 	}
 
 	padding:
@@ -98,13 +121,20 @@
 	}
 
 	display: inline-block;
-	background-color: $lightBlueTheme;
 	text-align: center;
+	background-color: map-get($COLORS, lightBlueTheme);
 
 	@content;
 }
 
-// Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that text with an additional qualifier
+/*
+ * Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that
+ * text with an additional qualifier
+ *
+ * @param $content - the text to put into the label
+ *
+ * @author kinsho
+ */
 @mixin labelIcon($content)
 {
 	&:after
@@ -116,7 +146,7 @@
 			style: solid;
 			width: 1px;
 			radius: 3px;
-			color: $darkGrayTheme;
+			color: map-get($COLORS, darkGrayTheme);
 		}
 
 		padding:
@@ -125,42 +155,48 @@
 			right: 3px;
 		}
 
-		background-color: $darkGreenTheme;
-		color: $lightWhiteTheme;
-		text-shadow: 0.75px 0.75px 0 #000000;
-
 		content: $content;
+
+		color: map-get($COLORS, lightWhiteTheme);
+		text-shadow: 0.75px 0.75px 0 #000000;
+		background-color: map-get($COLORS, darkGreenTheme);
 
 		@content;
 	}
 }
 
-// Mix-in designed to provide the base styling for any autocomplete suggestion section
-@mixin autocompleteSuggestionBox($zIndex: 1000)
+/*
+ * Mixin responsible for providing all the styling for a suggestion box associated with an autocomplete
+ * form field
+ *
+ * @param $zIndex - the depth of the image relative to the viewport
+ *
+ * @author kinsho
+ */
+@mixin autocompleteSuggestionBox($zIndex)
 {
 	@extend %regularFont;
-
-	&.modalSuggestionBox
-	{
-		@extend %tinyFont;
-	}
 
 	border:
 	{
 		style: solid;
-		color: $blackTheme;
-
+		width: 1px;
+		color: map-get($COLORS, blackTheme);
 		bottom-right-radius: 10px;
 		bottom-left-radius: 10px;
-		width: 1px;
 	}
 
-	background-color: $lightGrayTheme;
+	background-color: map-get($COLORS, lightGrayTheme);
 	z-index: $zIndex;
 	position: absolute;
 
 	max-height: 100px;
 	overflow: auto;
+
+	&.modalSuggestionBox
+	{
+		@extend %tinyFont;
+	}
 
 	& > div
 	{
@@ -179,19 +215,23 @@
 			@extend %italicizedFont;
 
 			cursor: default;
-			background-color: $lightGrayTheme;
+			background-color: map-get($COLORS, lightGrayTheme);
 		}
 
 		&:hover
 		{
-			background-color: $lightBlueTheme;
+			background-color: map-get($COLORS, lightBlueTheme);
 		}
 	}
 
 	@content;
 }
 
-// Mix-in designed to provide styling for all toggleSwitches
+/*
+ * Mixin responsible for providing all the styling for toggleSwitches
+ *
+ * @author kinsho
+ */
 @mixin toggleSwitch()
 {
 	@extend %minorWhiteFont;
@@ -206,16 +246,11 @@
 
 	border:
 	{
-		color: $darkGrayTheme;
+		color: map-get($COLORS, darkGrayTheme);
 		width: 2px;
 	}
 
-	& > input, & > label
-	{
-		display: none;
-	}
-
-	& > span
+	& > .toggleLabel
 	{
 		// Allow the background color to be animated
 		@include transitionSettings($property: background-color, $timing: linear, $duration: 0.5s);
@@ -231,11 +266,11 @@
 		border:
 		{
 			style: solid;
-			color: $darkGrayTheme;
+			color: map-get($COLORS, darkGrayTheme);
 			width: 2px;
 		}
 
-		background-color: $grayTheme;
+		background-color: map-get($COLORS, grayTheme);
 		cursor: pointer;
 
 		&:first-of-type
@@ -256,16 +291,22 @@
 			}
 		}
 
-		&.toggleSelect
+		&.toggleSelected
 		{
 			background-color: $greenTheme;
 			cursor: default;
 		}
 	}
+
+	@content;
 }
 
-// Mix-in responsible for surrounding an element with horizontal rules to emphasize the text
-// within the element
+/*
+ * Mixin responsible for surrounding the target element with horizontal rules in order to
+ * emphasize the text within the element
+ *
+ * @author kinsho
+ */
 @mixin horizontalRule()
 {
 	// Ensure the text remains appropriately distanced from the horizontal rules
@@ -289,11 +330,18 @@
 		width: 45%;
 
 		display: inline-block;
-		background-color: $darkGrayTheme;
+		background-color: map-get($COLORS, darkGrayTheme);
 	}
 }
 
-// Mix-in designed to generate a circular container
+/*
+ * Mix-in designed to generate a circular container
+ *
+ * @param $diameter - a measurement of the size of the circle that will need to be generated
+ * @param $color - the color to fill into the circle upon render
+ *
+ * @author kinsho
+ */
 @mixin circle($diameter, $color)
 {
 	border:
@@ -305,15 +353,16 @@
 	height: $diameter;
 	background-color: $color;
 
-	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50% allows us to generate a circular container.
+	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50% allows
+	// us to generate a circular container.
 }
 
 /*
  * Mix-in is responsible for generating a triangular indicator depending on the passed direction
  *
  * @param $direction - the direction in which the triangular indicator will point
- * @param $columnWidths - the width of the indicator
- * @param $tableSelector - the color of the indicator
+ * @param $width - the width of the indicator
+ * @param $color - the color of the indicator
  *
  * @author kinsho
  */
