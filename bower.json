@@ -1,0 +1,22 @@
+{
+    "name" : "OwlStakes",
+    "version" : "0.1.0",
+    "dependencies" :
+    {
+        "json3" : "~3.3.2",
+        "jquery" : "~2.1.1",
+        "d3" : "~3.4.8",
+        "select2" : "~3.5.0",
+        "requirejs" : "~2.1.14"
+    },
+    "install" :
+    {
+        "path" :
+        {
+            "js" : "scripts/library",
+            "css" : "styles/CSS/library",
+            "png" : "images/library",
+            "gif" : "images/library"
+        }
+    }
+}
