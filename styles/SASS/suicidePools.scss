@@ -1,129 +1,35 @@
-/* ------- IMPORTS ------- */
+/* ----------------------- IMPORTS ----------------------------- */
 
-/*
 @import 'foundation/_base.scss';
-@import 'foundation/_modal.scss';
 
-/* ------- VARIABLES ------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
 
-// The rightward offsets to apply to each column within the suicide pools table
-/*
-$poolsTableColumnLefts:   5%,		// Pool Name
-						  56%,		// Pool Status
-						  74%;		// Actions
+$SUICIDE_POOL:
+(
+);
 
-/* ------- SPECIFIC STYLES ------- */
+/* ----------------------- STYLES ----------------------------- */
 
-// Styling to be applied to each listing on the pools page
-/*
-.poolRow
+// Styling to be applied to each listed suicide pool
+
+.poolRowContainer
 {
+	@extend %nineOverTen;
+
+	text-align:center;
+}
+
+.poolRowHeader
+{
+	@extend %threeOverFour;
+
 	padding:
 	{
-		top: 15px;
-		bottom: 15px;
+		top: 10px;
+		bottom: 10px;
 	}
 
-	height: 100px;
+	background-color: map-get($COLORS, lightBlueTheme);
+	height: 50px;
 	position: relative;
-
-	& > div
-	{
-		position: absolute;
-		top: 50%;
-
-		@include shiftTransition($x: 0%, $y: -50%);
-
-		// Each 'cell' within the row needs to be set to a specific location
-		// considering that all of these cells are absolutely positioned
-		@for $i from 1 through length($poolsTableColumnLefts)
-		{
-			$left: nth($poolsTableColumnLefts, $i);
-
-			&:nth-child( #{$i} )
-			{
-				left: $left;
-			}
-		}
-	}
 }
-
-// Styling to be applied to the pool names that appear within the table
-.poolName
-{
-	@include blueFont($size: 20px);
-
-	text-align: left;
-	word-wrap: break-word; // Ensure that the length of the text never exceeds the width of the span
-}
-
-// The label representing that the pool is currently managed by the user himself
-.managerLabel:after
-{
-	@include labelIcon($content: 'manager')
-	{
-		margin-left: 4px;
-	};
-}
-
-// The text signifying that the user is still alive within the suicide pool in context
-.aliveText:after
-{
-	@include blueFont($size: 18px, $style: italics);
-
-	content: 'Alive';
-}
-
-// The text signifying that the user is dead within the suicide pool in context
-.deadText:after
-{
-	@include negativeFont($size: 18px, $style: italics);
-
-	content: 'Dead';
-}
-
-// The text signifying that the user has been invited to a pool
-.invitedText:after
-{
-	@include blueFont($size: 21px, $style: italics);
-
-	content: 'Invited';
-}
-
-// Styling for the various links that allow the user to act and interact with certain pools
-.poolOptionLink
-{
-	@include blueFont($size: 16px, $weight: 400);
-
-	text-align: left;
-	white-space: nowrap;
-
-	&:before
-	{
-		padding:
-		{
-			top: 10px;
-			right: 10px;
-		}
-
-		vertical-align: middle;
-	}
-
-	// Different images are laid here depending on the type of link
-	&.peopleManagerLink:before
-	{
-		content: url('../../images/people.png');	
-	}
-
-	&.settingsLink:before
-	{
-		content: url('../../images/settings.png');
-	}
-
-	&.forwardLink:before
-	{
-		content: url('../../images/navArrowRight.png');
-	}
-}
-
-*/

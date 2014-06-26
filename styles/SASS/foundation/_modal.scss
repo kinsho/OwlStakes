@@ -144,7 +144,7 @@ $MODAL:
 // The styling for the 'close' button to be placed in the upper-right hand corner of certain modals
 .modalCloseButton
 {
-	@include truePosition($left: calc(100% - 40px), $top: 10px);
+	@include truePositioning($left: calc(100% - 40px), $top: 10px);
 
 	& > div
 	{

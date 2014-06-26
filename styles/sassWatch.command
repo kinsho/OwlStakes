@@ -1,3 +1,3 @@
 #!/bin/bash
-sass --watch "/Users/kinsho/TOS/styles/SASS":"/Users/kinsho/TOS/styles/CSS";
+sudo sass --watch "/Users/ushahri/OwlStakes/styles/SASS":"/Users/ushahri/OwlStakes/styles/CSS";
 exit;
