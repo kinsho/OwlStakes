@@ -26,35 +26,35 @@
 
 	width: 200px;
 	display: inline-block;
+}
 
-	span.bar
+span.bar
+{
+	@include setGradient($initialColor: map-get($COLORS, blueTheme), $endColor: map-get($COLORS, darkBlueTheme), $direction: left);
+	@include forceRender();
+
+	border:
 	{
-		@include setGradient($initialColor: map-get($COLORS, blueTheme), $endColor: map-get($COLORS, darkBlueTheme), $direction: left);
-		@include forceRender();
-
-		border:
-		{
-			radius: 15px;
-		}
-
-		display: inline-block;
-		position: relative;
-
-		// Initially when the progress bar is rendered, the bar will not be rendered
-		// It is up to the script within the page to render the bar by assigning a width here
-		width: 0px;
+		radius: 15px;
 	}
 
-	span.percentage
-	{
-		@extend %smallFont;
-		@extend %boldFont;
+	display: inline-block;
+	position: relative;
 
-		position: absolute;
-		z-index: 10;
+	// Initially when the progress bar is rendered, the bar will not be rendered
+	// It is up to the script within the page to render the bar by assigning a width here
+	width: 0px;
+}
 
-		/* Center the text on the input field as best as possible */
-		left: 50%;
-		top: 10%;
-	}
+span.percentage
+{
+	@extend %smallFont;
+	@extend %boldFont;
+
+	position: absolute;
+	z-index: 10;
+
+	/* Center the text on the input field as best as possible */
+	left: 50%;
+	top: 10%;
 }

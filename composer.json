@@ -1,7 +1,15 @@
 {
+    "name" : "kinsho/OwlStakes",
+    "version" : "0.1.0",
+	"type" : "project",
 	"require":
 	{
 		"mustache/mustache": "~2.5",
 		"recaptcha/php5": "~1.0.0"
+	},
+	"config":
+	{
+		"vendor-dir" : "serverLibraries",
+		"bin-dir" : "serverLibraries/bin"
 	}
 }

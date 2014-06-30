@@ -8,48 +8,16 @@
   * @author kinsho
   */
 
-// Before anything is to be done, set up a function to replace PHP's computationally expensive REQUIRE_ONCE statement
+// The all-important file loader, and the only time this application will ever contain references to
+// PHP's native Require functionality
+REQUIRE("utility/FileLoader.php")
 
-$TOS_INCLUDED_FILES = array(); // an array to keep track of pulled files
+// Load the store that contains all globally-accessible constants
+TOS_REQUIRE_ONCE("utility/AppConstants.php")
 
-// Define a global constant that'll store the path to the application root
-define( "APP_ROOT", ($_SERVER['DOCUMENT_ROOT'] . '/') );
-
-/**
-  * A custom function to replace PHP's
-  * native (and computational expensive) REQUIRE_ONCE statement.
-  *
-  * @author kinsho
-  */
-function TOS_REQUIRE_ONCE($fileName)
-{
-    global $TOS_INCLUDED_FILES;
-
-    // Only pull the file if it has not been pulled out before
-    if( !(in_array($fileName, $TOS_INCLUDED_FILES)) )
-    {
-        try
-        {
-            if (file_exists(APP_ROOT . $fileName))
-            {
-		        $TOS_INCLUDED_FILES[] = $fileName;
-                REQUIRE (APP_ROOT . $fileName);
-            }
-            else
-            {
-                throw new Exception('Unable to find ' . APP_ROOT . $fileName);
-            }
-        }
-        catch (Exception $ex)
-        {
-            echo $ex->getMessage() . '<br /><br />';
-            echo ( implode('<br />', (explode('#', $ex->getTraceAsString())) ) );
-            exit();
-        }
-    }
-}
-
-TOS_REQUIRE_ONCE('DynamicObject.php');
+// Load the generic template to be used for generating objects that can accept new
+// property definitions on the fly
+TOS_REQUIRE_ONCE('utility/DynamicObject.php');
 
 // Create a view object that will contain data that can be passed from the server to the client
 // in order to assist in rendering the page.
