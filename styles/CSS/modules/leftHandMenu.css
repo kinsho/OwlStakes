@@ -1,0 +1,524 @@
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+.mainItem:not(.usernameDisplay) {
+  font-style: italic; }
+
+.mainItem:not(.usernameDisplay):hover, .mainItem.selected:not(.usernameDisplay) {
+  font-weight: 700; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.subItems {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Cardo, sans-serif;
+  font-style: normal; }
+
+.mainItem:not(.usernameDisplay) {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Cardo, sans-serif;
+  font-style: normal; }
+
+.mainItem {
+  font-weight: 400;
+  font-size: 20px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.mainItem:not(.usernameDisplay) {
+  font-style: italic; }
+
+.mainItem:not(.usernameDisplay):hover, .mainItem.selected:not(.usernameDisplay) {
+  font-weight: 700; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.subItems {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Cardo, sans-serif;
+  font-style: normal; }
+
+.mainItem:not(.usernameDisplay) {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Cardo, sans-serif;
+  font-style: normal; }
+
+.mainItem {
+  font-weight: 400;
+  font-size: 20px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in responsible for styling any informational row
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on hint tip icons
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on infoTabs
+ *
+ * @param [$topOrBottom] - value indicating whether the infoTab is to be placed on top of some container
+ *		or on the bottom of a container. The only valid values here are 'top' or 'bottom'
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that
+ * text with an additional qualifier
+ *
+ * @param $content - the text to put into the label
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for a suggestion box associated with an autocomplete
+ * form field
+ *
+ * @param $zIndex - the depth of the image relative to the viewport
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for toggleSwitches
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for surrounding the target element with horizontal rules in order to
+ * emphasize the text within the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to generate a circular container
+ *
+ * @param $diameter - a measurement of the size of the circle that will need to be generated
+ * @param $color - the color to fill into the circle upon render
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in is responsible for generating a triangular indicator depending on the passed direction
+ *
+ * @param $direction - the direction in which the triangular indicator will point
+ * @param $width - the width of the indicator
+ * @param $color - the color of the indicator
+ *
+ * @author kinsho
+ */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+.mainItem.zeroOverOne {
+  width: 0%; }
+
+.leftHandButton {
+  width: 100%; }
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+#leftHandContainer {
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 20px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  width: 10%;
+  height: 100%;
+  float: left;
+  position: fixed;
+  z-index: 1;
+  background-color: #d0d0d0; }
+
+.sectionVisible {
+  /* Locally defined lists needed here to set multiple transition properties on the log-in module */
+  transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  transition-timing-function: linear, linear;
+  transition-duration: 0.5s, 0.5s;
+  transition-delay: 0s, 0s;
+  -webkit-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-timing-function: linear, linear;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-timing-function: linear, linear;
+  -moz-transition-duration: 0.5s, 0.5s;
+  -moz-transition-delay: 0s, 0s;
+  -ms-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-timing-function: linear, linear;
+  -ms-transition-duration: 0.5s, 0.5s;
+  -ms-transition-delay: 0s, 0s;
+  -o-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-timing-function: linear, linear;
+  -o-transition-duration: 0.5s, 0.5s;
+  -o-transition-delay: 0s, 0s;
+  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  opacity: 1.0; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .sectionVisible {
+      transition-property: opacity, -webkit-transform;
+      -webkit-transition-property: opacity, -webkit-transform;
+      -webkit-transition-timing-function: linear, linear;
+      -webkit-transition-duration: 0.5s, 0.5s;
+      -webkit-transition-delay: 0s, 0s; } }
+  .sectionVisible.sectionGoLeft {
+    transform: translate(-50%, 0px);
+    -webkit-transform: translate(-50%, 0px);
+    -moz-transform: translate(-50%, 0px);
+    -ms-transform: translate(-50%, 0px);
+    -o-transform: translate(-50%, 0px);
+    opacity: 0.0; }
+
+#forgotPassword {
+  text-align: center; }
+
+.mainItem {
+  /* Locally defined lists to set multiple transitions properties on each menu DIV */
+  /* @include setAxes3D($x: 0%, $y: top, $z: 0px); */
+  transition-property: width, transform, -moz-transform, -ms-transform, -o-transform;
+  transition-timing-function: ease, linear;
+  transition-duration: 0.5s, 0.75s;
+  transition-delay: 0s, 0s;
+  -webkit-transition-property: width, transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-timing-function: ease, linear;
+  -webkit-transition-duration: 0.5s, 0.75s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition-property: width, transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-timing-function: ease, linear;
+  -moz-transition-duration: 0.5s, 0.75s;
+  -moz-transition-delay: 0s, 0s;
+  -ms-transition-property: width, transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-timing-function: ease, linear;
+  -ms-transition-duration: 0.5s, 0.75s;
+  -ms-transition-delay: 0s, 0s;
+  -o-transition-property: width, transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-timing-function: ease, linear;
+  -o-transition-duration: 0.5s, 0.75s;
+  -o-transition-delay: 0s, 0s;
+  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 60px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #898989;
+  border-left-style: none;
+  border-right-style: none;
+  height: 25px;
+  width: 150px;
+  display: inline-block;
+  text-align: left;
+  position: relative; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .mainItem {
+      transition-property: width, -webkit-transform;
+      -webkit-transition-property: width, -webkit-transform;
+      -webkit-transition-timing-function: ease, linear;
+      -webkit-transition-duration: 0.5s, 0.75s;
+      -webkit-transition-delay: 0s, 0s; } }
+  .mainItem:not(.usernameDisplay):hover {
+    /* Widen the element when hovered over */
+    width: 130%;
+    /* Darken the font when hovered over */
+    cursor: pointer; }
+  .mainItem:not(.usernameDisplay).selected {
+    /* Widen the width to indicate that this is already selected */
+    width: 130%;
+    /* Darken the font */
+    cursor: auto; }
+  .mainItem > span {
+    transition-property: opacity;
+    transition-timing-function: linear;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    -webkit-transition-property: opacity;
+    -webkit-transition-timing-function: linear;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-property: opacity;
+    -moz-transition-timing-function: linear;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-delay: 0s;
+    -ms-transition-property: opacity;
+    -ms-transition-timing-function: linear;
+    -ms-transition-duration: 0.5s;
+    -ms-transition-delay: 0s;
+    -o-transition-property: opacity;
+    -o-transition-timing-function: linear;
+    -o-transition-duration: 0.5s;
+    -o-transition-delay: 0s; }
+  .mainItem > .selected {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-top-width: 10px;
+    border-top-color: transparent;
+    border-bottom-width: 10px;
+    border-bottom-color: transparent;
+    border-left-width: 10px;
+    border-left-color: #898989;
+    transform: translate(50%, 50%);
+    -webkit-transform: translate(50%, 50%);
+    -moz-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%);
+    -o-transform: translate(50%, 50%); }
+
+.subItems {
+  transition-property: height;
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
+  transition-delay: 0s;
+  -webkit-transition-property: height;
+  -webkit-transition-timing-function: ease;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-property: height;
+  -moz-transition-timing-function: ease;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-delay: 0s;
+  -ms-transition-property: height;
+  -ms-transition-timing-function: ease;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-delay: 0s;
+  -o-transition-property: height;
+  -o-transition-timing-function: ease;
+  -o-transition-duration: 0.5s;
+  -o-transition-delay: 0s;
+  margin-bottom: 5px;
+  background-color: white;
+  cursor: pointer;
+  height: 0px; }
+  .subItems > div {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    height: 40px; }
+    .subItems > div > span {
+      transition-property: opacity;
+      transition-timing-function: linear;
+      transition-duration: 0.1s;
+      transition-delay: 0s;
+      -webkit-transition-property: opacity;
+      -webkit-transition-timing-function: linear;
+      -webkit-transition-duration: 0.1s;
+      -webkit-transition-delay: 0s;
+      -moz-transition-property: opacity;
+      -moz-transition-timing-function: linear;
+      -moz-transition-duration: 0.1s;
+      -moz-transition-delay: 0s;
+      -ms-transition-property: opacity;
+      -ms-transition-timing-function: linear;
+      -ms-transition-duration: 0.1s;
+      -ms-transition-delay: 0s;
+      -o-transition-property: opacity;
+      -o-transition-timing-function: linear;
+      -o-transition-duration: 0.1s;
+      -o-transition-delay: 0s; }

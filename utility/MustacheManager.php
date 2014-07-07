@@ -1,7 +1,5 @@
 <?php
 
-TOS_REQUIRE_ONCE('vendor/autoload.php');
-
 /*
  * Utility class meant to facilitate the generation of HTML through templates via Mustache
  *

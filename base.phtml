@@ -1,8 +1,5 @@
 <?php
 	global $view;
-
-	// -------------- PHP LIBRARIES -------------------
-	TOS_REQUIRE_ONCE('utility/reCAPTCHA/recaptchalib.php');
 ?>
 <html>
 	<head>
@@ -23,7 +20,7 @@
 	<body>
 		<input type='hidden' id='pageObjectName' value='<?=$view->pageName ?>' />
 		<!-- Load all the foundation view files that will be displayed across all pages -->
-		<?php
+			<?php
 			foreach($view->foundationViews as $html)
 			{
 				TOS_REQUIRE_ONCE($html);
@@ -32,10 +29,10 @@
 		<div class='content'>
 			<!-- Load all the view files that comprise the main content for this page -->
 			<?php
-				foreach($view->contentViews as $html)
-				{
-					TOS_REQUIRE_ONCE($html);
-				}
+			foreach($view->contentViews as $html)
+			{
+				TOS_REQUIRE_ONCE($html);
+			}
 			?>
 		</div>
 
@@ -47,13 +44,20 @@
 		<script>
 			var require =
 			{
-				baseURL: 'script',
-				paths: { jquery : 'library/jquery-1.10.2' }
+				baseURL: 'scripts',
+				paths: { jquery : 'library/jquery/jquery' }
 			};
 		</script>
 
+		<?php
+		if (isset($view->requireJsMainFile))
+		{
+		?>
 		<!-- Load all the script files for this page via the main file specified within the page's directory -->
-		<script src='scripts/require.js' data-main="<?php=$view->requireJsMainFile ?>"></script>
+		<script src='scripts/library/requirejs/require.js' data-main="<?php=$view->requireJsMainFile ?>"></script>
+		<?php
+		}
+		?>
 
 	</body>
 </html>

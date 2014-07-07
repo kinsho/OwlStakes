@@ -6,9 +6,6 @@ TOS_REQUIRE_ONCE('utility/TestGenerator.php');
 // The class used to fetch all the server configuration settings
 TOS_REQUIRE_ONCE('utility/ConfigurationParser.php');
 
-// Fetch all packages that were installed via Composer
-TOS_REQUIRE_ONCE('vendor/autoload.php');
-
 // The class used to test for a cookie containing the current user's credentials
 TOS_REQUIRE_ONCE('DAO/LogInDAO.php');
 
@@ -35,6 +32,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 
 		const STYLE_DIRECTORY = 'styles/CSS/';
 		const STYLE_FILE_EXTENSION = '.css';
+		const STYLE_FOUNDATION_DIRECTORY = 'modules';
 
 		const SCRIPTS_DIRECTORY = '/scripts/';
 		const SCRIPTS_FILE_EXTENSION = '.js';
@@ -106,7 +104,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			self::setScriptsFromDirectory( self::FOUNDATION_DIRECTORY );
 
 			// Pull all the foundation stylesheets
-			self::setStylesheetsFromDirectory( self::FOUNDATION_DIRECTORY );
+			self::setStylesheetsFromDirectory( self::STYLE_FOUNDATION_DIRECTORY );
 
 			// Render all the foundation view files
 			self::setViewsFromDirectory( self::FOUNDATION_DIRECTORY, true );
@@ -281,13 +279,13 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 		/*
 		 * Generic function responsible for fetching one view file
 		 *
-		 * @param {String} $view - name of the view file that needs to be fetched
+		 * @param {String} $clientView - name of the view file that needs to be fetched
 		 *
 		 * @author kinsho
 		 */
 		private static function setView($clientView)
 		{
-			// Always pull up the $view global object so that we can store the references to the view file within it
+			// Always pull up the $view global object so that we can store the references used in the view file within it
 			global $view;
 
 			// Define the slots within the $view object that will hold all the view file references

@@ -1,0 +1,367 @@
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.modalBody {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+.modalHeader {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: italic;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 0 #000000; }
+
+.navButton {
+  font-weight: 700;
+  font-size: 20px;
+  font-family: Cardo, sans-serif;
+  font-style: normal;
+  color: #3399ff; }
+
+/* --- Mood fonts --- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in forces any element to which it is applied to to fully render, regardless of whether content is there within the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates the container and child DIV styling necessary to allow the child elements to be positioned
+ * anywhere within their host container
+ *
+ * @param $left - the distance which to shift the child elements rightward from the left edge of the container
+ * @param $top - the distance which to shift the child elements downward from the top edge of the container 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in is responsible for setting the widths of all columns within a table by applying a width
+ * to each TH element within the table.
+ *
+ * @param $columnWidths - a list containing desired widths for each column, in index order
+ * @param $tableSelector - the CSS selector that will be used to reference the table
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- GENERAL STYLING ----------------------------- */
+.modal {
+  /* Locally defined lists to set multiple transitions properties on all modals */
+  transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  transition-timing-function: linear, linear;
+  transition-duration: 0.5s, 0.5s;
+  transition-delay: 0s, 0s;
+  -webkit-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-timing-function: linear, linear;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-delay: 0s, 0s;
+  -moz-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-timing-function: linear, linear;
+  -moz-transition-duration: 0.5s, 0.5s;
+  -moz-transition-delay: 0s, 0s;
+  -ms-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-timing-function: linear, linear;
+  -ms-transition-duration: 0.5s, 0.5s;
+  -ms-transition-delay: 0s, 0s;
+  -o-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-timing-function: linear, linear;
+  -o-transition-duration: 0.5s, 0.5s;
+  -o-transition-delay: 0s, 0s;
+  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-style: solid;
+  border-color: #eeeeff;
+  border-width: 8px;
+  border-radius: 25px;
+  box-shadow: 2px 4px 10px 0px;
+  background-color: #f8f8f8;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  opacity: 0.0; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .modal {
+      transition-property: opacity, -webkit-transform;
+      -webkit-transition-property: opacity, -webkit-transform;
+      -webkit-transition-timing-function: linear, linear;
+      -webkit-transition-duration: 0.5s, 0.5s;
+      -webkit-transition-delay: 0s, 0s; } }
+  .modal.littleModal {
+    width: 20%; }
+  .modal.midsizeModal {
+    width: 50%; }
+  .modal.nestedModal {
+    border-color: #c7d0c4;
+    z-index: 10001;
+    width: 20%; }
+  .modal.halfFadeOut {
+    opacity: 0.5; }
+  .modal.fadeIn {
+    opacity: 1.0; }
+  .modal.offsetUp {
+    transform: translate(-50%, calc(-50% - 50px));
+    -webkit-transform: translate(-50%, calc(-50% - 50px));
+    -moz-transform: translate(-50%, calc(-50% - 50px));
+    -ms-transform: translate(-50%, calc(-50% - 50px));
+    -o-transform: translate(-50%, calc(-50% - 50px)); }
+  .modal.offsetLeft {
+    transform: translate(calc(-50% - 100px), -50%);
+    -webkit-transform: translate(calc(-50% - 100px), -50%);
+    -moz-transform: translate(calc(-50% - 100px), -50%);
+    -ms-transform: translate(calc(-50% - 100px), -50%);
+    -o-transform: translate(calc(-50% - 100px), -50%); }
+  .modal.offsetRight {
+    transform: translate(calc(-50% + 100px), -50%);
+    -webkit-transform: translate(calc(-50% + 100px), -50%);
+    -moz-transform: translate(calc(-50% + 100px), -50%);
+    -ms-transform: translate(calc(-50% + 100px), -50%);
+    -o-transform: translate(calc(-50% + 100px), -50%); }
+  .modal.offsetDown {
+    transform: translate(-50%, calc(-50% + 50px));
+    -webkit-transform: translate(-50%, calc(-50% + 50px));
+    -moz-transform: translate(-50%, calc(-50% + 50px));
+    -ms-transform: translate(-50%, calc(-50% + 50px));
+    -o-transform: translate(-50%, calc(-50% + 50px)); }
+
+.modalHeader {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #8fa288; }
+  .modalHeader.errorHeader {
+    background-color: #db5192; }
+  .modalHeader.noticeHeader {
+    background-color: #eb9100; }
+
+.modalBody {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.modalCloseButton {
+  position: relative; }
+  .modalCloseButton > div {
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    position: absolute;
+    width: auto;
+    left: calc(100% - 40px);
+    top: 10px; }
+  .modalCloseButton > div {
+    background-image: url("../../images/closeModalIcon.png");
+    width: 32px;
+    height: 32px; }
+
+.navButtonContainer {
+  margin-top: 20px; }
+
+.navButton {
+  cursor: pointer; }
+  .navButton.rightArrow:after {
+    content: url("../../images/navArrowRight.png");
+    padding-left: 10px;
+    padding-top: 10px; }
+  .navButton.leftArrow:before {
+    content: url("../../images/navArrowLeft.png");
+    padding-right: 10px;
+    padding-top: 10px; }
+
+.modalOverlay, .strongerModalOverlay {
+  transition-property: opacity;
+  transition-timing-function: linear;
+  transition-duration: 0.5s;
+  transition-delay: 0s;
+  -webkit-transition-property: opacity;
+  -webkit-transition-timing-function: linear;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-property: opacity;
+  -moz-transition-timing-function: linear;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-delay: 0s;
+  -ms-transition-property: opacity;
+  -ms-transition-timing-function: linear;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-delay: 0s;
+  -o-transition-property: opacity;
+  -o-transition-timing-function: linear;
+  -o-transition-duration: 0.5s;
+  -o-transition-delay: 0s;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.0;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.4); }
+  .modalOverlay.fadeIn, .fadeIn.strongerModalOverlay {
+    opacity: 1.0; }
+
+.strongerModalOverlay {
+  background-color: rgba(0, 0, 0, 0.3); }

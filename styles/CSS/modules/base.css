@@ -1,33 +1,11 @@
-/* Imports */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- COLOR THEMES ----------------------------- */
-/* ----------------------- SPECIALIZED FONTS ----------------------------- */
-/*
- * The custom font-families that the site will use are:
- *
- * Source Sans Pro
- * Cardo
- *
- */
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
-/* ----------------------- SPECIALIZED FONT AND COLOR MIX-INS ----------------------------- */
-/*
- * Mixin built to provide a convenient way to set basic font styles quickly
- *
- * @param $weight - the font weight
- * @param $size - the font size
- * @param $family - the font family
- * @param $style - the font style
- * @param $color - an optional parameter that allows one to specify a font color
- *
- * @author kinsho
- */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -98,14 +76,17 @@ template {
  * Remove the gray background color from active links in IE 10.
  */
 a {
-  background: transparent; }
+  background: transparent;
+  text-decoration: none; }
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
 a:active,
 a:hover {
-  outline: 0; }
+  outline: 0;
+  cursor: pointer;
+  text-decoration: underline; }
 
 /* Text-level semantics
    ========================================================================== */
@@ -378,69 +359,243 @@ td,
 th {
   padding: 0; }
 
-/* ----------------------- FORMATTING MIX-INS ----------------------------- */
-/* ----------------------- ANIMATION AND COLOR MIX-INS ----------------------------- */
-/* ----------------------- GEOMETRIC MIX-INS ----------------------------- */
-/* ----------------------- R-QUERY MIX-INS ----------------------------- */
-/* ----------------------- UTILITY MIX-INS ----------------------------- */
-/* Mix-in truly centers an element squarely in the middle of its parent container */
-/* NOTE: The parent container MUST be explicitly relatively positioned for this to work */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
 /*
- * Mixin is responsible for setting the widths of all columns within a table by applying a width
- * to each TH element within the table.
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
  *
- * @param $columnWidths - a list containing desired widths for each column, in index order
- * @param $tableSelector - the CSS selector that will be used to reference the table
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
  *
  * @author kinsho
  */
-/* General CSS styling */
-#successContainer {
-  transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -moz-transition-property: opacity;
-  -ms-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-timing-function: ease;
-  -webkit-transition-timing-function: ease;
-  -moz-transition-timing-function: ease;
-  -ms-transition-timing-function: ease;
-  -o-transition-timing-function: ease;
-  transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  -moz-transition-duration: 0.5s;
-  -ms-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  transition-delay: 0s;
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  -ms-transition-delay: 0s;
-  -o-transition-delay: 0s;
-  border-color: #bbdbff;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 10px;
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.infoRow {
+  font-style: italic; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.infoRow, .content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+.infoRow {
+  font-style: italic; }
+
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.infoRow, .content {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in responsible for styling any informational row
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on hint tip icons
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting styling on infoTabs
+ *
+ * @param [$topOrBottom] - value indicating whether the infoTab is to be placed on top of some container
+ *		or on the bottom of a container. The only valid values here are 'top' or 'bottom'
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that
+ * text with an additional qualifier
+ *
+ * @param $content - the text to put into the label
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for a suggestion box associated with an autocomplete
+ * form field
+ *
+ * @param $zIndex - the depth of the image relative to the viewport
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for providing all the styling for toggleSwitches
+ *
+ * @author kinsho
+ */
+/*
+ * Mixin responsible for surrounding the target element with horizontal rules in order to
+ * emphasize the text within the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to generate a circular container
+ *
+ * @param $diameter - a measurement of the size of the circle that will need to be generated
+ * @param $color - the color to fill into the circle upon render
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in is responsible for generating a triangular indicator depending on the passed direction
+ *
+ * @param $direction - the direction in which the triangular indicator will point
+ * @param $width - the width of the indicator
+ * @param $color - the color of the indicator
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+.pageBreak {
+  height: 5px;
+  display: block; }
+
+.smallHeightener {
+  height: 20px;
+  display: block; }
+
+/* ----------------------- COMMON CLASSES ----------------------------- */
+.infoRow {
   margin-top: 5px;
-  margin-bottom: 15px;
-  width: 100%;
-  background-color: #eeeeff;
-  display: none;
-  text-align: left; }
-  #successContainer .title {
-    font-weight: 400;
-    font-size: 25;
-    font-family: Source Sans Pro, sans-serif;
-    font-style: normal;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bbdbff;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #eeeeff; }
+  .infoRow.centerRow {
+    margin-left: auto;
+    margin-right: auto; }
+  .infoRow > .infoRowImage {
+    float: left; }
+  .infoRow > .infoRowContent {
     padding-left: 10px;
-    padding-top: 15px;
-    display: none; }
-  #successContainer .successMessage {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 5px;
-    padding-right: 5px;
-    display: none;
-    font-weight: 400;
-    font-size: 16;
-    font-family: Source Sans Pro, sans-serif;
-    font-style: normal; }
+    float: right; }
+
+.hintTip {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.noDisplay {
+  display: none; }
+
+.positiveBackgroundTheme {
+  background-color: #21693a; }
+
+.negativeBackgroundTheme {
+  background-color: #db5192; }
+
+.neutralBackgroundTheme {
+  background-color: #eb9100; }
+
+.content {
+  width: 85%;
+  float: right;
+  z-index: 0;
+  position: relative; }

@@ -8,16 +8,19 @@
   * @author kinsho
   */
 
-// The all-important file loader, and the only time this application will ever contain references to
-// PHP's native Require functionality
-REQUIRE("utility/FileLoader.php")
-
 // Load the store that contains all globally-accessible constants
-TOS_REQUIRE_ONCE("utility/AppConstants.php")
+REQUIRE($_SERVER['DOCUMENT_ROOT'] . "/utility/AppConstants.php");
+
+// The all-important file loader, and the last time this application will ever contain
+// references to PHP's native Require functionality
+REQUIRE($_SERVER['DOCUMENT_ROOT'] . "/utility/FileLoader.php");
 
 // Load the generic template to be used for generating objects that can accept new
 // property definitions on the fly
 TOS_REQUIRE_ONCE('utility/DynamicObject.php');
+
+// Load the autoloader that'll be used to access all external PHP libraries
+TOS_REQUIRE_ONCE('serverLibraries/autoload.php');
 
 // Create a view object that will contain data that can be passed from the server to the client
 // in order to assist in rendering the page.

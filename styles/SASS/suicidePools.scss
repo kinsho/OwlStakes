@@ -1,6 +1,7 @@
 /* ----------------------- IMPORTS ----------------------------- */
 
-@import 'foundation/_base.scss';
+@import 'foundation/_widthsHeights.scss';
+@import 'foundation/_colors.scss';
 
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
 
@@ -16,7 +17,7 @@ $SUICIDE_POOL:
 {
 	@extend %nineOverTen;
 
-	text-align:center;
+	text-align: center;
 }
 
 .poolRowHeader

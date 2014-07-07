@@ -3,6 +3,8 @@
 @import 'foundation/_colors.scss';
 @import 'foundation/_fonts.scss';
 @import 'foundation/_sharedElements.scss';
+@import 'foundation/_animations.scss';
+@import 'foundation/_widthsHeights.scss';
 
 /* ----------------------- GENERAL STYLING ----------------------------- */
 
@@ -155,7 +157,7 @@
 	& > .selected
 	{
 		// Set up a triangular indicator to note the selected menu items and take care in positioning it
-		@include triangleIndicator($direction: right, $width: 10px, $color: $darkGrayTheme);
+		@include triangleIndicator($direction: right, $width: 10px, $color: map-get($COLORS, darkGrayTheme));
 		@include shiftTransition($x: 50%, $y: 50%);
 	}
 }
@@ -173,7 +175,7 @@
 		bottom: 5px;
 	}
 
-	background-color: $whiteTheme;
+	background-color: map-get($COLORS, whiteTheme);
 	cursor: pointer;
 	height: 0px;
 
