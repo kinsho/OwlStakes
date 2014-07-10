@@ -84,7 +84,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				// Define a reference to the main controller file to link any scripts associated with the child controller
 				if ( defined($childControllerName.'::SCRIPT_DIRECTORY') )
 				{
-					$view->requireJsMainFile = self::SCRIPTS_DIRECTORY . constant($childControllerName.'::SCRIPT_DIRECTORY') . self::REQUIRE_JS_MAIN_FILE_NAME;
+					$view->requireJsMainFile = constant($childControllerName.'::SCRIPT_DIRECTORY') . self::REQUIRE_JS_MAIN_FILE_NAME;
 				}
 
 				// Render one view file associated with the child controller if one has been specified
@@ -355,9 +355,10 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			{
 				$view->css = array();
 			}
-
-			$view->css[] = (self::STYLE_DIRECTORY.
-						  $stylesheet.self::STYLE_FILE_EXTENSION);
+			if (file_exists(APP_ROOT . self::STYLE_DIRECTORY.$stylesheet.self::STYLE_FILE_EXTENSION))
+			{
+				$view->css[] = (self::STYLE_DIRECTORY.$stylesheet.self::STYLE_FILE_EXTENSION);
+			}
 		}
 
 		/*
