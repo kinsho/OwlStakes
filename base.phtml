@@ -18,9 +18,8 @@
 		?>
 	</head>
 	<body>
-		<input type='hidden' id='pageObjectName' value='<?=$view->pageName ?>' />
 		<!-- Load all the foundation view files that will be displayed across all pages -->
-			<?php
+		<?php
 			foreach($view->foundationViews as $html)
 			{
 				TOS_REQUIRE_ONCE($html);
@@ -28,7 +27,7 @@
 		?>
 		<div class='content'>
 			<!-- Load all the view files that comprise the main content for this page -->
-			<?php
+		<?php
 			foreach($view->contentViews as $html)
 			{
 				TOS_REQUIRE_ONCE($html);
@@ -44,19 +43,21 @@
 		<script>
 			var require =
 			{
-				baseURL: 'scripts',
+				baseUrl: '/scripts',
 				paths: { jquery : 'library/jquery/jquery' }
 			};
+
 		</script>
 
 		<?php
-		if (isset($view->requireJsMainFile))
-		{
+			if (isset($view->requireJsMainFile))
+			{
 		?>
-		<!-- Load all the script files for this page via the main file specified within the page's directory -->
-		<script src='scripts/library/requirejs/require.js' data-main="<?php=$view->requireJsMainFile ?>"></script>
+				<!-- Load the requireJS library and specify the main file to pull all required dependencies -->
+				<script src='scripts/library/requirejs/require.js' data-main='<?php echo $view->requireJsMainFile ?>'></script>
+
 		<?php
-		}
+			}
 		?>
 
 	</body>
