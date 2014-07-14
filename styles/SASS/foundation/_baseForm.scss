@@ -66,103 +66,6 @@ label
 	}
 }
 
-select, input
-{
-	@include basicFontSettings($size: 13);
-
-	outline:
-	{
-		style: outset;
-		width: 1px;
-		color: #A0A0A0;
-	}
-
-	width: 100%;
-	min-width: 100px;
-	min-height: 20px;
-	background-color: #F8F8F8;
-
-	&:focus
-	{
-		background-color: #FFFFFF;
-
-		border:
-		{
-			color: #000000;
-			width: 2px;
-		}
-	}
-
-/*
-	&[type='checkbox']
-	{
-		// Give some marginal padding to the checkbox
-		margin:
-		{
-			left: 10px;
-			right: 10px;
-		}
-
-		// Do not expand the checkbox beyond the space needed to properly render it
-		width: 0%;
-		min-width: 0px;
-		min-height: 0px;
-		outline-style: none;
-
-		text-align: left;
-	}
-*/
-	&[type='button']
-	{
-		@include majorWhiteFont($size: 18);
-
-		border:
-		{
-			color: $lightBlueTheme;
-			width: 4px;
-			radius: 6px;
-		}
-
-		outline-style: none;
-		width: 20%;
-
-		background-color: $darkBlueTheme;
-
-		&:disabled
-		{
-			opacity: 0.5;	
-		}
-	}
-
-	&.invalid
-	{
-		border:
-		{
-			width: 2px;
-			style: ridge;
-			color: $redTheme;
-		}
-
-		background-color: $lightRedTheme;
-
-		&:focus
-		{
-			background-color: #FFFFFF;
-			border-color: $redTheme;
-		}
-	}
-
-	&:disabled
-	{
-		background-color: $grayTheme;
-
-		outline:
-		{
-			width: 0px;
-		}
-	}
-}
-
 // Special styling for checkboxes
 .checkbox
 {
@@ -230,11 +133,6 @@ select, input
 			box-shadow: inset 3px 2px 6px 0px rgba(0, 0, 0, .3);
 		}
 	}
-}
-
-select > option[disabled='disabled']
-{
-	color: #A0A0A0;
 }
 
 div.odd

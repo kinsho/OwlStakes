@@ -1,9 +1,95 @@
-@import 'vendor/normalize.scss';
+/* ----------------------- IMPORTS ----------------------------- */
+
+@import 'library/normalize.scss';
 
 @import 'foundation/_colors.scss';
 @import 'foundation/_fonts.scss';
 @import 'foundation/_sharedElements.scss';
 @import 'foundation/_widthsHeights.scss';
+
+/* ----------------------- BASIC TAG STYLING ----------------------------- */
+
+input, select
+{
+	@extend %smallFont;
+
+	outline:
+	{
+		style: outset;
+		width: 1px;
+		color: map-get($COLORS, lightWhiteTheme);
+	}
+
+	width: 100%;
+	min-width: 50px;
+	min-height: 20px;
+	background-color: map-get($COLORS, lightWhiteTheme);
+
+	&.invalid
+	{
+		border:
+		{
+			width: 2px;
+			style: ridge;
+			color: map-get($COLORS, redTheme);
+		}
+
+		background-color: map-get($COLORS, lightRedTheme);
+
+		&:focus
+		{
+			background-color: map-get($COLORS, whiteTheme);
+		}
+	}
+
+	&:disabled
+	{
+		outline:
+		{
+			width: 0px;
+		}
+
+		background-color: map-get($COLORS, grayTheme);
+	}
+
+	&:not([type='button']):focus
+	{
+		background-color: map-get($COLORS, whiteTheme);
+
+		border:
+		{
+			color: map-get($COLORS, blackTheme);
+			width: 2px;
+		}
+	}
+
+	&[type='button']
+	{
+		@extend %majorWhiteFont;
+
+		border:
+		{
+			color: map-get($COLORS, lightBlueTheme);
+			width: 2px;
+			radius: 8px;
+		}
+
+		outline-style: none;
+		width: 20%;
+
+		background-color: map-get($COLORS, darkBlueTheme);
+
+		&:disabled
+		{
+			opacity: 0.5;
+		}
+	}
+}
+
+option[disabled='disabled']
+{
+	color: map-get($COLORS, darkGrayTheme);
+}
 
 /* ----------------------- COMMON CLASSES ----------------------------- */
 

@@ -1,3 +1,4 @@
+/* ----------------------- IMPORTS ----------------------------- */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -412,6 +413,12 @@ th {
 
 /* --- Header stylings --- */
 /* --- Normal text fonts --- */
+input, select {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
 .infoRow, .content {
   font-weight: 400;
   font-size: 18px;
@@ -419,6 +426,14 @@ th {
   font-style: normal; }
 
 /* --- Colored fonts --- */
+input[type='button'], select[type='button'] {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: italic;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 0 #000000; }
+
 /* --- Mood fonts --- */
 /* ----------------------- IMPORTS ----------------------------- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
@@ -474,6 +489,12 @@ th {
 
 /* --- Header stylings --- */
 /* --- Normal text fonts --- */
+input, select {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
 .infoRow, .content {
   font-weight: 400;
   font-size: 18px;
@@ -481,6 +502,14 @@ th {
   font-style: normal; }
 
 /* --- Colored fonts --- */
+input[type='button'], select[type='button'] {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: italic;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 0 #000000; }
+
 /* --- Mood fonts --- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
@@ -554,6 +583,42 @@ th {
 .smallHeightener {
   height: 20px;
   display: block; }
+
+/* ----------------------- BASIC TAG STYLING ----------------------------- */
+input, select {
+  outline-style: outset;
+  outline-width: 1px;
+  outline-color: #f8f8f8;
+  width: 100%;
+  min-width: 50px;
+  min-height: 20px;
+  background-color: #f8f8f8; }
+  input.invalid, select.invalid {
+    border-width: 2px;
+    border-style: ridge;
+    border-color: #cc3355;
+    background-color: #ffaaaa; }
+    input.invalid:focus, select.invalid:focus {
+      background-color: white; }
+  input:disabled, select:disabled {
+    outline-width: 0px;
+    background-color: #cdcdcd; }
+  input:not([type='button']):focus, select:not([type='button']):focus {
+    background-color: white;
+    border-color: black;
+    border-width: 2px; }
+  input[type='button'], select[type='button'] {
+    border-color: #eeeeff;
+    border-width: 2px;
+    border-radius: 8px;
+    outline-style: none;
+    width: 20%;
+    background-color: #3399ff; }
+    input[type='button']:disabled, select[type='button']:disabled {
+      opacity: 0.5; }
+
+option[disabled='disabled'] {
+  color: #a0a0a0; }
 
 /* ----------------------- COMMON CLASSES ----------------------------- */
 .infoRow {

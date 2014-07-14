@@ -323,21 +323,25 @@
   width: 0%; }
 
 .leftHandButton {
-  width: 100%; }
+  width: 90%; }
 
 /* ----------------------- GENERAL STYLING ----------------------------- */
 #leftHandContainer {
+  background-color: #d0d0d0;
+  background-image: -webkit-linear-gradient(left, #d0d0d0, white);
+  background-image: -moz-linear-gradient(left, #d0d0d0, white);
+  background-image: -ms-linear-gradient(left, #d0d0d0, white);
+  background-image: -o-linear-gradient(left, #d0d0d0, white);
+  margin-right: 10px;
   padding-top: 15px;
+  padding-bottom: 15px;
   padding-left: 10px;
   padding-right: 20px;
-  border-right-style: solid;
-  border-right-width: 1px;
   width: 10%;
   height: 100%;
   float: left;
   position: fixed;
-  z-index: 1;
-  background-color: #d0d0d0; }
+  z-index: 1; }
 
 .sectionVisible {
   /* Locally defined lists needed here to set multiple transition properties on the log-in module */
@@ -378,9 +382,6 @@
     -o-transform: translate(-50%, 0px);
     opacity: 0.0; }
 
-#forgotPassword {
-  text-align: center; }
-
 .mainItem {
   /* Locally defined lists to set multiple transitions properties on each menu DIV */
   /* @include setAxes3D($x: 0%, $y: top, $z: 0px); */
@@ -410,7 +411,7 @@
   padding-left: 60px;
   border-style: solid;
   border-width: 1px;
-  border-color: #898989;
+  border-color: #a0a0a0;
   border-left-style: none;
   border-right-style: none;
   height: 25px;
@@ -465,7 +466,7 @@
     border-bottom-width: 10px;
     border-bottom-color: transparent;
     border-left-width: 10px;
-    border-left-color: #898989;
+    border-left-color: #a0a0a0;
     transform: translate(50%, 50%);
     -webkit-transform: translate(50%, 50%);
     -moz-transform: translate(50%, 50%);

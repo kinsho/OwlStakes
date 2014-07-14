@@ -11,20 +11,19 @@
 // Generalized styling for the container housing the left-hand menu
 #leftHandContainer
 {
+	@include setGradient($initialColor: map-get($COLORS, lightGrayTheme), $endColor: map-get($COLORS, whiteTheme));
+
+	margin:
+	{
+		right: 10px;
+	}
+
 	padding:
 	{
 		top: 15px;
+		bottom: 15px;
 		left: 10px;
 		right: 20px;
-	}
-
-	border:
-	{
-		right:
-		{
-			style: solid;
-			width: 1px;
-		}
 	}
 
 	width: 10%;
@@ -34,12 +33,11 @@
 
 	position: fixed;
 	z-index: 1;
-	background-color: map-get($COLORS, lightGrayTheme);
 }
 
 .leftHandButton
 {
-	@extend %oneOverOne;
+	@extend %nineOverTen;
 }
 
 .sectionVisible
@@ -62,11 +60,6 @@
 
 		opacity: 0.0;
 	}
-}
-
-#forgotPassword
-{
-	text-align: center;
 }
 
 .mainItem
