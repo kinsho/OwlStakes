@@ -87,4 +87,6 @@ require(['library/d3/d3'], function(d3)
 			.style("text-anchor", "middle")
 			.text(function(d) { return d.data.team; });
 	};
+
+	generatePieChart();
 });

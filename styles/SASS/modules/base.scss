@@ -9,15 +9,45 @@
 
 /* ----------------------- BASIC TAG STYLING ----------------------------- */
 
+label
+{
+	@extend %smallCardoFont;
+
+	margin:
+	{
+		left: 15px;
+		right: 15px;
+	}
+
+	white-space: nowrap;
+
+	&.requiredMarker:after
+	{
+		content: '*';
+
+		margin:
+		{
+			left: 5px;
+		}
+
+		color: map-get($COLORS, darkRedTheme);
+	}
+}
+
 input, select
 {
 	@extend %smallFont;
+
+	margin:
+	{
+		bottom: 10px;
+	}
 
 	outline:
 	{
 		style: outset;
 		width: 1px;
-		color: map-get($COLORS, lightWhiteTheme);
+		color: map-get($COLORS, grayTheme);
 	}
 
 	width: 100%;
@@ -69,13 +99,16 @@ input, select
 
 		border:
 		{
-			color: map-get($COLORS, lightBlueTheme);
-			width: 2px;
-			radius: 8px;
+			color: map-get($COLORS, darkBlueTheme);
+			width: 4px;
+			radius: 15px;
 		}
 
-		outline-style: none;
-		width: 20%;
+		outline:
+		{
+			style: none;
+			width: 0px;
+		}
 
 		background-color: map-get($COLORS, darkBlueTheme);
 
@@ -91,6 +124,13 @@ option[disabled='disabled']
 	color: map-get($COLORS, darkGrayTheme);
 }
 
+a
+{
+	@extend %smallBluerFont;
+
+	text-decoration: none;
+}
+
 /* ----------------------- COMMON CLASSES ----------------------------- */
 
 .infoRow
@@ -103,6 +143,11 @@ option[disabled='disabled']
 	@include hintTip();
 }
 
+.checkbox
+{
+	@include checkbox();
+}
+
 .pageBreak
 {
 	@extend %pageBreak;
@@ -113,9 +158,16 @@ option[disabled='disabled']
 	@extend %tinyHeightener;
 }
 
+// The following classes provide for some quick and dirty styling that can be freely applied
+// across the application
 .noDisplay
 {
 	display: none;
+}
+
+.centerAlign
+{
+	text-align: center;
 }
 
 // The following three classes will be used primarily to help indicate the nature of any messages

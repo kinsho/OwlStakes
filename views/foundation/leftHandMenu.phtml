@@ -1,5 +1,5 @@
 <?php
-	$userLoggedIn = array_key_exists('userSession', $_SESSION);
+	$userLoggedIn = (isset($_SESSION)) ? array_key_exists('userSession', $_SESSION) : false;
 ?>
 
 <div id='leftHandContainer' class='rightBorder'>
@@ -16,14 +16,15 @@
 ?>
 	<div id='logIn' class="<?=$userLoggedIn ? 'noDisplay' : '' ?> logInModulesAnimations">
 		<form id='logInForm'>
-			<div class='center'>
-				<label for='logInFormUserName'>User Name</label><br /><input type='text' name='username' id='logInFormUserName' />
-				<br /><br />
-				<label for='logInFormPassword'>Password</label><br /><input type='password' name='password' id='logInFormPassword' />
-				<br /><br /><br />
+			<div class='centerAlign'>
+				<label for='logInFormUserName'>User Name</label><br />
+				<input type='text' name='username' id='logInFormUserName' />
+				
+				<label for='logInFormPassword'>Password</label><br />
+				<input type='password' name='password' id='logInFormPassword' />
+				
 				<input type='button' id='logInButton' class='leftHandButton' value='Log In' />
 			</div>
-			<br />
 			<div class='checkbox'>
 				<input type='checkbox' id='rememberMeLogIn' name='rememberMe' />
 				<label for='rememberMeLogIn'>Remember Me</label>

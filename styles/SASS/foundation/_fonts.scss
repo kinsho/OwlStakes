@@ -95,6 +95,12 @@ $FONTS:
 	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, darkBlueTheme));
 }
 
+// Mixin to produce a stylized blue font, typically used for links
+@mixin darkerBlueFont($size, $family: Cardo, $style: normal, $weight: 700)
+{
+	@include basicFontSettings($size: $size, $family: $family, $style: $style, $weight: $weight, $color: map-get($COLORS, darkerBlueTheme));
+}
+
 // Mixin to produce a positive-themed font to relay good news to users
 @mixin positiveFont($size, $family: Cardo, $style: normal, $weight: 700)
 {
@@ -193,7 +199,7 @@ $FONTS:
 
 %majorWhiteFont
 {
-	@include sexyWhiteFont($size: map-get($FONTS, largeFontSize));
+	@include sexyWhiteFont($size: map-get($FONTS, regularPlusFontSize));
 }
 
 %veryMajorWhiteFont
@@ -219,6 +225,11 @@ $FONTS:
 %largeBlueFont
 {
 	@include blueFont($size: map-get($FONTS, largeFontSize));
+}
+
+%smallBluerFont
+{
+	@include darkerBlueFont($size: map-get($FONTS, smallFontSize));
 }
 
 /* --- Mood fonts --- */

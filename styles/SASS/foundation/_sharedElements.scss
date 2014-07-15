@@ -86,14 +86,15 @@
 }
 
 /*
- * Mix-in responsible for setting styling on infoTabs
+ * Mix-in responsible for setting basic styling for any tag
  *
- * @param [$topOrBottom] - value indicating whether the infoTab is to be placed on top of some container
- *		or on the bottom of a container. The only valid values here are 'top' or 'bottom'
+ * @param [$topOrBottom] - value indicating whether the tab is to be placed on top of
+ *		some container or on the bottom of a container. The only valid values here are
+ *		'top' or 'bottom'
  *
  * @author kinsho
  */
-@mixin infoTab($topOrBottom: top)
+@mixin tab($topOrBottom: top)
 {
 	border:
 	{
@@ -128,8 +129,8 @@
 }
 
 /*
- * Mixin responsible for generating a quick little label that can be placed next to text in order to adorn that
- * text with an additional qualifier
+ * Mixin responsible for generating a quick little label that can be placed next to text in 
+ * order to adorn that text with an additional qualifier
  *
  * @param $content - the text to put into the label
  *
@@ -302,8 +303,8 @@
 }
 
 /*
- * Mixin responsible for surrounding the target element with horizontal rules in order to
- * emphasize the text within the element
+ * Mixin responsible for surrounding the target element with horizontal rules in order to emphasize
+ * the text within the element
  *
  * @author kinsho
  */
@@ -353,8 +354,8 @@
 	height: $diameter;
 	background-color: $color;
 
-	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50% allows
-	// us to generate a circular container.
+	// No content clause is required here, despite the hard-coded radius. Specifying a border radius of 50%
+	// allows us to generate a circular container.
 }
 
 /*
@@ -414,4 +415,72 @@
 	}
 
 	@content;
+}
+
+/*
+ * Mix-in is responsible for generating an incredibly fancy checkbox
+ *
+ * @param $dimensions - the height/width of the resulting checkbox to generate. Note that the checkbox
+ *		will have its width equal to its height, for aesthetic purposes.
+ *
+ * @author kinsho
+ */
+@mixin checkbox($dimensions: 16px)
+{
+	margin:
+	{
+		left: 15px;
+	}
+
+	& > input
+	{
+		display: none;
+
+		// Styling for the check within the box
+		&:checked + label:before
+		{
+			@extend %smallFont;
+
+			content: "\2713";
+
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+			text-align: center;  
+			line-height: 15px;
+		}
+	}
+
+	& > label
+	{
+
+		// The actual checkbox is designed right here
+		&:before
+		{
+			// Knowing that the checkbox is absolutely positioned, it will need to be spaced
+			// away from its corresponding label
+			margin:
+			{
+				right: 25px;
+			}
+
+			border:
+			{
+				style: solid;
+
+				width: 1px;
+				radius: 5px;
+			}
+
+			content: "";
+			display: inline-block;
+
+			position: absolute;
+			left: 10px;
+
+			width: $dimensions;
+			height: $dimensions;
+
+			background-color: map-get($COLORS, lightGrayTheme);
+			box-shadow: inset 3px 2px 6px 0px rgba(0, 0, 0, .3);
+		}
+	}
 }
