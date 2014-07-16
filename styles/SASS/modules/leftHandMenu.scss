@@ -49,7 +49,7 @@
 .sectionVisible
 {
 	/* Locally defined lists needed here to set multiple transition properties on the log-in module */
-	$transitionProperties: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+	$transitionProperties: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
 	$webkitTransitionProperties: opacity, -webkit-transform;
 	$transitionTimings: linear, linear;
 	$transitionDurations: 0.5s, 0.5s;
@@ -63,8 +63,6 @@
 	&.sectionGoLeft
 	{
 		@include shiftTransition($x: -50%);
-
-		opacity: 0.0;
 	}
 }
 
