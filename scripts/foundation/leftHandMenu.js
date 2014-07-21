@@ -12,30 +12,26 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 		SECTION_SHIFT_LEFT_CLASS = 'sectionGoLeft',
 
 		FORGOT_PASSWORD_URL = '/logIn/forgotPassword',
-		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!'.
-		FORGOT_PASSWORD_SUCCESS_BODY = "An e-mail has been sent to <b>%e</b> containing your user name and instructions on how to " +
-			"reset your password. Just follow the instructions and you'll be fine."
+		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!',
+		FORGOT_PASSWORD_SUCCESS_BODY = "An e-mail has been sent to <b>%e</b> containing your user name " +
+			"and instructions on how to reset your password. Just follow the instructions and you'll be fine.";
 
 // ----------------- PRIVATE FUNCTIONS -----------------------------
 		/**
 		  * Private function serves to manage the fading and shifting animations used to control the
 		  * entrance and exit of the left-hand side forms
 		  *
-		  * @param {$} $moduleElement - the module container that needs to be animated upon
-		  * @param {Boolean} [isFadingOut] - a flag to indicate whether the module needs to be faded outward or inward
+		  * @param {jQuery} $exitModuleElement - the module container that needs to be slid out
+          * @param {jQuery} $comingModuleElement - the module container that needs to be slid into the view
 		  *
 		  * @author kinsho
 		  */
-	var fadeControl = function($moduleElement, isFadingOut)
+	var fadeControl = function($exitModuleElement, $comingModuleElement)
 		{
-			if (isFadingOut)
-			{
-				$moduleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
-			}
-			else
-			{
-				$moduleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
-			}
+			$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
+
+
+			$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
 		};
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -69,7 +65,7 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 				hideSubMenuItems: function()
 				{
 					var leftHandMenu = document.getElementById(LEFT_HAND_MENU),
-						$subItemContainers = $(leftHadMenu).find('.subItems');
+						$subItemContainers = $(leftHandMenu).find('.subItems');
 
 					// Iterate over each sub-menu container and set their heights to 0 manually to slide them out of view
 					// Note the horrible use of CSS here to achieve the sliding effect I so desire
