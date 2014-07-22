@@ -1,5 +1,7 @@
 define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, utility, formSubmit)
 {
+	'use strict';
+
 // ----------------- ENUM/CONSTANTS -----------------------------
 	var LEFT_HAND_CONTAINER = 'leftHandContainer',
 		LEFT_HAND_MENU = 'leftHandMenu',
@@ -29,7 +31,6 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 	var fadeControl = function($exitModuleElement, $comingModuleElement)
 		{
 			$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
-
 
 			$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
 		};

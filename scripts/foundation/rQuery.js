@@ -15,7 +15,7 @@ define(['jquery', 'superToolTip', 'utility', 'constants'], function($, superTool
 		AUTOCOMPLETE_GENERIC_SUGGESTION_BOX_CLASS = 'genericAutocompleteSuggestionBox',
 		AUTOCOMPLETE_MODAL_GENERIC_SUGGESTION_BOX_CLASS = 'genericModalAutocompleteSuggestionBox',
 		AUTOCOMPLETE_NO_SUGGESTIONS_FOUND = ' --- No Matches Found --- ',
-		MODAL_ABSOLUTE_POSITIONING_OFFSET = 8, // If absolutely positioning an element within a modal, account for the modal's border width
+		MODAL_ABSOLUTE_POSITIONING_OFFSET = 8; // If absolutely positioning an element within a modal, account for the modal's border width
 
 // ----------------- MODULE DEFINITION --------------------------
 	var my =

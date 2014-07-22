@@ -1,3 +1,7 @@
+/**
+ * @module utility
+ */
+
 define([], function()
 {
 	"use strict";
@@ -14,7 +18,7 @@ define([], function()
 		  * @param {Function} handlerFunction - the function to be throttled
 		  * @param {Number} throttlerFrequency - the max number of times the function can execute at once
 		  *
-		  * @return {Function} - a wrapper which will control access to the debounced function
+		  * @returns {Function} a wrapper which will control access to the debounced function
 		  *
 		  * @author kinsho
 		  */
@@ -53,7 +57,7 @@ define([], function()
 		  *
 		  * @param {Object} obj - the object to be cloned
 		  *
-		  * @return {Object} - comprised of all the unique key/value pairs found within the passed object
+		  * @returns {Object} comprised of all the unique key/value pairs found within the passed object
 		  *
 		  * @author kinsho
 		  */
@@ -89,7 +93,19 @@ define([], function()
 			var view = this,
 				transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
 				listenerWrapper,
-				i;
+				i,
+
+				/**
+				 * Function to be invoked when the passed listener function can only be invoked after a certain amount
+				 * of time has passed (as indicated by whether a value has been passed into the timeoutDelay parameter)
+				 */
+				timeoutFunction = function()
+				{
+					window.setTimeout(function()
+					{
+						listenerWrapper();
+					}, timeoutDelay);
+				};
 
 			// If the listener has to be removed after it has been invoked just once, set up a wrapper function
 			// that removes the listener after directly invoking it
@@ -111,13 +127,7 @@ define([], function()
 			{
 				if (timeoutDelay)
 				{
-					element.addEventListener(transitions[i], function(event)
-					{
-						window.setTimeout(function()
-						{
-							listenerWrapper(event);
-						}, timeoutDelay);
-					}, false);
+					element.addEventListener(transitions[i], timeoutFunction, false);
 				}
 				else
 				{
@@ -151,7 +161,7 @@ define([], function()
 		  *
 		  * @param {HTMLElement} el - the element to examine here
 		  *
-		  * @return {Object} - contains both the x and y coordinates that correspond directly to the passed element
+		  * @returns {Object} contains both the x and y coordinates that correspond directly to the passed element
 		  *
 		  * @author quirksmode.org
 		  * @author kinsho
