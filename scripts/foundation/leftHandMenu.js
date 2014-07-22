@@ -1,4 +1,8 @@
-define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, utility, formSubmit)
+/**
+ * @module leftHandMenu
+ */
+
+define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/formSubmit'], function($, constants, utility, formSubmit)
 {
 	'use strict';
 
@@ -6,12 +10,15 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 	var LEFT_HAND_CONTAINER = 'leftHandContainer',
 		LEFT_HAND_MENU = 'leftHandMenu',
 		LOG_IN_MODULE = 'logInModule',
+		LOG_IN_LINK = 'logInLink',
 		FORGOT_PASSWORD_MODULE = 'forgotPasswordModule',
 		FORGOT_PASSWORD_FORM = 'forgotPasswordForm',
+		FORGOT_PASSWORD_LINK = 'forgotPasswordLink',
 
 		SUB_MENU_ITEM_HEIGHT = 55,
 		SELECTED_CLASS = 'selected',
 		SECTION_SHIFT_LEFT_CLASS = 'sectionGoLeft',
+		NO_DISPLAY = 'noDisplay',
 
 		FORGOT_PASSWORD_URL = '/logIn/forgotPassword',
 		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!',
@@ -23,16 +30,28 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 		  * Private function serves to manage the fading and shifting animations used to control the
 		  * entrance and exit of the left-hand side forms
 		  *
-		  * @param {jQuery} $exitModuleElement - the module container that needs to be slid out
-          * @param {jQuery} $comingModuleElement - the module container that needs to be slid into the view
+		  * @param {jquery} exitModuleElement - the module container that needs to be slid out
+          * @param {jquery} comingModuleElement - the module container that needs to be slid into the view
+		  * @param {Function} [callback] - additional logic to invoke after the animations have ended
 		  *
 		  * @author kinsho
 		  */
-	var fadeControl = function($exitModuleElement, $comingModuleElement)
+	var fadeControl = function($exitModuleElement, $comingModuleElement, callback)
 		{
 			$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
+			$comingModuleElement.removeClass(NO_DISPLAY);
 
-			$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
+			// Fade in the new module once the old module has slid away from view
+			utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
+			{
+				$exitModuleElement.addClass(NO_DISPLAY);
+				$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
+
+				if (callback)
+				{
+					utility.setTransitionListeners($comingModuleElement[0], 0, true, callback);
+				}
+			});
 		};
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -77,70 +96,20 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 				},
 
 				/**
-				  * Function responsible for presenting the form that will aid the user in logging in to his account
-				  * if the user has forgotten his user name and/or password
+				  * Function responsible for sliding left-hand modules in and out of the viewport
 				  *
 				  * @param {Event} event - the event responsible for invoking this function
 				  *
 				  * @author kinsho
 				  */
-				shiftInForgotPasswordForm: function(event)
+				sectionSlider: function(event)
 				{
-					var view = event.data.view,
-						logInModule = document.getElementById(LOG_IN_MODULE),
-						$logInModule = $(logInModule),
-						$forgotPasswordModule = $(document.getElementById(FORGOT_PASSWORD_MODULE)),
-						delayedFunction = function()
-						{
-							// Insert the forgot password module back into the DOM and take out the log-in module instead
-							$forgotPasswordModule.removeClass(constants.styles.NO_DISPLAY);
-							$logInModule.addClass(constants.styles.NO_DISPLAY);
+					var $target = $(event.currentTarget),
+						oldModule = $target.closest('leftHandSection')[0],
+						newModule = document.getElementById(event.data.newModule),
+						callback = event.data.callback;
 
-							// Using a timeout to ensure that the forgot password module is fully inserted back into
-							// the DOM before any further animations
-							window.setTimeout(function()
-							{
-								view.fadeControl($forgotPasswordModule, false);
-							}, 150);
-						};
-
-					// Fade out the log-in module
-					view.fadeControl($logInModule, true);
-
-					utility.setTransitionListeners(logInModule, 0, true, delayedFunction);
-				},
-
-				/**
-				  * Function responsible for presenting the form that the user can use to log in to the main web site
-				  *
-				  * @param {Event} event - the event responsible for invoking this function
-				  *
-				  * @author kinsho
-				  */
-				shiftInLogInForm: function(event)
-				{
-					var view = event.data.view,
-						forgotPasswordModule = document.getElementById(FORGOT_PASSWORD_MODULE),
-						$forgotPasswordModule = $(forgotPasswordModule),
-						$logInModule = $(document.getElementById(LOG_IN_MODULE)),
-						delayedFunction = function()
-						{
-							// Insert the log-in module back into the DOM and take out the forgot password module instead
-							$forgotPasswordModule.addClass(constants.styles.NO_DISPLAY);
-							$logInModule.removeClass(constants.styles.NO_DISPLAY);
-
-							// Using a timeout to ensure that the log-in module is fully inserted back into
-							// the DOM before any further animations
-							window.setTimeout(function()
-							{
-								view.fadeControl(logInModule, false);
-							}, 150);
-						};
-
-					// Fade out the forgot password module
-					view.fadeControl($forgotPasswordModule, true);
-
-					utilityFunctions.setTransitionListeners(forgotPasswordModule, 0, true, delayedFunction);
+					fadeControl(oldModule, newModule, callback);
 				},
 
 				/**
@@ -247,7 +216,7 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 			}
 		}
 
-// ----------------- LISTENER SET-UP --------------------------
+// ----------------- LISTENERS --------------------------
 
 		var $mainItems = $('.mainItem'),
 			$subItems = $('.subItems'),
@@ -256,16 +225,16 @@ define(['jquery', 'constants', 'utility', 'formSubmit'], function($, constants, 
 			hideMenuItemsFunction = utility.debouncer(my.showHideSubMenuItems, 1, 50);
 
 		// Listeners for the left-hand navigation menu
-		$mainItems.on('click', my.redirectUser);
-		$subItems.children('div').on('click', my.redirectUser);
-		$subItemMasters.on('mouseover', my.hideMenuItemsFunction);
-		$leftHandContainer.on('mouseout', my.hideMenuItemsFunction);
+//		$mainItems.on('click', my.redirectUser);
+//		$subItems.children('div').on('click', my.redirectUser);
+//		$subItemMasters.on('mouseover', my.hideMenuItemsFunction);
+//		$leftHandContainer.on('mouseout', my.hideMenuItemsFunction);
 
-		// Listeners for the other left-hand modules
-		$('#logInButton').on('click', my.logIn);
-		$('#forgotPasswordButton').on('click', my.forgotPasswordSubmit);
-		$('#forgotPasswordLink').on('click', my.shiftInForgotPasswordForm);
-		$('#logInLink').on('click', my.shiftInLogInForm);
+		// Listeners for the left-hand modules
+//		$('#logInButton').on('click', my.logIn);
+//		$('#forgotPasswordButton').on('click', my.forgotPasswordSubmit);
+		$('#' + FORGOT_PASSWORD_LINK).on('click', { newModule : FORGOT_PASSWORD_MODULE }, my.sectionSlider);
+		$('#' + LOG_IN_LINK).on('click', { newModule : LOG_IN_MODULE }, my.sectionSlider);
 
 // ----------------- END --------------------------
 		return my;

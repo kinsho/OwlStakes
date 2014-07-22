@@ -14,7 +14,7 @@
 	if ( !($userLoggedIn) )
 	{
 ?>
-	<div id='logIn' class="<?=$userLoggedIn ? 'noDisplay' : 'sectionVisible' ?>" >
+	<div id='logInModule' class="leftHandSection <?=$userLoggedIn ? 'noDisplay' : '' ?>" >
 
 		<form id='logInForm'>
 
@@ -33,12 +33,12 @@
 
 			<div class='smallHeightener'></div>
 
-			<a id='forgotPasswordLink' href='/'>Forgot your user name or password?</a>
+			<a id='forgotPasswordLink'>Forgot your user name or password?</a>
 		</form>
 
 	</div>
 
-	<div id='forgotPassword' class='noDisplay'>
+	<div id='forgotPasswordModule' class='leftHandSection noDisplay'>
 
 		<form id='forgotPasswordForm'>
 
@@ -51,7 +51,7 @@
 
 			<div class='smallHeightener'></div>
 
-			<a id='logInLink' href='/'>Go back to the log-in form</a>
+			<a id='logInLink'>Go back to the log-in form</a>
 		</form>
 
 	</div>

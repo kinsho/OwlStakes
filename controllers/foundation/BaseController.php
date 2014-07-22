@@ -56,8 +56,9 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			// Fetch the name of the class that invoked this function
 			$childControllerName = get_called_class();
 
+
 			// Pull all the library script files
-			self::setScriptsFromDirectory( self::LIBRARY_DIRECTORY );
+			// self::setScriptsFromDirectory( self::LIBRARY_DIRECTORY );
 
 			// Pull all the library stylesheets
 			self::setStylesheetsFromDirectory( self::LIBRARY_DIRECTORY );
@@ -70,8 +71,11 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 				$view->requireJsMainFile = self::SCRIPTS_DIRECTORY . constant($childControllerName.'::GENERIC_NAME') . self::REQUIRE_JS_MAIN_FILE_NAME;
 
 				self::setStylesheet( constant($childControllerName.'::GENERIC_NAME') );
-				self::setScriptsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
+				// self::setScriptsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
 				self::setViewsFromDirectory( constant($childControllerName.'::GENERIC_NAME') );
+
+				// Define a reference to the main controller file to link any scripts associated with the child controller
+				$view->requireJsMainFile = constant($childControllerName.'::GENERIC_NAME') . self::REQUIRE_JS_MAIN_FILE_NAME;
 			}
 			else
 			{
@@ -99,9 +103,6 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 					self::setViewsFromDirectory( constant($childControllerName.'::VIEW_DIRECTORY') );
 				}
 			}
-
-			// Pull all the foundation script files
-			self::setScriptsFromDirectory( self::FOUNDATION_DIRECTORY );
 
 			// Pull all the foundation stylesheets
 			self::setStylesheetsFromDirectory( self::STYLE_FOUNDATION_DIRECTORY );

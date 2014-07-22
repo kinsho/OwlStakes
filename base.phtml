@@ -35,7 +35,7 @@
 			?>
 		</div>
 
-		<!-- 
+		<!--
 			Configure the requireJS engine before using the library to pull external JavaScript files
 			Unfortunately, such configuration requires us to use inline JavaScript in order to adhere to
 			the DRY design methodology as best as possible
@@ -44,7 +44,14 @@
 			var require =
 			{
 				baseUrl: '/scripts',
-				paths: { jquery : 'library/jquery/jquery' }
+				paths:
+				{
+					jquery : 'library/jquery/jquery'
+				},
+				deps:
+				[
+					'foundation/leftHandMenu'
+				]
 			};
 
 		</script>
@@ -56,6 +63,13 @@
 				<!-- Load the requireJS library and specify the main file to pull all required dependencies -->
 				<script src='scripts/library/requirejs/require.js' data-main='<?php echo $view->requireJsMainFile ?>'></script>
 
+		<?php
+			}
+			else
+			{
+		?>
+				<!-- Load the requireJS library without specifying a main file, pulling only simple foundational files -->
+				<script src='scripts/library/requirejs/require.js'></script>
 		<?php
 			}
 		?>
