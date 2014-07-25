@@ -227,6 +227,11 @@ $FONTS:
 	@include blueFont($size: map-get($FONTS, largeFontSize));
 }
 
+%tinyBluerFont
+{
+	@include darkerBlueFont($size: map-get($FONTS, tinyFontSize));
+}
+
 %smallBluerFont
 {
 	@include darkerBlueFont($size: map-get($FONTS, smallFontSize));

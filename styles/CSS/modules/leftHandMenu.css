@@ -76,6 +76,13 @@
   font-style: normal; }
 
 /* --- Colored fonts --- */
+#forgotPasswordLink, #logInLink {
+  font-weight: 700;
+  font-size: 12px;
+  font-family: Cardo, sans-serif;
+  font-style: normal;
+  color: #0101df; }
+
 /* --- Mood fonts --- */
 /* ----------------------- IMPORTS ----------------------------- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
@@ -153,6 +160,13 @@
   font-style: normal; }
 
 /* --- Colored fonts --- */
+#forgotPasswordLink, #logInLink {
+  font-weight: 700;
+  font-size: 12px;
+  font-family: Cardo, sans-serif;
+  font-style: normal;
+  color: #0101df; }
+
 /* --- Mood fonts --- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
@@ -346,8 +360,8 @@
   padding-bottom: 15px;
   padding-left: 10px;
   padding-right: 20px;
-  width: 10%;
   height: 100%;
+  width: 15%;
   float: left;
   position: fixed;
   z-index: 1; }
@@ -356,44 +370,53 @@
   margin-top: 10px;
   margin-bottom: 10px; }
 
-.sectionVisible {
+.leftHandSection {
   /* Locally defined lists needed here to set multiple transition properties on the log-in module */
-  transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
   transition-timing-function: linear, linear;
-  transition-duration: 0.5s, 0.5s;
+  transition-duration: 0.2s, 0.2s;
   transition-delay: 0s, 0s;
-  -webkit-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -webkit-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
   -webkit-transition-timing-function: linear, linear;
-  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-duration: 0.2s, 0.2s;
   -webkit-transition-delay: 0s, 0s;
-  -moz-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -moz-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
   -moz-transition-timing-function: linear, linear;
-  -moz-transition-duration: 0.5s, 0.5s;
+  -moz-transition-duration: 0.2s, 0.2s;
   -moz-transition-delay: 0s, 0s;
-  -ms-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -ms-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
   -ms-transition-timing-function: linear, linear;
-  -ms-transition-duration: 0.5s, 0.5s;
+  -ms-transition-duration: 0.2s, 0.2s;
   -ms-transition-delay: 0s, 0s;
-  -o-transition-property: opacity, transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
+  -o-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
   -o-transition-timing-function: linear, linear;
-  -o-transition-duration: 0.5s, 0.5s;
+  -o-transition-duration: 0.2s, 0.2s;
   -o-transition-delay: 0s, 0s;
   /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
   opacity: 1.0; }
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .sectionVisible {
+    .leftHandSection {
       transition-property: opacity, -webkit-transform;
       -webkit-transition-property: opacity, -webkit-transform;
       -webkit-transition-timing-function: linear, linear;
-      -webkit-transition-duration: 0.5s, 0.5s;
+      -webkit-transition-duration: 0.2s, 0.2s;
       -webkit-transition-delay: 0s, 0s; } }
-  .sectionVisible.sectionGoLeft {
-    transform: translate(-50%, 0px);
-    -webkit-transform: translate(-50%, 0px);
-    -moz-transform: translate(-50%, 0px);
-    -ms-transform: translate(-50%, 0px);
-    -o-transform: translate(-50%, 0px);
-    opacity: 0.0; }
+  .leftHandSection.pullRight {
+    transform: translate(20px, 0px);
+    -webkit-transform: translate(20px, 0px);
+    -moz-transform: translate(20px, 0px);
+    -ms-transform: translate(20px, 0px);
+    -o-transform: translate(20px, 0px); }
+    .leftHandSection.pullRight.goLeft {
+      transform: translate(-150%, 0px);
+      -webkit-transform: translate(-150%, 0px);
+      -moz-transform: translate(-150%, 0px);
+      -ms-transform: translate(-150%, 0px);
+      -o-transform: translate(-150%, 0px);
+      transition-timing-function: ease-in;
+      transition-duration: 0.5s;
+      -webkit-transition-timing-function: ease-in;
+      -webkit-transition-duration: 0.5s; }
 
 .mainItem {
   /* Locally defined lists to set multiple transitions properties on each menu DIV */

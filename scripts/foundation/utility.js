@@ -90,22 +90,19 @@ define([], function()
 		  */
 		setTransitionListeners: function(element, timeoutDelay, removeAfterOneUse, listenerFunction)
 		{
-			var view = this,
+			var my = this,
 				transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
-				listenerWrapper,
-				i,
-
-				/**
-				 * Function to be invoked when the passed listener function can only be invoked after a certain amount
-				 * of time has passed (as indicated by whether a value has been passed into the timeoutDelay parameter)
-				 */
+				// Used to account for any time delays that need to be enforced prior to the invocation
+				// of the actual listener
 				timeoutFunction = function()
 				{
 					window.setTimeout(function()
 					{
 						listenerWrapper();
-					}, timeoutDelay);
-				};
+					}, timeoutDelay || 0);
+				},
+				listenerWrapper,
+				i;
 
 			// If the listener has to be removed after it has been invoked just once, set up a wrapper function
 			// that removes the listener after directly invoking it
@@ -114,7 +111,7 @@ define([], function()
 				listenerWrapper = function()
 				{
 					listenerFunction();
-					view.removeEventListener(element, listenerFunction);
+					my.removeTransitionListeners(element, timeoutFunction);
 				};
 			}
 			else
@@ -125,14 +122,7 @@ define([], function()
 			// Set all the logic to fire the listener upon the end of any transition made by that element
 			for (i = transitions.length - 1; i >= 0; i -= 1)
 			{
-				if (timeoutDelay)
-				{
-					element.addEventListener(transitions[i], timeoutFunction, false);
-				}
-				else
-				{
-					element.addEventListener(transitions[i], listenerWrapper, false);
-				}
+				element.addEventListener(transitions[i], timeoutFunction, false);
 			}
 		},
 
@@ -152,6 +142,7 @@ define([], function()
 
 			for (i = transitions.length - 1; i >= 0; i -= 1)
 			{
+				element.removeEventListener(transitions[i], listenerFunction, true);
 				element.removeEventListener(transitions[i], listenerFunction, false);
 			}
 		},

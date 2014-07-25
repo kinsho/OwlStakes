@@ -1,4 +1,4 @@
--define(['jquery', 'constants', 'utility'], function($, constants, utility)
+-define(['jquery', 'foundation/constants', 'foundation/utility'], function($, constants, utility)
 {
 // ----------------- ENUM/CONSTANTS --------------------------
 	var SHIFT_TRANSITION =
@@ -23,16 +23,16 @@
 			CONTAINER: 'serverMessageContainer'
 		},
 
-		NATURES:
+		NATURES =
 		{
 			POSITIVE: 0,
 			NEGATIVE: 1,
 			NEUTRAL: 2
 		},
 
-		SUCCESS_HEADER_TEXT: 'Success!',
-		SUCCESS_BODY_TEXT: 'Done! Happy?',
-		ERRORS_HEADER_TEXT: 'We may have a problem here...';
+		SUCCESS_HEADER_TEXT = 'Success!',
+		SUCCESS_BODY_TEXT = 'Done! Happy?',
+		ERRORS_HEADER_TEXT = 'We may have a problem here...';
 
 // ----------------- PRIVATE FUNCTIONS --------------------------
 		/**
@@ -104,11 +104,11 @@
 	var my =
 	{
 		// Keep these DOM element references public in case they're needed within custom handler functions
-		ERROR_MODAL = 'errorModal',
-		ERROR_MODAL_BODY = 'errorModalContent',
-		SUCCESS_MODAL = 'successModal',
-		SUCCESS_MODAL_HEADER = 'successModalHeader',
-		SUCCESS_MODAL_BODY = 'successModalContent',
+		ERROR_MODAL: 'errorModal',
+		ERROR_MODAL_BODY: 'errorModalContent',
+		SUCCESS_MODAL: 'successModal',
+		SUCCESS_MODAL_HEADER: 'successModalHeader',
+		SUCCESS_MODAL_BODY: 'successModalContent',
 
 		/**
 		  * Function bundles all input/select values from a passed scope into a key-value object

@@ -9,6 +9,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 // ----------------- ENUM/CONSTANTS -----------------------------
 	var LEFT_HAND_CONTAINER = 'leftHandContainer',
 		LEFT_HAND_MENU = 'leftHandMenu',
+		LEFT_HAND_SECTION = 'leftHandSection',
 		LOG_IN_MODULE = 'logInModule',
 		LOG_IN_LINK = 'logInLink',
 		FORGOT_PASSWORD_MODULE = 'forgotPasswordModule',
@@ -17,8 +18,8 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 		SUB_MENU_ITEM_HEIGHT = 55,
 		SELECTED_CLASS = 'selected',
-		SECTION_SHIFT_LEFT_CLASS = 'sectionGoLeft',
-		NO_DISPLAY = 'noDisplay',
+		SECTION_SHIFT_LEFT_CLASS = 'goLeft',
+		SECTION_PULL_RIGHT_CLASS = 'pullRight',
 
 		FORGOT_PASSWORD_URL = '/logIn/forgotPassword',
 		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!',
@@ -38,19 +39,35 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		  */
 	var fadeControl = function($exitModuleElement, $comingModuleElement, callback)
 		{
-			$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
-			$comingModuleElement.removeClass(NO_DISPLAY);
+			$exitModuleElement.addClass(SECTION_PULL_RIGHT_CLASS);
 
-			// Fade in the new module once the old module has slid away from view
 			utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
 			{
-				$exitModuleElement.addClass(NO_DISPLAY);
-				$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
+				$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
 
-				if (callback)
+				// Fade in the new module once the old module has slid away from view
+				utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
 				{
-					utility.setTransitionListeners($comingModuleElement[0], 0, true, callback);
-				}
+					$exitModuleElement.addClass(constants.styles.NO_DISPLAY);
+					$comingModuleElement.removeClass(constants.styles.NO_DISPLAY);
+
+					// Set up a timeout here to ensure that rendering the section back on the page does not
+					// interfere with its sliding into view
+					window.setTimeout(function()
+					{
+						$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
+
+						utility.setTransitionListeners($comingModuleElement[0], 100, true, function()
+						{
+							$comingModuleElement.removeClass(SECTION_PULL_RIGHT_CLASS);
+
+							if (callback)
+							{
+								utility.setTransitionListeners($comingModuleElement[0], 0, true, callback);
+							}
+						});
+					}, 10);
+				});
 			});
 		};
 
@@ -105,11 +122,11 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 				sectionSlider: function(event)
 				{
 					var $target = $(event.currentTarget),
-						oldModule = $target.closest('leftHandSection')[0],
-						newModule = document.getElementById(event.data.newModule),
+						$oldModule = $target.closest('.' + LEFT_HAND_SECTION),
+						$newModule = $('#' + event.data.newModule),
 						callback = event.data.callback;
 
-					fadeControl(oldModule, newModule, callback);
+					fadeControl($oldModule, $newModule, callback);
 				},
 
 				/**
@@ -196,6 +213,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		var leftHandMenu = document.getElementById(LEFT_HAND_MENU),
 			menuItems = leftHandMenu.children,
 			page = window.location.pathname.replace('/', ''),
+			$leftHandSections = $('.' + LEFT_HAND_SECTION),
 			$menuItem,
 			i;
 
@@ -215,7 +233,11 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 				}
 			}
 		}
-
+		// Logic to prepare all the left-hand sections for sliding transitions
+		else
+		{
+			$leftHandSections.filter('.' + constants.styles.NO_DISPLAY).addClass(SECTION_SHIFT_LEFT_CLASS + ' ' + SECTION_PULL_RIGHT_CLASS);
+		}
 // ----------------- LISTENERS --------------------------
 
 		var $mainItems = $('.mainItem'),
