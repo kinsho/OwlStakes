@@ -413,9 +413,9 @@
       -moz-transform: translate(-150%, 0px);
       -ms-transform: translate(-150%, 0px);
       -o-transform: translate(-150%, 0px);
-      transition-timing-function: ease-in;
+      transition-timing-function: ease-in-out;
       transition-duration: 0.5s;
-      -webkit-transition-timing-function: ease-in;
+      -webkit-transition-timing-function: ease-in-out;
       -webkit-transition-duration: 0.5s; }
 
 .mainItem {
