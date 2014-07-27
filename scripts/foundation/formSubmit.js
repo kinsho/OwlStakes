@@ -41,7 +41,7 @@
 		  *
 		  * @param {Array} errors - all the error messages that need to be formatted
 		  *
-		  * @return {String} - a string that is to be directly inserted into the body of the server
+		  * @return {String} a string that is to be directly inserted into the body of the server
 		  *		relay container
 		  *
 		  * @author kinsho
@@ -115,7 +115,7 @@
 		  *
 		  * @param {$} $form - the form from which data will be gathered
 		  *
-		  * @return {Object} - a simple object container for all user inputs
+		  * @return {Object} a simple object container for all user inputs
 		  *
 		  * @author kinsho
 		  */
@@ -143,7 +143,8 @@
 		  * Think of this function as a way to prevent users from triggering all modal-related
 		  * AJAX calls multiple times while an AJAX call is in the midst of being serviced. The function
 		  * also provides a generic way to handle all server-relayed error messages that were generated
-		  * while the user was interacting with a modal
+		  * while the user was interacting with a modal. Additionally, this method can be invoked
+		  * outside the scope of a modal should there be a need to display server errors via a modal.
 		  *
 		  * @param {Object} settings - the settings that will need to be applied for the AJAX call that
 		  *		will be made soon

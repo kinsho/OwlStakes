@@ -139,8 +139,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 				  */
 				forgotPasswordSubmit: function(event)
 				{
-					var view = event.data.view,
-						data = formSubmit.collectData(FORGOT_PASSWORD_FORM),
+					var data = formSubmit.collectData(FORGOT_PASSWORD_FORM),
 						// If the e-mail is successfully sent, relay a message to the user containing that same e-mail address
 						successBody = FORGOT_PASSWORD_SUCCESS_BODY.replace('%e', data.email);
 
