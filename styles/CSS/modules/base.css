@@ -658,7 +658,8 @@ input, select {
     border-radius: 15px;
     outline-style: none;
     outline-width: 0px;
-    background-color: #3399ff; }
+    background-color: #3399ff;
+    cursor: none; }
     input[type='button']:disabled, select[type='button']:disabled {
       opacity: 0.5; }
 

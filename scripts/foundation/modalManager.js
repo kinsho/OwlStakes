@@ -1,4 +1,4 @@
-define(['jquery', 'utility', 'constants'], function($, utility, constants)
+define(['jquery', 'foundation/utility', 'foundation/constants'], function($, utility, constants)
 {
 
 // ----------------- ENUM/CONSTANTS --------------------------

@@ -1,11 +1,13 @@
--define(['jquery', 'foundation/constants', 'foundation/utility'], function($, constants, utility)
+define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundation/modalManager'], function($, JSON, constants, utility, modalManager)
 {
+	'use strict';
+
 // ----------------- ENUM/CONSTANTS --------------------------
 	var SHIFT_TRANSITION =
 		{
-			LEFT: 'shiftServerContainerLeft',
-			SLIGHTLY_RIGHT: 'shiftServerContainerSlightlyRight',
-			RIGHT: 'shiftServerContainerRight'
+			LEFT: 'shiftLeft',
+			SLIGHTLY_RIGHT: 'shiftSlightlyRight',
+			RIGHT: 'shiftRight'
 		},
 
 		OFFSET_FROM_BOTTOM =
@@ -14,13 +16,6 @@
 			20: 'offsetUp20',
 			30: 'offsetUp30',
 			40: 'offsetUp40'
-		},
-
-		SERVER_CONTAINER =
-		{
-			HEADER_CLASS: 'header',
-			BODY_CLASS: 'message',
-			CONTAINER: 'serverMessageContainer'
 		},
 
 		NATURES =
@@ -49,7 +44,8 @@
 		var formatErrors = function(errors)
 			{
 				var listElement,
-					listItem;
+					listItem,
+					i;
 
 				// If only one error needs to be displayed, no need to do anything other than to return
 				// that one error message
@@ -69,8 +65,8 @@
 					listElement.appendChild(listItem);
 				}
 
-				// Return the list element itself. The logic that invoked this will be responsible for placing this element
-				// within the DOM
+				// Return the list element itself. The logic that invoked this will be responsible for placing
+				// this element within the DOM
 				return listItem;
 			},
 
@@ -109,31 +105,27 @@
 		SUCCESS_MODAL: 'successModal',
 		SUCCESS_MODAL_HEADER: 'successModalHeader',
 		SUCCESS_MODAL_BODY: 'successModalContent',
+		SERVER_MESSAGE_CONTAINER: 'serverMessageContainer',
+		SERVER_MESSAGE_CONTAINER_HEADER: 'serverMessageContainerHeader',
+		SERVER_MESSAGE_CONTAINER_BODY: 'serverMessageContainerBody',
 
 		/**
-		  * Function bundles all input/select values from a passed scope into a key-value object
+		  * Function bundles all input/select values from the passed form scope into a key-value object
 		  *
-		  * @param {$} $form - the form from which data will be gathered
+		  * @param {HTMLElement} $form - the form from which data will be gathered
 		  *
 		  * @return {Object} a simple object container for all user inputs
 		  *
 		  * @author kinsho
 		  */
-		collectData: function($form)
+		collectData: function(form)
 		{
-			var $formInput = $form.find('input, select').not('[type=button]').not(':disabled'),
+			var $formInput = $(form).find('input, select').not('[type=button]').not(':disabled'),
 				dataObj = {};
 
 			$formInput.each(function()
 			{
-				if (this.type === 'checkbox')
-				{
-					dataObj[this.name] = this.checked;
-				}
-				else
-				{
-					dataObj[this.name] = this.value;
-				}
+				dataObj[this.name] = (this.type === 'checkbox') ? this.checked : this.value;
 			});
 
 			return dataObj;
@@ -157,31 +149,34 @@
 			var wrapperSettings = utility.cloneObject(settings),
 				button = event.currentTarget,
 				originalErrorFunction = settings.error || function(){},
-				originalCompleteFunction = settings.complete || function(){},
 				originalSuccessFunction = settings.success || function(){},
 
-				// Define an error wrapper that'll invoke a specialized error modal to display any error messages
+				// Define an error wrapper that will invoke a specialized error modal to display any error messages
 				// returned from the server
 				errorHandlerWrapper = function(response, status, errorText)
 				{
-					var responseData = $.parseJSON(response.responseText),
+					var responseData = JSON.parse(response.responseText),
 						errors = responseData.errors;
 
 					// Show the error modal after populating its body with the error message returned from the server
 					document.getElementById(my.ERROR_MODAL_CONTENT).innerHTML = formatErrors(errors);
 					modalManager.openModal(my.ERROR_MODAL);
 
-					// Call the 'error' function that was originally defined within the settings object, provided that one was defined
+					// Call the error function that was originally defined within the settings object, provided that
+					// one was defined
 					originalErrorFunction(response, status, errorText);
 				},
 				successHandlerWrapper = function(data, status, response)
 				{
 					// Open the success modal after populating its body with the message returned from the server
-					document.getElementById(my.SUCCESS_MODAL_HEADER).innerHTML = (settings.successHeader || my.SUCCESS_MODAL_HEADER_TEXT);
-					document.getElementById(my.SUCCESS_MODAL_BODY).innerHTML = (settings.successBody || my.SUCCESS_MODAL_BODY_TEXT);
+					document.getElementById(my.SUCCESS_MODAL_HEADER).innerHTML = (settings.successHeader ||
+						my.SUCCESS_MODAL_HEADER_TEXT);
+					document.getElementById(my.SUCCESS_MODAL_BODY).innerHTML = (settings.successBody ||
+						my.SUCCESS_MODAL_BODY_TEXT);
 					modalManager.openModal(my.SUCCESS_MODAL);
 
-					// Call the 'success' function that was originally defined within the settings object, provided that one was defined
+					// Call the success function that was originally defined within the settings object, provided
+					// that one was defined
 					originalSuccessFunction(data, status, response);
 				};
 
@@ -189,9 +184,6 @@
 			// indicates that the client is already in the midst of handling an AJAX request
 			if ( !($(button).data('disabled')) )
 			{
-				// Disable the linkButton, regardless of whether it's an actual button or a modal navigation link
-				disableEnableSubmitButton(button);
-
 				wrapperSettings.customSuccessHandler = settings.customSuccessHandler || successHandlerWrapper;
 				wrapperSettings.customErrorHandler = settings.customErrorHandler || errorHandlerWrapper;
 
@@ -200,21 +192,18 @@
 		},
 
 		/**
-		  * Function serves to handle AJAX requests and provides generic means with which to handle
-		  * certain types of responses.
+		  * Function serves to handle AJAX requests and provides generic means with which to handle certain types
+		  * of responses.
 		  * 
-		  * @param {Object} settings - the settings which to apply to the AJAX call. All parameters and the
-		  *		destination URL should be present within this object
+		  * @param {Object} settings - the settings which to apply to the AJAX call. All parameters and the back-end
+		  * 	URL should be present within this object
 		  * @param {Event} event - the event that ultimately led to this function being invoked
 		  *
 		  * @author kinsho
 		  */
 		ajax: function(settings, event)
 		{
-			var view = this,
-				wrapperSettings = utility.cloneObject(settings),
-				activeElement = event ? event.currentTarget : {},
-				isActiveElementButton = ((activeElement.tagName === 'INPUT') && (activeElement.type === 'button')),
+			var wrapperSettings = utility.cloneObject(settings),
 				beforeSend = settings.beforeSend || function() {},
 				success = settings.success || function() {},
 				error = settings.error || function() {},
@@ -226,11 +215,11 @@
 
 			/*
 				If the event that ultimately led to this function being invoked is directly associated
-				with an input button, the button should be disabled while this AJAX request is being
-				serviced, thus necessitating the need for a function like the one below. We do not
+				with an input button or link, the button should be disabled while this AJAX request is
+				being serviced, thus necessitating the need for a function like the one below. We do not
 				want multiple AJAX requests to be sent for the same action.
 			 */
-			disableEnableSubmitButton();
+			disableEnableSubmitButton(event.currentTarget);
 
 			/*
 				All the functional callbacks within the AJAX settings object must be wrapped by predefined
@@ -247,8 +236,8 @@
 
 			wrapperSettings.complete = function(response, status)
 			{
-				// Enable the submit button if a button was responsible for the invocation of this
-				// method in the first place
+				// If a button or link was responsible for the invocation of this method in the first place,
+				// ensure that the user is able to click on it again to send another AJAX request
 				disableEnableSubmitButton();
 
 				complete(response, status);
@@ -259,23 +248,23 @@
 				// If a custom success handler has been specified, invoke it and ignore all generic handler code.
 				if (customSuccessHandler)
 				{
-					customSuccessHandler(data);
+					customSuccessHandler(data, status, response);
 				}
 				// Only execute the generic success handling code if the 'doNotNotify' flag was not set
 				else if ( !(settings.doNotNotify) )
 				{
 					// Put up a message indicating the server request was successful
-					my.displayContainer(successHeader || SUCCESS_HEADER_TEXT, successBody || SUCCESS_BODY_TEXT, NATURES.POSITIVE);
+					my.displayContainer(successHeader || SUCCESS_HEADER_TEXT, successBody || SUCCESS_BODY_TEXT,
+						NATURES.POSITIVE);
 
-					// Invoke the original success function that was passed into the function, if one exists
+					// Invoke the original success function that was passed into the function, if one was provided
 					success(data, status, response);
 				}
 			};
 
 			wrapperSettings.error = function(response, status, errorText)
 			{
-				var responseData = $.parseJSON(response.responseText),
-					recaptchaReloadButton = document.getElementById('recaptcha_reload'),
+				var responseData = JSON.parse(response.responseText),
 					errors = responseData.errors;
 
 				if (errors)
@@ -287,29 +276,20 @@
 					}
 					else
 					{
-						// Put up a message indicating the server request failed and describe why
+						// Put up a message informing the user why the server request failed
 						my.displayContainer(ERRORS_HEADER_TEXT, errors, NATURES.NEGATIVE);
 
-						// Invoke the original error function that was passed into the function, if one exists
+						// Invoke the original error function that was passed into the function, if one was provided
 						error(response, status, errorText);
 					}
 				}
-
-				// In case the request involved a reCAPTCHA test that the user failed to pass, make sure that the reCAPTCHA test
-				// client is reloaded with a new word
-				if (!(responseData.recaptchaTestPassed))
-				{
-					$(recaptchaReloadButton).trigger('click');
-				}
 			};
 
-			// Hide all error messages and success indicators from view before initiating the AJAX connection
 			$.ajax(wrapperSettings);
 		},
 
 		/**
-		  * Function displays all messages relayed from the server within a designated
-		  * container meant to hold all response
+		  * Function provides a generic means to convey all messages relayed from the server
 		  *
 		  * @param {String} headerText - the text that will serve as the header of the container
 		  * @param {String} bodyText - the text that will go into the body of the container
@@ -320,11 +300,11 @@
 		  */
 		displayContainer: function(headerText, bodyText, nature)
 		{
-			var view = this,
-				container = document.getElementById(SERVER_MESSAGE_CONTAINER),
+			var container = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER),
 				$container = $(container),
-				$header = $container.children('.' + SERVER_CONTAINER.HEADER_CLASS),
-				$body = $successContainer.children('.' + SERVER_CONTAINER.BODY_CLASS);
+				header = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_HEADER),
+				body = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_BODY),
+				heightRatio;
 
 			$container.addClass(constants.styles.BLOCK_DISPLAY);
 
@@ -342,15 +322,15 @@
 				$container.addClass(constants.styles.NEUTRAL_BACKGROUND_THEME);
 			}
 
-			// Set the text within the container
-			$header.html(headerText);
+			// Set text within the container
+			header.innerHTML(headerText);
 			if (nature === this.NATURES.NEGATIVE)
 			{
-				$body.html(formatErrors(bodyText));
+				body.innerHTML(formatErrors(bodyText));
 			}
 			else
 			{
-				$body.html(bodyText);
+				body.innerHTML(bodyText);
 			}
 
 			// Adjust the location of the relay container depending on its height
@@ -372,10 +352,10 @@
 				$container.addClass(OFFSET_FROM_BOTTOM[40]);
 			}
 
-			// Slide the container into view with a fancy left shift animation followed by a slight
-			// right shift animation
+			// Slide the container into view with a fancy left shift animation followed by a slight pull back to
+			// the right
 			$container.addClass(SHIFT_TRANSITION.LEFT);
-			utility.setTransitionListeners(container, 0, true, function()
+			utility.setTransitionListeners(container, 50, true, function()
 			{
 				$container.addClass(SHIFT_TRANSITION.SLIGHTLY_RIGHT);
 			});
@@ -388,21 +368,20 @@
 		  */
 		hideContainer: function()
 		{
-			var	view = this,
-				$container = $('#' + this.SERVER_MESSAGE_CONTAINER.CONTAINER);
+			var container = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER);
 
 			// First, slide the container off the screen towards the right, then remove all its
 			// custom and transition styling
-			$container.addClass(this.SHIFT_TRANSITION_RIGHT);
-			utility.setTransitionListeners(container, 0, true, function()
+			$(container).addClass(this.SHIFT_TRANSITION_RIGHT);
+			utility.setTransitionListeners(container, 10, true, function()
 			{
-				$container.removeClass(constants.POSITIVE_BACKGROUND_THEME +
-					constants.NEGATIVE_BACKGROUND_THEME +
-					constants.NEUTRAL_BACKGROUND_THEME +
-					constants.BLOCK_DISPLAY +
-					view.SHIFT_TRANSITION.LEFT +
-					view.SHIFT_TRANSITION.SLIGHTLY_RIGHT +
-					view.SHIFT_TRANSITION.RIGHT);
+				$(container).removeClass(constants.styles.POSITIVE_BACKGROUND_THEME +
+					constants.styles.NEGATIVE_BACKGROUND_THEME +
+					constants.styles.NEUTRAL_BACKGROUND_THEME +
+					constants.styles.BLOCK_DISPLAY +
+					SHIFT_TRANSITION.LEFT +
+					SHIFT_TRANSITION.SLIGHTLY_RIGHT +
+					SHIFT_TRANSITION.RIGHT);
 			});
 		}
 

@@ -46,14 +46,14 @@
 				baseUrl: '/scripts',
 				paths:
 				{
-					jquery : 'library/jquery/jquery'
-				},
+					jquery : 'library/jquery/jquery',
+					json: 'library/json3/json3'
+                },
 				deps:
 				[
 					'foundation/leftHandMenu'
 				]
 			};
-
 		</script>
 
 		<?php
@@ -62,7 +62,6 @@
 		?>
 				<!-- Load the requireJS library and specify the main file to pull all required dependencies -->
 				<script src='scripts/library/requirejs/require.js' data-main='<?php echo $view->requireJsMainFile ?>'></script>
-
 		<?php
 			}
 			else

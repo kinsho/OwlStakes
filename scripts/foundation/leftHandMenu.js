@@ -12,9 +12,11 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		LEFT_HAND_SECTION = 'leftHandSection',
 		LOG_IN_MODULE = 'logInModule',
 		LOG_IN_LINK = 'logInLink',
+
 		FORGOT_PASSWORD_MODULE = 'forgotPasswordModule',
 		FORGOT_PASSWORD_FORM = 'forgotPasswordForm',
 		FORGOT_PASSWORD_LINK = 'forgotPasswordLink',
+		FORGOT_PASSWORD_SUBMIT = 'forgotPasswordButton',
 
 		SUB_MENU_ITEM_HEIGHT = 55,
 		SELECTED_CLASS = 'selected',
@@ -75,6 +77,48 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		var my =
 			{
 				/**
+				 * Function responsible for sliding left-hand modules in and out of the viewport
+				 *
+				 * @param {Event} event - the event responsible for invoking this function
+				 *
+				 * @author kinsho
+				 */
+				sectionSlider: function(event)
+				{
+					var $target = $(event.currentTarget),
+						$oldModule = $target.closest('.' + LEFT_HAND_SECTION),
+						$newModule = $('#' + event.data.newModule),
+						callback = event.data.callback;
+
+					fadeControl($oldModule, $newModule, callback);
+				},
+
+				/**
+				 * Function sends a server request to help a user regain access to the main platform
+				 * should he forget his user name and/or password
+				 *
+				 * @param {Event} event - the event that triggered the invocation of this function
+				 *
+				 * @author kinsho
+				 */
+				forgotPasswordSubmit: function(event)
+				{
+					var data = formSubmit.collectData(document.getElementById(FORGOT_PASSWORD_FORM)),
+						// If the e-mail is successfully sent, relay a message to the user containing
+						// that same e-mail address
+						successBody = FORGOT_PASSWORD_SUCCESS_BODY.replace('%e', data.email);
+
+					formSubmit.ajax(
+					{
+						type: 'POST',
+						url: FORGOT_PASSWORD_URL,
+						data: data,
+						successHeader: FORGOT_PASSWORD_SUCCESS_HEADER,
+						successBody: successBody
+					}, event);
+				},
+
+				/**
 				  * Function serves to display all the sub-menu items associated with the menu item to which the
 				  * cursor is currently pointing
 				  *
@@ -88,9 +132,10 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 						$subItems = $subItemContainer.find('span'),
 						containerHeight = $subItems.length * SUB_MENU_ITEM_HEIGHT; // Used to deduce the height of the container when it will be fully revealed
 
-					// While I do not enjoy setting CSS through JavaScript, the only way to properly render a sliding animation here is by
-					// manually calculating the expected height of all the relevant sub-menu items put together and setting the height of the
-					// containing wrapper equal to the end result of that calculation
+					// While I do not enjoy setting CSS through JavaScript, the only way to properly render a sliding
+					// animation here is by manually calculating the expected height of all the relevant sub-menu items
+					// put together and setting the height of the containing wrapper equal to the end result of that
+					// calculation
 					$subItemContainer.css('height', containerHeight + 'px');
 				},
 
@@ -110,47 +155,6 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 					{
 						$(this).css('height', '0px');
 					});
-				},
-
-				/**
-				  * Function responsible for sliding left-hand modules in and out of the viewport
-				  *
-				  * @param {Event} event - the event responsible for invoking this function
-				  *
-				  * @author kinsho
-				  */
-				sectionSlider: function(event)
-				{
-					var $target = $(event.currentTarget),
-						$oldModule = $target.closest('.' + LEFT_HAND_SECTION),
-						$newModule = $('#' + event.data.newModule),
-						callback = event.data.callback;
-
-					fadeControl($oldModule, $newModule, callback);
-				},
-
-				/**
-				  * Function serves to submit a server request to help a user regain access to the main platform
-				  * should he forget his user name and/or password
-				  *
-				  * @param {Event} event - the event that triggered the invocation of this function
-				  *
-				  * @author kinsho
-				  */
-				forgotPasswordSubmit: function(event)
-				{
-					var data = formSubmit.collectData(FORGOT_PASSWORD_FORM),
-						// If the e-mail is successfully sent, relay a message to the user containing that same e-mail address
-						successBody = FORGOT_PASSWORD_SUCCESS_BODY.replace('%e', data.email);
-
-					formSubmit.ajax(
-					{
-						type: 'POST',
-						url: FORGOT_PASSWORD_URL,
-						data: data,
-						successHeader: FORGOT_PASSWORD_SUCCESS_HEADER,
-						successBody: successBody
-					}, event);
 				},
 
 				/**
@@ -253,7 +257,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 		// Listeners for the left-hand modules
 //		$('#logInButton').on('click', my.logIn);
-//		$('#forgotPasswordButton').on('click', my.forgotPasswordSubmit);
+		$('#' + FORGOT_PASSWORD_SUBMIT).on('click', my.forgotPasswordSubmit);
 		$('#' + FORGOT_PASSWORD_LINK).on('click', { newModule : FORGOT_PASSWORD_MODULE }, my.sectionSlider);
 		$('#' + LOG_IN_LINK).on('click', { newModule : LOG_IN_MODULE }, my.sectionSlider);
 

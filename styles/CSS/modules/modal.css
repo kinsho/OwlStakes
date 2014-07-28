@@ -91,6 +91,16 @@
  * @author kinsho
  */
 /*
+ * Functional mix-in responsible for setting all animation-related settings across all the major browsers
+ *
+ * @param [$keyframeSet] - the name of the set of keyframes towards which to apply these settings
+ * @param [$duration] - the duration of the animation
+ * @param [$timing] - the pace at which the animation will progress
+ * @param [$delay] - the amount of time to wait before the animation begins
+ *
+ * @author kinsho
+ */
+/*
  * Functional mix-in responsible for setting transitions on elements within webkit browsers
  *
  * @param $property - the property or properties upon which to set transitions upon
@@ -127,6 +137,15 @@
  * @param [$timing] - the pace at which the transition will animate
  * @param [$duration] - the number of seconds the animation is expected to last
  * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting up keyframes across all the major browsers
+ * NOTE: The content to populate the body of the keyframes are provided through the use of the
+ * 		@content directive. Any invocation of this mix-in must have external content attached.
+ *
+ * @param $name - the name to assign to the keyframes being generated
  *
  * @author kinsho
  */
@@ -171,6 +190,27 @@
  * @param [$x] - the x-coordinate for the new origin coordinate
  * @param [$y] - the y-coordinate for the new origin coordinate
  * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates an animation that shifts an element either to the left or the right
+ *
+ * @param $magnitude - the amount by which to shift the element toward either the left or the right
+ * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates an animation that shifts an element either to the left or the right
+ *
+ * @param $firstMagnitude - the amount by which to shift the element toward either the left or the right
+ * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right
+ * 		after the first shift
+ * @param $shiftChange - the point in the animation at which to switch from the first shift to the second shift
+ * @param [$firstShiftTimingFunction] - the pacing function to apply to the first shift, if provided
+ * @param [$secondShiftTimingFunction] - the pacing function to apply to the second shift, if provided
  *
  * @author kinsho
  */

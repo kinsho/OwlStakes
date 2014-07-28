@@ -111,6 +111,7 @@ input, select
 		}
 
 		background-color: map-get($COLORS, darkBlueTheme);
+		cursor: none;
 
 		&:disabled
 		{
