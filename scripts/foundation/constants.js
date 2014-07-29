@@ -1,3 +1,7 @@
+/**
+ * @module constants
+ */
+
 define([], function()
 {
 // ----------------- MODULE DEFINITION --------------------------
@@ -11,6 +15,10 @@ define([], function()
 			POSITIVE_BACKGROUND_THEME: 'positiveBackgroundTheme',
 			NEGATIVE_BACKGROUND_THEME: 'negativeBackgroundTheme',
 			NEUTRAL_BACKGROUND_THEME: 'neutralBackgroundTheme',
+			SHIFT_TRANSITION_LEFT: 'shiftTransitionLeft',
+			SHIFT_TRANSITION_SLIGHT_LEFT: 'shiftTransitionSlightLeft',
+			SHIFT_TRANSITION_RIGHT: 'shiftTransitionRight',
+			SHIFT_TRANSITION_SLIGHT_RIGHT: 'shiftTransitionSlightRight',
 			CENTER: 'center',
 			DISABLED: 'disabled'
 		},

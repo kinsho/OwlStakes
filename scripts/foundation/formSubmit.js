@@ -1,16 +1,13 @@
+/**
+ * @module formSubmit
+ */
+
 define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundation/modalManager'], function($, JSON, constants, utility, modalManager)
 {
 	'use strict';
 
 // ----------------- ENUM/CONSTANTS --------------------------
-	var SHIFT_TRANSITION =
-		{
-			LEFT: 'shiftLeft',
-			SLIGHTLY_RIGHT: 'shiftSlightlyRight',
-			RIGHT: 'shiftRight'
-		},
-
-		OFFSET_FROM_BOTTOM =
+	var OFFSET_FROM_BOTTOM =
 		{
 			10: 'offsetUp10',
 			20: 'offsetUp20',
@@ -83,7 +80,7 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 			disableEnableSubmitButton = function(targetElement)
 			{
 				var $targetElement = $(targetElement),
-					isButton = $targetElement.is('input[type=button]'),
+					isButton = $targetElement.is('[type=button]'),
 					isLinkDisabled = $targetElement.data('disabled');
 
 				if (isButton)
@@ -112,7 +109,7 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		/**
 		  * Function bundles all input/select values from the passed form scope into a key-value object
 		  *
-		  * @param {HTMLElement} $form - the form from which data will be gathered
+		  * @param {HTMLElement} form - the form from which data will be gathered
 		  *
 		  * @return {Object} a simple object container for all user inputs
 		  *
@@ -170,9 +167,9 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 				{
 					// Open the success modal after populating its body with the message returned from the server
 					document.getElementById(my.SUCCESS_MODAL_HEADER).innerHTML = (settings.successHeader ||
-						my.SUCCESS_MODAL_HEADER_TEXT);
+						SUCCESS_HEADER_TEXT);
 					document.getElementById(my.SUCCESS_MODAL_BODY).innerHTML = (settings.successBody ||
-						my.SUCCESS_MODAL_BODY_TEXT);
+						SUCCESS_BODY_TEXT);
 					modalManager.openModal(my.SUCCESS_MODAL);
 
 					// Call the success function that was originally defined within the settings object, provided
@@ -187,7 +184,7 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 				wrapperSettings.customSuccessHandler = settings.customSuccessHandler || successHandlerWrapper;
 				wrapperSettings.customErrorHandler = settings.customErrorHandler || errorHandlerWrapper;
 
-				this.ajax(wrapperSettings, event);
+				my.ajax(wrapperSettings, event);
 			}
 		},
 
@@ -238,7 +235,7 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 			{
 				// If a button or link was responsible for the invocation of this method in the first place,
 				// ensure that the user is able to click on it again to send another AJAX request
-				disableEnableSubmitButton();
+				disableEnableSubmitButton(event.currentTarget);
 
 				complete(response, status);
 			};
@@ -301,25 +298,24 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		displayContainer: function(headerText, bodyText, nature)
 		{
 			var container = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER),
-				$container = $(container),
 				header = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_HEADER),
 				body = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_BODY),
 				heightRatio;
 
-			$container.addClass(constants.styles.BLOCK_DISPLAY);
+			container.classList.add(constants.styles.BLOCK_DISPLAY);
 
 			// Set the background color of the container to help indicate the nature of the server response
 			if (nature === this.NATURES.POSITIVE)
 			{
-				$container.addClass(constants.styles.POSITIVE_BACKGROUND_THEME);
+				container.classList.add(constants.styles.POSITIVE_BACKGROUND_THEME);
 			}
 			else if (nature === this.NATURES.NEGATIVE)
 			{
-				$container.addClass(constants.styles.NEGATIVE_BACKGROUND_THEME);
+				container.classList.add(constants.styles.NEGATIVE_BACKGROUND_THEME);
 			}
 			else
 			{
-				$container.addClass(constants.styles.NEUTRAL_BACKGROUND_THEME);
+				container.classList.add(constants.styles.NEUTRAL_BACKGROUND_THEME);
 			}
 
 			// Set text within the container
@@ -337,27 +333,27 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 			heightRatio = (container.offsetHeight/window.innerHeight);
 			if (heightRatio < 0.09)
 			{
-				$container.addClass(OFFSET_FROM_BOTTOM[10]);
+				container.classList.add(OFFSET_FROM_BOTTOM[10]);
 			}
 			else if (heightRatio < 0.19)
 			{
-				$container.addClass(OFFSET_FROM_BOTTOM[20]);
+				container.classList.add(OFFSET_FROM_BOTTOM[20]);
 			}
 			else if (heightRatio < 0.29)
 			{
-				$container.addClass(OFFSET_FROM_BOTTOM[30]);
+				container.classList.add(OFFSET_FROM_BOTTOM[30]);
 			}
 			else
 			{
-				$container.addClass(OFFSET_FROM_BOTTOM[40]);
+				container.classList.add(OFFSET_FROM_BOTTOM[40]);
 			}
 
 			// Slide the container into view with a fancy left shift animation followed by a slight pull back to
 			// the right
-			$container.addClass(SHIFT_TRANSITION.LEFT);
+			container.classList.add(constants.styles.SHIFT_TRANSITION_LEFT);
 			utility.setTransitionListeners(container, 50, true, function()
 			{
-				$container.addClass(SHIFT_TRANSITION.SLIGHTLY_RIGHT);
+				container.classList.add(constants.styles.SHIFT_TRANSITION_SLIGHT_RIGHT);
 			});
 		},
 
@@ -368,20 +364,20 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		  */
 		hideContainer: function()
 		{
-			var container = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER);
+			var container = document.getElementById(my.SERVER_MESSAGE_CONTAINER);
 
 			// First, slide the container off the screen towards the right, then remove all its
 			// custom and transition styling
-			$(container).addClass(this.SHIFT_TRANSITION_RIGHT);
+			container.classList.remove(constants.styles.SHIFT_TRANSITION_RIGHT);
 			utility.setTransitionListeners(container, 10, true, function()
 			{
-				$(container).removeClass(constants.styles.POSITIVE_BACKGROUND_THEME +
-					constants.styles.NEGATIVE_BACKGROUND_THEME +
-					constants.styles.NEUTRAL_BACKGROUND_THEME +
-					constants.styles.BLOCK_DISPLAY +
-					SHIFT_TRANSITION.LEFT +
-					SHIFT_TRANSITION.SLIGHTLY_RIGHT +
-					SHIFT_TRANSITION.RIGHT);
+				container.classList.remove(constants.styles.POSITIVE_BACKGROUND_THEME,
+					constants.styles.NEGATIVE_BACKGROUND_THEME,
+					constants.styles.NEUTRAL_BACKGROUND_THEME,
+					constants.styles.BLOCK_DISPLAY,
+					constants.styles.SHIFT_TRANSITION_LEFT +
+					constants.styles.SHIFT_TRANSITION_SLIGHT_RIGHT +
+					constants.styles.SHIFT_TRANSITION_RIGHT);
 			});
 		}
 

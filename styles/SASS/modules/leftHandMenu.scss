@@ -6,6 +6,12 @@
 @import 'foundation/_animations.scss';
 @import 'foundation/_widthsHeights.scss';
 
+/* ----------------------- ANIMATIONS ----------------------------- */
+
+@include shiftHorizontal($name: moduleEnter, $magnitude: 0%, $shiftTimingFunction: ease-in);
+@include shiftHorizontalTwice($name: moduleExit, $firstMagnitude: 20%, $secondMagnitude: -150%,
+	$shiftChange: 20%, $firstShiftTimingFunction: linear, $secondShiftTimingFunction: ease-in);
+
 /* ----------------------- GENERAL STYLING ----------------------------- */
 
 // Generalized styling for the container housing the left-hand menu
@@ -65,19 +71,12 @@
 
 	opacity: 1.0;
 
-	&.pullRight
+	&.exit
 	{
-		@include shiftTransition($x: 20px);
+	}
 
-		&.goLeft
-		{
-			@include shiftTransition($x: -150%);
-
-			transition-timing-function: ease-in-out;
-			transition-duration: 0.5s;
-			-webkit-transition-timing-function: ease-in-out;
-			-webkit-transition-duration: 0.5s;
-		}
+	&.enter
+	{
 	}
 }
 

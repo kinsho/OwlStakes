@@ -76,57 +76,6 @@ define([], function()
 		},
 
 		/**
-		  * Function serves to set the passed transition listener on the passed element, accounting for certain
-		  * limitations present among some of the major browsers
-		  *
-		  * @param {HTMLElement} element - the element with which to set the transition listener upon
-		  * @param {Number} timeoutDelay - in case a timeout delay is specified, then the listener will be triggered
-		  * 	as a timeout function that will be invoked only after the specified delay
-		  * @param {Boolean} removeAfterOneUse - a flag to indicate whether the listener should be removed after
-		  *		it has been triggered just once
-		  * @param {Function} listenerFunction - the listener function that needs to be attached to the element
-		  *
-		  * @author kinsho
-		  */
-		setTransitionListeners: function(element, timeoutDelay, removeAfterOneUse, listenerFunction)
-		{
-			var my = this,
-				transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
-				// Used to account for any time delays that need to be enforced prior to the invocation
-				// of the actual listener
-				timeoutFunction = function()
-				{
-					window.setTimeout(function()
-					{
-						listenerWrapper();
-					}, timeoutDelay || 0);
-				},
-				listenerWrapper,
-				i;
-
-			// If the listener has to be removed after it has been invoked just once, set up a wrapper function
-			// that removes the listener after directly invoking it
-			if (removeAfterOneUse)
-			{
-				listenerWrapper = function()
-				{
-					listenerFunction();
-					my.removeTransitionListeners(element, timeoutFunction);
-				};
-			}
-			else
-			{
-				listenerWrapper = listenerFunction;
-			}
-
-			// Set all the logic to fire the listener upon the end of any transition made by that element
-			for (i = transitions.length - 1; i >= 0; i -= 1)
-			{
-				element.addEventListener(transitions[i], timeoutFunction, false);
-			}
-		},
-
-		/**
 		  * Function serves to unset the passed transition listener from the passed element, accounting for certain
 		  * limitations present among some of the major browsers
 		  *
@@ -135,15 +84,89 @@ define([], function()
 		  *
 		  * @author kinsho
 		  */
-		removeTransitionListeners: function(element, listenerFunction)
+		removeEventListeners: function(element, listenerFunction, type)
 		{
 			var transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
 				i;
 
-			for (i = transitions.length - 1; i >= 0; i -= 1)
+			if (type === 'transitionend')
 			{
-				element.removeEventListener(transitions[i], listenerFunction, true);
-				element.removeEventListener(transitions[i], listenerFunction, false);
+				for (i = transitions.length - 1; i >= 0; i -= 1)
+				{
+					element.removeEventListener(transitions[i], listenerFunction, true);
+					element.removeEventListener(transitions[i], listenerFunction, false);
+				}
+			}
+			else
+			{
+				element.removeEventListener(type, listenerFunction);
+			}
+		},
+
+		/**
+		  * Function serves to unset the passed transition listener from the passed element, accounting for certain
+		  * limitations present among some of the major browsers
+		  *
+		  * @param {HTMLElement} element - the element upon which to set the listener
+		  * @param {Function} listenerFunction - the function that needs to be attached to the element as a listener
+		  * @param {String} type - the type of listener that will be set upon the element
+		  * @param {Number} timeoutDelay - in case a nonzero value is provided, then the listener will be triggered as a
+		  * 	timeout function that will be invoked only after the specified delay
+		  * @param {Boolean} removeAfterOneUse - a flag to indicate whether the listener should be removed after
+		  *		it has been triggered just once
+		  * @param {Array} [params] - the parameters that will be supplied directly to the listener when it is finally
+		  *		invoked
+		  *
+		  * @author kinsho
+		  */
+		setEventListener: function(element, listenerFunction, timeoutDelay, type, removeAfterOneUse, params)
+		{
+			var my = this,
+				transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
+
+				// If the listener has to be removed after it has been invoked just once, set up a wrapper function
+				// that removes the listener after directly invoking it
+				listenerWrapper = (removeAfterOneUse) ? function()
+				{
+					listenerFunction.apply(null, arguments);
+					my.removeEventListener(element, timeoutFunction);
+				} : listenerFunction,
+
+				// Used to account for any parameters that may need to be passed to the listener function
+				paramsFunction = (params) ? function(event)
+				{
+					// Prep the parameters array
+					params = params || [];
+					params.unshift(event);
+
+					listenerWrapper.apply(null, params);
+				} : listenerWrapper,
+
+				// Used to account for any time delays that need to be enforced prior to the invocation
+				// of the actual listener
+				timeoutFunction = (timeoutDelay) ? function(event)
+				{
+					window.setTimeout(function()
+					{
+						paramsFunction(event);
+					}, timeoutDelay || 0);
+				} : paramsFunction,
+
+				i;
+
+			// In the event that a listener is being set up to check for the end of a transition, ensure that
+			// two additional listeners are also set up to ensure cross-browser functionality
+			if (type === 'transitionend')
+			{
+				// Set the logic to fire the listener upon the end of any transition made by that element
+				for (i = transitions.length - 1; i >= 0; i -= 1)
+				{
+					element.addEventListener(transitions[i], timeoutFunction, false);
+				}
+			}
+			else
+			{
+				element.addEventListener(type, timeoutFunction, false);
 			}
 		},
 

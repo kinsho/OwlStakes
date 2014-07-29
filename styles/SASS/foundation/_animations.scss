@@ -306,12 +306,14 @@
 /*
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
+ * @param $name - the name to assign to the animation currently being defined
  * @param $magnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param [$shiftTimingFunction] - the pacing function to apply to the shift, if provided
  *
  * @author kinsho
  */
-@mixin shiftHorizontal($magnitude)
+@mixin shiftHorizontal($name, $magnitude, $shiftTimingFunction)
 {
 	@include keyFrame($name)
 	{
@@ -320,6 +322,10 @@
 			0%
 			{
 				@include shiftTransition();
+				@if ($shiftTimingFunction)
+				{
+					@include animationSettings($timing: $shiftTimingFunction);
+				}
 			}
 
 			100%
@@ -333,6 +339,7 @@
 /*
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
+ * @param $name - the name to assign to the animation currently being defined
  * @param $firstMagnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
  * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right
@@ -343,7 +350,7 @@
  *
  * @author kinsho
  */
-@mixin shiftHorizontalTwice($firstMagnitude, $secondMagnitude, $shiftChange, $firstShiftTimingFunction, $secondShiftTimingFunction)
+@mixin shiftHorizontalTwice($name, $firstMagnitude, $secondMagnitude, $shiftChange, $firstShiftTimingFunction, $secondShiftTimingFunction)
 {
 	@keyframes shiftLeft
 	{

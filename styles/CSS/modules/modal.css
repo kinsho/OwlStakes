@@ -196,14 +196,17 @@
 /*
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
+ * @param $name - the name to assign to the animation currently being defined
  * @param $magnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param [$shiftTimingFunction] - the pacing function to apply to the shift, if provided
  *
  * @author kinsho
  */
 /*
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
+ * @param $name - the name to assign to the animation currently being defined
  * @param $firstMagnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
  * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right

@@ -33,14 +33,15 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		  * Private function serves to manage the fading and shifting animations used to control the
 		  * entrance and exit of the left-hand side forms
 		  *
-		  * @param {jquery} exitModuleElement - the module container that needs to be slid out
-          * @param {jquery} comingModuleElement - the module container that needs to be slid into the view
-		  * @param {Function} [callback] - additional logic to invoke after the animations have ended
+		  * @param {Event} event - the event responsible for triggering the invocation of this function
+          * @param {HTMLElement} comingModuleElement - the module container that needs to be slid into the view
 		  *
 		  * @author kinsho
 		  */
-	var fadeControl = function($exitModuleElement, $comingModuleElement, callback)
+	var fadeControl = function(event, comingModuleElement)
 		{
+			var exitModuleElement = $(event.currentTarget).closest(LEFT_HAND_SECTION)[0];
+
 			$exitModuleElement.addClass(SECTION_PULL_RIGHT_CLASS);
 
 			utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
@@ -76,23 +77,6 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 // ----------------- MODULE DEFINITION --------------------------
 		var my =
 			{
-				/**
-				 * Function responsible for sliding left-hand modules in and out of the viewport
-				 *
-				 * @param {Event} event - the event responsible for invoking this function
-				 *
-				 * @author kinsho
-				 */
-				sectionSlider: function(event)
-				{
-					var $target = $(event.currentTarget),
-						$oldModule = $target.closest('.' + LEFT_HAND_SECTION),
-						$newModule = $('#' + event.data.newModule),
-						callback = event.data.callback;
-
-					fadeControl($oldModule, $newModule, callback);
-				},
-
 				/**
 				 * Function sends a server request to help a user regain access to the main platform
 				 * should he forget his user name and/or password
@@ -217,7 +201,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 			menuItems = leftHandMenu.children,
 			page = window.location.pathname.replace('/', ''),
 			$leftHandSections = $('.' + LEFT_HAND_SECTION),
-			$menuItem,
+			menuItem,
 			i;
 
 		// Logic to mark the left-hand menu item that corresponds to the current page
@@ -226,13 +210,13 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		{
 			for (i = menuItems.length - 1; i >= 0; i -= 1)
 			{
-				$menuItem = $(menuItems[i]);
+				menuItem = menuItems[i];
 
 				// If the menu item is associated with the current page, set the selected icon
 				// next to the menu item
-				if ($menuItem.data('title') === page)
+				if ($(menuItem).data('title') === page)
 				{
-					$menuItem.addClass(SELECTED_CLASS);
+					menuItem.classList.add(SELECTED_CLASS);
 				}
 			}
 		}
@@ -257,21 +241,17 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 		// Listeners for the left-hand modules
 //		$('#logInButton').on('click', my.logIn);
-		$('#' + FORGOT_PASSWORD_SUBMIT).on('click', my.forgotPasswordSubmit);
-		$('#' + FORGOT_PASSWORD_LINK).on('click', { newModule : FORGOT_PASSWORD_MODULE }, my.sectionSlider);
-		$('#' + LOG_IN_LINK).on('click', { newModule : LOG_IN_MODULE }, my.sectionSlider);
+		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_SUBMIT), my.forgotPasswordSubmit, 0, 'click', false);
+		utility.setEventListener(document.getElementById(LOG_IN_LINK), fadeControl, 0, 'click', false, [document.getElementById(FORGOT_PASSWORD_MODULE)]);
+		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_LINK), fadeControl, 0, 'click', false, [document.getElementById(LOG_IN_MODULE)]);
 
 // ----------------- END --------------------------
 		return my;
 });
 
+/*
 window.leftHandMenu =
 {
-	/**
-	  * Function serves to log the user on to the platform
-	  *
-	  * @author kinsho
-	  */
 	logIn: function(event)
 	{
 		var view = event.data.view,
@@ -401,3 +381,4 @@ window.leftHandMenu =
 	},
 
 };
+*/
