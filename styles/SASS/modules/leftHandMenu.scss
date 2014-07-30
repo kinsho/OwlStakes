@@ -66,8 +66,8 @@
 	$transitionDurations: 0.2s, 0.2s;
 	$transitionDelays: 0s, 0s;
 
-	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties, $timing: $transitionTimings,
-		$duration: $transitionDurations, $delay: $transitionDelays);
+	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties,
+		$timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
 
 	opacity: 1.0;
 

@@ -20,8 +20,8 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 		SUB_MENU_ITEM_HEIGHT = 55,
 		SELECTED_CLASS = 'selected',
-		SECTION_SHIFT_LEFT_CLASS = 'goLeft',
-		SECTION_PULL_RIGHT_CLASS = 'pullRight',
+		MODULE_EXIT_CLASS = 'exit',
+		MODULE_ENTRANCE_CLASS = 'enter',
 
 		FORGOT_PASSWORD_URL = '/logIn/forgotPassword',
 		FORGOT_PASSWORD_SUCCESS_HEADER = 'E-mail Sent!',
@@ -40,38 +40,15 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		  */
 	var fadeControl = function(event, comingModuleElement)
 		{
-			var exitModuleElement = $(event.currentTarget).closest(LEFT_HAND_SECTION)[0];
+			var exitModuleElement = $(event.currentTarget).closest('.' + LEFT_HAND_SECTION)[0];
 
-			$exitModuleElement.addClass(SECTION_PULL_RIGHT_CLASS);
+			exitModuleElement.classList.add(MODULE_EXIT_CLASS);
 
-			utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
+			// Fade in the new module once the old module has slid away from view
+			utility.setEventListener(exitModuleElement, function()
 			{
-				$exitModuleElement.addClass(SECTION_SHIFT_LEFT_CLASS);
-
-				// Fade in the new module once the old module has slid away from view
-				utility.setTransitionListeners($exitModuleElement[0], 100, true, function()
-				{
-					$exitModuleElement.addClass(constants.styles.NO_DISPLAY);
-					$comingModuleElement.removeClass(constants.styles.NO_DISPLAY);
-
-					// Set up a timeout here to ensure that rendering the section back on the page does not
-					// interfere with its sliding into view
-					window.setTimeout(function()
-					{
-						$comingModuleElement.removeClass(SECTION_SHIFT_LEFT_CLASS);
-
-						utility.setTransitionListeners($comingModuleElement[0], 100, true, function()
-						{
-							$comingModuleElement.removeClass(SECTION_PULL_RIGHT_CLASS);
-
-							if (callback)
-							{
-								utility.setTransitionListeners($comingModuleElement[0], 0, true, callback);
-							}
-						});
-					}, 10);
-				});
-			});
+				comingModuleElement.classList.add(MODULE_ENTRANCE_CLASS);
+			}, 'animationend', 100, true);
 		};
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -186,7 +163,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 							// Take out any references to controllers within the URL
 							// The aim is to redirect the user back towards the home page
-							URL = URL.slice(0, URL.lastIndexOf('/'))
+							URL = URL.slice(0, URL.lastIndexOf('/'));
 
 							window.location = URL;
 						}
@@ -223,7 +200,7 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 		// Logic to prepare all the left-hand sections for sliding transitions
 		else
 		{
-			$leftHandSections.filter('.' + constants.styles.NO_DISPLAY).addClass(SECTION_SHIFT_LEFT_CLASS + ' ' + SECTION_PULL_RIGHT_CLASS);
+			$leftHandSections.filter('.' + constants.styles.NO_DISPLAY).addClass(MODULE_EXIT_CLASS);
 		}
 // ----------------- LISTENERS --------------------------
 
