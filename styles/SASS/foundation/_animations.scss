@@ -39,7 +39,7 @@
 		@include oTransitionSettings($property, $timing, $duration, $delay);
 	}
 
-	@if ($webkitProperty)
+	@if variable_exists($webkitProperty)
 	{
 		/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
 		@media screen and (-webkit-min-device-pixel-ratio:0)
@@ -57,12 +57,15 @@
  * @param [$duration] - the duration of the animation
  * @param [$timing] - the pace at which the animation will progress
  * @param [$delay] - the amount of time to wait before the animation begins
+ * @param [$iterations] - the number of times which to execute the animation
  *
  * @author kinsho
  */
-@mixin animationSettings($keyframeSet, $duration, $timing, $delay)
+@mixin animationSettings($keyframeSet, $duration, $timing, $delay, $iterations)
 {
-	@if ($keyframeSet)
+	$iterations: 1 !default;
+
+	@if variable_exists($keyframeSet)
 	{
 		animation-name: $keyframeSet;
 		-webkit-animation-name: $keyframeSet;
@@ -71,7 +74,7 @@
 		-o-animation-name: $keyframeSet;
 	}
 
-	@if ($duration)
+	@if variable_exists($duration)
 	{
 		animation-duration: $duration;
 		-webkit-animation-duration: $duration;
@@ -80,7 +83,7 @@
 		-o-animation-duration: $duration;
 	}
 
-	@if ($timing)
+	@if variable_exists($timing)
 	{
 		animation-timing-function: $timing;
 		-webkit-animation-timing-function: $timing;
@@ -89,7 +92,7 @@
 		-o-animation-timing-function: $timing;
 	}
 
-	@if ($delay)
+	@if variable_exists($delay)
 	{
 		animation-delay: $delay;
 		-webkit-animation-delay: $delay;
@@ -97,6 +100,12 @@
 		-ms-animation-delay: $delay;
 		-o-animation-delay: $delay;
 	}
+
+	animation-iteration-count: $iterations;
+	-webkit-animation-iteration-count: $iterations;
+	-mozilla-animation-iteration-count: $iterations;
+	-ms-animation-iteration-count: $iterations;
+	-o-animation-iteration-count: $iterations;
 }
 
 /*
@@ -208,11 +217,6 @@
 	}
 }
 
-@mixin animation()
-{
-
-}
-
 /*
  * Mix-in designed to shift elements on a two-dimensional plane
  *
@@ -315,23 +319,20 @@
  */
 @mixin shiftHorizontal($name, $magnitude, $shiftTimingFunction)
 {
-	@include keyFrame($name)
+	@include keyframes($name)
 	{
-		@keyframes shiftLeft
+		0%
 		{
-			0%
+			@include shiftTransition();
+			@if ($shiftTimingFunction)
 			{
-				@include shiftTransition();
-				@if ($shiftTimingFunction)
-				{
-					@include animationSettings($timing: $shiftTimingFunction);
-				}
+				@include animationSettings($timing: $shiftTimingFunction);
 			}
+		}
 
-			100%
-			{
-				@include shiftTransition($x: $magnitude);
-			}
+		100%
+		{
+			@include shiftTransition($x: $magnitude);
 		}
 	}
 }
@@ -352,7 +353,7 @@
  */
 @mixin shiftHorizontalTwice($name, $firstMagnitude, $secondMagnitude, $shiftChange, $firstShiftTimingFunction, $secondShiftTimingFunction)
 {
-	@keyframes shiftLeft
+	@include keyframes($name)
 	{
 		0%
 		{

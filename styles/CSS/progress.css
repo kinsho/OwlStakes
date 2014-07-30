@@ -86,6 +86,7 @@ span.percentage {
  * @param [$duration] - the duration of the animation
  * @param [$timing] - the pace at which the animation will progress
  * @param [$delay] - the amount of time to wait before the animation begins
+ * @param [$iterations] - the number of times which to execute the animation
  *
  * @author kinsho
  */

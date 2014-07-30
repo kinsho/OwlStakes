@@ -73,10 +73,12 @@
 
 	&.exit
 	{
+		@include animationSettings($keyframeSet: moduleExit, $duration: 1.5s)
 	}
 
 	&.enter
 	{
+		@include animationSettings($keyframeSet: moduleEnter, $duration: 3s)
 	}
 }
 
