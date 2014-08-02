@@ -8,9 +8,10 @@
 
 /* ----------------------- ANIMATIONS ----------------------------- */
 
-@include shiftHorizontal($name: moduleEnter, $magnitude: 0%, $shiftTimingFunction: ease-in);
-@include shiftHorizontalTwice($name: moduleExit, $firstMagnitude: 20%, $secondMagnitude: -150%,
-	$shiftChange: 20%, $firstShiftTimingFunction: linear, $secondShiftTimingFunction: ease-in);
+@include shiftHorizontalTwice($name: moduleExit, $firstMagnitude: 20%, $secondMagnitude: -150%, $shiftChange: 35%,
+	$startingPosition: 0%, $firstShiftTimingFunction: linear, $secondShiftTimingFunction: ease-out);
+@include shiftHorizontalTwice($name: moduleEnter, $firstMagnitude: 20%, $secondMagnitude: 0%, $shiftChange: 65%,
+	$startingPosition: -150%, $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: linear);
 
 /* ----------------------- GENERAL STYLING ----------------------------- */
 
@@ -59,26 +60,16 @@
 
 .leftHandSection
 {
-	/* Locally defined lists needed here to set multiple transition properties on the log-in module */
-	$transitionProperties: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-	$webkitTransitionProperties: opacity, -webkit-transform;
-	$transitionTimings: linear, linear;
-	$transitionDurations: 0.2s, 0.2s;
-	$transitionDelays: 0s, 0s;
-
-	@include transitionSettings($property: $transitionProperties, $webkitProperty: $webkitTransitionProperties,
-		$timing: $transitionTimings, $duration: $transitionDurations, $delay: $transitionDelays);
-
-	opacity: 1.0;
-
 	&.exit
 	{
-		@include animationSettings($keyframeSet: moduleExit, $duration: 1.5s)
+		@include animationSettings($keyframeSet: moduleExit, $duration: 0.6s);
+		@include shiftTransition($x: -150%);
 	}
 
 	&.enter
 	{
-		@include animationSettings($keyframeSet: moduleEnter, $duration: 3s)
+		@include animationSettings($keyframeSet: moduleEnter, $duration: 0.8s);
+		@include shiftTransition($x: 0%);
 	}
 }
 

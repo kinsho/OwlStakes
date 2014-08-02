@@ -44,10 +44,24 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 			exitModuleElement.classList.add(MODULE_EXIT_CLASS);
 
+			// Prep the new module for its entrance
+
 			// Fade in the new module once the old module has slid away from view
 			utility.setEventListener(exitModuleElement, function()
 			{
+				// Get rid of the old module from the DOM layout
+				exitModuleElement.classList.add(constants.styles.NO_DISPLAY);
+
+				// Now have the browser render the new module before animating it
+				comingModuleElement.classList.remove(constants.styles.NO_DISPLAY);
+
 				comingModuleElement.classList.add(MODULE_ENTRANCE_CLASS);
+
+				utility.setEventListener(comingModuleElement, function()
+				{
+					comingModuleElement.classList.remove(MODULE_ENTRANCE_CLASS, MODULE_EXIT_CLASS);
+				}, 'animationend', 0, true);
+
 			}, 'animationend', 100, true);
 		};
 
@@ -218,9 +232,9 @@ define(['jquery', 'foundation/constants', 'foundation/utility', 'foundation/form
 
 		// Listeners for the left-hand modules
 //		$('#logInButton').on('click', my.logIn);
-		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_SUBMIT), my.forgotPasswordSubmit, 0, 'click', false);
-		utility.setEventListener(document.getElementById(LOG_IN_LINK), fadeControl, 0, 'click', false, [document.getElementById(FORGOT_PASSWORD_MODULE)]);
-		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_LINK), fadeControl, 0, 'click', false, [document.getElementById(LOG_IN_MODULE)]);
+		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_SUBMIT), my.forgotPasswordSubmit, 'click', 0, false);
+		utility.setEventListener(document.getElementById(LOG_IN_LINK), fadeControl, 'click', 0, false, [document.getElementById(LOG_IN_MODULE)]);
+		utility.setEventListener(document.getElementById(FORGOT_PASSWORD_LINK), fadeControl, 'click', 0, false, [document.getElementById(FORGOT_PASSWORD_MODULE)]);
 
 // ----------------- END --------------------------
 		return my;

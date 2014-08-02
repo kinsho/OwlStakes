@@ -223,7 +223,7 @@
  *
  * @author kinsho
  */
-@mixin shiftTransition($x: 0%, $y: 0%7)
+@mixin shiftTransition($x: 0%, $y: 0%)
 {
 	transform:translate($x, $y);
 	-webkit-transform:translate($x, $y);
@@ -309,28 +309,35 @@
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
  * @param $name - the name to assign to the animation currently being defined
- * @param $magnitude - the amount by which to shift the element toward either the left or the right
+ * @param $shiftMagnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
  * @param [$shiftTimingFunction] - the pacing function to apply to the shift, if provided
  *
  * @author kinsho
  */
-@mixin shiftHorizontal($name, $magnitude, $shiftTimingFunction)
+@mixin shiftHorizontal($name, $shiftMagnitude, $shiftTimingFunction, $startingPosition: 0%)
 {
 	@include keyframes($name)
 	{
 		0%
 		{
 			@include shiftTransition();
+
 			@if ($shiftTimingFunction)
 			{
 				@include animationSettings($timing: $shiftTimingFunction);
+			}
+
+			@if ($startingPosition)
+			{
+				@include shiftTransition($x: $startingPosition);
 			}
 		}
 
 		100%
 		{
-			@include shiftTransition($x: $magnitude);
+			@include shiftTransition($x: $shiftMagnitude);
 		}
 	}
 }
@@ -344,21 +351,29 @@
  * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right
  * 		after the first shift
  * @param $shiftChange - the point in the animation at which to switch from the first shift to the second shift
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
  * @param [$firstShiftTimingFunction] - the pacing function to apply to the first shift, if provided
  * @param [$secondShiftTimingFunction] - the pacing function to apply to the second shift, if provided
  *
  * @author kinsho
  */
-@mixin shiftHorizontalTwice($name, $firstMagnitude, $secondMagnitude, $shiftChange, $firstShiftTimingFunction, $secondShiftTimingFunction)
+@mixin shiftHorizontalTwice($name, $firstMagnitude, $secondMagnitude, $shiftChange, $firstShiftTimingFunction,
+	$secondShiftTimingFunction, $startingPosition: 0%)
 {
 	@include keyframes($name)
 	{
 		0%
 		{
 			@include shiftTransition();
+
 			@if ($firstShiftTimingFunction)
 			{
 				@include animationSettings($timing: $firstShiftTimingFunction);
+			}
+
+			@if ($startingPosition)
+			{
+				@include shiftTransition($x: $startingPosition);
 			}
 		}
 
@@ -369,11 +384,12 @@
 
 		// The below logic introduces a much needed delay in order to ensure that the animation does
 		// not appear too jerky
-		@if($shiftChange < 80%)
+		@if($shiftChange < 90%)
 		{
 			#{$shiftChange + 10%}
 			{
 				@include shiftTransition($x: $firstMagnitude);
+
 				@if ($secondShiftTimingFunction)
 				{
 					@include animationSettings($timing: $secondShiftTimingFunction);
@@ -385,6 +401,7 @@
 			#{$shiftChange + 1%}
 			{
 				@include shiftTransition($x: $firstMagnitude);
+
 				@if ($secondShiftTimingFunction)
 				{
 					@include animationSettings($timing: $secondShiftTimingFunction);

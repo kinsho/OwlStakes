@@ -84,17 +84,25 @@ define([], function()
 		  *
 		  * @author kinsho
 		  */
-		removeEventListeners: function(element, listenerFunction, type)
+		removeEventListener: function(element, listenerFunction, type)
 		{
 			var transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
+				animations = ['animationend', 'oanimationend', 'webkitAnimationEnd', 'MSAnimationEnd'],
 				i;
 
 			if (type === 'transitionend')
 			{
 				for (i = transitions.length - 1; i >= 0; i -= 1)
 				{
-					element.removeEventListener(transitions[i], listenerFunction, true);
-					element.removeEventListener(transitions[i], listenerFunction, false);
+					element.removeEventListener(transitions[i], listenerFunction);
+				}
+			}
+			else if (type === 'animationend')
+			{
+				// Set the logic to fire the listener upon the end of any animation made by that element
+				for (i = animations.length - 1; i >= 0; i -= 1)
+				{
+					element.removeEventListener(animations[i], listenerFunction);
 				}
 			}
 			else
@@ -119,27 +127,29 @@ define([], function()
 		  *
 		  * @author kinsho
 		  */
-		setEventListener: function(element, listenerFunction, timeoutDelay, type, removeAfterOneUse, params)
+		setEventListener: function(element, listenerFunction, type, timeoutDelay, removeAfterOneUse, params)
 		{
 			var my = this,
 				transitions = ['transitionend', 'otransitionend', 'webkitTransitionEnd'],
+				animations = ['animationend', 'oanimationend', 'webkitAnimationEnd', 'MSAnimationEnd'],
 
 				// If the listener has to be removed after it has been invoked just once, set up a wrapper function
 				// that removes the listener after directly invoking it
 				listenerWrapper = (removeAfterOneUse) ? function()
 				{
 					listenerFunction.apply(null, arguments);
-					my.removeEventListener(element, timeoutFunction);
+					my.removeEventListener(element, timeoutFunction, type);
 				} : listenerFunction,
 
 				// Used to account for any parameters that may need to be passed to the listener function
 				paramsFunction = (params) ? function(event)
 				{
+					var processedParams = [event]; // the fully array of parameters to feed the listener
+
 					// Prep the parameters array
 					params = params || [];
-					params.unshift(event);
 
-					listenerWrapper.apply(null, params);
+					listenerWrapper.apply(null, processedParams.concat(params));
 				} : listenerWrapper,
 
 				// Used to account for any time delays that need to be enforced prior to the invocation
@@ -162,6 +172,14 @@ define([], function()
 				for (i = transitions.length - 1; i >= 0; i -= 1)
 				{
 					element.addEventListener(transitions[i], timeoutFunction, false);
+				}
+			}
+			else if (type === 'animationend')
+			{
+				// Set the logic to fire the listener upon the end of any animation made by that element
+				for (i = animations.length - 1; i >= 0; i -= 1)
+				{
+					element.addEventListener(animations[i], timeoutFunction, false);
 				}
 			}
 			else

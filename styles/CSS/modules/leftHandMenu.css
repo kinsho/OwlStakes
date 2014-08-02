@@ -364,8 +364,9 @@
  * Mix-in generates an animation that shifts an element either to the left or the right
  *
  * @param $name - the name to assign to the animation currently being defined
- * @param $magnitude - the amount by which to shift the element toward either the left or the right
+ * @param $shiftMagnitude - the amount by which to shift the element toward either the left or the right
  * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
  * @param [$shiftTimingFunction] - the pacing function to apply to the shift, if provided
  *
  * @author kinsho
@@ -379,6 +380,7 @@
  * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right
  * 		after the first shift
  * @param $shiftChange - the point in the animation at which to switch from the first shift to the second shift
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
  * @param [$firstShiftTimingFunction] - the pacing function to apply to the first shift, if provided
  * @param [$secondShiftTimingFunction] - the pacing function to apply to the second shift, if provided
  *
@@ -393,133 +395,13 @@
   width: 90%; }
 
 /* ----------------------- ANIMATIONS ----------------------------- */
-@keyframes moduleEnter {
-  0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-
-  100% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7); } }
-@-webkit-keyframes moduleEnter {
-  0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-
-  100% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7); } }
-@-moz-keyframes moduleEnter {
-  0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-
-  100% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7); } }
-@-ms-keyframes moduleEnter {
-  0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-
-  100% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7); } }
-@-o-keyframes moduleEnter {
-  0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-
-  100% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7); } }
 @keyframes moduleExit {
   0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
@@ -529,26 +411,31 @@
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+    -o-animation-iteration-count: 1;
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%); }
 
-  20% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7); }
+  35% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
 
-  30% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
+  45% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-iteration-count: 1;
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
@@ -563,11 +450,11 @@
     -o-transform: translate(-150%, 0); } }
 @-webkit-keyframes moduleExit {
   0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
@@ -577,26 +464,31 @@
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+    -o-animation-iteration-count: 1;
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%); }
 
-  20% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7); }
+  35% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
 
-  30% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
+  45% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-iteration-count: 1;
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
@@ -611,11 +503,11 @@
     -o-transform: translate(-150%, 0); } }
 @-moz-keyframes moduleExit {
   0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
@@ -625,26 +517,31 @@
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+    -o-animation-iteration-count: 1;
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%); }
 
-  20% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7); }
+  35% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
 
-  30% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
+  45% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-iteration-count: 1;
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
@@ -659,11 +556,11 @@
     -o-transform: translate(-150%, 0); } }
 @-ms-keyframes moduleExit {
   0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
@@ -673,26 +570,31 @@
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+    -o-animation-iteration-count: 1;
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%); }
 
-  20% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7); }
+  35% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
 
-  30% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
+  45% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-iteration-count: 1;
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
@@ -707,11 +609,11 @@
     -o-transform: translate(-150%, 0); } }
 @-o-keyframes moduleExit {
   0% {
-    transform: translate(0%, 0% 7);
-    -webkit-transform: translate(0%, 0% 7);
-    -moz-transform: translate(0%, 0% 7);
-    -ms-transform: translate(0%, 0% 7);
-    -o-transform: translate(0%, 0% 7);
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
     animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
@@ -721,26 +623,31 @@
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+    -o-animation-iteration-count: 1;
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%); }
 
-  20% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7); }
+  35% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
 
-  30% {
-    transform: translate(20%, 0% 7);
-    -webkit-transform: translate(20%, 0% 7);
-    -moz-transform: translate(20%, 0% 7);
-    -ms-transform: translate(20%, 0% 7);
-    -o-transform: translate(20%, 0% 7);
-    animation-timing-function: ease-in;
-    -webkit-animation-timing-function: ease-in;
-    -moz-animation-timing-function: ease-in;
-    -ms-animation-timing-function: ease-in;
-    -o-animation-timing-function: ease-in;
+  45% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-iteration-count: 1;
     -webkit-animation-iteration-count: 1;
     -mozilla-animation-iteration-count: 1;
@@ -753,6 +660,271 @@
     -moz-transform: translate(-150%, 0);
     -ms-transform: translate(-150%, 0);
     -o-transform: translate(-150%, 0); } }
+@keyframes moduleEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(-150%, 0%);
+    -webkit-transform: translate(-150%, 0%);
+    -moz-transform: translate(-150%, 0%);
+    -ms-transform: translate(-150%, 0%);
+    -o-transform: translate(-150%, 0%); }
+
+  65% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
+
+  75% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    -moz-transform: translate(0%, 0);
+    -ms-transform: translate(0%, 0);
+    -o-transform: translate(0%, 0); } }
+@-webkit-keyframes moduleEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(-150%, 0%);
+    -webkit-transform: translate(-150%, 0%);
+    -moz-transform: translate(-150%, 0%);
+    -ms-transform: translate(-150%, 0%);
+    -o-transform: translate(-150%, 0%); }
+
+  65% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
+
+  75% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    -moz-transform: translate(0%, 0);
+    -ms-transform: translate(0%, 0);
+    -o-transform: translate(0%, 0); } }
+@-moz-keyframes moduleEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(-150%, 0%);
+    -webkit-transform: translate(-150%, 0%);
+    -moz-transform: translate(-150%, 0%);
+    -ms-transform: translate(-150%, 0%);
+    -o-transform: translate(-150%, 0%); }
+
+  65% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
+
+  75% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    -moz-transform: translate(0%, 0);
+    -ms-transform: translate(0%, 0);
+    -o-transform: translate(0%, 0); } }
+@-ms-keyframes moduleEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(-150%, 0%);
+    -webkit-transform: translate(-150%, 0%);
+    -moz-transform: translate(-150%, 0%);
+    -ms-transform: translate(-150%, 0%);
+    -o-transform: translate(-150%, 0%); }
+
+  65% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
+
+  75% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    -moz-transform: translate(0%, 0);
+    -ms-transform: translate(0%, 0);
+    -o-transform: translate(0%, 0); } }
+@-o-keyframes moduleEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(-150%, 0%);
+    -webkit-transform: translate(-150%, 0%);
+    -moz-transform: translate(-150%, 0%);
+    -ms-transform: translate(-150%, 0%);
+    -o-transform: translate(-150%, 0%); }
+
+  65% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%); }
+
+  75% {
+    transform: translate(20%, 0%);
+    -webkit-transform: translate(20%, 0%);
+    -moz-transform: translate(20%, 0%);
+    -ms-transform: translate(20%, 0%);
+    -o-transform: translate(20%, 0%);
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    -moz-transform: translate(0%, 0);
+    -ms-transform: translate(0%, 0);
+    -o-transform: translate(0%, 0); } }
 /* ----------------------- GENERAL STYLING ----------------------------- */
 #leftHandContainer {
   background-color: #d0d0d0;
@@ -775,69 +947,48 @@
   margin-top: 10px;
   margin-bottom: 10px; }
 
-.leftHandSection {
-  /* Locally defined lists needed here to set multiple transition properties on the log-in module */
-  transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-  transition-timing-function: linear, linear;
-  transition-duration: 0.2s, 0.2s;
-  transition-delay: 0s, 0s;
-  -webkit-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-  -webkit-transition-timing-function: linear, linear;
-  -webkit-transition-duration: 0.2s, 0.2s;
-  -webkit-transition-delay: 0s, 0s;
-  -moz-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-  -moz-transition-timing-function: linear, linear;
-  -moz-transition-duration: 0.2s, 0.2s;
-  -moz-transition-delay: 0s, 0s;
-  -ms-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-  -ms-transition-timing-function: linear, linear;
-  -ms-transition-duration: 0.2s, 0.2s;
-  -ms-transition-delay: 0s, 0s;
-  -o-transition-property: transform, -webkit-transform, -moz-transform, -ms-transform, -o-transform;
-  -o-transition-timing-function: linear, linear;
-  -o-transition-duration: 0.2s, 0.2s;
-  -o-transition-delay: 0s, 0s;
-  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
-  opacity: 1.0; }
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .leftHandSection {
-      transition-property: opacity, -webkit-transform;
-      -webkit-transition-property: opacity, -webkit-transform;
-      -webkit-transition-timing-function: linear, linear;
-      -webkit-transition-duration: 0.2s, 0.2s;
-      -webkit-transition-delay: 0s, 0s; } }
-  .leftHandSection.exit {
-    animation-name: moduleExit;
-    -webkit-animation-name: moduleExit;
-    -mozilla-animation-name: moduleExit;
-    -ms-animation-name: moduleExit;
-    -o-animation-name: moduleExit;
-    animation-duration: 1.5s;
-    -webkit-animation-duration: 1.5s;
-    -moz-animation-duration: 1.5s;
-    -ms-animation-duration: 1.5s;
-    -o-animation-duration: 1.5s;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
-  .leftHandSection.enter {
-    animation-name: moduleEnter;
-    -webkit-animation-name: moduleEnter;
-    -mozilla-animation-name: moduleEnter;
-    -ms-animation-name: moduleEnter;
-    -o-animation-name: moduleEnter;
-    animation-duration: 3s;
-    -webkit-animation-duration: 3s;
-    -moz-animation-duration: 3s;
-    -ms-animation-duration: 3s;
-    -o-animation-duration: 3s;
-    animation-iteration-count: 1;
-    -webkit-animation-iteration-count: 1;
-    -mozilla-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1; }
+.leftHandSection.exit {
+  animation-name: moduleExit;
+  -webkit-animation-name: moduleExit;
+  -mozilla-animation-name: moduleExit;
+  -ms-animation-name: moduleExit;
+  -o-animation-name: moduleExit;
+  animation-duration: 0.6s;
+  -webkit-animation-duration: 0.6s;
+  -moz-animation-duration: 0.6s;
+  -ms-animation-duration: 0.6s;
+  -o-animation-duration: 0.6s;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  -mozilla-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  transform: translate(-150%, 0%);
+  -webkit-transform: translate(-150%, 0%);
+  -moz-transform: translate(-150%, 0%);
+  -ms-transform: translate(-150%, 0%);
+  -o-transform: translate(-150%, 0%); }
+.leftHandSection.enter {
+  animation-name: moduleEnter;
+  -webkit-animation-name: moduleEnter;
+  -mozilla-animation-name: moduleEnter;
+  -ms-animation-name: moduleEnter;
+  -o-animation-name: moduleEnter;
+  animation-duration: 0.8s;
+  -webkit-animation-duration: 0.8s;
+  -moz-animation-duration: 0.8s;
+  -ms-animation-duration: 0.8s;
+  -o-animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  -mozilla-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  transform: translate(0%, 0%);
+  -webkit-transform: translate(0%, 0%);
+  -moz-transform: translate(0%, 0%);
+  -ms-transform: translate(0%, 0%);
+  -o-transform: translate(0%, 0%); }
 
 .mainItem {
   /* Locally defined lists to set multiple transitions properties on each menu DIV */
