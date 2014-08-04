@@ -1,0 +1,91 @@
+/* ----------------------- IMPORTS ----------------------------- */
+
+@import 'foundation/_colors.scss';
+@import 'foundation/_animations.scss';
+
+/* ----------------------- ANIMATIONS ----------------------------- */
+
+@include shiftHorizontalTwice($name: containerEnter, $firstMagnitude: calc(100% - 250px), $secondMagnitude: calc(100% - 210px), $shiftChange: 80%,
+	$startingPosition: calc(120% + 200px), $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: ease-in);
+@include shiftHorizontalTwice($name: containerExit, $firstMagnitude: 20%, $secondMagnitude: 0%, $shiftChange: 65%,
+	$startingPosition: -150%, $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: linear);
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+
+#serverMessageContainer
+{
+	border:
+	{
+		style: solid;
+		color: map-get($COLORS, darkGrayTheme);
+		width: 2px;
+		radius: 15px;
+	}
+
+	padding:
+	{
+		left: 15px;
+	}
+
+	width: 200px;
+	background-color: map-get($COLORS, noticeTheme);
+
+	position: fixed;
+	left: calc(120% + 200px);
+	top: 90%;
+	z-index: 2;
+
+	&.offsetUp10
+	{
+		top: 90%;
+	}
+
+	&.offsetUp20
+	{
+		top: 80%;
+	}
+
+	&.offsetUp30
+	{
+		top: 70%;
+	}
+
+	&.offsetUp40
+	{
+		top: 60%;
+	}
+
+	&.enter
+	{
+		@include animationSettings($keyframeSet: containerEnter, $duration: 0.6s);
+		@include shiftTransition($x: calc(100% - 210px));
+	}
+
+	&.exit
+	{
+		@include animationSettings($keyframeSet: containerExit, $duration: 0.6s);
+		@include shiftTransition($x: calc(120% + 200px));
+	}
+
+	&.success
+	{
+		background-color: map-get($COLORS, positiveTheme);
+	}
+
+	&.success
+	{
+		background-color: map-get($COLORS, negativeTheme);
+	}
+}
+
+#serverMessageContainerHeader
+{
+	@extend %regularPlusFont, %boldFont;
+
+	text-align: left;
+}
+
+#serverMessageContainerBody
+{
+	@extend %regularFont;
+}
