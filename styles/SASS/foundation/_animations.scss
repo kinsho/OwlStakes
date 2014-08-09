@@ -41,7 +41,10 @@
 
 	@if ($webkitProperty)
 	{
-		/* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+		/*
+			Webkit browsers do not tolerate specifying properties that are considered invalid according to its own
+			dictionary of valid CSS properties
+		*/
 		@media screen and (-webkit-min-device-pixel-ratio:0)
 		{
 			transition-property: $webkitProperty;

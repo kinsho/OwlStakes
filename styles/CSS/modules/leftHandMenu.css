@@ -1013,7 +1013,10 @@
   -o-transition-timing-function: ease, linear;
   -o-transition-duration: 0.5s, 0.75s;
   -o-transition-delay: 0s, 0s;
-  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  /*
+  	Webkit browsers do not tolerate specifying properties that are considered invalid according to its own
+  	dictionary of valid CSS properties
+  */
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 60px;

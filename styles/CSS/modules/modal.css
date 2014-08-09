@@ -268,7 +268,10 @@
   -o-transition-timing-function: linear, linear;
   -o-transition-duration: 0.5s, 0.5s;
   -o-transition-delay: 0s, 0s;
-  /* Webkit browsers do not tolerate specifying properties that are considered invalid according to its own dictionary of valid CSS properties */
+  /*
+  	Webkit browsers do not tolerate specifying properties that are considered invalid according to its own
+  	dictionary of valid CSS properties
+  */
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);

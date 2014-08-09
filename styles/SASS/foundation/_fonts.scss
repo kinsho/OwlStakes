@@ -191,10 +191,12 @@ $FONTS:
 }
 
 /* --- Colored fonts --- */
-%minorWhiteFont
+
+%regularWhiteFont
 {
-	@include sexyWhiteFont($size: map-get($FONTS, smallFontSize));
-	text-shadow: 1px 1px 3px #000000;
+	@extend %regularFont;
+
+	color: map-get($COLORS, whiteTheme);
 }
 
 %majorWhiteFont

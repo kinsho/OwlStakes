@@ -1,34 +1,876 @@
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
 /*
-Sass::SyntaxError: "#serverMessageContainerHeader" failed to @extend "%regularPlusFont".
-The selector "%regularPlusFont" was not found.
-Use "@extend %regularPlusFont !optional" if the extend should be able to fail.
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Functional mix-in responsible for setting transitions on elements
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$webkitProperty] - Because webkit browsers do not tolerate setting transitions upon CSS
+ *		CSS properties that it does not recognize, a separate list of properties may need to be specified
+ *		that would only be processed on webkit browsers
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ * @param [$useBrowserSpecificReferences] - a flag indicating whether the passed property will need to have
+ *		browser-specific prefixes prepended
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting all animation-related settings across all the major browsers
+ *
+ * @param [$keyframeSet] - the name of the set of keyframes towards which to apply these settings
+ * @param [$duration] - the duration of the animation
+ * @param [$timing] - the pace at which the animation will progress
+ * @param [$delay] - the amount of time to wait before the animation begins
+ * @param [$iterations] - the number of times which to execute the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within webkit browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within gecko browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within trident browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Functional mix-in responsible for setting transitions on elements within opera browsers
+ *
+ * @param $property - the property or properties upon which to set transitions upon
+ * @param [$timing] - the pace at which the transition will animate
+ * @param [$duration] - the number of seconds the animation is expected to last
+ * @param [$delay] - the number of seconds to wait before initiating the animation
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in responsible for setting up keyframes across all the major browsers
+ * NOTE: The content to populate the body of the keyframes are provided through the use of the
+ * 		@content directive. Any invocation of this mix-in must have external content attached.
+ *
+ * @param $name - the name to assign to the keyframes being generated
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to shift elements on a two-dimensional plane
+ *
+ * @param [$x] - the horizontal magnitude of the shift
+ * @param [$y] - the vertical magnitude of the shift
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to scale elements on a two-dimensional plane
+ *
+ * @param [$length] - the resize multiplier to apply to the length of the element
+ * @param [$width] - the resize multiplier to apply to the width of the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a two-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to rotate elements on a three-dimensional plane
+ *
+ * @param $degrees - the amount of rotation to apply to the element
+ * @param $rotateByX - the x-coordinate of the rotation vector
+ * @param $rotateByY - the y-coordinate of the rotation vector
+ * @param $rotateByZ - the z-coordinate of the rotation vector 
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in designed to reset the location of the origin on a specific element
+ * Moving the point of origin around allows for a variety of different 2D and 3D rotation animations on the element
+ * Note that when setting a two-dimensional origin point, don't pass a parameter for the z-coordinate when invoking this mixin
+ *
+ * @param [$x] - the x-coordinate for the new origin coordinate
+ * @param [$y] - the y-coordinate for the new origin coordinate
+ * @param [$z] - the z-coordinate for the new origin coordinate
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates an animation that shifts an element either to the left or the right
+ *
+ * @param $name - the name to assign to the animation currently being defined
+ * @param $shiftMagnitude - the amount by which to shift the element toward either the left or the right
+ * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
+ * @param [$shiftTimingFunction] - the pacing function to apply to the shift, if provided
+ *
+ * @author kinsho
+ */
+/*
+ * Mix-in generates an animation that shifts an element either to the left or the right
+ *
+ * @param $name - the name to assign to the animation currently being defined
+ * @param $firstMagnitude - the amount by which to shift the element toward either the left or the right
+ * 		A positive value indicates a rightward shift while a negative value denotes a leftward shift.
+ * @param $secondMagnitude - the amount by which to shift the element toward either the left or the right
+ * 		after the first shift
+ * @param $shiftChange - the point in the animation at which to switch from the first shift to the second shift
+ * @param [$startingPosition] - the starting position of the element, expressed as a translation percentage
+ * @param [$firstShiftTimingFunction] - the pacing function to apply to the first shift, if provided
+ * @param [$secondShiftTimingFunction] - the pacing function to apply to the second shift, if provided
+ *
+ * @author kinsho
+ */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+#serverMessageContainerBody {
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
 
+#serverMessageContainer.neutralBackgroundTheme > #serverMessageContainerHeader {
+  font-weight: 400;
+  font-size: 20px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
 
-Backtrace:
-C:/Program Files (x86)/Apache Software Foundation/Apache2.4/htdocs/styles/SASS/modules/serverRelays.scss:83
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/tree/visitors/extend.rb:61:in `block in check_extends_fired!'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/util/subset_map.rb:106:in `block in each_value'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/util/subset_map.rb:106:in `each'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/util/subset_map.rb:106:in `each_value'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/tree/visitors/extend.rb:50:in `check_extends_fired!'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/tree/visitors/extend.rb:16:in `visit'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/tree/root_node.rb:39:in `css_tree'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/tree/root_node.rb:20:in `render'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/engine.rb:274:in `render'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:378:in `update_stylesheet'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:186:in `each'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:357:in `on_file_changed'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:250:in `block in watch'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/listener.rb:252:in `call'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
-C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.3.8/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Sass::SyntaxError: \"#serverMessageContainerHeader\" failed to @extend \"%regularPlusFont\".\A The selector \"%regularPlusFont\" was not found.\A Use \"@extend %regularPlusFont !optional\" if the extend should be able to fail.\A "; }
+/* --- Colored fonts --- */
+#serverMessageContainerBody {
+  color: white; }
+
+#serverMessageContainerHeader {
+  font-weight: 700;
+  font-size: 20px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: italic;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 0 #000000; }
+
+/* --- Mood fonts --- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- ANIMATIONS ----------------------------- */
+@keyframes containerEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+
+  75% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  85% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(30%, 0);
+    -webkit-transform: translate(30%, 0);
+    -moz-transform: translate(30%, 0);
+    -ms-transform: translate(30%, 0);
+    -o-transform: translate(30%, 0); } }
+@-webkit-keyframes containerEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+
+  75% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  85% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(30%, 0);
+    -webkit-transform: translate(30%, 0);
+    -moz-transform: translate(30%, 0);
+    -ms-transform: translate(30%, 0);
+    -o-transform: translate(30%, 0); } }
+@-moz-keyframes containerEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+
+  75% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  85% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(30%, 0);
+    -webkit-transform: translate(30%, 0);
+    -moz-transform: translate(30%, 0);
+    -ms-transform: translate(30%, 0);
+    -o-transform: translate(30%, 0); } }
+@-ms-keyframes containerEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+
+  75% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  85% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(30%, 0);
+    -webkit-transform: translate(30%, 0);
+    -moz-transform: translate(30%, 0);
+    -ms-transform: translate(30%, 0);
+    -o-transform: translate(30%, 0); } }
+@-o-keyframes containerEnter {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+
+  75% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  85% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(30%, 0);
+    -webkit-transform: translate(30%, 0);
+    -moz-transform: translate(30%, 0);
+    -ms-transform: translate(30%, 0);
+    -o-transform: translate(30%, 0); } }
+@keyframes containerExit {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+
+  20% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  30% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(130%, 0);
+    -webkit-transform: translate(130%, 0);
+    -moz-transform: translate(130%, 0);
+    -ms-transform: translate(130%, 0);
+    -o-transform: translate(130%, 0); } }
+@-webkit-keyframes containerExit {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+
+  20% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  30% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(130%, 0);
+    -webkit-transform: translate(130%, 0);
+    -moz-transform: translate(130%, 0);
+    -ms-transform: translate(130%, 0);
+    -o-transform: translate(130%, 0); } }
+@-moz-keyframes containerExit {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+
+  20% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  30% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(130%, 0);
+    -webkit-transform: translate(130%, 0);
+    -moz-transform: translate(130%, 0);
+    -ms-transform: translate(130%, 0);
+    -o-transform: translate(130%, 0); } }
+@-ms-keyframes containerExit {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+
+  20% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  30% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(130%, 0);
+    -webkit-transform: translate(130%, 0);
+    -moz-transform: translate(130%, 0);
+    -ms-transform: translate(130%, 0);
+    -o-transform: translate(130%, 0); } }
+@-o-keyframes containerExit {
+  0% {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    -ms-transform: translate(0%, 0%);
+    -o-transform: translate(0%, 0%);
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+
+  20% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%); }
+
+  30% {
+    transform: translate(25%, 0%);
+    -webkit-transform: translate(25%, 0%);
+    -moz-transform: translate(25%, 0%);
+    -ms-transform: translate(25%, 0%);
+    -o-transform: translate(25%, 0%);
+    animation-timing-function: ease-in;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1; }
+
+  100% {
+    transform: translate(130%, 0);
+    -webkit-transform: translate(130%, 0);
+    -moz-transform: translate(130%, 0);
+    -ms-transform: translate(130%, 0);
+    -o-transform: translate(130%, 0); } }
+/* ----------------------- GENERAL STYLING ----------------------------- */
+#serverMessageContainer {
+  transform: translate(130%, 0%);
+  -webkit-transform: translate(130%, 0%);
+  -moz-transform: translate(130%, 0%);
+  -ms-transform: translate(130%, 0%);
+  -o-transform: translate(130%, 0%);
+  border-style: solid;
+  border-color: #a0a0a0;
+  border-width: 2px;
+  border-radius: 15px;
+  padding-left: 15px;
+  width: 80%;
+  position: fixed;
+  top: 90%;
+  z-index: 2;
+  -moz-user-select: none;
+  -khtml-user-select: none; }
+  #serverMessageContainer.offsetUp10 {
+    top: 90%; }
+  #serverMessageContainer.offsetUp20 {
+    top: 80%; }
+  #serverMessageContainer.offsetUp30 {
+    top: 70%; }
+  #serverMessageContainer.offsetUp40 {
+    top: 60%; }
+  #serverMessageContainer.enter {
+    animation-name: containerEnter;
+    -webkit-animation-name: containerEnter;
+    -mozilla-animation-name: containerEnter;
+    -ms-animation-name: containerEnter;
+    -o-animation-name: containerEnter;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+    -moz-animation-duration: 1.2s;
+    -ms-animation-duration: 1.2s;
+    -o-animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(30%, 0%);
+    -webkit-transform: translate(30%, 0%);
+    -moz-transform: translate(30%, 0%);
+    -ms-transform: translate(30%, 0%);
+    -o-transform: translate(30%, 0%); }
+  #serverMessageContainer.exit {
+    animation-name: containerExit;
+    -webkit-animation-name: containerExit;
+    -mozilla-animation-name: containerExit;
+    -ms-animation-name: containerExit;
+    -o-animation-name: containerExit;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+    -moz-animation-duration: 1.2s;
+    -ms-animation-duration: 1.2s;
+    -o-animation-duration: 1.2s;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    -mozilla-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+  #serverMessageContainer.neutralBackgroundTheme > #serverMessageContainerBody, #serverMessageContainer.neutralBackgroundTheme > .exitButton {
+    color: black; }
+  #serverMessageContainer.neutralBackgroundTheme > #serverMessageContainerHeader {
+    color: black; }
+  #serverMessageContainer.animateMovement {
+    transition-property: transform;
+    transition-timing-function: ease;
+    transition-duration: 1s;
+    transition-delay: 0.5s;
+    -webkit-transition-property: transform;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-delay: 0.5s;
+    -moz-transition-property: transform;
+    -moz-transition-timing-function: ease;
+    -moz-transition-duration: 1s;
+    -moz-transition-delay: 0.5s;
+    -ms-transition-property: transform;
+    -ms-transition-timing-function: ease;
+    -ms-transition-duration: 1s;
+    -ms-transition-delay: 0.5s;
+    -o-transition-property: transform;
+    -o-transition-timing-function: ease;
+    -o-transition-duration: 1s;
+    -o-transition-delay: 0.5s;
+    /*
+    	Webkit browsers do not tolerate specifying properties that are considered invalid according to its own
+    	dictionary of valid CSS properties
+    */
+    transform: translate(130%, 0%);
+    -webkit-transform: translate(130%, 0%);
+    -moz-transform: translate(130%, 0%);
+    -ms-transform: translate(130%, 0%);
+    -o-transform: translate(130%, 0%); }
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      #serverMessageContainer.animateMovement {
+        transition-property: -webkit-transform;
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-timing-function: ease;
+        -webkit-transition-duration: 1s;
+        -webkit-transition-delay: 0.5s; } }
+  #serverMessageContainer > .exitButton {
+    margin-right: 8%;
+    margin-top: 3px;
+    color: #f8f8f8;
+    float: right;
+    cursor: pointer; }
+
+#serverMessageContainerHeader {
+  text-align: left; }
+
+#serverMessageContainerBody {
+  text-align: left; }

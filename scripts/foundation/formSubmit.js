@@ -17,81 +17,86 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 
 		NATURES =
 		{
-			POSITIVE: 0,
-			NEGATIVE: 1,
-			NEUTRAL: 2
+			POSITIVE: 1,
+			NEGATIVE: -1,
+			NEUTRAL: 0
 		},
 
 		SUCCESS_HEADER_TEXT = 'Success!',
 		SUCCESS_BODY_TEXT = 'Done! Happy?',
-		ERRORS_HEADER_TEXT = 'We may have a problem here...';
+		ERRORS_HEADER_TEXT = 'We may have a problem here...',
+
+		CONTAINER_EXIT_CLASS = 'exit',
+		CONTAINER_ENTRANCE_CLASS = 'enter',
+		CONTAINER_EXIT_BUTTON_CLASS = 'exitButton';
 
 // ----------------- PRIVATE FUNCTIONS --------------------------
+	/**
+	  * Private function that formats all the error messages that were relayed from the server
+	  * into an HTML list that can then be inserted into the DOM
+	  *
+	  * @param {Array} errors - all the error messages that need to be formatted
+	  *
+	  * @return {String | HTMLElement} usually a list element containing all the errors that are to
+	  *		be displayed. In cases where only one error message needs to be listed, that one message itself
+	  *		will be returned as a string.
+	  *
+	  * @author kinsho
+	  */
+	var formatErrors = function(errors)
+		{
+			var listElement,
+				listItem,
+				i;
+
+			// If only one error needs to be displayed, no need to do anything other than to return
+			// that one error message
+			if (errors.length === 1)
+			{
+				return errors[0];
+			}
+
+			// Create the main list container that will hold all the individual error messages together
+			listElement = document.createElement('ul');
+
+			// Insert each error message into the container
+			for (i = 0; i < errors.length; i += 1)
+			{
+				listItem = document.createElement('li');
+				listItem.innerHTML = errors[i];
+				listElement.appendChild(listItem);
+			}
+
+			// Return the list element itself. The logic that invoked this will be responsible for placing
+			// this element within the DOM
+			return listItem;
+		},
+
 		/**
-		  * Private function that formats all the error messages that were relayed from the server
-		  * into one string
+		  * Function meant to provide a generic way of disabling/enabling buttons whenever an AJAX request has
+		  * initiated/completed.
+		  * Note that the function is meant to ensure that duplicate AJAX requests do not get fired from the user
+		  * repeatedly clicking on the the button or link that led to the firing of the AJAX request
 		  *
-		  * @param {Array} errors - all the error messages that need to be formatted
-		  *
-		  * @return {String} a string that is to be directly inserted into the body of the server
-		  *		relay container
+		  *	@param {HTMLElement} targetElement - the clicked element that led to the triggering of the AJAX request
 		  *
 		  * @author kinsho
 		  */
-		var formatErrors = function(errors)
+		disableEnableSubmitButton = function(targetElement)
+		{
+			var $targetElement = $(targetElement),
+				isButton = $targetElement.is('[type=button]'),
+				isLinkDisabled = $targetElement.data('disabled');
+
+			if (isButton)
 			{
-				var listElement,
-					listItem,
-					i;
-
-				// If only one error needs to be displayed, no need to do anything other than to return
-				// that one error message
-				if (errors.length === 1)
-				{
-					return errors[0];
-				}
-
-				// Create the main list container that'll hold all the individual error messages together
-				listElement = document.createElement('ul');
-
-				// Insert each error message into the container
-				for (i = 0; i < errors.length; i += 1)
-				{
-					listItem = document.createElement('li');
-					listItem.innerHTML = errors[i];
-					listElement.appendChild(listItem);
-				}
-
-				// Return the list element itself. The logic that invoked this will be responsible for placing
-				// this element within the DOM
-				return listItem;
-			},
-
-			/**
-			  * Function meant to provide a generic way of disabling/enabling buttons whenever an AJAX request has
-			  * initiated/completed.
-			  * Note that the function is meant to ensure that duplicate AJAX requests do not get fired from the user
-			  * repeatedly clicking on the the button or link that led to the firing of the AJAX request
-			  *
-			  *	@param {HTMLElement} targetElement - the clicked element that led to the triggering of the AJAX request
-			  *
-			  * @author kinsho
-			  */
-			disableEnableSubmitButton = function(targetElement)
+				targetElement.disabled = !(targetElement.disabled);
+			}
+			else
 			{
-				var $targetElement = $(targetElement),
-					isButton = $targetElement.is('[type=button]'),
-					isLinkDisabled = $targetElement.data('disabled');
-
-				if (isButton)
-				{
-					targetElement.disabled = !(targetElement.disabled);
-				}
-				else
-				{
-					$targetElement.data('disabled', !(isLinkDisabled)); 
-				}
-			};
+				$targetElement.data('disabled', !(isLinkDisabled));
+			}
+		};
 
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
@@ -191,7 +196,7 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		/**
 		  * Function serves to handle AJAX requests and provides generic means with which to handle certain types
 		  * of responses.
-		  * 
+		  *
 		  * @param {Object} settings - the settings which to apply to the AJAX call. All parameters and the back-end
 		  * 	URL should be present within this object
 		  * @param {Event} event - the event that ultimately led to this function being invoked
@@ -254,6 +259,14 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 					my.displayContainer(successHeader || SUCCESS_HEADER_TEXT, successBody || SUCCESS_BODY_TEXT,
 						NATURES.POSITIVE);
 
+					if (settings.autoHideContainer)
+					{
+						window.setTimeout(function()
+						{
+							my.hideContainer();
+						}, 8000);
+					}
+
 					// Invoke the original success function that was passed into the function, if one was provided
 					success(data, status, response);
 				}
@@ -297,19 +310,17 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		  */
 		displayContainer: function(headerText, bodyText, nature)
 		{
-			var container = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER),
-				header = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_HEADER),
-				body = document.getElementById('#' + my.SERVER_MESSAGE_CONTAINER_BODY),
+			var container = document.getElementById(my.SERVER_MESSAGE_CONTAINER),
+				header = document.getElementById(my.SERVER_MESSAGE_CONTAINER_HEADER),
+				body = document.getElementById(my.SERVER_MESSAGE_CONTAINER_BODY),
 				heightRatio;
 
-			container.classList.add(constants.styles.BLOCK_DISPLAY);
-
 			// Set the background color of the container to help indicate the nature of the server response
-			if (nature === this.NATURES.POSITIVE)
+			if (nature === NATURES.POSITIVE)
 			{
 				container.classList.add(constants.styles.POSITIVE_BACKGROUND_THEME);
 			}
-			else if (nature === this.NATURES.NEGATIVE)
+			else if (nature === NATURES.NEGATIVE)
 			{
 				container.classList.add(constants.styles.NEGATIVE_BACKGROUND_THEME);
 			}
@@ -319,14 +330,14 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 			}
 
 			// Set text within the container
-			header.innerHTML(headerText);
-			if (nature === this.NATURES.NEGATIVE)
+			header.innerHTML = headerText;
+			if (nature === NATURES.NEGATIVE)
 			{
-				body.innerHTML(formatErrors(bodyText));
+				body.innerHTML = formatErrors(bodyText);
 			}
 			else
 			{
-				body.innerHTML(bodyText);
+				body.innerHTML = bodyText;
 			}
 
 			// Adjust the location of the relay container depending on its height
@@ -350,15 +361,11 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 
 			// Slide the container into view with a fancy left shift animation followed by a slight pull back to
 			// the right
-			container.classList.add(constants.styles.SHIFT_TRANSITION_LEFT);
-			utility.setTransitionListeners(container, 50, true, function()
-			{
-				container.classList.add(constants.styles.SHIFT_TRANSITION_SLIGHT_RIGHT);
-			});
+			container.classList.add(CONTAINER_ENTRANCE_CLASS);
 		},
 
 		/**
-		  * Function hides the relay container from view
+		  * Function hides the server message container from view
 		  *
 		  * @author kinsho
 		  */
@@ -368,21 +375,77 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 
 			// First, slide the container off the screen towards the right, then remove all its
 			// custom and transition styling
-			container.classList.remove(constants.styles.SHIFT_TRANSITION_RIGHT);
-			utility.setTransitionListeners(container, 10, true, function()
+			container.classList.add(CONTAINER_EXIT_CLASS);
+			utility.setEventListener(container, function()
 			{
 				container.classList.remove(constants.styles.POSITIVE_BACKGROUND_THEME,
 					constants.styles.NEGATIVE_BACKGROUND_THEME,
 					constants.styles.NEUTRAL_BACKGROUND_THEME,
-					constants.styles.BLOCK_DISPLAY,
-					constants.styles.SHIFT_TRANSITION_LEFT +
-					constants.styles.SHIFT_TRANSITION_SLIGHT_RIGHT +
-					constants.styles.SHIFT_TRANSITION_RIGHT);
-			});
-		}
+					CONTAINER_ENTRANCE_CLASS,
+					CONTAINER_EXIT_CLASS);
+			}, 'animationend', 0, true);
+		},
 
+		/**
+		 * Function allows the user to move the container to the right manually using the mouse
+		 *
+		 * @param {Event} event - the event responsible for triggering the invocation of this function
+		 *
+		 * @author kinsho
+		 */
+		/** TODO: Figure out whether to allow the user to drag the container
+		moveContainer: function(event)
+		{
+			var mouseStartPosition = event.clientX,
+				currentMousePosition = event.clientX,
+				container = document.getElementById(my.SERVER_MESSAGE_CONTAINER),
+				positionDifferential,
+
+				moveFunction = function(event)
+				{
+					currentMousePosition = event.clientX;
+
+					positionDifferential = currentMousePosition - mouseStartPosition;
+
+					// Put a leftward limitation on the number of pixels that the container is allowed to move left
+					positionDifferential = Math.max(-30, positionDifferential);
+
+					// Apply a translation to the container depending on the position coefficient calculated above
+					container.style.marginLeft = positionDifferential;
+				},
+				stopFunction = function(event)
+				{
+					currentMousePosition = event.clientX;
+
+					// Remove the mousemove event as we only want the event to fire when the user
+					// is moving the container
+					utility.removeEventListener(container, moveFunction, 'mousemove');
+				};
+
+			// Set up the mousemove and the mouseup listeners to track the movement of the container as well
+			// as when the user has finally decided to stop moving the container
+			utility.setEventListener(container, moveFunction, 'mousemove', 0, false);
+			utility.setEventListener(container, stopFunction, 'mouseup', 0, true);
+		}
+		*/
 	};
 
+// ----------------- LISTENERS --------------------------
+
+	// Set up the listener to close the server message container when its exit icon is clicked on
+	utility.setEventListener(document.getElementById(my.SERVER_MESSAGE_CONTAINER).querySelector('.' + CONTAINER_EXIT_BUTTON_CLASS),
+		my.hideContainer, 'click', 0, false);
+
+	// Set up the listener to allow the user to drag the server message container off screen
+	// utility.setEventListener(document.getElementById(my.SERVER_MESSAGE_CONTAINER), my.moveContainer, 'mousedown', 0, false);
+
+// ----------------- TESTING --------------------------
+
+window.displayContainer = my.displayContainer;
+window.hideContainer = my.hideContainer;
+
 // ----------------- END --------------------------
+
+
 	return my;
 });

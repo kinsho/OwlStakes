@@ -2,18 +2,34 @@
 
 @import 'foundation/_colors.scss';
 @import 'foundation/_animations.scss';
+@import 'foundation/_fonts.scss';
+
+
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+
+$SERVER_RELAYS:
+(
+	width: 80%,
+
+	startingPosition: 130%,
+	leftBoundary: 25%,
+	restPoint: 30%,
+	exitButtonPositionPadding: 8%
+);
 
 /* ----------------------- ANIMATIONS ----------------------------- */
 
-@include shiftHorizontalTwice($name: containerEnter, $firstMagnitude: calc(100% - 250px), $secondMagnitude: calc(100% - 210px), $shiftChange: 80%,
-	$startingPosition: calc(120% + 200px), $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: ease-in);
-@include shiftHorizontalTwice($name: containerExit, $firstMagnitude: 20%, $secondMagnitude: 0%, $shiftChange: 65%,
-	$startingPosition: -150%, $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: linear);
+@include shiftHorizontalTwice($name: containerEnter, $firstMagnitude: map-get($SERVER_RELAYS, leftBoundary), $secondMagnitude: map-get($SERVER_RELAYS, restPoint), $shiftChange: 75%,
+	$startingPosition: map-get($SERVER_RELAYS, startingPosition), $firstShiftTimingFunction: ease-in-out, $secondShiftTimingFunction: ease-in);
+@include shiftHorizontalTwice($name: containerExit, $firstMagnitude: map-get($SERVER_RELAYS, leftBoundary), $secondMagnitude: map-get($SERVER_RELAYS, startingPosition), $shiftChange: 20%,
+	$startingPosition: map-get($SERVER_RELAYS, restPoint), $firstShiftTimingFunction: ease-out, $secondShiftTimingFunction: ease-in);
 
 /* ----------------------- GENERAL STYLING ----------------------------- */
 
 #serverMessageContainer
 {
+	@include shiftTransition($x: map-get($SERVER_RELAYS, startingPosition));
+
 	border:
 	{
 		style: solid;
@@ -27,13 +43,14 @@
 		left: 15px;
 	}
 
-	width: 200px;
-	background-color: map-get($COLORS, noticeTheme);
+	width: map-get($SERVER_RELAYS, width);
 
 	position: fixed;
-	left: calc(120% + 200px);
 	top: 90%;
 	z-index: 2;
+
+	-moz-user-select: none;
+	-khtml-user-select: none;
 
 	&.offsetUp10
 	{
@@ -57,35 +74,60 @@
 
 	&.enter
 	{
-		@include animationSettings($keyframeSet: containerEnter, $duration: 0.6s);
-		@include shiftTransition($x: calc(100% - 210px));
+		@include animationSettings($keyframeSet: containerEnter, $duration: 1.2s);
+		@include shiftTransition($x: map-get($SERVER_RELAYS, restPoint));
 	}
 
 	&.exit
 	{
-		@include animationSettings($keyframeSet: containerExit, $duration: 0.6s);
-		@include shiftTransition($x: calc(120% + 200px));
+		@include animationSettings($keyframeSet: containerExit, $duration: 1.2s);
+		@include shiftTransition($x: map-get($SERVER_RELAYS, startingPosition));
 	}
 
-	&.success
+	// A black font better contrasts with the neutral theme than does a white font, thus necessitating the need
+	// for the additional rule below
+	&.neutralBackgroundTheme > #serverMessageContainerBody, &.neutralBackgroundTheme > .exitButton
 	{
-		background-color: map-get($COLORS, positiveTheme);
+		color: map-get($COLORS, blackTheme);
 	}
 
-	&.success
+	&.neutralBackgroundTheme > #serverMessageContainerHeader
 	{
-		background-color: map-get($COLORS, negativeTheme);
+		color: map-get($COLORS, blackTheme);
+		@extend %regularPlusFont;
+	}
+
+	&.animateMovement
+	{
+		@include transitionSettings($property: transform, $webkitProperty: -webkit-transform, $duration: 1s, $delay: 0.5s);
+		@include shiftTransition($x: map-get($SERVER_RELAYS, startingPosition));
+	}
+
+	& > .exitButton
+	{
+		margin:
+		{
+			right: map-get($SERVER_RELAYS, exitButtonPositionPadding);
+			top: 3px;
+		}
+
+		color: map-get($COLORS, lightWhiteTheme);
+
+		float: right;
+		cursor: pointer;
 	}
 }
 
 #serverMessageContainerHeader
 {
-	@extend %regularPlusFont, %boldFont;
+	@extend %majorWhiteFont;
 
 	text-align: left;
 }
 
 #serverMessageContainerBody
 {
-	@extend %regularFont;
+	@extend %regularWhiteFont;
+
+	text-align: left;
 }
