@@ -392,8 +392,9 @@ define(['jquery', 'json', 'foundation/constants', 'foundation/utility', 'foundat
 		 * @param {Event} event - the event responsible for triggering the invocation of this function
 		 *
 		 * @author kinsho
+		 * @TODO: Figure out whether to allow the user to drag the container
 		 */
-		/** TODO: Figure out whether to allow the user to drag the container
+		/**
 		moveContainer: function(event)
 		{
 			var mouseStartPosition = event.clientX,
