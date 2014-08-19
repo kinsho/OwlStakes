@@ -5,8 +5,7 @@
 define([], function()
 {
 // ----------------- MODULE DEFINITION --------------------------
-	var my =
-	{
+	return {
 		styles:
 		{
 			BLOCK_DISPLAY: 'displayBlock',
@@ -36,7 +35,4 @@ define([], function()
 				'You must take away some of the points that you wagered.'
 		}
 	};
-
-// ----------------- END --------------------------
-	return my;
 });
