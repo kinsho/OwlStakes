@@ -1,0 +1,50 @@
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+
+$SUPER_TIPS:
+(
+	transitionProperty: all,
+	transitionDuration: 0.25s,
+	transitionTimingFunction: ease-in
+);
+
+
+/* ----------------------- GENERAL STYLING ----------------------------- */
+
+.superTip
+{
+	width: 0px;
+	height: 0px;
+	overflow-y: hidden;
+	max-width: 110px;
+
+	color: rgba(255, 255, 255, 0.0);
+
+	transition-property: map-get($SUPER_TIPS, transitionProperty);
+	-webkit-transition-property: map-get($SUPER_TIPS, transitionProperty);
+	-moz-transition-property: map-get($SUPER_TIPS, transitionProperty);
+	-ms-transition-property: map-get($SUPER_TIPS, transitionProperty);
+	-o-transition-property: map-get($SUPER_TIPS, transitionProperty);
+
+	transition-duration: map-get($SUPER_TIPS, transitionDuration);
+	-webkit-transition-duration: map-get($SUPER_TIPS, transitionDuration);
+	-moz-transition-duration: map-get($SUPER_TIPS, transitionDuration);
+	-ms-transition-duration: map-get($SUPER_TIPS, transitionDuration);
+	-o-transition-duration: map-get($SUPER_TIPS, transitionDuration);
+
+	transition-timing-function: map-get($SUPER_TIPS, transitionTimingFunction);
+	-webkit-transition-timing-function: map-get($SUPER_TIPS, transitionTimingFunction);
+	-moz-transition-timing-function: map-get($SUPER_TIPS, transitionTimingFunction);
+	-ms-transition-timing-function: map-get($SUPER_TIPS, transitionTimingFunction);
+	-o-transition-timing-function: map-get($SUPER_TIPS, transitionTimingFunction);
+
+	&.superTipRender
+	{
+		height: auto;
+		width: auto;
+	}
+
+	&.superTipFadeIn
+	{
+		color: rgba(255, 255, 255, 1.0);
+	}
+}

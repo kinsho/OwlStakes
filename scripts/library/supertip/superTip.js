@@ -3,7 +3,7 @@
   *
   * @author kinsho
   */
-define(['jquery'], function($)
+define([], function()
 {
 	"use strict";
 
@@ -30,6 +30,7 @@ define(['jquery'], function($)
 	 *
 	 * @param {HTMLElement} el - the element that will generate the supertip once hovered over
 	 * @param {String} text - the text that will be displayed within the supertip
+	 *
 	 * @returns {HTMLElement} the newly created supertip element
 	 *
 	 * @author kinsho
@@ -65,25 +66,10 @@ define(['jquery'], function($)
 		 * @param {HTMLElement} el - the element associated with the passed supertip
 		 * @param {HTMLElement} superTip - the passed supertip
 		 *
-		 * @author kinsho
-		 */
-		placeBox = function(el, superTip)
-		{
-			var coords = findLocationOfElement(el);
-
-			superTip.style.left = coords.left + 'px';
-			superTip.style.top = coords.top + 'px';
-		},
-
-		/**
-		 * Finds the absolute position of an element on a page
-		 *
-		 * @param {HTMLElement} el - the element whose absolute position will be deducted
-		 *
 		 * @author quirksmode.org
 		 * @author kinsho
 		 */
-		findLocationOfElement = function(el)
+		placeBox = function(el, superTip)
 		{
 			var curleft = 0,
 				curtop = 0,
@@ -128,29 +114,8 @@ define(['jquery'], function($)
 				while (obj);
 			}
 
-			return { left : curleft, top : curtop };
-		},
-
-		/**
-		 * Method allows one to set an event listener that will only execute once before removing itself
-		 * from its host element
-		 *
-		 * @param {HTMLElement} element - the element to which to attach the listener
-		 * @param {String} type - the type of listener to attach to the event
-		 * @param {Function} listenerFunction - the listener function
-		 *
-		 * @author kinsho
-		 */
-		setOneAndDoneListener = function(element, type, listenerFunction)
-		{
-			// Function will remove the listener from its host element as soon as the listener is invoked
-			var runEventOnce = function()
-				{
-					element.removeEventListener(type, runEventOnce);
-					listenerFunction();
-				};
-
-			element.addEventListener(type, runEventOnce);
+			superTip.style.left = curleft + 'px';
+			superTip.style.top = curtop + 'px';
 		},
 
 		/**
@@ -163,6 +128,13 @@ define(['jquery'], function($)
 		 */
 		showSuperTip = function(el, superTip)
 		{
+			// Function explicitly defined here so that it could later be removed after one execution
+			var runEventOnce = function()
+			{
+				el.removeEventListener('transitionend', runEventOnce);
+				superTip.classList.add(SUPER_TIP_FADE_IN_CLASS);
+			};
+
 			if ((superTip.getAttribute(ACTIVE_DATA_ATTRIBUTE)) && (superTip.innerHTML.trim()))
 			{
 				superTip.setAttribute(ACTIVE_DATA_ATTRIBUTE, 'true');
@@ -170,12 +142,10 @@ define(['jquery'], function($)
 				// Always determine the coordinates at render time, if the tip is not currently rendered
 				placeBox(el, superTip);
 
-				// Remember that text can only be shown once the tooltip is fully rendered.
+				// Remember that text can only be shown once the tooltip is fully rendered
+				// Thus, a transitionend listener will be set up to detect the end of the rendering of the tooltip
 				superTip.classList.add(SUPER_TIP_RENDER_CLASS);
-				setOneAndDoneListener(el, 'transitionend', function()
-				{
-					superTip.classList.add(SUPER_TIP_FADE_IN_CLASS);
-				});
+				el.addEventListener('transitionend', runEventOnce);
 			}
 		},
 
@@ -204,11 +174,8 @@ define(['jquery'], function($)
 		 *
 		 * @author kinsho
 		 */
-		setUpListeners = function(el)
+		setUpListeners = function(el, superTip)
 		{
-			var superTip = superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)],
-				i;
-
 			el.addEventListener('mouseover', function()
 			{
 				superTip.setAttribute(HOVER_DATA_ATTRIBUTE, 'true');
@@ -239,8 +206,82 @@ define(['jquery'], function($)
 			}
 		};
 
+// ----------------- MODULE DEFINITION --------------------------
+
+	var my =
+		{
+			/**
+			 * Method responsible for constructing the superTips
+			 *
+			 * @param {HTMLElement} el - the element to associate with a new supertip
+			 * @param {String} [text] - the text to display within the supertip
+			 *
+			 * @author kinsho
+			 */
+			superTip: function(el, text)
+			{
+				var superTip;
+
+				text = text || '';
+
+				if ( !(el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)) )
+				{
+					superTip = createTip(el, text);
+					setUpListeners(el, superTip);
+				}
+			},
+
+			/**
+			 * Function unravels the tooltip gracefully and ensures that it's not fired again by taking out the text
+			 * contained within. Think of this function as a very hard reset
+			 *
+			 * @param el - the element that will generate the supertip once hovered over
+			 *
+			 * @author kinsho
+			 */
+			resetSuperTip: function(el)
+			{
+				var superTip = superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
+
+				superTip.setAttribute(HOVER_DATA_ATTRIBUTE, '');
+				superTip.setAttribute(FOCUS_DATA_ATTRIBUTE, '');
+				superTip.setAttribute(ACTIVE_DATA_ATTRIBUTE, '');
+				superTip.classList.remove(SUPER_TIP_RENDER_CLASS, SUPER_TIP_FADE_IN_CLASS);
+
+				my.changeSuperTipText(null, '', superTip);
+			},
+
+			/**
+			 * Replaces old text within supertip with new text. Note that either the element or supertip can be
+			 * provided to this function. If both are provided, the superTip modified will be the passed
+			 * superTip, even if that superTip is not associated with the passed host element.
+			 *
+			 * @param {HTMLElement} [el] - the element that will generate the supertip once hovered over
+			 * @param {String} [text] - the new text to place within the supertip. If no text is supplied,
+			 *		whatever text has already been placed within the supertip will be wiped out
+			 * @param {HTMLElement} superTip - the supertip to modify
+			 *
+			 * @author kinsho
+			 */
+			changeSuperTipText: function(el, text, superTip)
+			{
+				el = el || {};
+				superTip = superTip || superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
+				text = text || '';
+
+				superTip.innerHTML(text);
+			}
+		};
+
 // ----------------- LISTENERS -----------------------------
 
+	/**
+	 * Every time the window is resized, any visible superTips may need to be repositioned, considering
+	 * that these superTips were initially positioned according to elements that were laid out against
+	 * an old set of viewport dimensions
+	 *
+	 * @author kinsho
+	 */
 	window.addEventListener('resize', function()
 	{
 		var superTipRecord,
@@ -260,135 +301,3 @@ define(['jquery'], function($)
 	});
 
 });
-
-
-	// ------------- PUBLIC METHODS -------------------
-
-	return {
-
-		/**
-		  * Method responsible for constructing the super tool tips
-		  *
-		  * @param el - the element that'll generate the supertip once hovered over
-		  * @param text(optional) - the text that'll be displayed within the supertip
-		  *
-		  * @author kinsho
-		  */
-		superTip: function(el, text)
-		{
-			var divTip;
-
-			text = text || '';
-
-			try
-			{
-				if ( !(el) || !(evaluateElement(el)) || !(evaluateString(text)) )
-				{
-					throw 'A supertip could not be properly instantiated. Please ensure that you are passing in the parameters properly.';
-				}
-				else if ( !(el.id) )
-				{
-					throw 'All elements that will be tagged with a supertip must have an ID. At least one of these elements is missing an ID.';
-				}
-
-				if ( !(findAssociatedTip(el)) )
-				{
-					divTip = createTip(el, text);
-					setUpListeners(el);
-					this.activateSuperTip(el, divTip);
-				}
-			}
-			catch(ex)
-			{
-				alert(ex);
-			}
-		},
-
-		/**
-		  * Activates a supertip so that it can be displayed on screen
-		  *
-		  * @param el - the element that'll generate the supertip once hovered over
-		  * @param divTip(optional) - the supertip itself
-		  *
-		  * @author kinsho
-		  */
-		activateSuperTip: function(el, divTip)
-		{
-			var $tip = divTip ? $(divTip) : findAssociatedTip(el);
-
-			if ($tip)
-			{
-				$tip.data('active', 'true');
-			}
-		},
-
-		/**
-		  * Deactivates a supertip so that it cannot be displayed on screen even if mouse is hovering over its hosts element
-		  *
-		  * @param el - the element that's supposed generate the supertip once hovered over
-		  * @param divTip(optional) - the supertip itself
-		  *
-		  * @author kinsho
-		  */
-		deactivateSuperTip: function(el, divTip)
-		{
-			var $tip = divTip ? $(divTip) : findAssociatedTip(el);
-
-			if ($tip)
-			{
-				$tip.data('active', '');
-			}
-		},
-
-		/**
-		  * Function de-renders the tooltip gracefully and ensures that it's not fired again by
-		  * taking out the text contained within.
-		  *
-		  * @param el - the element that'll generate the supertip once hovered over
-		  *
-		  * @author kinsho
-		  */
-		resetSuperTip: function(el)
-		{
-			var $tip = findAssociatedTip(el);
-
-			$tip.data('hover', '');
-			$tip.data('focus', '');
-			$tip.removeClass(FONTCLASS);
-			$tip.hide(TIP_RENDER_TIME);
-
-			this.changeSuperTipText(null, '', $tip[0]);
-		},
-
-		/**
-		  * Replaces old text within supertip with new text
-		  *
-		  * @param el - the element that'll generate the supertip once hovered over
-		  * @param text(optional) - the new text that'll be placed within the supertip. If no text is supplied,
-		  *				whatever text has already been placed within the supertip will be wiped out
-		  * @param divTip(optional) - the supertip itself
-		  *
-		  * @author kinsho
-		  */
-		changeSuperTipText: function(el, text, divTip)
-		{
-			var $tip = divTip ? $(divTip) : findAssociatedTip(el);
-
-			text = text || '';
-
-			try
-			{
-				$tip.html(text);
-
-				if (text)
-				{
-					calculateWidth($tip[0], text);
-				}
-			}
-			catch(ex)
-			{
-				alert('Cannot modify text associated with ' + (el.id || el.name) + ' ---> Error message: ' + ex);
-			}
-		}
-	};
-}());
