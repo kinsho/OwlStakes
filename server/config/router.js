@@ -34,6 +34,5 @@ define([], function()
 			return (ROUTES[controller] ? CONTROLLERS_DIRECTORY + ROUTES[controller] :
 				CONTROLLERS_DIRECTORY + ROUTES[PAGE_NOT_FOUND_CONTROLLER]);
 		}
-
 	};
 });
