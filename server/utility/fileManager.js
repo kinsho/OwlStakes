@@ -6,8 +6,9 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 
 	var CLIENTS_DIRECTORY = 'client/',
 		LIBRARY_DIRECTORY = 'library/',
+		FOUNDATION_DIRECTORY = 'foundation/',
 		STYLESHEET_DIRECTORY = 'styles/css/',
-		SCRIPTS_DIRECTORY = 'scripts/';
+		VIEWS_DIRECTORY = 'views/';
 
 // ----------------- ASYNCHRONOUS THUNKS --------------------------
 
@@ -86,9 +87,9 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
 	{
-		fetchAllLibraryScripts: function()
+		fetchAllFoundationViews: function()
 		{
-			return fileScraper(CLIENTS_DIRECTORY + SCRIPTS_DIRECTORY + LIBRARY_DIRECTORY, null, true);
+			return fileScraper(CLIENTS_DIRECTORY + VIEWS_DIRECTORY + FOUNDATION_DIRECTORY, null, true);
 		},
 
 		fetchAllLibraryStylesheets: function()

@@ -1,13 +1,14 @@
 {
-	"name": "OwlStakes",
-	"version": "1.0.0",
-	"private": true,
-	"dependencies":
+	"name" : "OwlStakes",
+	"version" : "1.0.0",
+	"private" : true,
+	"dependencies" :
 	{
-		"co": "~3.1.0",
-		"thunkify": "~2.1.2",
-		"requirejs": "~2.1.14",
-		"socket.io": "~1.0.6",
-		"app-root-path": "~0.0.1"
+		"co" : "~3.1.0",
+		"thunkify" : "~2.1.2",
+		"requirejs" : "~2.1.14",
+		"socket.io" : "~1.0.6",
+		"app-root-path" : "~0.0.1",
+		"handlebars" : "~2.0.0"
 	}
 }
