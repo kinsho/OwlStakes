@@ -5,14 +5,15 @@
 // ----------------- EXTERNAL MODULES --------------------------
 	var _http_ = require('http'),
 		_url_ = require('url'),
-		__requireJS__ = require('requirejs');
+		_requireJS_ = require('requirejs'),
+		_socketIO_ = require('socket.io')(_http_);
 
 // ----------------- ENUM/CONSTANTS --------------------------
 	var HOME_CONTROLLER = 'home',
 		INIT_ACTION = 'init';
 
 	// Configure requireJS before launching the server or doing anything else
-	__requireJS__.config(
+	_requireJS_.config(
 	{
 		baseUrl: 'server',
 		nodeRequire: require
@@ -22,7 +23,7 @@
 	_http_.createServer(function(request, response)
 	{
 		// From here on out, operate within the boundaries of requireJS
-		__requireJS__(['config/router'], function(router)
+		_requireJS_(['config/configuration', 'config/router'], function(config, router)
 		{
 			var urlObj = _url_.parse(request.url.trim(), true),
 				routeSigns = urlObj.pathname.split('/'),
@@ -38,8 +39,10 @@
 				actionName = routeSigns[2] || INIT_ACTION;
 			}
 
+			// Make sure to flag the proper set of configuration properties to use here
+			config.setEnv(request.url.trim());
 /*
-			__requireJS__([router.findRoute(controllerName)], function(controller)
+			_requireJS_([router.findRoute(controllerName)], function(controller)
 			{
 				controller[actionName](params);
 			});

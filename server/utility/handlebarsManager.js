@@ -3,8 +3,8 @@ define(['Handlebars', 'path', 'co', 'utility/fileManager'], function(Handlebars,
 	'use strict';
 
 // ----------------- MODULE DEFINITION --------------------------
-	return {
-
+	var my =
+	{
 		/**
 		 * Function fetches a template using a provided path and populates it using passed data. Any helper
 		 * functions that are passed alongside the other parameters are registered into handlebars prior
@@ -47,4 +47,7 @@ define(['Handlebars', 'path', 'co', 'utility/fileManager'], function(Handlebars,
 			return template(data);
 		})
 	};
+
+// ----------------- END --------------------------
+	return my;
 });

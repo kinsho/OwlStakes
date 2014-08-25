@@ -145,7 +145,7 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 		fetchAllLibraryStylesheets: co(function* ()
 		{
 			return yield (fileNameScraper(CLIENTS_DIRECTORY + STYLESHEET_DIRECTORY + LIBRARY_DIRECTORY, null, true).
-				concat(fileNameScraper(CLIENTS_DIRECTORY + STYLESHEET_DIRECTORY + MODULES_DIRECTORY, null, true)));
+				concat(yield fileNameScraper(CLIENTS_DIRECTORY + STYLESHEET_DIRECTORY + MODULES_DIRECTORY, null, true)));
 		}),
 
 		/**
