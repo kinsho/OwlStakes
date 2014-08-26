@@ -33,8 +33,8 @@ define(['Handlebars', 'path', 'co', 'utility/fileManager'], function(Handlebars,
 				Handlebars.registerHelper(keys[i], helpers[i]);
 			}
 
-			// Check to see if the template has already been precompiled. If not, fetch the template, comiple it,
-			// cache it.
+			// Check to see if the template has already been precompiled and cached. If not, fetch the template,
+			// compile it, and cache it.
 			template = Handlebars.templates[templateDirectory];
 			if (!template)
 			{

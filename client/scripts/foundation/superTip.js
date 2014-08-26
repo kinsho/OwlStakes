@@ -1,8 +1,8 @@
 /**
-  *	Class designed to generate and manage fancy tooltips
-  *
-  * @author kinsho
-  */
+ * Class designed to generate and manage fancy tooltips
+ *
+ * @author kinsho
+ */
 define([], function()
 {
 	"use strict";
@@ -209,69 +209,69 @@ define([], function()
 // ----------------- MODULE DEFINITION --------------------------
 
 	var my =
+	{
+		/**
+		 * Method responsible for constructing the superTips
+		 *
+		 * @param {HTMLElement} el - the element to associate with a new supertip
+		 * @param {String} [text] - the text to display within the supertip
+		 *
+		 * @author kinsho
+		 */
+		superTip: function(el, text)
 		{
-			/**
-			 * Method responsible for constructing the superTips
-			 *
-			 * @param {HTMLElement} el - the element to associate with a new supertip
-			 * @param {String} [text] - the text to display within the supertip
-			 *
-			 * @author kinsho
-			 */
-			superTip: function(el, text)
+			var superTip;
+
+			text = text || '';
+
+			if ( !(el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)) )
 			{
-				var superTip;
-
-				text = text || '';
-
-				if ( !(el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)) )
-				{
-					superTip = createTip(el, text);
-					setUpListeners(el, superTip);
-				}
-			},
-
-			/**
-			 * Function unravels the tooltip gracefully and ensures that it's not fired again by taking out the text
-			 * contained within. Think of this function as a very hard reset
-			 *
-			 * @param el - the element that will generate the supertip once hovered over
-			 *
-			 * @author kinsho
-			 */
-			resetSuperTip: function(el)
-			{
-				var superTip = superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
-
-				superTip.setAttribute(HOVER_DATA_ATTRIBUTE, '');
-				superTip.setAttribute(FOCUS_DATA_ATTRIBUTE, '');
-				superTip.setAttribute(ACTIVE_DATA_ATTRIBUTE, '');
-				superTip.classList.remove(SUPER_TIP_RENDER_CLASS, SUPER_TIP_FADE_IN_CLASS);
-
-				my.changeSuperTipText(null, '', superTip);
-			},
-
-			/**
-			 * Replaces old text within supertip with new text. Note that either the element or supertip can be
-			 * provided to this function. If both are provided, the superTip modified will be the passed
-			 * superTip, even if that superTip is not associated with the passed host element.
-			 *
-			 * @param {HTMLElement} [el] - the element that will generate the supertip once hovered over
-			 * @param {String} [text] - the new text to place within the supertip. If no text is supplied,
-			 *		whatever text has already been placed within the supertip will be wiped out
-			 * @param {HTMLElement} superTip - the supertip to modify
-			 *
-			 * @author kinsho
-			 */
-			changeSuperTipText: function(el, text, superTip)
-			{
-				el = el || {};
-				superTip = superTip || superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
-				text = text || '';
-
-				superTip.innerHTML(text);
+				superTip = createTip(el, text);
+				setUpListeners(el, superTip);
 			}
-		};
+		},
+
+		/**
+		 * Function unravels the tooltip gracefully and ensures that it's not fired again by taking out the text
+		 * contained within. Think of this function as a very hard reset
+		 *
+		 * @param el - the element that will generate the supertip once hovered over
+		 *
+		 * @author kinsho
+		 */
+		resetSuperTip: function(el)
+		{
+			var superTip = superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
+
+			superTip.setAttribute(HOVER_DATA_ATTRIBUTE, '');
+			superTip.setAttribute(FOCUS_DATA_ATTRIBUTE, '');
+			superTip.setAttribute(ACTIVE_DATA_ATTRIBUTE, '');
+			superTip.classList.remove(SUPER_TIP_RENDER_CLASS, SUPER_TIP_FADE_IN_CLASS);
+
+			my.changeSuperTipText(null, '', superTip);
+		},
+
+		/**
+		 * Replaces old text within supertip with new text. Note that either the element or supertip can be
+		 * provided to this function. If both are provided, the superTip modified will be the passed
+		 * superTip, even if that superTip is not associated with the passed host element.
+		 *
+		 * @param {HTMLElement} [el] - the element that will generate the supertip once hovered over
+		 * @param {String} [text] - the new text to place within the supertip. If no text is supplied,
+		 *		whatever text has already been placed within the supertip will be wiped out
+		 * @param {HTMLElement} superTip - the supertip to modify
+		 *
+		 * @author kinsho
+		 */
+		changeSuperTipText: function(el, text, superTip)
+		{
+			el = el || {};
+			superTip = superTip || superTips[el.getAttribute(SUPER_TIP_DATA_ATTRIBUTE)].superTip;
+			text = text || '';
+
+			superTip.innerHTML(text);
+		}
+	};
 
 // ----------------- LISTENERS -----------------------------
 

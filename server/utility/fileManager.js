@@ -130,7 +130,7 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 		 *
 		 * @author kinsho
 		 */
-		fetchAllFoundationViews: co(function* ()
+		fetchAllFoundationalViews: co(function* ()
 		{
 			return yield fileNameScraper(CLIENTS_DIRECTORY + VIEWS_DIRECTORY + FOUNDATION_DIRECTORY, null, true);
 		}),
@@ -142,7 +142,7 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 		 *
 		 * @author kinsho
 		 */
-		fetchAllLibraryStylesheets: co(function* ()
+		fetchAllFoundationalStylesheets: co(function* ()
 		{
 			return yield (fileNameScraper(CLIENTS_DIRECTORY + STYLESHEET_DIRECTORY + LIBRARY_DIRECTORY, null, true).
 				concat(yield fileNameScraper(CLIENTS_DIRECTORY + STYLESHEET_DIRECTORY + MODULES_DIRECTORY, null, true)));

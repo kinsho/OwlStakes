@@ -111,7 +111,7 @@ TOS_REQUIRE_ONCE('controllers/foundation/NotLoggedInController.php');
 			self::setViewsFromDirectory( self::FOUNDATION_DIRECTORY, true );
 
 			// Render the base view file that will pull all these other files together
-			require('base.phtml');
+			require('base.handlebars');
 		}
 
 		/*
