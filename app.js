@@ -40,7 +40,7 @@
 			}
 
 			// Make sure to flag the proper set of configuration properties to use here
-			config.setEnv(request.url.trim());
+			config.setEnv(request.headers.host);
 /*
 			_requireJS_([router.findRoute(controllerName)], function(controller)
 			{
@@ -53,4 +53,5 @@
 	}).listen(3000);
 
 	console.log('Server started!');
+	console.log('Listening on port 3000...');
 }());

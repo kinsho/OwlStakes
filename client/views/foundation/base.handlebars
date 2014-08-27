@@ -5,7 +5,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
 	<!-- Load all the CSS files for this page -->
-		<link rel="stylesheet" type="text/css" href='<?=$css ?>'/>
+        {{#CSS as css}}
+			<link rel="stylesheet" type="text/css" href='{{css}}'/>
+        {{/CSS }}
 	</head>
 	<body>
 

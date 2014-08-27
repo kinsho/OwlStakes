@@ -11,7 +11,7 @@ define([], function()
 		local:
 		{
 			// Server configuration
-			SERVER_URL: 'http://localhost:9081/',
+			SERVER_URL: 'http://localhost:3000',
 
 			// Database configuration
 			DATABASE_HOST: 'localhost',
@@ -32,12 +32,15 @@ define([], function()
 		},
 
 		qa:
-		{},
+		{
+			// Server configuration
+			SERVER_URL: '',
+		},
 
 		prod:
 		{
 			// Server configuration
-			SERVER_URL: 'http://www.owlstakes.com/',
+			SERVER_URL: 'http://www.owlstakes.com',
 		},
 
 		/**
@@ -60,7 +63,7 @@ define([], function()
 				// Only interested in the configuration objects here
 				if (typeof my[keys[i]] === 'object')
 				{
-					if (url.indexOf( my[keys[i]].SERVER_URL ) >= 0)
+					if (my[keys[i]].SERVER_URL.indexOf( url ) >= 0)
 					{
 						my.active = keys[i];
 						break;
