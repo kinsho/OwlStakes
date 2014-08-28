@@ -130,9 +130,11 @@ define(['app-root-path', 'path', 'fs', 'co', 'thunkify'], function(appPath, path
 		 *
 		 * @author kinsho
 		 */
-		fetchAllFoundationalViews: co(function* ()
+		fetchAllFoundationalViewHTML: co(function* ()
 		{
-			return yield fileNameScraper(CLIENTS_DIRECTORY + VIEWS_DIRECTORY + FOUNDATION_DIRECTORY, null, true);
+			// Fetch all the file names from the foundation directory of the view
+			var filePaths = yield (fileNameScraper(CLIENTS_DIRECTORY + VIEWS_DIRECTORY + FOUNDATION_DIRECTORY));
+			return yield fileContentScraper(filePaths);
 		}),
 
 		/**

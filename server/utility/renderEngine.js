@@ -7,7 +7,8 @@ define(['co', 'fileManager', 'templateManager'], function(co, fileManager, templ
 			BASE_FILE = '/base',
 
 			HBARS_STYLESHEET_FILES = 'cssFiles',
-			HBARS_VIEW_FILES = 'htmlFiles';
+			HBARS_VIEW_HTML = 'foundationViewHTML',
+			HBARS_CONTENT_HTML = 'contentViewHTML';
 
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
@@ -22,8 +23,9 @@ define(['co', 'fileManager', 'templateManager'], function(co, fileManager, templ
 		{
 			var data = {};
 
-			data[HBARS_VIEW_FILES] = yield fileManager.fetchAllFoundationalViews();
+			data[HBARS_VIEW_HTML] = yield fileManager.fetchAllFoundationalViewHTML();
 			data[HBARS_STYLESHEET_FILES] = yield fileManager.fetchAllFoundationalStylesheets();
+			data[HBARS_CONTENT_HTML] = '';
 
 			return templateManager.populateTemplate(data, FOUNDATION_DIRECTORY, BASE_FILE);
 		})
