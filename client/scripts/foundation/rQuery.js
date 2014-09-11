@@ -405,7 +405,7 @@ define(['jquery', 'superToolTip', 'utility', 'constants'], function($, superTool
 
 		var $infoRows = $('.' + INFO_ROW_CLASS),
 			$hintTips = $('.' + HINT_TIP_CLASS),
-			hoverTips = $('.' + HOVER_TIP_CLASS);
+			$hoverTips = $('.' + HOVER_TIP_CLASS);
 
 		// As a convenience, specific specially marked elements will be converted either to infoRows, hintTips, or hoverTips,
 		// depending on the nature of the marking

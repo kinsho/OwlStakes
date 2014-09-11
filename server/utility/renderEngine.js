@@ -1,14 +1,12 @@
-define(['co', 'fileManager', 'templateManager'], function(co, fileManager, templateManager)
+define(['Q', 'utility/fileManager', 'utility/templateManager'], function(Q, fileManager, templateManager)
 {
-	'use strict';
 // ----------------- ENUMS/CONSTANTS --------------------------
 
-		var FOUNDATION_DIRECTORY = '/foundation',
-			BASE_FILE = '/base',
+	var BASE_TEMPLATE_FILE = 'base',
 
-			HBARS_STYLESHEET_FILES = 'cssFiles',
-			HBARS_VIEW_HTML = 'foundationViewHTML',
-			HBARS_CONTENT_HTML = 'contentViewHTML';
+		HBARS_STYLESHEET_FILES = 'cssFiles',
+		HBARS_VIEW_HTML = 'foundationViewHTML',
+		HBARS_CONTENT_HTML = 'contentViewHTML';
 
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
@@ -19,15 +17,15 @@ define(['co', 'fileManager', 'templateManager'], function(co, fileManager, templ
 		 *
 		 * @author kinsho
 		 */
-		renderView: co(function* ()
+		renderView: Q.async(function* ()
 		{
 			var data = {};
 
 			data[HBARS_VIEW_HTML] = yield fileManager.fetchAllFoundationalViewHTML();
 			data[HBARS_STYLESHEET_FILES] = yield fileManager.fetchAllFoundationalStylesheets();
-			data[HBARS_CONTENT_HTML] = '';
+			data[HBARS_CONTENT_HTML] = '<h1>Testing, Holmes!</h1>';
 
-			return templateManager.populateTemplate(data, FOUNDATION_DIRECTORY, BASE_FILE);
+			return templateManager.populateTemplate(data, '', BASE_TEMPLATE_FILE);
 		})
 	};
 

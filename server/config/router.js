@@ -2,37 +2,52 @@
  * @module router
  */
 
-define([], function()
+define(['Q', 'utility/fileManager'], function(Q, fileManager)
 {
-	'use strict';
 
 // ----------------- ENUM/CONSTANTS --------------------------
-	var CONTROLLERS_DIRECTORY = 'controller/',
+
+	var ROUTE_JSON_DIRECTORY = 'config/',
+		ROUTE_JSON_NAME = 'routes',
+
+		CONTROLLERS_DIRECTORY = 'controller/',
 		PAGE_NOT_FOUND_CONTROLLER = '404';
 
-// ----------------- ROUTES --------------------------
-	var ROUTES =
-		{
-			'suicidePools' : 'pools',
+// ----------------- PRIVATE VARIABLES -----------------------------
 
-
-			'404' : '404'
-		};
+	var routes = {}; // the cache of all route data, in JSON format
 
 // ----------------- MODULE DEFINITION --------------------------
-	return {
+	var my =
+	{
+		/**
+		 * Function responsible for fetching and caching all routing data into this module
+		 *
+		 * @author kinsho
+		 */
+		populateRoutes: Q.async(function* ()
+		{
+			routes = yield fileManager.fetchJSON(ROUTE_JSON_DIRECTORY, ROUTE_JSON_NAME);
+			routes = JSON.parse(routes);
+		}),
 
 		/**
 		 * Function responsible for deducing a filepath (from the server folder) to the controller whose name is passed
 		 *
 		 * @param {String} controller - the name of the controller for which a relative path will be calculated
 		 *
-		 * @returns {String} - a relative filepath to the controller that can be consumed by requireJS to fetch files
+		 * @returns {String} - a relative filepath to the controller that can then be consumed by requireJS to fetch
+		 * 		the controller file and actually begin some real server-side processing
+		 *
+		 * @author kinsho
 		 */
-		findRoute: function(controller)
+		findRoute: function(controllerName)
 		{
-			return (ROUTES[controller] ? CONTROLLERS_DIRECTORY + ROUTES[controller] :
-				CONTROLLERS_DIRECTORY + ROUTES[PAGE_NOT_FOUND_CONTROLLER]);
+			return (routes[controllerName] ? CONTROLLERS_DIRECTORY + routes[controllerName] :
+				CONTROLLERS_DIRECTORY + routes[PAGE_NOT_FOUND_CONTROLLER]);
 		}
 	};
+
+// ----------------- END --------------------------
+	return my;
 });

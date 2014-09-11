@@ -18,7 +18,7 @@
 	"quotmark"      : false,
 	"undef"         : true,
 	"unused"        : true,
-	"strict"        : false,
+	"strict"        : true,
 	"maxparams"     : false,
 	"maxdepth"      : false,
 	"maxstatements" : false,
@@ -58,7 +58,7 @@
 	"dojo"          : false,
 	"jquery"        : false,
 	"mootools"      : false,
-	"node"          : true,
+	"node"          : false,
 	"nonstandard"   : false,
 	"prototypejs"   : false,
 	"rhino"         : false,
@@ -70,7 +70,6 @@
 	"globals"       :
 	{
 		define: false,
-		require: false,
-		process: false
+		require: false
 	}
 }

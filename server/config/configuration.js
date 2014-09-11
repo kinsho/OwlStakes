@@ -1,6 +1,9 @@
+/**
+ * @module configuration
+ */
+
 define([], function()
 {
-	'use strict';
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
 	{
