@@ -18,7 +18,7 @@ define([], function()
 		FOCUS_DATA_ATTRIBUTE = 'data-focus',
 		ACTIVE_DATA_ATTRIBUTE = 'data-active';
 
-// ----------------- PRIVATE VARIABLES	 -----------------------------
+// ----------------- PRIVATE VARIABLES -----------------------------
 
 	var superTips = [],
 		nextAvailableID = 1;

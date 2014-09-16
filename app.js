@@ -5,7 +5,7 @@
 	var _http_ = require('http'),
 		_url_ = require('url'),
 		_requireJS_ = require('requirejs'),
-		routeCached = false;
+		routesCached = false;
 
 // ----------------- REQUIRE JS CONFIGURATION --------------------------
 
@@ -24,44 +24,50 @@
 		console.log('Connection made!');
 
 		// From here on out, operate within the boundaries of requireJS
-		_requireJS_(['Q', 'config/configuration', 'config/router', 'utility/renderEngine'], function (Q, config, router, renderEngine)
+		_requireJS_(['Q', 'config/configuration', 'config/router'], function (Q, config, router)
 		{
 			Q.spawn(function* ()
 			{
 				var urlObj = _url_.parse(request.url.trim(), true),
 					routeSigns = urlObj.pathname.split('/'),
-					responseData,
-					controllerName,
-					actionName;
 
-				// If a path has not been defined, the server will route the request to the home page, by default
-				// If a path has been defined however, the server will route the request to the controller indicated within the URL
-				if (urlObj.pathname !== '/')
-				{
-					controllerName = routeSigns[1];
-					actionName = routeSigns[2];
-				}
+					// If the URL indicates whether a style or image resource needs to be fetched, route to a controller
+					// specifically designed to pull those type of resources
+					isResourceWanted = router.isResourceWanted(request.url.trim()),
+					controller = ( isResourceWanted ? router.findResourceController() : router.findController(routeSigns[1]) ),
+					action = ( isResourceWanted ? '' : routeSigns[2] ),
+
+					responseData;
 
 				// Make sure to flag the proper set of configuration properties to use here.
 				config.setEnv(request.headers.host);
 
 				// Ensure that the routes are cached before looking up the server route to the controller
-				if (!(routeCached))
+				if (!(routesCached))
 				{
-					router.populateRoutes();
-					routeCached = true;
+					yield router.populateRoutes();
+					routesCached = true;
 				}
-				/*
-				 _requireJS_([router.findRoute(controllerName)], function(controller)
-				 {
-				 controller[actionName](params);
-				 });
-				 */
 
-				responseData = yield renderEngine.renderView();
+				_requireJS_([controller], function (controller)
+				{
+					Q.spawn(function* ()
+					{
+						// By mandate of architecture, all action methods must be generator functions
+						// Really, it's difficult to even envision a circumstance where yielding function execution
+						// is not even necessary
+						responseData = yield controller[ router.findAction(routeSigns[1], action) ]();
 
-				response.writeHead(200);
-				response.end(responseData);
+						response.writeHead(200,
+						{
+							"Content-Length" : responseData.length,
+							"Content-Type" : "text/html"
+						});
+
+						response.end(responseData);
+					});
+				});
+
 			});
 		});
 	}).listen(3000);

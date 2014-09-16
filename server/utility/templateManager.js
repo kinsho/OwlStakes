@@ -1,6 +1,10 @@
 define(['Q', 'Handlebars', 'path', 'utility/fileManager'], function(Q, Handlebars, path, fileManager)
 {
 
+// ----------------- PRIVATE VARIABLES -----------------------------
+
+	var compiledTemplates = [];
+
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
 	{
@@ -34,12 +38,12 @@ define(['Q', 'Handlebars', 'path', 'utility/fileManager'], function(Q, Handlebar
 
 			// Check to see if the template has already been precompiled and cached. If not, fetch the template,
 			// compile it, and cache it.
-			template = Handlebars.templates[templateDirectory];
-			if (!template)
+			template = compiledTemplates[templateDirectory + '-' + templateName];
+			if ( !(template) )
 			{
 				template = yield fileManager.fetchTemplate(templateDirectory, templateName);
 				template = Handlebars.compile(template);
-				Handlebars.template[templateDirectory] = template;
+				compiledTemplates[templateDirectory + '-' + templateName] = template;
 			}
 
 			// Feed the data into the template and return the resulting HTML

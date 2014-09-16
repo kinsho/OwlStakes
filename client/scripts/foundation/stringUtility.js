@@ -3,7 +3,6 @@
   *
   * @author kinsho
   */
-
 String.prototype.constantize = function()
 {
 	var uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',

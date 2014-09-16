@@ -9,15 +9,15 @@
 
 	<!-- Load all the CSS files for this page -->
         {{#cssFiles}}
-			<link rel="stylesheet" type="text/css" href='{{.}}'/>
+			<link rel="stylesheet" type="text/css" href='{{path}}'/>
         {{/cssFiles }}
 	</head>
 	<body>
 
 		<!-- Load all the foundational view content that will be displayed across all pages -->
-        {{#foundationViewHTML}}
+        {{#baseTemplateHTML}}
             {{.}}
-        {{/foundationViewHTML}}
+        {{/baseTemplateHTML}}
 
 		<!-- Load all the view files that comprise the main content for this page -->
 		<div class='content'>

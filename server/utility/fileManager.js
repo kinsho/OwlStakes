@@ -74,7 +74,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 							files.push(
 							{
 								'name': fileNames[i],
-								'path': appPath.path + '/' + directoryName + fileNames[i]
+								'path': '/' + directoryName + fileNames[i]
 							});
 						}
 					}
@@ -135,13 +135,14 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 						labelledFileContents[i] =
 						{
 							name: filePaths[i].name,
-							content: fileContents[i]
+							content: fileContents[i].toString()
 						};
 					}
 				}
 				else
 				{
 					fileContents = yield fsReadFile(filePaths);
+					fileContents = fileContents.toString();
 				}
 			}
 			catch(error)
