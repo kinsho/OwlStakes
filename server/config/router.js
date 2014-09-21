@@ -11,8 +11,10 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		ROUTE_JSON_NAME = 'routes',
 
 		CONTROLLERS_DIRECTORY = 'controllers/',
+		FOUNDATION_DIRECTORY = 'foundation/',
 		PAGE_NOT_FOUND_CONTROLLER = '404',
 		HOME_CONTROLLER = 'home',
+		RESOURCES_CONTROLLER = 'resources',
 
 		INIT_ACTION = 'init',
 		ACTION_SUFFIX = 'Action',
@@ -22,13 +24,17 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		[
 			'.css',
 			'.png',
-			'.svg'
+			'.svg',
+			'.js'
 		],
 
 		CONTENT_TYPE_HEADERS =
 		{
-			"html" : 'text/html',
-			"css" : 'text/css'
+			'' : 'text/html', // If the URL does not fit any of the other patterns defined above, set an HTML header by default
+			'css' : 'text/css',
+			'png' : 'image/png',
+			'svg' : 'image/svg+xml',
+			'js' : 'application/javascript'
 		};
 
 // ----------------- PRIVATE VARIABLES -----------------------------
@@ -45,7 +51,7 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		 */
 		populateRoutes: Q.async(function* ()
 		{
-			routes = yield fileManager.fetchJSON(ROUTE_JSON_DIRECTORY, ROUTE_JSON_NAME);
+			routes = yield fileManager.fetchJSON(ROUTE_JSON_DIRECTORY + ROUTE_JSON_NAME);
 			routes = JSON.parse(routes);
 		}),
 
@@ -99,6 +105,22 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		},
 
 		/**
+		 * Function responsible for generating a path to the resource controller that will be used to fetch media and
+		 * style files
+		 *
+		 * @returns {String} - a relative filepath to the resource controller that can then be consumed by requireJS
+		 * 		to fetch the controller file and ultimately fetch the contents of resource files
+		 *
+		 * @author kinsho
+		 */
+		findResourceController: function()
+		{
+			// If a path has been defined however, the server will route the request to the controller indicated
+			// within the URL, provided that a controller can be found that matches the one indicated within the URL.
+			return CONTROLLERS_DIRECTORY + FOUNDATION_DIRECTORY + routes[RESOURCES_CONTROLLER] + CONTROLLER_SUFFIX;
+		},
+
+		/**
 		 * Function responsible for defining a full route toward a specific action within a controller or, if an
 		 * action has not been explicitly specified by the request being served, a full route to that controller's
 		 * initialization function will be provided instead
@@ -128,17 +150,16 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		 */
 		deduceContentType: function(url)
 		{
-			var i;
+			var keys = Object.keys(CONTENT_TYPE_HEADERS),
+				i;
 
-			for (i = RESOURCE_EXTENSIONS.length - 1; i >= 0; i--)
+			for (i = keys.length - 1; i >= 0; i--)
 			{
-				if (url.endsWith(RESOURCE_EXTENSIONS[i]))
+				if ( url.endsWith(keys[i]) )
 				{
-					return true;
+					return CONTENT_TYPE_HEADERS[keys[i]];
 				}
 			}
-
-			return false;
 		}
 	};
 

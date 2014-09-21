@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
     <!-- Load all files stored remotely below -->
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 
 	<!-- Load all the CSS files for this page -->
         {{#cssFiles}}
@@ -37,21 +37,21 @@
 				baseUrl: '/scripts',
 				paths:
 				{
-                    d3 : '../library/d3',
-					jquery : '../library/jquery/dist/jquery',
-					json: '../library/json3//lib/json3',
-                    select2: '../library/select2/select2',
-					superTip: 'foundation/superTip'
+                    d3 : 'client/library/d3',
+					jquery : 'client/library/jquery/dist/jquery',
+					json: 'client/library/json3//lib/json3',
+                    select2: 'client/library/select2/select2',
+					superTip: 'client/scripts/foundation/superTip'
                 },
 				deps:
 				[
-					'foundation/leftHandMenu'
+					'client/scripts/foundation/leftHandMenu'
 				]
 			};
 		</script>
 
         <!-- Load the requireJS library and specify the main file to pull all required dependencies -->
-		<script src='../library/requirejs/require.js' data-main='{{requireMain}}'></script>
+		<script src='client/library/requirejs/require.js' data-main='{{requireMain}}'></script>
 
 	</body>
 </html>

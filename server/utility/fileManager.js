@@ -242,17 +242,31 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		/**
 		 * Generator function that returns the contents of the JSON file indicated by the parameters
 		 *
-		 * @param {String} directoryPath - the directory path under the ancestor server folder from which the JSON file
-		 * 		will be fetched
-		 * @param {String} fileName - the name of that JSON file
+		 * @param {String} filePath - the relative path to the file starting from the project root
 		 *
-		 * @returns {String} - the contents of thw JSON file specified by the parameters
+		 * @returns {String} - the contents of the JSON file specified by the parameters
 		 *
 		 * @author kinsho
 		 */
-		fetchJSON: Q.async(function* (directoryPath, fileName)
+		fetchJSON: Q.async(function* (filePath)
 		{
-			return yield fileContentScraper(SERVER_DIRECTORY + directoryPath + fileName + JSON_EXTENSION);
+			return yield fileContentScraper(SERVER_DIRECTORY + filePath + JSON_EXTENSION);
+		}),
+
+		/**
+		 * Generic generator function meant to fetch the contents of any one file in the system
+		 * The invoking logic has to provide the whole path data needed to fetch the file, as no assumptions
+		 * can be made here
+		 *
+		 * @param {String} filePath - the relative path to the file starting from the project root
+		 *
+		 * @returns {String} - the contents of the file indicated in the parameter
+		 *
+		 * @author kinsho
+		 */
+		fetchFile: Q.async(function* (filePath)
+		{
+			return yield fileContentScraper(filePath);
 		})
 	};
 

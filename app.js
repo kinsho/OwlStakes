@@ -22,32 +22,45 @@
 	_http_.createServer(function(request, response)
 	{
 		console.log('Connection made!');
+		console.log('URL: ' + request.url);
 
 		// From here on out, operate within the boundaries of requireJS
 		_requireJS_(['Q', 'config/configuration', 'config/router'], function (Q, config, router)
 		{
 			Q.spawn(function* ()
 			{
-				var urlObj = _url_.parse(request.url.trim(), true),
+				var url = request.url.trim(),
+					urlObj = _url_.parse(url, true),
 					routeSigns = urlObj.pathname.split('/'),
 
 					// If the URL indicates whether a style or image resource needs to be fetched, route to a controller
 					// specifically designed to pull those type of resources
-					isResourceWanted = router.isResourceWanted(request.url.trim()),
-					controller = ( isResourceWanted ? router.findResourceController() : router.findController(routeSigns[1]) ),
+					isResourceWanted = router.isResourceWanted(url),
 					action = ( isResourceWanted ? '' : routeSigns[2] ),
 
+					// If a resource is being fetched, pass the URL to the resource controller as a parameter
+					// Otherwise, extract the parameters from the URL
+					params = (isResourceWanted ? url : urlObj.query),
+
+					controller,
 					responseData;
 
 				// Make sure to flag the proper set of configuration properties to use here.
 				config.setEnv(request.headers.host);
 
-				// Ensure that the routes are cached before looking up the server route to the controller
+				// Ensure that the routes are cached before looking up the server route to the correct controller
 				if (!(routesCached))
 				{
 					yield router.populateRoutes();
 					routesCached = true;
 				}
+				controller = ( isResourceWanted ? router.findResourceController() : router.findController(routeSigns[1]));
+
+
+				// Ready the parameters. If looking up a resource, set the URL as the parameter after stripping out any
+				// leading slash that may be there
+				url = (url.indexOf('/') === 0 || url.IndexOf("\\") === 0 ? url.substring(1, url.length) : url);
+				params = (isResourceWanted ? url : urlObj.query);
 
 				_requireJS_([controller], function (controller)
 				{
@@ -56,14 +69,15 @@
 						// By mandate of architecture, all action methods must be generator functions
 						// Really, it's difficult to even envision a circumstance where yielding function execution
 						// is not even necessary
-						responseData = yield controller[ router.findAction(routeSigns[1], action) ]();
+						responseData = yield controller[ router.findAction(routeSigns[1], action) ](params);
 
+						// Write out the important headers before launching the response back to the client
 						response.writeHead(200,
 						{
-							"Content-Length" : responseData.length,
-							"Content-Type" : "text/html"
+							"Content-Type" : router.deduceContentType(url)
 						});
 
+						// Send a response back and close out this service call once and for all
 						response.end(responseData);
 					});
 				});
