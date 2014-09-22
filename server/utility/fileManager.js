@@ -15,7 +15,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		CSS_EXTENSION = '.css',
 		JSON_EXTENSION = '.json';
 
-// ----------------- NODE I/O FUNCTIONS --------------------------
+// ----------------- I/O FUNCTION TRANSFORMATIONS --------------------------
 
 	var fsReadDir = Q.denodeify(fs.readdir),
 		fsStat = Q.denodeify(fs.stat),

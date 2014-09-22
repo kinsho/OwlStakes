@@ -25,12 +25,14 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 			'.css',
 			'.png',
 			'.svg',
-			'.js'
+			'.js',
+			'.ico'
 		],
 
 		CONTENT_TYPE_HEADERS =
 		{
 			'' : 'text/html', // If the URL does not fit any of the other patterns defined above, set an HTML header by default
+			'ico' : 'image/vnd.microsoft.icon',
 			'css' : 'text/css',
 			'png' : 'image/png',
 			'svg' : 'image/svg+xml',

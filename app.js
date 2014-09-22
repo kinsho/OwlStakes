@@ -21,8 +21,7 @@
 	// Define a server that will act as a gateway point for all incoming server requests
 	_http_.createServer(function(request, response)
 	{
-		console.log('Connection made!');
-		console.log('URL: ' + request.url);
+		console.log('Connection made from URL: ' + request.url.trim());
 
 		// From here on out, operate within the boundaries of requireJS
 		_requireJS_(['Q', 'config/configuration', 'config/router'], function (Q, config, router)
@@ -76,6 +75,8 @@
 						{
 							"Content-Type" : router.deduceContentType(url)
 						});
+
+						console.log('Response ready to be returned from URL: ' + url);
 
 						// Send a response back and close out this service call once and for all
 						response.end(responseData);
