@@ -93,7 +93,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 			catch(error)
 			{
 				console.error('ERROR ---> fileManager.fileNameScraper');
-				console.error(error);
+				throw error;
 			}
 		}),
 
@@ -148,7 +148,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 			catch(error)
 			{
 				console.error('ERROR ---> fileManager.fileContentScraper');
-				console.error(error);
+				throw(error);
 			}
 
 			return fileContents;
