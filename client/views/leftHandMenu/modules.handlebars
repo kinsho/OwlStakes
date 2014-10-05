@@ -1,0 +1,42 @@
+<div id='logInModule' class="leftHandSection <?=$userLoggedIn ? 'noDisplay' : '' ?>" >
+
+    <form id='logInForm'>
+
+        <div class='centerAlign'>
+            <label for='logInFormUserName'>User Name</label><br />
+            <input type='text' name='username' id='logInFormUserName' />
+            <label for='logInFormPassword'>Password</label><br />
+            <input type='password' name='password' id='logInFormPassword' />
+            <input type='button' id='logInButton' class='leftHandButton' value='Log In' />
+        </div>
+
+        <div class='checkbox'>
+            <input type='checkbox' id='rememberMeLogIn' name='rememberMe' />
+            <label for='rememberMeLogIn'>Remember Me</label>
+        </div>
+
+        <div class='smallHeightener'></div>
+
+        <a id='forgotPasswordLink'>Forgot your user name or password?</a>
+    </form>
+
+</div>
+
+<div id='forgotPasswordModule' class='leftHandSection noDisplay'>
+
+    <form id='forgotPasswordForm'>
+
+        <div class='centerAlign'>
+            <label for='forgotPasswordFormEmailAddress'>E-mail Address</label>
+            <input type='text' name='email' id='forgotPasswordFormEmailAddress' />
+        </div>
+
+        <input type='button' id='forgotPasswordButton' class='leftHandButton' value='E-mail me!' />
+
+        <div class='smallHeightener'></div>
+
+        <a id='logInLink'>Go back to the log-in form</a>
+
+    </form>
+
+</div>

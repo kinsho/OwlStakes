@@ -11,26 +11,20 @@
 
 	requireJS.config(
 	{
-		baseUrl: '',
+		baseUrl: '..',
 		nodeRequire: require
 	});
 
 	http.createServer(function(request, response)
 	{
-		requireJS(['requireTest'], function(test)
+		requireJS([], function()
 		{
-			try
+			console.log(request.headers.cookie);
+			response.writeHead(200,
 			{
-				response.writeHead(200);
-				response.end(test.getValue());
-			}
-			catch(error)
-			{
-				response.writeHead(404);
-				console.error(error + '\\n');
-				console.error('Oh well');
-				response.end('Whoopsie');
-			}
+				'Set-Cookie' : 'test=5'
+			});
+			response.end('Check now');
 		});
 
 	}).listen(3000);
