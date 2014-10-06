@@ -31,19 +31,46 @@ define([], function()
 			EMAIL_PASSWORD: 'whnbubpubnmhnpne',
 
 			// Administrator Information
-			ADMINISTRATOR_EMAIL_ADDRESS: 'kinsho@gmail.com'
+			ADMINISTRATOR_EMAIL_ADDRESS: 'kinsho@gmail.com',
+
+			// Encryption Information
+			hash:
+			{
+				HASH_ALGORITHM: 'aes-256-cbc',
+				HASH_KEY: '2DlAchdmfGgerQ3rgzYahA==',
+				HASH_INPUT_ENCODING: 'utf8',
+				HASH_OUTPUT_ENCODING: 'base64'
+			}
 		},
 
 		qa:
 		{
 			// Server configuration
 			SERVER_URL: '',
+
+			// Encryption Information
+			hash:
+			{
+				HASH_ALGORITHM: 'aes-256-cbc',
+				HASH_KEY: '2DlAchdmfGgerQ3rgzYahA==',
+				HASH_INPUT_ENCODING: 'utf8',
+				HASH_OUTPUT_ENCODING: 'base64'
+			}
 		},
 
 		prod:
 		{
 			// Server configuration
 			SERVER_URL: 'http://www.owlstakes.com',
+
+			// Encryption Information
+			hash:
+			{
+				HASH_ALGORITHM: 'aes-256-cbc',
+				HASH_KEY: '2DlAchdmfGgerQ3rgzYahA==',
+				HASH_INPUT_ENCODING: 'utf8',
+				HASH_OUTPUT_ENCODING: 'base64'
+			}
 		},
 
 		/**
@@ -73,6 +100,19 @@ define([], function()
 					}
 				}
 			}
+		},
+
+		/**
+		 * Function responsible for fetching the parameters necessary to generate hashes for any data
+		 *
+		 * @returns {Object} - an object containing all the information needed to generate a hash using Node's
+		 * 		built-in Crypto module
+		 *
+		 * @author kinsho
+		 */
+		fetchHashInfo: function()
+		{
+			return my[my.active].hash;
 		}
 	};
 

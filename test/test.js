@@ -2,31 +2,27 @@
 {
 
 // ----------------- EXTERNAL MODULES --------------------------
-	var http = require('http'),
-		requireJS = require('requirejs');
+	var crypto = require('crypto');
 
 // ----------------- END --------------------------
 
 	console.log('Test started');
 
-	requireJS.config(
-	{
-		baseUrl: '..',
-		nodeRequire: require
-	});
+	var cipher = crypto.createCipher('aes-256-cbc', 'Rickin Shah'),
+		decipher = crypto.createDecipher('aes-256-cbc', 'Rickin Shah'),
+		cipherText;
 
-	http.createServer(function(request, response)
-	{
-		requireJS([], function()
-		{
-			console.log(request.headers.cookie);
-			response.writeHead(200,
-			{
-				'Set-Cookie' : 'test=5'
-			});
-			response.end('Check now');
-		});
+	cipherText = cipher.update('Rickin Shah', 'utf8', 'base64');
 
-	}).listen(3000);
+	cipherText += cipher.final('base64');
+	console.log(cipherText);
 
+	console.log('Now deciphering....');
+
+	console.log(decipher.update(cipherText, 'base64', 'utf8'));
+	console.log(decipher.final('utf8'));
+
+	console.log('2D1AchdmfGgerQ3rgzYahA=='.length);
+	console.log(cipherText.length);
+	console.log('2DlAchdmfGgerQ3rgzYahA==' === cipherText);
 }());

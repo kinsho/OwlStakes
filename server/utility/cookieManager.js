@@ -1,15 +1,18 @@
-define([], function()
+define(['crypto', 'config/configuration'], function(crypto, config)
 {
-// ----------------- ENUMS/CONSTANTS -----------------------------
+// ----------------- ENUM/CONSTANTS -----------------------------
 
-	return function(cookieString)
-	{
+	var COOKIE_LABEL = 'cookie';
 
 // ----------------- PRIVATE VARIABLES -----------------------------
 
-		var self = this;
+	var hash = config.fetchHashInfo();
 
 // ----------------- MODULE DEFINITION --------------------------
+
+	return function(cookieString)
+	{
+		var self = this;
 
 		self.cookies = {}; // The object responsible for holding all the cookie data
 
@@ -22,6 +25,8 @@ define([], function()
 		 */
 		self.sendOverCookies = function()
 		{
+			var rawData,
+				encrypter = crypto.createCipher(hash.HASH_ALGORITHM, hash.HASH_KEY),
 			/**
 			 * Method responsible for converting any object into a cookie
 			 *
@@ -33,7 +38,7 @@ define([], function()
 			 *
 			 * @author kinsho
 			 */
-			var transformationFunc = function(propSet, keyPrefix)
+				transformationFunc = function(propSet, keyPrefix)
 				{
 					var transformedCookies = '',
 						keys,
@@ -66,7 +71,12 @@ define([], function()
 					return transformedCookies;
 				};
 
-			return transformationFunc(self.cookies, '');
+			// Put the raw data together
+			rawData = transformationFunc((self.cookies, ''));
+
+			// Ensure that the raw data is encrypted before sending it over the wire to the client
+			encrypter.update(rawData, hash.HASH_INPUT_ENCODING, hash.HASH_OUTPUT_ENCODING);
+			return COOKIE_LABEL + '=' + encrypter.final(hash.HASH_OUTPUT_ENCODING);
 		};
 
 		/**
@@ -79,7 +89,10 @@ define([], function()
 		 */
 		self.parseCookiesFromRequest = function(cookieString)
 		{
-			var properties = cookieString.split(';'),
+			var strippedCookieString = cookieString.replace(COOKIE_LABEL + '=', ''), // Strip out the label before parsing any meaningful data
+				decrypter = crypto.createDecipher(hash.HASH_ALGORITHM, hash.HASH_KEY),
+				decryptedCookie,
+				properties,
 				property,
 				i,
 			/**
@@ -111,6 +124,12 @@ define([], function()
 					position[subLabels[i]] = value;
 				};
 
+			// Decrypt the data first before processing it
+			decryptedCookie = decrypter.update(strippedCookieString, hash.HASH_OUTPUT_ENCODING, hash.HASH_INPUT_ENCODING);
+			decryptedCookie += decrypter.final(hash.HASH_INPUT_ENCODING);
+
+			// Now translate all the properties listed in the cookie into an actionable object
+			properties = decryptedCookie.split(';');
 			for (i = 0; i < properties.length; i++)
 			{
 				property = properties[i].split('=');
