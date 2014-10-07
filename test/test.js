@@ -2,27 +2,53 @@
 {
 
 // ----------------- EXTERNAL MODULES --------------------------
-	var crypto = require('crypto');
+	var requireJS = require('requirejs');
 
 // ----------------- END --------------------------
 
 	console.log('Test started');
 
-	var cipher = crypto.createCipher('aes-256-cbc', 'Rickin Shah'),
-		decipher = crypto.createDecipher('aes-256-cbc', 'Rickin Shah'),
-		cipherText;
+	requireJS.config(
+	{
+		baseUrl: '../server',
+		nodeRequire: require
+	});
 
-	cipherText = cipher.update('Rickin Shah', 'utf8', 'base64');
+	requireJS(['config/configuration'], function(config)
+	{
+		config.active = "local";
 
-	cipherText += cipher.final('base64');
-	console.log(cipherText);
+		requireJS(['utility/cookieManager'], function(CM)
+		{
+			var session = new CM(''),
+				translation;
 
-	console.log('Now deciphering....');
+			session.cookies =
+			{
+				user:
+				{
+					name: 'kinsho',
+					age: 27,
+					residency:
+					{
+						city: 'North Plainfield',
+						state: 'NJ'
+					}
+				}
+			};
 
-	console.log(decipher.update(cipherText, 'base64', 'utf8'));
-	console.log(decipher.final('utf8'));
+			translation = session.sendOverCookies();
+			session.killCookies();
 
-	console.log('2D1AchdmfGgerQ3rgzYahA=='.length);
-	console.log(cipherText.length);
-	console.log('2DlAchdmfGgerQ3rgzYahA==' === cipherText);
+			console.log(translation);
+			console.log('BEFORE');
+			console.log(session.cookies);
+
+			session.parseCookiesFromRequest(translation);
+
+			console.log('AFTER');
+			console.log(session.cookies);
+		});
+	});
+
 }());

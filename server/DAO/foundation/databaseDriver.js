@@ -2,8 +2,8 @@ define(['Q', 'cassandra-driver'], function(Q, cassie)
 {
 // ----------------- ENUMS/CONSTANTS --------------------------
 
-	var CONTACT_POINT_NAMES = 'OwlStakes',
-
+	var CONTACT_POINT_NAMES = '127.0.0.1',
+		KEYSPACE = 'owlstakes',
 		QUERY_OPTIONS =
 		{
 			prepare: true,
@@ -28,8 +28,10 @@ define(['Q', 'cassandra-driver'], function(Q, cassie)
 	 */
 	var transformDriverFunctions = function()
 	{
-		execute = Q.denodeify(client.execute);
-		batch = Q.denodeify(client.batch);
+		// Use nbind instead of denodeify
+		// The methods being transformed rely on properties defined within the object that hosts the method
+		execute = Q.nbind(client.execute, client);
+		batch = Q.nbind(client.batch, client);
 	};
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -42,16 +44,21 @@ define(['Q', 'cassandra-driver'], function(Q, cassie)
 		 * @param {String} query - the query to execute, with question marks in place of values that can be
 		 * 		dynamically populated
 		 * @param {Array} params - the parameters to insert into the query
+		 * @param {boolean} fetchSingleRecord - a flag to indicate whether we can expect only one record to be returned
+		 * 		from the database
 		 *
 		 * @returns {ResultSet} - the set of records which satisfy the query
 		 *
 		 * @author kinsho
 		 */
-		execute: Q.async(function* (query, params)
+		execute: Q.async(function* (query, params, fetchSingleRecord)
 		{
+			var results;
+
 			try
 			{
-				return yield execute(query, params, QUERY_OPTIONS);
+				results = yield execute.call(client, query, params, QUERY_OPTIONS);
+				return (fetchSingleRecord ? results.rows[0] : results.rows);
 			}
 			catch(error)
 			{
@@ -88,7 +95,7 @@ define(['Q', 'cassandra-driver'], function(Q, cassie)
 					// The filtered row can be neglected if the filtering function returns a false boolean
 					if (filteredRow !== false)
 					{
-						results.push(filter(n, row));
+						results.push(filteredRow);
 					}
 				});
 
@@ -142,7 +149,9 @@ define(['Q', 'cassandra-driver'], function(Q, cassie)
 	// Initialize the Cassandra client
 	client = new cassie.Client(
 	{
-		contactPoints: [CONTACT_POINT_NAMES]
+		contactPoints: [CONTACT_POINT_NAMES],
+		keyspace: KEYSPACE,
+		queryOptions: QUERY_OPTIONS
 	});
 
 	transformDriverFunctions();

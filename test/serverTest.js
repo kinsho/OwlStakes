@@ -3,7 +3,8 @@
 
 // ----------------- EXTERNAL MODULES --------------------------
 	var http = require('http'),
-		requireJS = require('requirejs');
+		requireJS = require('requirejs'),
+		Q = require('Q');
 
 // ----------------- END --------------------------
 
@@ -11,22 +12,38 @@
 
 	requireJS.config(
 	{
-		baseUrl: '..',
+		baseUrl: '../server',
 		nodeRequire: require
 	});
 
 	http.createServer(function(request, response)
 	{
-		requireJS(['crypto'], function(crpyto)
+		requireJS(['utility/cookieManager'], function(CM)
 		{
-			var encoder = crpyto.createCipher('sha1', 'Rickin Shah');
-
-			console.log(request.headers.cookie);
-			response.writeHead(200,
+			Q.spawn(function* ()
 			{
-				'Set-Cookie' : 'test=5'
+				try
+				{
+					var session = new CM('');
+
+					session.cookies =
+					{
+						user:
+						{
+							name: 'kinsho',
+							age: 27
+						}
+					};
+
+					console.log(session.sendOverCookies());
+					response.writeHead(200);
+					response.end('hello');
+				}
+				catch(error)
+				{
+					throw(error);
+				}
 			});
-			response.end(encoder.update('Rickin Shah', 'hex'));
 		});
 
 	}).listen(3000);

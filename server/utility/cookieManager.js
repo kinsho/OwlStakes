@@ -27,6 +27,8 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 		{
 			var rawData,
 				encrypter = crypto.createCipher(hash.HASH_ALGORITHM, hash.HASH_KEY),
+				encryptedData,
+
 			/**
 			 * Method responsible for converting any object into a cookie
 			 *
@@ -45,15 +47,12 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 						prop,
 						i;
 
-					keys = Object.keys(self.cookies);
+					keys = Object.keys(propSet);
+
 
 					for (i = keys.length - 1; i >= 0; i--)
 					{
 						prop = propSet[keys[i]];
-
-						// If a property have already been defined within the cookie, separate the next property
-						// to be added by using a '+' sign
-						transformedCookies += (transformedCookies ? transformedCookies + '+' : transformedCookies);
 
 						// If an object is discovered in a property, that object must be parsed via
 						if (prop instanceof Object)
@@ -64,19 +63,20 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 						{
 							transformedCookies += (keyPrefix ? keyPrefix + '.' + keys[i] + '=' + propSet[keys[i]] :
 								keys[i] + '=' + propSet[keys[i]]);
+
+							transformedCookies += ';';
 						}
-						transformedCookies += ';';
 					}
 
 					return transformedCookies;
 				};
 
 			// Put the raw data together
-			rawData = transformationFunc((self.cookies, ''));
+			rawData = transformationFunc(self.cookies, '');
 
 			// Ensure that the raw data is encrypted before sending it over the wire to the client
-			encrypter.update(rawData, hash.HASH_INPUT_ENCODING, hash.HASH_OUTPUT_ENCODING);
-			return COOKIE_LABEL + '=' + encrypter.final(hash.HASH_OUTPUT_ENCODING);
+			encryptedData = encrypter.update(rawData, hash.HASH_INPUT_ENCODING, hash.HASH_OUTPUT_ENCODING);
+			return COOKIE_LABEL + '=' + (encryptedData + encrypter.final(hash.HASH_OUTPUT_ENCODING));
 		};
 
 		/**
@@ -132,8 +132,12 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 			properties = decryptedCookie.split(';');
 			for (i = 0; i < properties.length; i++)
 			{
-				property = properties[i].split('=');
-				populator(property[0], property[1]);
+				// Ensure that the logic is only working with non-empty strings
+				if (properties[i].trim())
+				{
+					property = properties[i].split('=');
+					populator(property[0], property[1]);
+				}
 			}
 		};
 
