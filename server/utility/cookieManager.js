@@ -2,7 +2,7 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 {
 // ----------------- ENUM/CONSTANTS -----------------------------
 
-	var COOKIE_LABEL = 'cookie';
+	var COOKIE_LABEL = 'TOS';
 
 // ----------------- PRIVATE VARIABLES -----------------------------
 

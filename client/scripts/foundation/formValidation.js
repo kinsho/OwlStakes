@@ -1,4 +1,4 @@
-define(['jquery', 'superTip', 'foundation/constants', 'main'], function($, superTip, constants, main)
+define(['jquery', 'main'], function($, superTip, constants, main)
 {
 	'use strict';
 

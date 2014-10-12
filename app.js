@@ -24,79 +24,72 @@
 		console.log('Connection made from URL: ' + request.url.trim());
 
 		// From here on out, operate within the boundaries of requireJS
-		_requireJS_(['Q', 'config/configuration', 'config/router', 'utility/cookieManager'], function (Q, config, router, cookieManager)
+		_requireJS_(['config/configuration'], function(config)
 		{
-			Q.spawn(function* ()
+			// Make sure to flag the proper set of configuration properties to use here.
+			config.setEnv(request.headers.host);
+
+			_requireJS_(['Q', 'config/router', 'utility/cookieManager', 'utility/responseHandler'],
+				function (Q, router, cookieManager, responseHandler)
 			{
-				try
+				Q.spawn(function* ()
 				{
-					var url = request.url.trim(),
-						urlObj = _url_.parse(url, true),
-						routeSigns = urlObj.pathname.split('/'),
-
-					// If the URL indicates whether a style or image resource needs to be fetched, route to a controller
-					// specifically designed to pull those type of resources
-						isResourceWanted = router.isResourceWanted(url),
-						action = ( isResourceWanted ? '' : routeSigns[2] ),
-
-					// If a resource is being fetched, pass the URL to the resource controller as a parameter
-					// Otherwise, extract the parameters from the URL
-						params = (isResourceWanted ? url : urlObj.query),
-
-						controller,
-						responseData;
-
-					// Make sure to flag the proper set of configuration properties to use here.
-					config.setEnv(request.headers.host);
-
-					// Ensure that the routes are cached before looking up the server route to the correct controller
-					if (!(routesCached))
+					try
 					{
-						yield router.populateRoutes();
-						routesCached = true;
-					}
-					controller = ( isResourceWanted ? router.findResourceController() : router.findController(routeSigns[1]));
+
+						var url = request.url.trim(),
+							urlObj = _url_.parse(url, true),
+							routeSigns = urlObj.pathname.split('/'),
+							cookies = cookieManager.parseCookiesFromRequest(request.headers.cookie),
+
+							// If the URL indicates whether a style or image resource needs to be fetched, route to a controller
+							// specifically designed to pull those type of resources
+							isResourceWanted = router.isResourceWanted(url),
+							action = ( isResourceWanted ? '' : routeSigns[2] ),
+
+							// If a resource is being fetched, pass the URL to the resource controller as a parameter
+							// Otherwise, extract the parameters from the URL
+							params = (isResourceWanted ? url : urlObj.query),
+
+							controller,
+							responseData;
 
 
-					// Ready the parameters. If looking up a resource, set the URL as the parameter after stripping out any
-					// leading slash that may be there
-					url = (url.indexOf('/') === 0 || url.IndexOf("\\") === 0 ? url.substring(1, url.length) : url);
-					params = (isResourceWanted ? url : urlObj.query);
-
-					_requireJS_([controller], function (controller)
-					{
-						Q.spawn(function* ()
+						// Ensure that the routes are cached before looking up the server route to the correct controller
+						if (!(routesCached))
 						{
-							// By mandate of architecture, all action methods must be generator functions
-							// Really, it's difficult to even envision a circumstance where yielding function execution
-							// is not even necessary
-							responseData = yield controller[ router.findAction(routeSigns[1], action) ](params);
+							yield router.populateRoutes();
+							routesCached = true;
+						}
+						controller = ( isResourceWanted ? router.findResourceController() : router.findController(routeSigns[1]));
 
-							// Write out the important headers before launching the response back to the client
-							response.writeHead(200,
-							{
-								"Content-Type" : router.deduceContentType(url),
-								"Set-Cookie" : cookieManager.getCookies()
-							});
+						// Ready the parameters. If looking up a resource, set the URL as the parameter after stripping out any
+						// leading slash that may be there
+						url = (url.indexOf('/') === 0 || url.IndexOf("\\") === 0 ? url.substring(1, url.length) : url);
+						params = (isResourceWanted ? url : urlObj.query);
 
-							console.log('Response ready to be returned from URL: ' + url);
-
-							// Send a response back and close out this service call once and for all
-							response.end(responseData);
+						_requireJS_([controller], function (controller)
+						{
+							// Find the correct action method indicated within the URL, then pass that action method
+							// all the relevant parameters needed to properly service the request by itself
+							responseData = controller[ router.findAction(routeSigns[1], action) ](response, params, cookies);
 						});
-					});
-				}
-				catch(error)
-				{
-					console.error('--------------- ERROR THROWN ---------------');
-					console.error(error.toString());
-
-					response.writeHead(500);
-					// @TODO Find a way to convey server errors gracefully to the user
-					response.end('Whoops!');
-				}
+					}
+					catch (exception)
+					{
+						if (exception.is404Exception)
+						{
+							responseHandler.sendErrorResponse(response, exception.errors, url, cookies);
+						}
+						else
+						{
+							responseHandler.sendErrorResponse(response, url, cookies);
+						}
+					}
+				});
 			});
 		});
+
 	}).listen(3000);
 
 // ----------------- END --------------------------

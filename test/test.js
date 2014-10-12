@@ -23,6 +23,7 @@
 			var session = new CM(''),
 				translation;
 
+/*
 			session.cookies =
 			{
 				user:
@@ -36,6 +37,7 @@
 					}
 				}
 			};
+*/
 
 			translation = session.sendOverCookies();
 			session.killCookies();
