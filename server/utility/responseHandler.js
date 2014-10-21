@@ -24,13 +24,13 @@ define(['config/router'], function(router)
 		 */
 		sendSuccessResponse: function(response, responseData, url, cookies)
 		{
+			// Write out the important headers before launching the response back to the client
 			response.writeHead(200,
 			{
 				"Content-Type" : router.deduceContentType(url),
 				"Set-Cookie" : cookies.sendOverCookies()
 			});
 
-			// Write out the important headers before launching the response back to the client
 			console.log('Response ready to be returned from URL: ' + url);
 
 			// Send a response back and close out this service call once and for all
@@ -89,7 +89,10 @@ define(['config/router'], function(router)
 			// @TODO write logic to send e-mails
 
 			// Send a response back and close out this service call once and for all
-			response.end(INTERNAL_SERVER_ERROR_MESSAGE);
+			response.end(JSON.stringify(
+			{
+				error: INTERNAL_SERVER_ERROR_MESSAGE
+			}));
 		}
 	};
 
