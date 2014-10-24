@@ -269,6 +269,23 @@ define([], function()
 		},
 
 		/**
+		 * Function verifies whether value is at least three characters in length
+		 *
+		 * @param {String} str - input to be evaluated
+		 *
+		 * @returns {boolean} - indicates whether the value is at least three characters in lengths
+		 *
+		 * @author kinsho
+		 */
+		isAtLeast3Characters: function(str)
+		{
+			str = str || '';
+
+			// Test the length of the string here
+			return (str.length >= 3);
+		},
+
+		/**
 		 * Function verifies whether value is no longer than twenty characters in length
 		 *
 		 * @param {String} str - input to be evaluated

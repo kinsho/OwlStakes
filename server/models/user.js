@@ -3,7 +3,9 @@ define(['models/foundation/modelHelper', '/shared/validation/validationHelper'],
 // ----------------- ENUM/CONSTANTS -----------------------------
 
 	var USERNAME_NOT_ALPHANUMERIC = 'Your username can only contain alphabetical characters and numbers. Nothing else.',
-		USERNAME_TOO_LONG = 'Your username cannot be longer than 20 characters. Please shorten it.';
+		USERNAME_TOO_LONG = 'Your username cannot be longer than 20 characters. Please shorten it.',
+
+		PASSWORD_TOO_SHORT = 'Your password has to contain at least three characters. Please lengthen it.';
 
 // ----------------- PRIVATE VARIABLES -----------------------------
 
@@ -27,10 +29,13 @@ define(['models/foundation/modelHelper', '/shared/validation/validationHelper'],
 	]);
 
 	// Password
-	modelHelper.defineProperty(my, 'password', null, function(value)
-	{
-		this.password = value;
-	});
+	modelHelper.defineProperty(my, 'password',
+	[
+		validationHelper.isAtLeast3Characters
+	],
+	[
+		PASSWORD_TOO_SHORT
+	]);
 
 	// First Name
 	modelHelper.defineProperty(my, 'firstName', null, function(value)

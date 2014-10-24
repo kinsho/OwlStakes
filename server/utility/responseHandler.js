@@ -63,6 +63,23 @@ define(['config/router'], function(router)
 			response.end(JSON.stringify(errors));
 		},
 
+		sendBadCookieResponse: function(response, errors, url)
+		{
+			response.writeHead(500);
+
+			console.log('Errors were generated when trying to service the following URL: ' + url);
+
+			// Send an e-mail to the admin to notify him that a bad cookie was caught in transit...
+			// @TODO write logic to send e-mails
+
+			// Send a response back and close out this service call once and for all
+			// @TODO invoke a special controller to send a specialized response to inform the client that another log-in is needed
+			response.end(JSON.stringify(
+			{
+				error: INTERNAL_SERVER_ERROR_MESSAGE
+			}));
+		},
+
 		/**
 		 * Function responsible for relaying back to the client an HTTP response indicating that
 		 * the server has run into some sort of issue that makes it impossible to properly service
@@ -77,12 +94,12 @@ define(['config/router'], function(router)
 		 */
 		sendInternalServerErrorResponse: function(response, url, cookies)
 		{
+			// Write out the important headers before launching the response back to the client
 			response.writeHead(500,
 			{
 				"Set-Cookie" : cookies.sendOverCookies()
 			});
 
-			// Write out the important headers before launching the response back to the client
 			console.log('Errors were generated when trying to service the following URL: ' + url);
 
 			// Send an e-mail to the admin to notify him that something went horribly wrong here...

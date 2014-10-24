@@ -81,9 +81,13 @@
 						{
 							responseHandler.sendErrorResponse(response, exception.errors, url, cookies);
 						}
+						else if (exception.isCookieException)
+						{
+							responseHandler.sendBadCookieResponse(response, exception.errors, url);
+						}
 						else
 						{
-							responseHandler.sendErrorResponse(response, url, cookies);
+							responseHandler.sendInternalServerErrorResponse(response, url, cookies);
 						}
 					}
 				});

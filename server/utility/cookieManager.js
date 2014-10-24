@@ -1,4 +1,4 @@
-define(['crypto', 'config/configuration'], function(crypto, config)
+define(['crypto', 'config/configuration', 'utility/exception'], function(crypto, config, exception)
 {
 // ----------------- ENUM/CONSTANTS -----------------------------
 
@@ -124,20 +124,26 @@ define(['crypto', 'config/configuration'], function(crypto, config)
 					position[subLabels[i]] = value;
 				};
 
-			// Decrypt the data first before processing it
-			decryptedCookie = decrypter.update(strippedCookieString, hash.HASH_OUTPUT_ENCODING, hash.HASH_INPUT_ENCODING);
-			decryptedCookie += decrypter.final(hash.HASH_INPUT_ENCODING);
-
-			// Now translate all the properties listed in the cookie into an actionable object
-			properties = decryptedCookie.split(';');
-			for (i = 0; i < properties.length; i++)
+			try
 			{
-				// Ensure that the logic is only working with non-empty strings
-				if (properties[i].trim())
+				// Decrypt the data first before processing it
+				decryptedCookie = decrypter.update(strippedCookieString, hash.HASH_OUTPUT_ENCODING, hash.HASH_INPUT_ENCODING);
+				decryptedCookie += decrypter.final(hash.HASH_INPUT_ENCODING);
+
+				// Now translate all the properties listed in the cookie into an actionable object
+				properties = decryptedCookie.split(';');
+				for (i = 0; i < properties.length; i++)
 				{
-					property = properties[i].split('=');
-					populator(property[0], property[1]);
+					// Ensure that the logic is only working with non-empty strings
+					if (properties[i].trim()) {
+						property = properties[i].split('=');
+						populator(property[0], property[1]);
+					}
 				}
+			}
+			catch (error)
+			{
+				throw new exception.cookiesException(error);
 			}
 		};
 
