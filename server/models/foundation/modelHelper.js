@@ -1,8 +1,16 @@
 define(['utility/exception'], function(exception)
 {
+
+// ----------------- ENUM/CONSTANTS -----------------------------
+
+
 // ----------------- MODULE DEFINITION --------------------------
 	var my =
 	{
+		WEIRD_ISSUE: 'Something odd happened when trying to process the data...so we were unable to do anything ' +
+			'on our end to remedy the issue. Please do us a favor and try again. If you keep seeing this message pop up' +
+			'regardless of how many times you try, reload the page and then try again.',
+
 		/**
 		 * Function responsible for formally defining any new property within a passed object. As part of the process
 		 * of formally defining a property, a setter method will be instantiated to validate any new values that will

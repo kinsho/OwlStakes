@@ -7,7 +7,7 @@ define([], function()
 			LOWERCASE : 'abcdefghijklmnopqrstuvwxyz',
 			UPPERCASE : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			NUMBERS : '0123456789',
-			SYMBOLS : '.@_- '
+			SYMBOLS : '._- '
 		};
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -249,75 +249,7 @@ define([], function()
 					 (str.substring(str.indexOf('@'), str.length).indexOf('..') < 0) && // check that not two periods are put next to one another following the @ symbol
 					 (str.lastIndexOf('.') < str.length - 1) && // check that a domain exists
 					 (this.isAlphaNumeric(str.substring(str.lastIndexOf('.') + 1, str.length)) ) ); // check that the domain seems plausible
-		},
-
-		/**
-		  * Function verifies whether passed string qualifies as an integer
-		  * 
-		  * @param {String|Number} val - value to be evaluated
-		  *
-		  * @returns {boolean} - indicates whether the value qualifies as an integer
-		  *
-		  * @author kinsho
-		  */
-		isInteger: function(val)
-		{
-			val = val + '' || '';
-
-			return ( (val.length === 0) || // Test to ensure that the passed value is a non-empty string
-					 ((this.isNumerical(val)) && (window.parseInt(val, 10) === window.parseFloat(val))) ); // Test to make sure that the value is strictly numerical in composition and that it has no decimal values
-		},
-
-		/**
-		 * Function verifies whether value is at least three characters in length
-		 *
-		 * @param {String} str - input to be evaluated
-		 *
-		 * @returns {boolean} - indicates whether the value is at least three characters in lengths
-		 *
-		 * @author kinsho
-		 */
-		isAtLeast3Characters: function(str)
-		{
-			str = str || '';
-
-			// Test the length of the string here
-			return (str.length >= 3);
-		},
-
-		/**
-		 * Function verifies whether value is no longer than twenty characters in length
-		 *
-		 * @param {String} str - input to be evaluated
-		 *
-		 * @returns {boolean} - indicates whether the value is less than twenty characters in length
-		 *
-		 * @author kinsho
-		 */
-		isLessThan20Characters: function(str)
-		{
-			str = str || '';
-
-			// Test the length of the string here
-			return (str.length <= 20);
-		},
-
-		/**
-		  * Function verifies whether value is no longer than a hundred characters in length
-		  * 
-		  * @param {String} str - input to be evaluated
-		  *
-		  * @returns {boolean} - indicates whether the value is less than 100 characters in length
-		  *
-		  * @author kinsho
-		  */
-		isLessThan100Characters: function(str)
-		{
-			str = str || '';
-
-			// Test the length of the string here
-			return (str.length <= 100);
-		},
+		}
 	};
 
 // ----------------- END --------------------------
