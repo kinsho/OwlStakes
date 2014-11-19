@@ -4,9 +4,64 @@ define(['models/foundation/modelHelper', '/shared/validation/stringValidator', '
 // ----------------- ENUM/CONSTANTS -----------------------------
 
 	var STATE_CODES =
-		[
-			'AL'
-		];
+		{
+			AL: 'Alabama',
+			AK: 'Alaska',
+			AZ: 'Arizona',
+			AR: 'Arkansas',
+			CA: 'California',
+			CO: 'Colorado',
+			CT: 'Connecticut',
+			DE: 'Delaware',
+			DC: 'District of Columbia',
+			FL: 'Florida',
+			GA: 'Georgia',
+			HI: 'Hawaii',
+			ID: 'Idaho',
+			IL: 'Illinois',
+			IN: 'Indiana',
+			IA: 'Iowa',
+			KS: 'Kansas',
+			KY: 'Kentucky',
+			LA: 'Louisiana',
+			ME: 'Maine',
+			MD: 'Maryland',
+			MA: 'Massachusetts',
+			MI: 'Michigan',
+			MN: 'Minnesota',
+			MS: 'Mississippi',
+			MO: 'Missouri',
+			MT: 'Montana',
+			NE: 'Nebraska',
+			NV: 'Nevada',
+			NH: 'New Hampshire',
+			NJ: 'New Jersey',
+			NM: 'New Mexico',
+			NY: 'New York',
+			NC: 'North Carolina',
+			ND: 'North Dakota',
+			OH: 'Ohio',
+			OK: 'Oklahoma',
+			OR: 'Oregon',
+			PA: 'Pennsylvania',
+			RI: 'Rhode Island',
+			SC: 'South Carolina',
+			SD: 'South Dakota',
+			TN: 'Tennessee',
+			TX: 'Texas',
+			UT: 'Utah',
+			VT: 'Vermont',
+			VA: 'Virginia',
+			WA: 'Washington',
+			WV: 'West Virginia',
+			WI: 'Wisconsin',
+			WY: 'Wyoming',
+			AS: 'American Samoa',
+			GU: 'Guam',
+			PR: 'Puerto Rico',
+			VI: 'U.S. Virgin Islands',
+			Other: 'Other'
+		},
 
 		USERNAME_NOT_ALPHANUMERIC = 'Your username can only contain alphabetical characters and numbers. Nothing else.',
 		USERNAME_TOO_LONG = 'Your username cannot be longer than 20 characters. Please shorten it.',
@@ -27,19 +82,20 @@ define(['models/foundation/modelHelper', '/shared/validation/stringValidator', '
 
 // ----------------- PRIVATE VARIABLES/FUNCTIONS -----------------------------
 
-		var isValidState = function(value)
+	var isValidState = function(value)
 		{
 			value = value || '';
 
-			
-		}
+			return !!(STATE_CODES[value]);
+		};
+
 // ----------------- DATA MODEL -----------------------------
 
 	var my =
-	{
-		errors: [],
-		fields: ['username', 'password', 'firstName', 'lastName', 'birthday']
-	};
+		{
+			errors: [],
+			fields: ['username', 'password', 'firstName', 'lastName', 'birthday']
+		};
 
 	// Username
 	modelHelper.defineProperty(my, 'username',

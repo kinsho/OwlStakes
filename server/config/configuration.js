@@ -96,6 +96,10 @@ define([], function()
 					if (my[keys[i]].SERVER_URL.indexOf( url ) >= 0)
 					{
 						my.active = keys[i];
+
+						// Log this for sanity's sake. This is very important for production deployments and testing purposes
+						console.log('Environment: ' + keys[i]);
+
 						break;
 					}
 				}
