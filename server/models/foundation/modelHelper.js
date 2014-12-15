@@ -49,7 +49,7 @@ define(['utility/exception'], function(exception)
 					var errorCounter = 0,
 						i;
 
-					// If an errors array has not been defined yet, initialize the property as an empty array
+					// If a standardized errors array has not been defined yet, initialize one
 					if ( !(obj.errors) )
 					{
 						obj.errors = [];

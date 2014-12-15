@@ -2,5 +2,7 @@
 	"404" : "404",
 	"home" : "home",
 	"resources" : "resources",
-	"suicidePools" : "pools"
+
+	"suicidePools" : "pools",
+	"registration" : "registration"
 }

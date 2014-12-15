@@ -117,8 +117,6 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		 */
 		findResourceController: function()
 		{
-			// If a path has been defined however, the server will route the request to the controller indicated
-			// within the URL, provided that a controller can be found that matches the one indicated within the URL.
 			return CONTROLLERS_DIRECTORY + FOUNDATION_DIRECTORY + routes[RESOURCES_CONTROLLER] + CONTROLLER_SUFFIX;
 		},
 
