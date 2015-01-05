@@ -3,4 +3,6 @@ Chess
 .idea
 **/.sass-cache
 node_modules
-*.iml
+OwlStakes.iml
+client/libraries
+
