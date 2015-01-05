@@ -89,8 +89,9 @@ define(['crypto', 'config/configuration', 'utility/exception'], function(crypto,
 		 */
 		self.parseCookiesFromRequest = function(cookieString)
 		{
-			var strippedCookieString = cookieString.replace(COOKIE_LABEL + '=', ''), // Strip out the label before parsing any meaningful data
+			var strippedCookieString = '',
 				decrypter = crypto.createDecipher(hash.HASH_ALGORITHM, hash.HASH_KEY),
+				cookies,
 				decryptedCookie,
 				properties,
 				property,
@@ -126,22 +127,39 @@ define(['crypto', 'config/configuration', 'utility/exception'], function(crypto,
 
 			try
 			{
-				// Decrypt the data first before processing it
-				decryptedCookie = decrypter.update(strippedCookieString, hash.HASH_OUTPUT_ENCODING, hash.HASH_INPUT_ENCODING);
-				decryptedCookie += decrypter.final(hash.HASH_INPUT_ENCODING);
 
-				// Now translate all the properties listed in the cookie into an actionable object
-				properties = decryptedCookie.split(';');
-				for (i = 0; i < properties.length; i++)
+				// First, if it exists, separate the cookie from other third-party cookies
+				cookies = (cookieString) ? cookieString.split(';') : [];
+
+				for (i = cookies.length - 1; i >= 0; i--)
 				{
-					// Ensure that the logic is only working with non-empty strings
-					if (properties[i].trim()) {
-						property = properties[i].split('=');
-						populator(property[0], property[1]);
+					strippedCookieString = (cookies[i].indexOf(COOKIE_LABEL + '=') >= 0) ? cookies[i].trim() : '';
+					break;
+				}
+
+				// Strip out the label before parsing any meaningful data
+				strippedCookieString = strippedCookieString.replace(COOKIE_LABEL + '=', '');
+
+				// Then decrypt the data first before any further processing
+				if (strippedCookieString)
+				{
+					decryptedCookie = decrypter.update(strippedCookieString, hash.HASH_OUTPUT_ENCODING, hash.HASH_INPUT_ENCODING);
+					decryptedCookie += decrypter.final(hash.HASH_INPUT_ENCODING);
+
+					// Now translate all the properties listed in the cookie into an actionable object
+					properties = decryptedCookie.split(';');
+					for (i = 0; i < properties.length; i++)
+					{
+						// Ensure that the logic is only working with non-empty strings
+						if (properties[i].trim())
+						{
+							property = properties[i].split('=');
+							populator(property[0], property[1]);
+						}
 					}
 				}
 			}
-			catch (error)
+			catch(error)
 			{
 				throw new exception.cookiesException(error);
 			}

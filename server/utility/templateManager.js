@@ -19,6 +19,8 @@ define(['Q', 'Handlebars', 'path', 'utility/fileManager'], function(Q, Handlebar
 		 * @param {Array[Function]} [helpers] - an associative array of helper functions to register into handlebars
 		 * 		prior to the compilation of the template
 		 *
+		 * @return {String} - the HTML with all of its data points populated
+		 *
 		 * @author kinsho
 		 */
 		populateTemplate: Q.async(function* (data, templateDirectory, templateName, helpers)

@@ -11,7 +11,7 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		 *
 		 * @author kinsho
 		 */
-		initAction: Q.async(function* (url)
+		initAction: Q.async(function* (response, url)
 		{
 			return yield fileManager.fetchFile(url);
 		})

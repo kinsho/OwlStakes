@@ -40,7 +40,7 @@
 						var url = request.url.trim(),
 							urlObj = _url_.parse(url, true),
 							routeSigns = urlObj.pathname.split('/'),
-							cookies = cookieManager.parseCookiesFromRequest(request.headers.cookie),
+							cookieParser = new cookieManager(),
 
 							// If the URL indicates whether a style or image resource needs to be fetched, route to a controller
 							// specifically designed to pull those type of resources
@@ -54,6 +54,9 @@
 							controller,
 							responseData;
 
+
+						// Translate the cookie into a form that can be readily accessed
+						cookieParser.parseCookiesFromRequest(request.headers.cookie);
 
 						// Ensure that the routes are cached before looking up the server route to the correct controller
 						if (!(routesCached))
@@ -70,16 +73,23 @@
 
 						_requireJS_([controller], function (controller)
 						{
-							// Find the correct action method indicated within the URL, then pass that action method
-							// all the relevant parameters needed to properly service the request by itself
-							responseData = controller[ router.findAction(routeSigns[1], action) ](response, params, cookies);
+							Q.spawn(function* ()
+							{
+								// Find the correct action method indicated within the URL, then pass that action method
+								// all the relevant parameters needed to properly service the request by itself
+								responseData = yield controller[ router.findAction(routeSigns[1], action) ](response, params, cookieParser);
+
+								// Send the response back
+								responseHandler.sendSuccessResponse(response, responseData, url, cookieParser);
+							});
 						});
+
 					}
 					catch (exception)
 					{
 						if (exception.is404Exception)
 						{
-							responseHandler.sendErrorResponse(response, exception.errors, url, cookies);
+							responseHandler.sendErrorResponse(response, exception.errors, url, cookieParser);
 						}
 						else if (exception.isCookieException)
 						{
@@ -87,7 +97,7 @@
 						}
 						else
 						{
-							responseHandler.sendInternalServerErrorResponse(response, url, cookies);
+							responseHandler.sendInternalServerErrorResponse(response, url, cookieParser);
 						}
 					}
 				});

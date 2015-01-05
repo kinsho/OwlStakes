@@ -6,6 +6,7 @@ define(['Q', 'utility/fileManager', 'utility/templateManager'], function(Q, file
 
 		HBARS_STYLESHEET_FILES = 'cssFiles',
 		HBARS_BASE_TEMPLATE_HTML = 'baseTemplateHTML',
+		HBARS_LEFT_HAND_TEMPLATE_HTML = 'leftHandHTML',
 		HBARS_CONTENT_HTML = 'contentViewHTML';
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -26,7 +27,9 @@ define(['Q', 'utility/fileManager', 'utility/templateManager'], function(Q, file
 		{
 			var data = {};
 
-			data[HBARS_BASE_TEMPLATE_HTML] = yield fileManager.fetchFoundationalTemplates();
+//			data[HBARS_BASE_TEMPLATE_HTML] = yield fileManager.fetchFoundationalTemplates();
+			data[HBARS_BASE_TEMPLATE_HTML] = '';
+			data[HBARS_LEFT_HAND_TEMPLATE_HTML] = yield fileManager.fetchLeftHandMenuTemplates();
 			data[HBARS_STYLESHEET_FILES] = yield fileManager.fetchAllFoundationalStylesheets();
 			data[HBARS_CONTENT_HTML] = content;
 

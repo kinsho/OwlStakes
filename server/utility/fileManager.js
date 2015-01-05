@@ -8,6 +8,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		LIBRARY_DIRECTORY = 'library/',
 		FOUNDATION_DIRECTORY = 'foundation/',
 		STYLESHEET_DIRECTORY = 'styles/css/',
+		LEFT_HAND_DIRECTORY = 'leftHandMenu/',
 		MODULES_DIRECTORY = 'modules/',
 		VIEWS_DIRECTORY = 'views/',
 
@@ -74,7 +75,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 							files.push(
 							{
 								'name': fileNames[i],
-								'path': '/' + directoryName + fileNames[i]
+								'path': directoryName + fileNames[i]
 							});
 						}
 					}
@@ -92,6 +93,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 			}
 			catch(error)
 			{
+
 				console.error('ERROR ---> fileManager.fileNameScraper');
 				throw error;
 			}
@@ -124,6 +126,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 				{
 					fileContents = yield Q.all(filePaths.map(function(file)
 					{
+						console.log('Fetching the following file: ' + file.path);
 						return fsReadFile(file.path);
 					}));
 
@@ -138,9 +141,13 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 							content: fileContents[i].toString()
 						};
 					}
+
+					// Prepare the value for return
+					fileContents = labelledFileContents;
 				}
 				else
 				{
+					console.log('Fetching the following file: ' + filePaths);
 					fileContents = yield fsReadFile(filePaths);
 					fileContents = fileContents.toString();
 				}
@@ -158,21 +165,19 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 	var my =
 	{
 		/**
-		 * Generator function that returns the contents of all foundational template that are needed when
-		 * the page initially loads
+		 * Generator function that fetches all the templates that relate to the left-hand menu
 		 *
-		 * @returns {Array[Object]} - a collection of objects containing the contents of each foundational template
-		 *		as well as the name of that template within the file system
+		 * @returns {Array[String]} - the set of HTML strings that together form the left-hand menu
 		 *
 		 * @author kinsho
 		 */
-		fetchFoundationalTemplates: Q.async(function* ()
+		fetchLeftHandMenuTemplates: Q.async(function* ()
 		{
 			var paths,
 				templateContent;
 
-			// Fetch all the file names from the foundational view sub-directory
-			paths = yield fileNameScraper(CLIENT_DIRECTORY + VIEWS_DIRECTORY + FOUNDATION_DIRECTORY, true);
+			// Fetch all the file names from the left-hand menu view sub-directory
+			paths = yield fileNameScraper(CLIENT_DIRECTORY + VIEWS_DIRECTORY + LEFT_HAND_DIRECTORY, true);
 			templateContent = yield fileContentScraper(paths);
 
 			return templateContent;

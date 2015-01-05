@@ -16,7 +16,9 @@
 
     	<!-- Load the HTML for the left-hand menu -->
 	    <div id='leftHandContainer'>
-	        {{leftHandHTML}}
+	        {{#leftHandHTML}}
+                {{{content}}}
+            {{/leftHandHTML}}
 	    </div>
 
 		<!-- Load all the foundational view content that will be displayed across all pages -->
@@ -27,7 +29,7 @@
 		<!-- Load all the view files that comprise the main content for this page -->
 		<div class='content'>
             {{#contentViewHTML}}
-                {{.}}
+                {{{.}}}
             {{/contentViewHTML}}
 		</div>
 

@@ -4,7 +4,7 @@ define(['config/router'], function(router)
 // ----------------- ENUM/CONSTANTS --------------------------
 
 	var INTERNAL_SERVER_ERROR_MESSAGE = "Something's up with our server here. We apologize for any inconvenience here," +
-		"but rest assured, the administrator has been notified and somebody will address this issue soon. Until" +
+		"but rest assured, the administrator has been notified and somebody will address this issue soon. Until " +
 		"then, please come back to this site later. Once again, we apologize for having to do this.";
 
 // ----------------- MODULE DEFINITION --------------------------
@@ -31,7 +31,7 @@ define(['config/router'], function(router)
 				"Set-Cookie" : cookies.sendOverCookies()
 			});
 
-			console.log('Response ready to be returned from URL: ' + url);
+			console.log('Response ready to be returned from URL: /' + url);
 
 			// Send a response back and close out this service call once and for all
 			response.end(responseData);
@@ -68,6 +68,7 @@ define(['config/router'], function(router)
 			response.writeHead(500);
 
 			console.log('Errors were generated when trying to service the following URL: ' + url);
+			console.log("Something's up with the cookies here...");
 
 			// Send an e-mail to the admin to notify him that a bad cookie was caught in transit...
 			// @TODO write logic to send e-mails
