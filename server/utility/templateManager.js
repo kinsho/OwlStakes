@@ -1,4 +1,4 @@
-define(['Q', 'Handlebars', 'path', 'utility/fileManager'], function(Q, Handlebars, path, fileManager)
+define(['Q', 'Handlebars', 'utility/fileManager'], function(Q, Handlebars, fileManager)
 {
 
 // ----------------- PRIVATE VARIABLES -----------------------------

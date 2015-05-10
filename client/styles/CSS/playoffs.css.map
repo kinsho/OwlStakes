@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;;;;;;;;;;;;;;;;;;;;;AAYQ,iIAAyH;;;;;;;;;;;;;;;;;;AA+KjI,qBACA;EAxIE,WAAM,EAyI6B,GAAG;EAxItC,SAAI,EA/BU,IAAI;EAgClB,WAAM,EAAE,2BAAO;EACf,UAAK,EAPyG,MAAM;;;;;;;ACoDtH,qBACA;EACC,KAAK,EAAE,IAAI;;;;ACzFZ,qBACA;EAME,UAAG,EAAE,IAAI;EACT,aAAM,EAAE,IAAI;EAGb,UAAU,EAAE,MAAM",
+"sources": ["../SASS/foundation/_fonts.scss","../SASS/foundation/_widthsHeights.scss","../SASS/playoffs.scss"],
+"names": [],
+"file": "playoffs.css"
+}

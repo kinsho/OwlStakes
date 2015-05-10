@@ -1,8 +1,9 @@
 {
 	"404" : "404",
 	"home" : "home",
-	"resources" : "resources",
+	"resources" : "Resources",
 
-	"suicidePools" : "pools",
-	"registration" : "registration"
+	"suicidePools" : "Pools",
+	"registration" : "Registration",
+	"playoffs" : "Playoffs"
 }

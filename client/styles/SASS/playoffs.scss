@@ -1,0 +1,26 @@
+/* ----------------------- IMPORTS ----------------------------- */
+
+@import 'foundation/fonts';
+@import 'foundation/widthsHeights';
+
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+
+$PLAYOFFS:
+(
+);
+
+/* ----------------------- STYLES ----------------------------- */
+
+.selectionBlockHeader
+{
+	@extend %oneOverOne;
+	@extend %largeFont;
+
+	margin:
+	{
+		top: 10px;
+		bottom: 10px;
+	}
+
+	text-align: center;
+}

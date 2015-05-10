@@ -50,7 +50,7 @@
   font-size: 20px;
   font-family: Source Sans Pro, sans-serif;
   font-style: italic;
-  color: #f8f8f8;
+  color: #F8F8F8;
   text-shadow: 1px 1px 0 #000000; }
 
 .navButton {
@@ -58,9 +58,10 @@
   font-size: 20px;
   font-family: Cardo, sans-serif;
   font-style: normal;
-  color: #3399ff; }
+  color: #3399FF; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
@@ -278,11 +279,11 @@
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   border-style: solid;
-  border-color: #eeeeff;
+  border-color: #EEEEFF;
   border-width: 8px;
   border-radius: 25px;
   box-shadow: 2px 4px 10px 0px;
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -300,7 +301,7 @@
   .modal.midsizeModal {
     width: 50%; }
   .modal.nestedModal {
-    border-color: #c7d0c4;
+    border-color: #C7D0C4;
     z-index: 10001;
     width: 20%; }
   .modal.halfFadeOut {
@@ -337,11 +338,11 @@
   padding-bottom: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  background-color: #8fa288; }
+  background-color: #8FA288; }
   .modalHeader.errorHeader {
-    background-color: #db5192; }
+    background-color: #DB5192; }
   .modalHeader.noticeHeader {
-    background-color: #eb9100; }
+    background-color: #EB9100; }
 
 .modalBody {
   padding-left: 15px;
@@ -414,3 +415,5 @@
 
 .strongerModalOverlay {
   background-color: rgba(0, 0, 0, 0.3); }
+
+/*# sourceMappingURL=modal.css.map */

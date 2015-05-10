@@ -284,3 +284,10 @@ $FONTS:
 {
 	@include neutralFont($size: map-get($FONTS, largeFontSize));
 }
+
+/* --- Context fonts --- */
+
+%blockQuoteFont
+{
+	@include basicFontSettings($weight: 400, $size: map-get($FONTS, regularFontSize), $family: Cardo, $style: italic, $color: map-get($COLORS, darkerGrayTheme));
+}

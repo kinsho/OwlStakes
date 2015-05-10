@@ -78,7 +78,7 @@ input[type='button'], select[type='button'] {
   font-size: 20px;
   font-family: Source Sans Pro, sans-serif;
   font-style: italic;
-  color: #f8f8f8;
+  color: #F8F8F8;
   text-shadow: 1px 1px 0 #000000; }
 
 a {
@@ -86,9 +86,10 @@ a {
   font-size: 16px;
   font-family: Cardo, sans-serif;
   font-style: normal;
-  color: #0101df; }
+  color: #0101DF; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- IMPORTS ----------------------------- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
 /* ----------------------- MIX-INS ----------------------------- */
@@ -167,7 +168,7 @@ input[type='button'], select[type='button'] {
   font-size: 20px;
   font-family: Source Sans Pro, sans-serif;
   font-style: italic;
-  color: #f8f8f8;
+  color: #F8F8F8;
   text-shadow: 1px 1px 0 #000000; }
 
 a {
@@ -175,9 +176,10 @@ a {
   font-size: 16px;
   font-family: Cardo, sans-serif;
   font-style: normal;
-  color: #0101df; }
+  color: #0101DF; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
  * Mix-in responsible for styling any informational row
@@ -268,44 +270,44 @@ label {
   label.requiredMarker:after {
     content: '*';
     margin-left: 5px;
-    color: #ff3333; }
+    color: #FF3333; }
 
 input, select {
   margin-bottom: 10px;
   outline-style: outset;
   outline-width: 1px;
-  outline-color: #cdcdcd;
+  outline-color: #CDCDCD;
   width: 100%;
   min-width: 50px;
   min-height: 20px;
-  background-color: #f8f8f8; }
+  background-color: #F8F8F8; }
   input.invalid, select.invalid {
     border-width: 2px;
     border-style: ridge;
-    border-color: #cc3355;
-    background-color: #ffaaaa; }
+    border-color: #CC3355;
+    background-color: #FFAAAA; }
     input.invalid:focus, select.invalid:focus {
-      background-color: white; }
+      background-color: #FFFFFF; }
   input:disabled, select:disabled {
     outline-width: 0px;
-    background-color: #cdcdcd; }
+    background-color: #CDCDCD; }
   input:not([type='button']):focus, select:not([type='button']):focus {
-    background-color: white;
-    border-color: black;
+    background-color: #FFFFFF;
+    border-color: #000000;
     border-width: 2px; }
   input[type='button'], select[type='button'] {
-    border-color: #3399ff;
+    border-color: #3399FF;
     border-width: 4px;
     border-radius: 15px;
     outline-style: none;
     outline-width: 0px;
-    background-color: #3399ff;
+    background-color: #3399FF;
     cursor: none; }
     input[type='button']:disabled, select[type='button']:disabled {
       opacity: 0.5; }
 
 option[disabled='disabled'] {
-  color: #a0a0a0; }
+  color: #A0A0A0; }
 
 a {
   text-decoration: none; }
@@ -320,10 +322,10 @@ a {
   padding-right: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: #bbdbff;
+  border-color: #BBDBFF;
   border-radius: 10px;
   display: inline-block;
-  background-color: #eeeeff; }
+  background-color: #EEEEFF; }
   .infoRow.centerRow {
     margin-left: auto;
     margin-right: auto; }
@@ -355,7 +357,7 @@ a {
     display: inline-block;
     width: 16px;
     height: 16px;
-    background-color: #d0d0d0;
+    background-color: #D0D0D0;
     box-shadow: inset 3px 2px 6px 0px rgba(0, 0, 0, 0.3); }
 
 .noDisplay {
@@ -365,16 +367,18 @@ a {
   text-align: center; }
 
 .positiveBackgroundTheme {
-  background-color: #21693a; }
+  background-color: #21693A; }
 
 .negativeBackgroundTheme {
-  background-color: #db5192; }
+  background-color: #DB5192; }
 
 .neutralBackgroundTheme {
-  background-color: #eb9100; }
+  background-color: #EB9100; }
 
 .content {
   width: 80%;
   float: right;
   z-index: 0;
   position: relative; }
+
+/*# sourceMappingURL=base.css.map */

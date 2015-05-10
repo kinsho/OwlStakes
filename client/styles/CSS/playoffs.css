@@ -1,0 +1,62 @@
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- IMPORTS ----------------------------- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mix-in designed to render a gradient background on a particular element
+ * Works across all major browsers
+ *
+ * @param $initialColor - the color which will launch the gradient
+ * @param $endColor - the color which will mark the tail of the rendered gradient
+ * @param $direction - the direction in which the gradient will render across the background of the element
+ *
+ * @author kinsho
+ */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/*
+ * The custom font-families that the site will use are:
+ *
+ * Source Sans Pro
+ * Cardo
+ *
+ */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300italic,400italic,600italic|Cardo:400,700,400italic);
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- MIX-INS ----------------------------- */
+/*
+ * Mixin built to provide a convenient way to set basic font styles quickly
+ *
+ * @param $weight - the font weight
+ * @param $size - the font size
+ * @param $family - the font family
+ * @param $style - the font style
+ * @param $color - an optional parameter that allows one to specify a font color
+ *
+ * @author kinsho
+ */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+/* --- Italicized and bold stylings --- */
+/* --- Header stylings --- */
+/* --- Normal text fonts --- */
+.selectionBlockHeader {
+  font-weight: 400;
+  font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+  font-style: normal; }
+
+/* --- Colored fonts --- */
+/* --- Mood fonts --- */
+/* --- Context fonts --- */
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- PLACEHOLDERS ----------------------------- */
+.selectionBlockHeader {
+  width: 100%; }
+
+/* ----------------------- LOCAL CONSTANTS ----------------------------- */
+/* ----------------------- STYLES ----------------------------- */
+.selectionBlockHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center; }
+
+/*# sourceMappingURL=playoffs.css.map */

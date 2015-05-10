@@ -121,7 +121,7 @@ define(['Q', 'utility/fileManager'], function(Q, fileManager)
 		},
 
 		/**
-		 * Function responsible for defining a full route toward a specific action within a controller or, if an
+		 * Function responsible for defining a full route toward a specific action within a controller. If an
 		 * action has not been explicitly specified by the request being served, a full route to that controller's
 		 * initialization function will be provided instead
 		 *

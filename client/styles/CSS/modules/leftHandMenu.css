@@ -81,9 +81,10 @@
   font-size: 12px;
   font-family: Cardo, sans-serif;
   font-style: normal;
-  color: #0101df; }
+  color: #0101DF; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- IMPORTS ----------------------------- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
 /* ----------------------- MIX-INS ----------------------------- */
@@ -165,9 +166,10 @@
   font-size: 12px;
   font-family: Cardo, sans-serif;
   font-style: normal;
-  color: #0101df; }
+  color: #0101DF; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
  * Mix-in responsible for styling any informational row
@@ -417,14 +419,12 @@
     -moz-transform: translate(0%, 0%);
     -ms-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%); }
-
   35% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   45% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -441,7 +441,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(-150%, 0);
     -webkit-transform: translate(-150%, 0);
@@ -470,14 +469,12 @@
     -moz-transform: translate(0%, 0%);
     -ms-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%); }
-
   35% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   45% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -494,7 +491,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(-150%, 0);
     -webkit-transform: translate(-150%, 0);
@@ -523,14 +519,12 @@
     -moz-transform: translate(0%, 0%);
     -ms-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%); }
-
   35% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   45% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -547,7 +541,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(-150%, 0);
     -webkit-transform: translate(-150%, 0);
@@ -576,14 +569,12 @@
     -moz-transform: translate(0%, 0%);
     -ms-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%); }
-
   35% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   45% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -600,7 +591,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(-150%, 0);
     -webkit-transform: translate(-150%, 0);
@@ -629,14 +619,12 @@
     -moz-transform: translate(0%, 0%);
     -ms-transform: translate(0%, 0%);
     -o-transform: translate(0%, 0%); }
-
   35% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   45% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -653,7 +641,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(-150%, 0);
     -webkit-transform: translate(-150%, 0);
@@ -682,14 +669,12 @@
     -moz-transform: translate(-150%, 0%);
     -ms-transform: translate(-150%, 0%);
     -o-transform: translate(-150%, 0%); }
-
   65% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   75% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -706,7 +691,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(0%, 0);
     -webkit-transform: translate(0%, 0);
@@ -735,14 +719,12 @@
     -moz-transform: translate(-150%, 0%);
     -ms-transform: translate(-150%, 0%);
     -o-transform: translate(-150%, 0%); }
-
   65% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   75% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -759,7 +741,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(0%, 0);
     -webkit-transform: translate(0%, 0);
@@ -788,14 +769,12 @@
     -moz-transform: translate(-150%, 0%);
     -ms-transform: translate(-150%, 0%);
     -o-transform: translate(-150%, 0%); }
-
   65% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   75% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -812,7 +791,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(0%, 0);
     -webkit-transform: translate(0%, 0);
@@ -841,14 +819,12 @@
     -moz-transform: translate(-150%, 0%);
     -ms-transform: translate(-150%, 0%);
     -o-transform: translate(-150%, 0%); }
-
   65% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   75% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -865,7 +841,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(0%, 0);
     -webkit-transform: translate(0%, 0);
@@ -894,14 +869,12 @@
     -moz-transform: translate(-150%, 0%);
     -ms-transform: translate(-150%, 0%);
     -o-transform: translate(-150%, 0%); }
-
   65% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
     -moz-transform: translate(20%, 0%);
     -ms-transform: translate(20%, 0%);
     -o-transform: translate(20%, 0%); }
-
   75% {
     transform: translate(20%, 0%);
     -webkit-transform: translate(20%, 0%);
@@ -918,7 +891,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(0%, 0);
     -webkit-transform: translate(0%, 0);
@@ -927,11 +899,12 @@
     -o-transform: translate(0%, 0); } }
 /* ----------------------- GENERAL STYLING ----------------------------- */
 #leftHandContainer {
-  background-color: #d0d0d0;
-  background-image: -webkit-linear-gradient(left, #d0d0d0, white);
-  background-image: -moz-linear-gradient(left, #d0d0d0, white);
-  background-image: -ms-linear-gradient(left, #d0d0d0, white);
-  background-image: -o-linear-gradient(left, #d0d0d0, white);
+  background-color: #D0D0D0;
+  background-image: -webkit-linear-gradient(left, #D0D0D0, #FFFFFF);
+  background-image: -moz-linear-gradient(left, #D0D0D0, #FFFFFF);
+  background-image: -ms-linear-gradient(left, #D0D0D0, #FFFFFF);
+  background-image: -o-linear-gradient(left, #D0D0D0, #FFFFFF);
+  visibility: hidden;
   margin-right: 10px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -1022,7 +995,7 @@
   padding-left: 60px;
   border-style: solid;
   border-width: 1px;
-  border-color: #a0a0a0;
+  border-color: #A0A0A0;
   border-left-style: none;
   border-right-style: none;
   height: 25px;
@@ -1077,7 +1050,7 @@
     border-bottom-width: 10px;
     border-bottom-color: transparent;
     border-left-width: 10px;
-    border-left-color: #a0a0a0;
+    border-left-color: #A0A0A0;
     transform: translate(50%, 50%);
     -webkit-transform: translate(50%, 50%);
     -moz-transform: translate(50%, 50%);
@@ -1106,7 +1079,7 @@
   -o-transition-duration: 0.5s;
   -o-transition-delay: 0s;
   margin-bottom: 5px;
-  background-color: white;
+  background-color: #FFFFFF;
   cursor: pointer;
   height: 0px; }
   .subItems > div {
@@ -1134,3 +1107,5 @@
       -o-transition-timing-function: linear;
       -o-transition-duration: 0.1s;
       -o-transition-delay: 0s; }
+
+/*# sourceMappingURL=leftHandMenu.css.map */

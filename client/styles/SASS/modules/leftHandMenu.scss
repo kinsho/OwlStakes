@@ -20,6 +20,8 @@
 {
 	@include setGradient($initialColor: map-get($COLORS, lightGrayTheme), $endColor: map-get($COLORS, whiteTheme));
 
+	visibility: hidden;
+
 	margin:
 	{
 		right: 10px;

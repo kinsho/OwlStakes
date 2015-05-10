@@ -210,17 +210,18 @@
 
 /* --- Colored fonts --- */
 #serverMessageContainerBody {
-  color: white; }
+  color: #FFFFFF; }
 
 #serverMessageContainerHeader {
   font-weight: 700;
   font-size: 20px;
   font-family: Source Sans Pro, sans-serif;
   font-style: italic;
-  color: #f8f8f8;
+  color: #F8F8F8;
   text-shadow: 1px 1px 0 #000000; }
 
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- LOCAL CONSTANTS ----------------------------- */
 /* ----------------------- ANIMATIONS ----------------------------- */
 @keyframes containerEnter {
@@ -245,14 +246,12 @@
     -moz-transform: translate(130%, 0%);
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
-
   75% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   85% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -269,7 +268,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(30%, 0);
     -webkit-transform: translate(30%, 0);
@@ -298,14 +296,12 @@
     -moz-transform: translate(130%, 0%);
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
-
   75% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   85% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -322,7 +318,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(30%, 0);
     -webkit-transform: translate(30%, 0);
@@ -351,14 +346,12 @@
     -moz-transform: translate(130%, 0%);
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
-
   75% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   85% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -375,7 +368,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(30%, 0);
     -webkit-transform: translate(30%, 0);
@@ -404,14 +396,12 @@
     -moz-transform: translate(130%, 0%);
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
-
   75% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   85% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -428,7 +418,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(30%, 0);
     -webkit-transform: translate(30%, 0);
@@ -457,14 +446,12 @@
     -moz-transform: translate(130%, 0%);
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
-
   75% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   85% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -481,7 +468,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(30%, 0);
     -webkit-transform: translate(30%, 0);
@@ -510,14 +496,12 @@
     -moz-transform: translate(30%, 0%);
     -ms-transform: translate(30%, 0%);
     -o-transform: translate(30%, 0%); }
-
   20% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   30% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -534,7 +518,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(130%, 0);
     -webkit-transform: translate(130%, 0);
@@ -563,14 +546,12 @@
     -moz-transform: translate(30%, 0%);
     -ms-transform: translate(30%, 0%);
     -o-transform: translate(30%, 0%); }
-
   20% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   30% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -587,7 +568,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(130%, 0);
     -webkit-transform: translate(130%, 0);
@@ -616,14 +596,12 @@
     -moz-transform: translate(30%, 0%);
     -ms-transform: translate(30%, 0%);
     -o-transform: translate(30%, 0%); }
-
   20% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   30% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -640,7 +618,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(130%, 0);
     -webkit-transform: translate(130%, 0);
@@ -669,14 +646,12 @@
     -moz-transform: translate(30%, 0%);
     -ms-transform: translate(30%, 0%);
     -o-transform: translate(30%, 0%); }
-
   20% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   30% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -693,7 +668,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(130%, 0);
     -webkit-transform: translate(130%, 0);
@@ -722,14 +696,12 @@
     -moz-transform: translate(30%, 0%);
     -ms-transform: translate(30%, 0%);
     -o-transform: translate(30%, 0%); }
-
   20% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
     -moz-transform: translate(25%, 0%);
     -ms-transform: translate(25%, 0%);
     -o-transform: translate(25%, 0%); }
-
   30% {
     transform: translate(25%, 0%);
     -webkit-transform: translate(25%, 0%);
@@ -746,7 +718,6 @@
     -mozilla-animation-iteration-count: 1;
     -ms-animation-iteration-count: 1;
     -o-animation-iteration-count: 1; }
-
   100% {
     transform: translate(130%, 0);
     -webkit-transform: translate(130%, 0);
@@ -761,7 +732,7 @@
   -ms-transform: translate(130%, 0%);
   -o-transform: translate(130%, 0%);
   border-style: solid;
-  border-color: #a0a0a0;
+  border-color: #A0A0A0;
   border-width: 2px;
   border-radius: 15px;
   padding-left: 15px;
@@ -822,9 +793,9 @@
     -ms-transform: translate(130%, 0%);
     -o-transform: translate(130%, 0%); }
   #serverMessageContainer.neutralBackgroundTheme > #serverMessageContainerBody, #serverMessageContainer.neutralBackgroundTheme > .exitButton {
-    color: black; }
+    color: #000000; }
   #serverMessageContainer.neutralBackgroundTheme > #serverMessageContainerHeader {
-    color: black; }
+    color: #000000; }
   #serverMessageContainer.animateMovement {
     transition-property: transform;
     transition-timing-function: ease;
@@ -865,7 +836,7 @@
   #serverMessageContainer > .exitButton {
     margin-right: 8%;
     margin-top: 3px;
-    color: #f8f8f8;
+    color: #F8F8F8;
     float: right;
     cursor: pointer; }
 
@@ -874,3 +845,5 @@
 
 #serverMessageContainerBody {
   text-align: left; }
+
+/*# sourceMappingURL=serverRelays.css.map */

@@ -62,6 +62,7 @@ span.percentage {
 
 /* --- Colored fonts --- */
 /* --- Mood fonts --- */
+/* --- Context fonts --- */
 /* ----------------------- IMPORTS ----------------------------- */
 /* ----------------------- MIX-INS ----------------------------- */
 /*
@@ -238,20 +239,20 @@ span.percentage {
   border-style: solid;
   border-width: 5px;
   border-radius: 25px;
-  border-color: #cdcdcd;
+  border-color: #CDCDCD;
   margin-left: 10px;
   margin-right: 10px;
   position: relative;
-  background-color: #a0a0a0;
+  background-color: #A0A0A0;
   width: 200px;
   display: inline-block; }
 
 span.bar {
-  background-color: #bbdbff;
-  background-image: -webkit-linear-gradient(left, #bbdbff, #3399ff);
-  background-image: -moz-linear-gradient(left, #bbdbff, #3399ff);
-  background-image: -ms-linear-gradient(left, #bbdbff, #3399ff);
-  background-image: -o-linear-gradient(left, #bbdbff, #3399ff);
+  background-color: #BBDBFF;
+  background-image: -webkit-linear-gradient(left, #BBDBFF, #3399FF);
+  background-image: -moz-linear-gradient(left, #BBDBFF, #3399FF);
+  background-image: -ms-linear-gradient(left, #BBDBFF, #3399FF);
+  background-image: -o-linear-gradient(left, #BBDBFF, #3399FF);
   border-radius: 15px;
   display: inline-block;
   position: relative;
@@ -396,3 +397,5 @@ span.percentage {
 	}
 }
 */
+
+/*# sourceMappingURL=progress.css.map */

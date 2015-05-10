@@ -6,7 +6,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		SERVER_DIRECTORY = 'server/',
 
 		LIBRARY_DIRECTORY = 'library/',
-		FOUNDATION_DIRECTORY = 'foundation/',
+//		FOUNDATION_DIRECTORY = 'foundation/',
 		STYLESHEET_DIRECTORY = 'styles/css/',
 		LEFT_HAND_DIRECTORY = 'leftHandMenu/',
 		MODULES_DIRECTORY = 'modules/',
@@ -205,6 +205,26 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		}),
 
 		/**
+		 * Generator function that returns all stylesheets specific to a particular page
+		 *
+		 * @param {String} moduleName - the name of the module for which to pull stylesheets
+		 *
+		 * @returns {Array[Object]} - a collection of objects containing the contents of each stylesheet
+		 *		as well as the name of that stylesheet within the file system
+		 *
+		 * @author kinsho
+		 */
+		fetchStylesheets: Q.async(function* (moduleName)
+		{
+			var paths;
+
+			paths = yield fileNameScraper(CLIENT_DIRECTORY + STYLESHEET_DIRECTORY + moduleName + '/',
+				true, CSS_EXTENSION);
+
+			return paths;
+		}),
+
+		/**
 		 * Generator function that returns the content a specific template file
 		 *
 		 * @param {String} templateFolder - the name of the sub-directory within the views folder where
@@ -217,7 +237,7 @@ define(['Q', 'app-root-path', 'path', 'fs'], function(Q, appPath, path, fs)
 		 */
 		fetchTemplate: Q.async(function* (templateFolder, templateName)
 		{
-			return yield fileContentScraper(CLIENT_DIRECTORY + VIEWS_DIRECTORY + templateFolder +
+			return yield fileContentScraper(CLIENT_DIRECTORY + VIEWS_DIRECTORY + templateFolder + '/' +
 				templateName + TEMPLATE_EXTENSION);
 		}),
 
